@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+<<<<<<< HEAD
     <!-- Carte Taille et Modif -->
     <l-map style="height: 500px; width: 500px;" :zoom="zoom" :center="center">
     <!-- Rappel url openstreetmap -->
@@ -7,10 +8,18 @@
     <!-- Marqueur Carte-->
     <l-marker :lat-lng="markerLatLng" ></l-marker>
     </l-map>
+=======
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
+>>>>>>> 9ce2fea36ae91ca7efaab53db82abfb01abc3770
   </div>
   
 </template>
 
+<<<<<<< HEAD
 <script>
 /* Importation components */
 import { LMap, LTileLayer, LMarker } from 'vue2-leaflet';
@@ -50,3 +59,27 @@ export default {
 <style>
 
 </style>
+=======
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>
+>>>>>>> 9ce2fea36ae91ca7efaab53db82abfb01abc3770
