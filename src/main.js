@@ -1,5 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
+import Axios from "axios";
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 import "leaflet/dist/leaflet.css";
 import InstantSearch from "vue-instantsearch";
@@ -14,6 +15,7 @@ Vue.component("l-marker", LMarker);
 Vue.use(InstantSearch);
 Vue.use(IconsPlugin);
 Vue.use(BootstrapVue);
+Vue.use(Axios);
 
 Vue.config.productionTip = false;
 
