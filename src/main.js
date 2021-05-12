@@ -23,7 +23,6 @@ Vue.use(IconsPlugin);
 Vue.use(BootstrapVue);
 Vue.use(VueAxios, axios);
 Vue.use(VueRouter);
-Vue.use(VueAxios, axios);
 
 Vue.config.productionTip = false;
 
