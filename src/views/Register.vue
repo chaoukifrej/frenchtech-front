@@ -1,7 +1,7 @@
 <template>
   <div id="register">
-    <h4>Information concernant votre entreprise</h4>
     <form method="POST" action="" class="row g-3">
+      <h4>Information concernant votre entreprise</h4>
       <div class="col-md-12">
         <label class="form-label">Logo</label>
         <input
@@ -272,13 +272,15 @@ export default {
     margin: 0%;
     justify-items: center;
     width: 100%;
+    display: flex;
+
+    h4 {
+      text-align: center;
+    }
 
     label {
       width: 100%;
       text-align: left;
-      justify-items: left;
-      justify-self: left;
-      justify-content: left;
     }
   }
 }
