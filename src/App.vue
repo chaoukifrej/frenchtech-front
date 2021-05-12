@@ -1,12 +1,13 @@
 <template>
   <div id="app">
     <!-- Carte Taille et Modif -->
-    <l-map style="height: 500px; width: 500px;" :zoom="zoom" :center="center">
+    <l-map style="height: 500px; width: 500px" :zoom="zoom" :center="center">
       <!-- Rappel url openstreetmap -->
       <l-tile-layer :url="url"></l-tile-layer>
       <!-- Marqueur Carte-->
       <l-marker :lat-lng="markerLatLng"></l-marker>
     </l-map>
+    <router-view />
   </div>
 </template>
 
