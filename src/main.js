@@ -5,6 +5,7 @@ import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 /* Importation carte icone marqueur et css*/
 import "leaflet/dist/leaflet.css";
 import 'leaflet-defaulticon-compatibility';
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
 import InstantSearch from "vue-instantsearch";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";

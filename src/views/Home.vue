@@ -7,15 +7,21 @@
     <!-- Rappel url openstreetmap -->
     <l-tile-layer :url="url"></l-tile-layer>
     <!-- Marqueur Carte-->
-    <l-marker :lat-lng="markerLatLng" ></l-marker>
+    <l-marker :lat-lng="markerLatLng" >
+      <l-popup>
+        <h1>Bocal</h1>
+        <p style="text-align: center">Start-Up</p>
+      </l-popup>
+    </l-marker>
     </l-map>
   </div>
 </template>
 
 <script>
 /* Importation components */
-import { LMap, LTileLayer, LMarker } from 'vue2-leaflet';
-
+import { LMap, LTileLayer, LMarker, LPopup } from 'vue2-leaflet';
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
+import 'leaflet-defaulticon-compatibility';
 
 export default {
  
@@ -30,6 +36,7 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
+    LPopup,
   },
   data () {
     return {
@@ -40,9 +47,16 @@ export default {
       /* Centrage Coordonnées*/
       center: [43.6961, 7.27178],
       /* Marqueur Coordonnées*/
-      markerLatLng: [43.6961, 7.27178]
+      markerLatLng: [43.6961, 7.27178],
+
+      Entreprises: "Entreprises",
+      
     }
   },
+
+  methods: {
+      
+    }
 } 
 </script>
 
