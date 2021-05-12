@@ -1,12 +1,13 @@
 <template>
   <div class="header">
-      <img src="../../public/img/logo-blue.png" alt="logo">
+      <img class="logo" src="../../public/img/logo-blue.png" alt="logo">
   </div>
 </template>
 
 
 
 <script>
+
 export default {
     
     name: "Header",
@@ -26,10 +27,20 @@ export default {
 
 
 <style lang="scss">
+$primary: #0f0041;
+$secondary: #e52345;
+$violet: #13114e;
+$BgWhite: #f6f5f8;
+
 
 .header {
-    height: 100px;
-    background: grey;
+    height: 80px;
+    padding: 12px 18px;
+    background-color: $BgWhite;
+    box-shadow :0 3px 45px rgb(0 0 0 / 15%);
+    .logo {
+        height: 50px;
+    }
 }
 
 
