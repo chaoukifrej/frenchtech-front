@@ -27,10 +27,7 @@ export default {
 
 
 <style lang="scss">
-$primary: #0f0041;
-$secondary: #e52345;
-$violet: #13114e;
-$BgWhite: #f6f5f8;
+
 
 
 .header {
