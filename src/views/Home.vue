@@ -44,8 +44,15 @@ export default {
     };
   },
 
-  methods: {},
+  mounted() {
+    this.axios
+      .get("http://frenchtech.local/api/test", {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      })
+      .then((response) => console.log(response));
+  },
 };
 </script>
 
-<style lang="scss" scoped></style>>
+<style lang="scss" scoped></style>
