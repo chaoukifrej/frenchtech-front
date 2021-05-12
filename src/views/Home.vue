@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+        <Header/>
     <!-- Carte Taille et Modif -->
     <l-map style="height: 500px; width: 500px;" :zoom="zoom" :center="center">
       <!-- Rappel url openstreetmap -->
@@ -12,14 +13,19 @@
         </l-popup>
       </l-marker>
     </l-map>
+
+    <Footer/>
   </div>
 </template>
 
 <script>
 /* Importation components */
-import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
-import "leaflet-defaulticon-compatibility";
+import { LMap, LTileLayer, LMarker, LPopup } from 'vue2-leaflet';
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
+import 'leaflet-defaulticon-compatibility';
+// Import header et footer
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   name: "App",
@@ -28,6 +34,8 @@ export default {
     LTileLayer,
     LMarker,
     LPopup,
+    Header,
+    Footer
   },
   data() {
     return {
@@ -44,7 +52,9 @@ export default {
     };
   },
 
-  methods: {},
+  methods: {
+    
+  },
 };
 </script>
 
