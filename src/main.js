@@ -5,8 +5,8 @@ import VueAxios from "vue-axios";
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 /* Importation carte icone marqueur et css*/
 import "leaflet/dist/leaflet.css";
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import InstantSearch from "vue-instantsearch";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
@@ -23,6 +23,7 @@ Vue.use(IconsPlugin);
 Vue.use(BootstrapVue);
 Vue.use(VueAxios, axios);
 Vue.use(VueRouter);
+Vue.use(VueAxios, axios);
 
 Vue.config.productionTip = false;
 
