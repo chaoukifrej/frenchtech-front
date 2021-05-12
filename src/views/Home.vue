@@ -1,6 +1,7 @@
 
 <template>
   <div id="app">
+        <Header/>
     <!-- Carte Taille et Modif -->
     <v-icondefault :image-path="'/statics/leafletImages/'"></v-icondefault>
     <l-map style="height: 500px; width: 500px;" :zoom="zoom" :center="center">
@@ -14,6 +15,8 @@
       </l-popup>
     </l-marker>
     </l-map>
+
+    <Footer/>
   </div>
 </template>
 
@@ -22,6 +25,9 @@
 import { LMap, LTileLayer, LMarker, LPopup } from 'vue2-leaflet';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
 import 'leaflet-defaulticon-compatibility';
+// @ is an alias to /src
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
  
@@ -55,9 +61,12 @@ export default {
   },
 
   methods: {
-      
-    }
-} 
+          Header,
+    Footer
+    },
+}
+
+
 </script>
 
 <style lang="scss" scoped>
