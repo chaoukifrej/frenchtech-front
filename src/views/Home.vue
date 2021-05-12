@@ -20,18 +20,12 @@
 
 <script>
 /* Importation components */
-<<<<<<< HEAD
 import { LMap, LTileLayer, LMarker, LPopup } from 'vue2-leaflet';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
 import 'leaflet-defaulticon-compatibility';
-// @ is an alias to /src
+// Import header et footer
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
-=======
-import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
-import "leaflet-defaulticon-compatibility";
->>>>>>> 3a4ed1dafa585a69dc50004b16668b0ddd3700d8
 
 export default {
   name: "App",
@@ -40,6 +34,8 @@ export default {
     LTileLayer,
     LMarker,
     LPopup,
+    Header,
+    Footer
   },
   data() {
     return {
@@ -56,18 +52,10 @@ export default {
     };
   },
 
-<<<<<<< HEAD
   methods: {
-          Header,
-    Footer
-    },
-}
-
-
-=======
-  methods: {},
+    
+  },
 };
->>>>>>> 3a4ed1dafa585a69dc50004b16668b0ddd3700d8
 </script>
 
 <style lang="scss" scoped></style>>
