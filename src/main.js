@@ -1,6 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import axios from "axios";
+import VueAxios from "vue-axios";
 import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 /* Importation carte icone marqueur et css*/
 import "leaflet/dist/leaflet.css";
@@ -22,6 +23,7 @@ Vue.use(IconsPlugin);
 Vue.use(BootstrapVue);
 Vue.use(axios);
 Vue.use(VueRouter);
+Vue.use(VueAxios, axios);
 
 Vue.config.productionTip = false;
 

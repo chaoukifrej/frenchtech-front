@@ -2,7 +2,6 @@
 <template>
   <div id="app">
     <!-- Carte Taille et Modif -->
-    <v-icondefault :image-path="'/statics/leafletImages/'"></v-icondefault>
     <l-map style="height: 500px; width: 500px;" :zoom="zoom" :center="center">
     <!-- Rappel url openstreetmap -->
     <l-tile-layer :url="url"></l-tile-layer>
@@ -25,12 +24,6 @@ import 'leaflet-defaulticon-compatibility';
 
 export default {
  
-  mounted() {
-      this.$nextTick(() => {
-        this.$refs.myMap.mapObject.ANY_LEAFLET_MAP_METHOD();
-    })
-    
-  },
   name: 'App',
   components: {
     LMap,
