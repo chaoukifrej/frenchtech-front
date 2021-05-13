@@ -1,9 +1,10 @@
 <template>
   <div>
     <Header />
-    <div id="register">
+    <h1>BIENVENUE SUR VOTRE PAGE PERSONNELLE</h1>
+    <div id="personal">
+      <h4>Presentation de votre entreprise</h4>
       <div class="row g-3">
-        <h4>Information concernant votre entreprise</h4>
         <div class="col-md-12">
           <label class="form-label">Logo</label>
           <input
@@ -191,7 +192,7 @@
           />
         </div>
 
-        <h4>Information visible uniquement par la FrenchTech</h4>
+        <h4>Informations Relative a votre entreprise</h4>
 
         <div class="col-md-4">
           <label for="inputFond" class="form-label">Levé de fond (€)</label>
@@ -249,7 +250,7 @@
 
         <div class="col-12" id="buttonSubmit">
           <button type="submit" @click="register" class="btn btn-primary">
-            Inscription
+            Modifier
           </button>
         </div>
       </div>
@@ -260,12 +261,19 @@
 </template>
 
 <script>
+// Import header et footer
+
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+
 export default {
-  components: { Header, Footer },
-  name: "Register",
+  name: "Login",
   inject: ["baseUrl"],
+
+  components: {
+    Header,
+    Footer,
+  },
   data: () => ({
     logo: "",
     name: "",
@@ -294,43 +302,48 @@ export default {
     position: "",
     latitude: "",
     longitude: "",
+    id: "",
   }),
 
-  /* Permet de regrouper les differents element lié a la position dans la variable adress */
-  watch: {
-    streetName: function() {
-      this.adress = this.streetNumber + " " + this.streetName;
-    },
+  Mounted() {
+    this.axios
+      .get(this.baseUrl + "api/GET/actor/" + this.id, {
+        /* body de la requete */
 
-    streetNumber: function() {
-      this.adress = this.streetNumber + " " + this.streetName;
-    },
+        name: this.name,
+        email: this.email,
+        logo: this.logo,
+        adress: this.adress,
+        postal_code: this.postal_code,
+        city: this.city,
+        longitude: this.longitude,
+        latitude: this.latitude,
+        phone: this.phone,
+        category: this.category,
+        associations: this.associations,
+        description: this.description,
+        facebook: this.facebook,
+        twitter: this.twitter,
+        linkedin: this.linkedin,
+        activity_area: this.activity_area,
+        funds: this.funds,
+        employees_number: this.employees_number,
+        jobs_available_number: this.employees_number,
+        women_number: this.women_number,
+        revenues: this.revenues,
+      })
+
+      .then((response) => console.log(response));
   },
 
   methods: {
-    getPosition() {
-      /* requete afin de recupérer les coordonnées GPS des adresses */
-
-      this.axios
-        .get(
-          `https://api-adresse.data.gouv.fr/search/?q=${this.streetNumber}+${this.streetName}+${this.city}+${this.zip}%22`
-        )
-
-        .then((response) => {
-          this.x = response.data.features[0].properties.x;
-          this.y = response.data.features[0].properties.y;
-
-          console.log(this.x + this.y);
-        });
-    },
-
-    register() {
+    update() {
       /* recuperation de longitude et latitude */
       this.getPosition();
       /* requete post pour envoie de données dans la BDD */
 
       this.axios
-        .post(this.baseUrl + "api/POST/register", {
+        .put(this.baseUrl + "api/GET/update", {
           /* body de la requete */
 
           name: this.name,
@@ -376,11 +389,12 @@ export default {
 };
 </script>
 
-if (e.target.files[0].size / 1024 / 1024 > 3) { console.log("image trop
-grande"); } else { reader.readAsDataURL(e.target.files[0]); }
-
 <style lang="scss">
-#register {
+h1 {
+  margin-top: 10px;
+  text-align: center;
+}
+#personal {
   width: 80%;
   margin: auto;
 

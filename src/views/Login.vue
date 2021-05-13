@@ -13,10 +13,13 @@
             class="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
+            v-model="email"
           />
         </div>
 
-        <button type="submit" class="btn btn-primary">Connexion</button>
+        <button @click="login" type="submit" class="btn btn-primary">
+          Connexion
+        </button>
       </div>
 
       <div class="img">
@@ -45,11 +48,23 @@ export default {
     Header,
     Footer,
   },
-  data() {
-    return {};
-  },
+  data: () => ({
+    email: "",
+  }),
 
-  methods: {},
+  methods: {
+    login() {
+      /* requete post pour envoie de données dans la BDD */
+
+      this.axios
+        .post(this.baseUrl + "api/POST/login", {
+          /* body de la requete */
+          email: this.email,
+        })
+
+        .then((response) => console.log(response));
+    },
+  },
 };
 </script>
 
@@ -66,6 +81,10 @@ export default {
 
     .form-group {
       margin-top: 30px;
+    }
+
+    label {
+      margin-bottom: 5px;
     }
     button {
       margin-top: 20px;
