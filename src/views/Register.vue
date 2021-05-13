@@ -376,9 +376,6 @@ export default {
 };
 </script>
 
-if (e.target.files[0].size / 1024 / 1024 > 3) { console.log("image trop
-grande"); } else { reader.readAsDataURL(e.target.files[0]); }
-
 <style lang="scss">
 #register {
   width: 80%;

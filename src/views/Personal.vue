@@ -305,6 +305,18 @@ export default {
     id: "",
   }),
 
+  /* Permet de regrouper les differents element lié a la position dans la variable adress */
+
+  watch: {
+    streetName: function() {
+      this.adress = this.streetNumber + " " + this.streetName;
+    },
+
+    streetNumber: function() {
+      this.adress = this.streetNumber + " " + this.streetName;
+    },
+  },
+
   Mounted() {
     this.axios
       .get(this.baseUrl + "api/GET/actor/" + this.id, {
