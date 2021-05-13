@@ -5,9 +5,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      baseUrl: "http://frenchtech.localhost/",
+    };
+  },
+
+  provide() {
+    return {
+      baseUrl: this.baseUrl,
+    };
+  },
+};
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

@@ -265,7 +265,7 @@ import Footer from "@/components/Footer.vue";
 export default {
   components: { Header, Footer },
   name: "Register",
-
+  inject: ["baseUrl"],
   data: () => ({
     logo: "",
     name: "",
@@ -345,7 +345,7 @@ export default {
       /* requete post pour envoie de données dans la BDD */
 
       this.axios
-        .post("http://frenchtech.webo/api/POST/register", {
+        .post(this.baseUrl + "api/POST/register", {
           /* body de la requete */
 
           name: this.name,
