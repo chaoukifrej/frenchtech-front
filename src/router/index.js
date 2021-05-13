@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Inscription from "../views/Register.vue";
+import Admin from "../views/Admin.vue";
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,11 @@ const routes = [
     path: "/Register",
     name: "Register",
     component: Inscription,
+  },
+  {
+    path: "/Admin",
+    name: "Admin",
+    component: Admin,
   },
 ];
 
