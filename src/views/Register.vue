@@ -53,7 +53,6 @@
             type="text"
             class="form-control"
             id="inputAdresse"
-            placeholder="1234 Main St"
           />
         </div>
 
