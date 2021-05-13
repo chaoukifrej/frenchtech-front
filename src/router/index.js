@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Inscription from "../views/Register.vue";
 import Admin from "../views/Admin.vue";
+import Connexion from "../views/Login.vue";
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,12 @@ const routes = [
     path: "/Admin",
     name: "Admin",
     component: Admin,
+  },
+
+  {
+    path: "/Login",
+    name: "Login",
+    component: Connexion,
   },
 ];
 
