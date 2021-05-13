@@ -2,7 +2,7 @@
   <div>
     <Header />
     <div id="register">
-      <form method="POST" action="" class="row g-3">
+      <div class="row g-3">
         <h4>Information concernant votre entreprise</h4>
         <div class="col-md-12">
           <label class="form-label">Logo</label>
@@ -10,7 +10,7 @@
             type="file"
             class="form-control"
             id="inputLogo"
-            accept=".jpeg,.png, .jpg"
+            accept="image/png, image/jpeg"
             ref="img"
             @change="addLogo"
           />
@@ -46,13 +46,26 @@
           />
         </div>
 
-        <div class="col-6">
-          <label for="inputAdresse" class="form-label">Adresse</label>
+        <div class="col-2">
+          <label for="inputNumberStreet" class="form-label">Numéro</label>
           <input
-            v-model="adress"
+            v-model="streetNumber"
+            type="text"
+            class="form-control"
+            id="inputPhone"
+          />
+        </div>
+
+        <div class="col-5">
+          <label for="inputAdresse" class="form-label"
+            >Nom de rue/avenue/boulevard</label
+          >
+          <input
+            v-model="streetName"
             type="text"
             class="form-control"
             id="inputAdresse"
+            placeholder="rue/avenue/boulevard..."
           />
         </div>
 
@@ -66,9 +79,14 @@
           />
         </div>
 
-        <div class="col-3">
+        <div class="col-2">
           <label for="inputZip" class="form-label">Code Postale</label>
-          <input v-model="zip" type="text" class="form-control" id="inputZip" />
+          <input
+            v-model="postal_code"
+            type="text"
+            class="form-control"
+            id="inputZip"
+          />
         </div>
 
         <div class="col-md-4">
@@ -82,9 +100,9 @@
         </div>
 
         <div class="col-md-4">
-          <label for="inputInstagram" class="form-label">Instagram</label>
+          <label for="inputTwitter" class="form-label">Twitter</label>
           <input
-            v-model="instagram"
+            v-model="twitter"
             type="text"
             class="form-control"
             id="inputInstagram"
@@ -137,7 +155,7 @@
           <label for="inputSecteur" class="form-label"
             >Secteurs d'activité</label
           >
-          <select v-model="secteurs" id="inputSecteur" class="form-select">
+          <select v-model="activity_area" id="inputSecteur" class="form-select">
             <option selected>Choississez...</option>
             <option value="formation">Formation</option>
             <option value="energie">Energie</option>
@@ -178,7 +196,7 @@
         <div class="col-md-4">
           <label for="inputFond" class="form-label">Levé de fond (€)</label>
           <input
-            v-model="fond"
+            v-model="funds"
             type="number"
             class="form-control"
             id="inputFond"
@@ -188,7 +206,7 @@
         <div class="col-md-4">
           <label for="inputSalarie" class="form-label">Nombre de salarié</label>
           <input
-            v-model="employe"
+            v-model="employees_number"
             type="number"
             class="form-control"
             id="inputSalarie"
@@ -200,7 +218,7 @@
             >Nombre de post à pourvoir</label
           >
           <input
-            v-model="post"
+            v-model="jobs_available_number"
             type="number"
             class="form-control"
             id="inputPost"
@@ -210,7 +228,7 @@
         <div class="col-md-4">
           <label for="inputFemme" class="form-label">Nombre de femmes</label>
           <input
-            v-model="wommenNbr"
+            v-model="women_number"
             type="number"
             class="form-control"
             id="inputFemme"
@@ -221,51 +239,140 @@
           <label for="inputCa" class="form-label"
             >Chiffre d'affaire annuel total
           </label>
-          <input v-model="CA" type="number" class="form-control" id="inputCa" />
+          <input
+            v-model="revenues"
+            type="number"
+            class="form-control"
+            id="inputCa"
+          />
         </div>
 
         <div class="col-12" id="buttonSubmit">
-          <button type="submit" class="btn btn-primary">Sign in</button>
+          <button type="submit" @click="register" class="btn btn-primary">
+            Sign in
+          </button>
         </div>
-      </form>
+      </div>
     </div>
+
     <Footer />
   </div>
 </template>
 
 <script>
-import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 export default {
   components: { Header, Footer },
   name: "Register",
 
   data: () => ({
+    logo: "",
     name: "",
     email: "",
     phone: "",
+    streetNumber: "",
+    streetName: "",
     adress: "",
     city: "",
-    zip: "",
+    postal_code: "",
     facebook: "",
-    instagram: "",
+    twitter: "",
     linkedin: "",
     category: "",
     associations: "",
-    secteurs: "",
+    activity_area: "",
     description: "",
 
     /* information visible uniquement par l'admin */
 
-    fond: "",
-    employe: "",
-    post: "",
-    wommenNbr: "",
-    CA: "",
+    funds: "",
+    employees_number: "",
+    jobs_available_number: "",
+    women_number: "",
+    revenues: "",
+    position: "",
+    latitude: "",
+    longitude: "",
   }),
 
+  watch: {
+    streetName: function() {
+      this.adress = this.streetNumber + " " + this.streetName;
+    },
+
+    streetNumber: function() {
+      this.adress = this.streetNumber + " " + this.streetName;
+    },
+  },
+
+  mounted() {
+    /* requete afin de recupérer les coordonnées GPS des adresses */
+
+    this.axios
+      .get(
+        `https://api-adresse.data.gouv.fr/search/?q=${this.streetNumber}+${this.streetName}+${this.city}+${this.zip}%22`
+      )
+
+      .then((response) => {
+        this.x = response.data.features[0].properties.x;
+        this.y = response.data.features[0].properties.y;
+
+        console.log(this.x + this.y);
+      });
+  },
+
   methods: {
-    mounted() {},
+    getPosition() {
+      /* requete afin de recupérer les coordonnées GPS des adresses */
+
+      this.axios
+        .get(
+          `https://api-adresse.data.gouv.fr/search/?q=${this.streetNumber}+${this.streetName}+${this.city}+${this.zip}%22`
+        )
+
+        .then((response) => {
+          this.x = response.data.features[0].properties.x;
+          this.y = response.data.features[0].properties.y;
+
+          console.log(this.x + this.y);
+        });
+    },
+
+    register() {
+      /* recuperation de longitude et latitude */
+      this.getPosition();
+      /* requete post pour envoie de données dans la BDD */
+
+      this.axios
+        .post("http://frenchtech.webo/api/POST/register", {
+          /* body de la requete */
+
+          name: this.name,
+          email: this.email,
+          logo: this.logo,
+          adress: this.adress,
+          postal_code: this.postal_code,
+          city: this.city,
+          longitude: this.longitude,
+          latitude: this.latitude,
+          phone: this.phone,
+          category: this.category,
+          associations: this.associations,
+          description: this.description,
+          facebook: this.facebook,
+          twitter: this.twitter,
+          linkedin: this.linkedin,
+          activity_area: this.activity_area,
+          funds: this.funds,
+          employees_number: this.employees_number,
+          jobs_available_number: this.employees_number,
+          women_number: this.women_number,
+          revenues: this.revenues,
+        })
+
+        .then((response) => console.log(response));
+    },
 
     /* methode transformer le logo en base 64 pour la BDD */
 
@@ -274,12 +381,18 @@ export default {
       reader.onload = (readerEvent) => {
         this.logo = readerEvent.target.result;
       };
-      reader.readAsDataURL(e.target.files[0]);
-      console.log(this.logo);
+      if (e.target.files[0].size / 1024 / 1024 > 3) {
+        console.log("image trop grande");
+      } else {
+        reader.readAsDataURL(e.target.files[0]);
+      }
     },
   },
 };
 </script>
+
+if (e.target.files[0].size / 1024 / 1024 > 3) { console.log("image trop
+grande"); } else { reader.readAsDataURL(e.target.files[0]); }
 
 <style lang="scss">
 #register {
