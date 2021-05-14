@@ -5,6 +5,7 @@ import Inscription from "../views/Register.vue";
 import Admin from "../views/Admin.vue";
 import Connexion from "../views/Login.vue";
 import Personelle from "../views/Personal.vue";
+import Test from "../views/testInfo.vue";
 
 Vue.use(VueRouter);
 
@@ -13,6 +14,12 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+
+  {
+    path: "/testInfo",
+    name: "Test",
+    component: Test,
   },
 
   {

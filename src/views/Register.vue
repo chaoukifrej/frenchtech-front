@@ -90,7 +90,19 @@
           />
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
+          <label for="inputWebSite" class="form-label"
+            >Indiquez votre site web</label
+          >
+          <input
+            v-model="website"
+            type="text"
+            class="form-control"
+            id="inputWebSite"
+          />
+        </div>
+
+        <div class="col-md-3">
           <label for="inputFacebook" class="form-label">Facebook</label>
           <input
             v-model="facebook"
@@ -100,7 +112,7 @@
           />
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label for="inputTwitter" class="form-label">Twitter</label>
           <input
             v-model="twitter"
@@ -110,7 +122,7 @@
           />
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label for="inputLinkedin" class="form-label">Linkedin</label>
           <input
             v-model="linkedin"
@@ -282,6 +294,7 @@ export default {
     adress: "",
     city: "",
     postal_code: "",
+    website: "",
     facebook: "",
     twitter: "",
     linkedin: "",
@@ -350,6 +363,7 @@ export default {
           facebook: this.facebook,
           twitter: this.twitter,
           linkedin: this.linkedin,
+          website: this.website,
           activity_area: this.activity_area,
           funds: this.funds,
           employees_number: this.employees_number,
