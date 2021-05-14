@@ -2471,10 +2471,28 @@
   "resolved" "https://registry.npm.taobao.org/chardet/download/chardet-0.7.0.tgz?cache=0&sync_timestamp=1601034855780&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fchardet%2Fdownload%2Fchardet-0.7.0.tgz"
   "version" "0.7.0"
 
-"chart.js@^3.2.1", "chart.js@>= 2.5":
-  "integrity" "sha512-XsNDf3854RGZkLCt+5vWAXGAtUdKP2nhfikLGZqud6G4CvRE2ts64TIxTTfspOin2kEZvPgomE29E6oU02dYjQ=="
-  "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-3.2.1.tgz"
-  "version" "3.2.1"
+"chart.js@^2.9.4", "chart.js@>= 2.5":
+  "integrity" "sha512-B07aAzxcrikjAPyV+01j7BmOpxtQETxTSlQ26BEYJ+3iUkbNKaOJ/nDbT6JjyqYxseM0ON12COHYdU2cTIjC7A=="
+  "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-2.9.4.tgz"
+  "version" "2.9.4"
+  dependencies:
+    "chartjs-color" "^2.1.0"
+    "moment" "^2.10.2"
+
+"chartjs-color-string@^0.6.0":
+  "integrity" "sha512-TIB5OKn1hPJvO7JcteW4WY/63v6KwEdt6udfnDE9iCAZgy+V4SrbSxoIbTw/xkUIapjEI4ExGtD0+6D3KyFd7A=="
+  "resolved" "https://registry.npmjs.org/chartjs-color-string/-/chartjs-color-string-0.6.0.tgz"
+  "version" "0.6.0"
+  dependencies:
+    "color-name" "^1.0.0"
+
+"chartjs-color@^2.1.0":
+  "integrity" "sha512-haqOg1+Yebys/Ts/9bLo/BqUcONQOdr/hoEr2LLTRl6C5LXctUdHxsCYfvQVg5JIxITrfCNUDr4ntqmQk9+/0w=="
+  "resolved" "https://registry.npmjs.org/chartjs-color/-/chartjs-color-2.4.1.tgz"
+  "version" "2.4.1"
+  dependencies:
+    "chartjs-color-string" "^0.6.0"
+    "color-convert" "^1.9.3"
 
 "check-types@^8.0.3":
   "integrity" "sha1-M1bMoZyIlUTy16le1JzlCKDs9VI="
@@ -2674,7 +2692,7 @@
     "map-visit" "^1.0.0"
     "object-visit" "^1.0.0"
 
-"color-convert@^1.9.0", "color-convert@^1.9.1":
+"color-convert@^1.9.0", "color-convert@^1.9.1", "color-convert@^1.9.3":
   "integrity" "sha1-u3GFBpDh8TZWfeYp0tVHHe2kweg="
   "resolved" "https://registry.npm.taobao.org/color-convert/download/color-convert-1.9.3.tgz"
   "version" "1.9.3"
