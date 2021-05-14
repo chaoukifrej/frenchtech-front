@@ -9,27 +9,30 @@
               <h2>Données métriques</h2>
               <div class="col-md-3">
                   <p>Nombre de statup</p>
-                  <ChartStartup :chart-data='datacollection'
+                  <ChartStartup :chart-data='datastartup'
                   ></ChartStartup>
               </div>
 
               <div class="col-md-3">
                   <p>Levée de Fonds</p>
-                  <canvas></canvas>
+                  <ChartFunds :chartData='datafunds'>
+                  </ChartFunds>
               </div>
 
               <div class="col-md-2">
-                  <p>Nombre de statup</p>
+                  <p>Recrutement</p>
                   <canvas></canvas>
               </div>
 
               <div class="col-md-2">
                   <p>Nombre de femmes</p>
-                  <canvas></canvas>
+                  <ChartWomen :chart-data='datawomen'>
+                  </ChartWomen>
               </div>
               <div class="col-md-2">
                   <p>Chiffre d'affaires</p>
-                  <canvas></canvas>
+                  <ChartCA :chartData='dataca'>
+                  </ChartCA>
               </div>
           </div>
           
@@ -47,15 +50,19 @@
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import ChartStartup from '@/components/ChartStartup.js';
+import ChartFunds from '@/components/ChartFunds.js';
+import ChartWomen from '@/components/ChartWomen.js';
+import ChartCA from '@/components/ChartCA.js'
 export default {
-    components :{Header, Footer, ChartStartup},
+    components :{Header, Footer, ChartStartup, ChartFunds, ChartWomen,ChartCA},
     name: "Admin",
     
 
     data(){
         return {
-            datacollection: null,
-            loaded: false
+            datastartup: null,
+            loaded: false,
+            datawomen: null,
         }
     },
     mounted(){
@@ -64,20 +71,59 @@ export default {
 
     methods:{
         fillData(){
-            this.datacollection= {
-                labels: [0,1,2,3,4,5,6,7,8,9],
+            this.datastartup= {
+                labels: [2018,2019,2020,2021],
                 datasets: [
                     {
                         label: 'Temp',
-                        backgroundColor: 'rgba(255,0,0,0,2)',
-                        borderColor: 'lightblue',
-                        pointsBackgroundColor: 'blue',
-                        borderWidth: 1,
-                        pointBorderColor: 'blue',
-                        data: [0,1,2,3,4,5,6,7,8,9]
+                        backgroundColor: 'rgb(255, 255, 255, 0.267)',
+                        borderColor: '#e52345',
+                        pointsBackgroundColor: 'white',
+                        borderWidth: 2,
+                        pointBorderColor: '#e52345',
+                        tension : 0.1,
+                        data: [0,1,2,3,4,5]
                     }
                 ]
             }
+            this.datafunds={
+                labels: [1,2,3,4,5],
+                datasets:[
+                    {
+                        label:'Graph Funds',
+                        data: [1,2,3,4,5]
+                    }
+                ]
+            }
+            this.datawomen={
+                labels : ['Femmes', 'Hommes'],
+                datasets :[
+                    {
+                        label: 'Graph women',
+                        data: [300, 150],
+                        backgroundColor:[
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                        ],
+                hoverOffser:4
+                }]
+            }
+            this.dataca={
+                labels: [2018,2019,2020,2021],
+                datasets: [
+                    {
+                        label: 'Temp',
+                        backgroundColor: 'rgb(255, 255, 255, 0.267)',
+                        borderColor: '#e52345',
+                        pointsBackgroundColor: 'white',
+                        borderWidth: 2,
+                        pointBorderColor: '#e52345',
+                        tension : 0.1,
+                        data: [0,1,2,3,4,5]
+                    }
+                ]
+            }
+
         }
     },
 };
