@@ -66,6 +66,7 @@
             class="form-control"
             id="inputAdresse"
             placeholder="rue/avenue/boulevard..."
+            @change="getPosition"
           />
         </div>
 
@@ -89,7 +90,19 @@
           />
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
+          <label for="inputWebSite" class="form-label"
+            >Indiquez votre site web</label
+          >
+          <input
+            v-model="website"
+            type="text"
+            class="form-control"
+            id="inputWebSite"
+          />
+        </div>
+
+        <div class="col-md-3">
           <label for="inputFacebook" class="form-label">Facebook</label>
           <input
             v-model="facebook"
@@ -99,7 +112,7 @@
           />
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label for="inputTwitter" class="form-label">Twitter</label>
           <input
             v-model="twitter"
@@ -109,7 +122,7 @@
           />
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label for="inputLinkedin" class="form-label">Linkedin</label>
           <input
             v-model="linkedin"
@@ -248,7 +261,12 @@
         </div>
 
         <div class="col-12" id="buttonSubmit">
-          <button type="submit" @click="register" class="btn btn-primary">
+          <button
+            type="submit"
+            @change="getPosition"
+            @click="register"
+            class="btn btn-primary"
+          >
             Inscription
           </button>
         </div>
@@ -276,6 +294,7 @@ export default {
     adress: "",
     city: "",
     postal_code: "",
+    website: "",
     facebook: "",
     twitter: "",
     linkedin: "",
@@ -313,22 +332,18 @@ export default {
 
       this.axios
         .get(
-          `https://api-adresse.data.gouv.fr/search/?q=${this.streetNumber}+${this.streetName}+${this.city}+${this.zip}%22`
+          `https://api-adresse.data.gouv.fr/search/?q=${this.streetNumber}+${this.streetName}+${this.city}+${this.postal_code}%22`
         )
 
         .then((response) => {
-          this.x = response.data.features[0].properties.x;
-          this.y = response.data.features[0].properties.y;
-
-          console.log(this.x + this.y);
+          this.longitude = response.data.features[0].properties.x;
+          this.latitude = response.data.features[0].properties.y;
         });
+
+      console.log(this.longitude);
     },
 
     register() {
-      /* recuperation de longitude et latitude */
-      this.getPosition();
-      /* requete post pour envoie de données dans la BDD */
-
       this.axios
         .post(this.baseUrl + "api/POST/register", {
           /* body de la requete */
@@ -348,6 +363,7 @@ export default {
           facebook: this.facebook,
           twitter: this.twitter,
           linkedin: this.linkedin,
+          website: this.website,
           activity_area: this.activity_area,
           funds: this.funds,
           employees_number: this.employees_number,

@@ -11,7 +11,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0",
     "bootstrap-vue": "^2.21.2",
-    "chart.js": "^3.2.1",
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
     "leaflet": "^1.7.1",
     "leaflet-defaulticon-compatibility": "^0.1.1",
