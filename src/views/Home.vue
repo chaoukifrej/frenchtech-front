@@ -7,10 +7,7 @@
       <l-tile-layer :url="url"></l-tile-layer>
       <!-- Marqueur Carte-->
       <l-marker :lat-lng="markerLatLng">
-        <l-popup>
-          <h1>Bocal</h1>
-          <p style="text-align: center">Start-Up</p>
-        </l-popup>
+        <l-popup :Entreprises="Entreprises"></l-popup>
       </l-marker>
     </l-map>
 
@@ -48,7 +45,8 @@ export default {
       /* Marqueur Coordonnées*/
       markerLatLng: [43.6961, 7.27178],
 
-      Entreprises: "Entreprises",
+      Entreprises: ["Bocal", "Start-up"],
+      
     };
   },
 
