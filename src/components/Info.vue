@@ -36,7 +36,6 @@ export default {
     description: "",
     website: "",
     adress: "",
-
   }),
 
   mounted() {
@@ -45,13 +44,13 @@ export default {
 
       .then(
         (response) => (
-          console.log(response.data.body.actors.[0]),
-          (this.name = response.data.body.actors.[0].name),
-          (this.website = response.data.body.actors.[0].website),
-          (this.logo = response.data.body.actors.[0].logo),
-          (this.adress = response.data.body.actors.[0].adress),
-          (this.description = response.data.body.actors.[0].description),
-          (this.associations = response.data.body.actors.[0].associations)
+          console.log(response.data.body.actors[0]),
+          (this.name = response.data.body.actors[0].name),
+          (this.website = response.data.body.actors[0].website),
+          (this.logo = response.data.body.actors[0].logo),
+          (this.adress = response.data.body.actors[0].adress),
+          (this.description = response.data.body.actors[0].description),
+          (this.associations = response.data.body.actors[0].associations)
         )
       );
   },
