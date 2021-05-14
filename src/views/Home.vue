@@ -2,7 +2,7 @@
   <div id="app">
         <Header/>
     <!-- Carte Taille et Modif -->
-    <l-map style="height: 500px; width: 500px;" :zoom="zoom" :center="center">
+    <l-map class="map" :zoom="zoom" :center="center">
       <!-- Rappel url openstreetmap -->
       <l-tile-layer :url="url"></l-tile-layer>
       <!-- Marqueur Carte-->
@@ -58,4 +58,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+.map {
+   height: 700px;
+   width: 100%;
+}
+</style>
