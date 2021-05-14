@@ -66,6 +66,7 @@
             class="form-control"
             id="inputAdresse"
             placeholder="rue/avenue/boulevard..."
+            @change="getPosition"
           />
         </div>
 
@@ -248,7 +249,12 @@
         </div>
 
         <div class="col-12" id="buttonSubmit">
-          <button type="submit" @click="register" class="btn btn-primary">
+          <button
+            type="submit"
+            @change="getPosition"
+            @click="register"
+            class="btn btn-primary"
+          >
             Inscription
           </button>
         </div>
@@ -313,22 +319,18 @@ export default {
 
       this.axios
         .get(
-          `https://api-adresse.data.gouv.fr/search/?q=${this.streetNumber}+${this.streetName}+${this.city}+${this.zip}%22`
+          `https://api-adresse.data.gouv.fr/search/?q=${this.streetNumber}+${this.streetName}+${this.city}+${this.postal_code}%22`
         )
 
         .then((response) => {
-          this.x = response.data.features[0].properties.x;
-          this.y = response.data.features[0].properties.y;
-
-          console.log(this.x + this.y);
+          this.longitude = response.data.features[0].properties.x;
+          this.latitude = response.data.features[0].properties.y;
         });
+
+      console.log(this.longitude);
     },
 
     register() {
-      /* recuperation de longitude et latitude */
-      this.getPosition();
-      /* requete post pour envoie de données dans la BDD */
-
       this.axios
         .post(this.baseUrl + "api/POST/register", {
           /* body de la requete */
