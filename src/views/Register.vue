@@ -104,8 +104,12 @@
 
         <div class="col-md-3">
           <label for="inputFacebook" class="form-label">Facebook</label>
-          <input v-model="facebook" type="text" class="form-control"
-          id="inputFacebook"
+          <input
+            v-model="facebook"
+            type="text"
+            class="form-control"
+            id="inputFacebook"
+          />
         </div>
 
         <div class="col-md-3">
