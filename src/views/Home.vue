@@ -2,15 +2,12 @@
   <div id="app">
         <Header/>
     <!-- Carte Taille et Modif -->
-    <l-map style="height: 500px; width: 500px;" :zoom="zoom" :center="center">
+    <l-map class="map" :zoom="zoom" :center="center">
       <!-- Rappel url openstreetmap -->
       <l-tile-layer :url="url"></l-tile-layer>
       <!-- Marqueur Carte-->
       <l-marker :lat-lng="markerLatLng">
-        <l-popup>
-          <h1>Bocal</h1>
-          <p style="text-align: center">Start-Up</p>
-        </l-popup>
+        <l-popup :Entreprises="Entreprises"></l-popup>
       </l-marker>
     </l-map>
 
@@ -48,7 +45,8 @@ export default {
       /* Marqueur Coordonnées*/
       markerLatLng: [43.6961, 7.27178],
 
-      Entreprises: "Entreprises",
+      Entreprises: ["Bocal", "Start-up"],
+      
     };
   },
 
@@ -58,4 +56,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+.map {
+   height: 700px;
+   width: 100%;
+}
+</style>
