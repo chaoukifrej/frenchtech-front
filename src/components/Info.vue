@@ -2,12 +2,12 @@
   <div class="app">
     <div class="card" style="width: 25rem;">
       <div class="card-body">
-        <h3 class="card-title">{{ name }}</h3>
+        <h3 class="card-title">{{ i.name }}</h3>
 
-        <h5>{{ associations }}</h5>
-        <a href="">{{ website }}</a>
+        <h5>{{ i.associations }}</h5>
+        <a href="">{{ i.website }}</a>
         <p class="card-text">
-          {{ description }}
+          {{ i.description }}
         </p>
         <div class="button">
           <button type="button" class="btn btn-outline-info btn-sm">
@@ -28,7 +28,7 @@ export default {
   name: "Info",
   inject: ["baseUrl"],
 
-  props: {},
+  props: ["info"],
 
   data: () => ({
     name: "",
@@ -36,24 +36,8 @@ export default {
     description: "",
     website: "",
     adress: "",
+    dataTab: [],
   }),
-
-  mounted() {
-    this.axios
-      .get(this.baseUrl + "api/GET/actors")
-
-      .then(
-        (response) => (
-          console.log(response.data.body.actors[0]),
-          (this.name = response.data.body.actors[0].name),
-          (this.website = response.data.body.actors[0].website),
-          (this.logo = response.data.body.actors[0].logo),
-          (this.adress = response.data.body.actors[0].adress),
-          (this.description = response.data.body.actors[0].description),
-          (this.associations = response.data.body.actors[0].associations)
-        )
-      );
-  },
 
   methods: {},
 };
