@@ -9,12 +9,14 @@
               <h2>Données métriques</h2>
               <div class="col-md-2">
                   <p>Nombre de statup</p>
+                  <!--Rappel des component chart + les data-->
                   <ChartStartup :chart-data='datastartup'
                   ></ChartStartup>
               </div>
 
               <div class="col-md-2">
                   <p>Levée de Fonds</p>
+                  <!--Rappel des component chart + les data-->
                   <ChartFunds :chartData='datafunds'>
                   </ChartFunds>
               </div>
@@ -26,11 +28,13 @@
 
               <div class="col-md-2">
                   <p>Nombre de femmes</p>
+                  <!--Rappel des component chart + les data-->
                   <ChartWomen :chart-data='datawomen'>
                   </ChartWomen>
               </div>
               <div class="col-md-2">
                   <p>Chiffre d'affaires</p>
+                  <!--Rappel des component chart + les data-->
                   <ChartCA :chartData='dataca'>
                   </ChartCA>
               </div>
@@ -71,6 +75,7 @@ export default {
 
     methods:{
         fillData(){
+            /*Data de chaque chart*/
             this.datastartup= {
                 labels: [2018,2019,2020,2021],
                 datasets: [
