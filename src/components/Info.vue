@@ -43,7 +43,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $primary: #0f0041;
 $secondary: #e52345;
 $violet: #13114e;

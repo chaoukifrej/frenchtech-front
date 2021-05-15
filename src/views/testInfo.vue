@@ -28,11 +28,6 @@ export default {
     Info,
   },
   data: () => ({
-    name: "",
-    associations: "",
-    description: "",
-    website: "",
-    adress: "",
     dataTab: [],
   }),
   mounted() {
