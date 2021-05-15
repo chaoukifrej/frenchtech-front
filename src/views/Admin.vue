@@ -7,13 +7,13 @@
           </div>
           <div class="row g-12 dashboard">
               <h2>Données métriques</h2>
-              <div class="col-md-3">
+              <div class="col-md-2">
                   <p>Nombre de statup</p>
                   <ChartStartup :chart-data='datastartup'
                   ></ChartStartup>
               </div>
 
-              <div class="col-md-3">
+              <div class="col-md-2">
                   <p>Levée de Fonds</p>
                   <ChartFunds :chartData='datafunds'>
                   </ChartFunds>
