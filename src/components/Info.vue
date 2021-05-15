@@ -28,7 +28,7 @@ export default {
   name: "Info",
   inject: ["baseUrl"],
 
-  props: ["info"],
+  props: ["i"],
 
   data: () => ({
     name: "",
