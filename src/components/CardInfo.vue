@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: "Info",
+  name: "CardInfo",
   inject: ["baseUrl"],
 
   props: ["i"],

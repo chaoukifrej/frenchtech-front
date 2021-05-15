@@ -2,11 +2,6 @@
   <div id="app">
     <Header />
 
-    <div v-for="item in dataTab" :key="item">
-      <div v-for="i in item" :key="i.id">
-        <Info :i="i" />
-      </div>
-    </div>
     <Footer />
   </div>
 </template>
@@ -16,7 +11,6 @@
 
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import Info from "@/components/Info.vue";
 
 export default {
   name: "Login",
@@ -25,7 +19,6 @@ export default {
   components: {
     Header,
     Footer,
-    Info,
   },
   data: () => ({
     dataTab: [],

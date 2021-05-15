@@ -17,7 +17,7 @@
         <div v-for="item in dataTab" :key="item">
           <div v-for="index in item" :key="index.id">
             <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
-            <Info :i="index" />
+            <CardInfo :i="index" />
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@ import "leaflet-defaulticon-compatibility";
 
 // Import header et footer
 import Header from "@/components/Header.vue";
-import Info from "@/components/Info.vue";
+import CardInfo from "@/components/CardInfo.vue";
 
 export default {
   name: "App",
@@ -44,7 +44,7 @@ export default {
     LMarker,
     LPopup,
     Header,
-    Info,
+    CardInfo,
   },
   data() {
     return {
