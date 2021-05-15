@@ -2,15 +2,12 @@
   <div class="app">
     <div class="card" style="width: 25rem;">
       <div class="card-body">
-        <h3 class="card-title">FrenchTech</h3>
+        <h3 class="card-title">{{ name }}</h3>
 
-        <h5>Startup // Cannesisup</h5>
-        <a href="https://www.frenchtechcotedazur.fr/"
-          >https://www.frenchtechcotedazur.fr/</a
-        >
+        <h5>{{ associations }}</h5>
+        <a href="">{{ website }}</a>
         <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {{ description }}
         </p>
         <div class="button">
           <button type="button" class="btn btn-outline-info btn-sm">
@@ -29,8 +26,34 @@
 <script>
 export default {
   name: "Info",
+  inject: ["baseUrl"],
 
   props: {},
+
+  data: () => ({
+    name: "",
+    associations: "",
+    description: "",
+    website: "",
+    adress: "",
+  }),
+
+  mounted() {
+    this.axios
+      .get(this.baseUrl + "api/GET/actors")
+
+      .then(
+        (response) => (
+          console.log(response.data.body.actors[0]),
+          (this.name = response.data.body.actors[0].name),
+          (this.website = response.data.body.actors[0].website),
+          (this.logo = response.data.body.actors[0].logo),
+          (this.adress = response.data.body.actors[0].adress),
+          (this.description = response.data.body.actors[0].description),
+          (this.associations = response.data.body.actors[0].associations)
+        )
+      );
+  },
 
   methods: {},
 };
