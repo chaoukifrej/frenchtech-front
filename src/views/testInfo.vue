@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <Header />
-    <Info />
 
+    <div v-for="item in dataTab" :key="item.id">
+      <Info :="info" />
+    </div>
     <Footer />
   </div>
 </template>
@@ -26,8 +28,26 @@ export default {
     Footer,
     Info,
   },
-  data: () => ({}),
+  data: () => ({
+    name: "",
+    associations: "",
+    description: "",
+    website: "",
+    adress: "",
+    dataTab: [],
+  }),
+  mounted() {
+    this.axios
 
+      .get(this.baseUrl + "api/GET/actors")
+
+      .then(
+        (response) => (
+          this.dataTab.push(response.data.body.actors),
+          console.log(this.dataTab)
+        )
+      );
+  },
   methods: {},
 };
 </script>
