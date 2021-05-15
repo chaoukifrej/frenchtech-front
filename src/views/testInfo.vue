@@ -26,7 +26,7 @@ export default {
   mounted() {
     this.axios
 
-      .get(this.baseUrl + "api/GET/actors")
+      .get(this.baseUrl + ":8888/api/GET/actors")
 
       .then(
         (response) => (
