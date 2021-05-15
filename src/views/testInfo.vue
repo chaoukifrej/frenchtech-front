@@ -2,15 +2,14 @@
   <div id="app">
     <Header />
 
-    <div v-for="item in dataTab" :key="item.id">
-      <Info :="info" />
+    <div v-for="item in dataTab" :key="item">
+      <div v-for="i in item" :key="i.id">
+        <Info :i="i" />
+      </div>
     </div>
     <Footer />
   </div>
 </template>
-
-/* info sur la carte => name, description, site web de la startup, numero de
-telephone, adresse postal */
 
 <script>
 // Import header et footer
