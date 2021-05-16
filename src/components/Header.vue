@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <img class="logo" src="../../public/img/logo-blue.png" alt="logo" />
-    <a v-show="isAdmin.value" href="">page admin</a>
+    <router-link v-show="isAdmin.value" to="/Admin">ADMIN</router-link>
   </div>
 </template>
 
