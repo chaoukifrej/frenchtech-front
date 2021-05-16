@@ -5,8 +5,11 @@
           <div class="titleContainer">
               <p>Espace admin</p>
           </div>
-          <div class="row g-12 dashboard">
+          <div class="row g-10 dashboard">
               <h2>Données métriques</h2>
+              <div class="col-md-2">
+                  //
+              </div>
               <div class="col-md-2">
                   <p>Nombre de statup</p>
                   <!--Rappel des component chart + les data-->
@@ -23,7 +26,8 @@
 
               <div class="col-md-2">
                   <p>Recrutement</p>
-                  <canvas></canvas>
+                  <ChartHire :chartData='datahire'>
+                  </ChartHire>
               </div>
 
               <div class="col-md-2">
@@ -43,6 +47,18 @@
           <div class="notifContainer">
             <div class="row g-12 titleSections">
               <h2>Demandes en attente</h2>
+                 <div class="row g-12">
+                 </div>
+
+              <div class="row g-12">
+                <p>Demandes d'inscription en attente</p>
+                     <div class="row g-12">
+                     </div>
+              </div>
+              <div class="row g-12">
+                  <p>Demandes de modifications en attente</p>
+              </div>
+        
               </div>
           </div>
       </div>
@@ -55,10 +71,11 @@ import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import ChartStartup from '@/components/ChartStartup.js';
 import ChartFunds from '@/components/ChartFunds.js';
+import ChartHire from '@/components/ChartHire.js';
 import ChartWomen from '@/components/ChartWomen.js';
 import ChartCA from '@/components/ChartCA.js'
 export default {
-    components :{Header, Footer, ChartStartup, ChartFunds, ChartWomen,ChartCA},
+    components :{Header, Footer, ChartStartup, ChartFunds, ChartHire, ChartWomen,ChartCA},
     name: "Admin",
     
 
@@ -77,25 +94,39 @@ export default {
         fillData(){
             /*Data de chaque chart*/
             this.datastartup= {
-                labels: [2018,2019,2020,2021],
+                labels: [2018,2019,2020,2021], // données x
                 datasets: [
                     {
-                        label: 'Temp',
-                        backgroundColor: 'rgb(255, 255, 255, 0.267)',
-                        borderColor: '#e52345',
-                        pointsBackgroundColor: 'white',
-                        borderWidth: 2,
-                        pointBorderColor: '#e52345',
-                        tension : 0.1,
-                        data: [0,1,2,3,4,5]
+                        label: 'Nombre',
+                        backgroundColor: 'transparent', //zone pleine sous la ligne
+                        borderColor: '#e52345', //la ligne
+                        borderWidth: 2, //épaisseur de la ligne
+                        pointBorderColor: '#e52345', //points sur la ligne
+                        tension : 0.1, //courbure de la ligne
+                        data: [50,100,150,200], //les data
+                    },
+                ],
+                options: {
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display:false, //censé retirer la grille en fond...
+                            }
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                display:false,
+                            }   
+                        }]
                     }
-                ]
-            }
+                },//ferme options
+
+            } // ferme le chart
             this.datafunds={
                 labels: [1,2,3,4,5],
                 datasets:[
                     {
-                        label:'Graph Funds',
+                        label:'en €',
                         data: [1,2,3,4,5]
                     }
                 ]
@@ -104,11 +135,10 @@ export default {
                 labels : ['Femmes', 'Hommes'],
                 datasets :[
                     {
-                        label: 'Graph women',
                         data: [300, 150],
                         backgroundColor:[
-                            'rgb(255, 99, 132)',
-                            'rgb(54, 162, 235)',
+                            '#e52345',
+                            '#0f0041',
                         ],
                 hoverOffser:4
                 }]
@@ -117,7 +147,7 @@ export default {
                 labels: [2018,2019,2020,2021],
                 datasets: [
                     {
-                        label: 'Temp',
+                        label: '€',
                         backgroundColor: 'rgb(255, 255, 255, 0.267)',
                         borderColor: '#e52345',
                         pointsBackgroundColor: 'white',
@@ -125,6 +155,15 @@ export default {
                         pointBorderColor: '#e52345',
                         tension : 0.1,
                         data: [0,1,2,3,4,5]
+                    }
+                ]
+            }
+            this.datahire={
+                labels: [2018,2019,2020,2021],
+                datasets :[
+                    {
+                        label:'Nombre de postes',
+                        data: [1,2,3,4,5]
                     }
                 ]
             }
@@ -142,11 +181,11 @@ $BgWhite: #f6f5f8;
 
 .mainContainer {
     padding: 20px;
+    flex-direction:column;
 
 
     .titleContainer {
         height: 30px;
-        padding: 20px 0;
         text-align: center;
         color: $primary;
         font-size: 18px;
@@ -155,6 +194,7 @@ $BgWhite: #f6f5f8;
     }
 
     h2 {
+        margin: 20px 0;
         font-size: 18px;
         letter-spacing: 1px;
     }
