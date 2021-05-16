@@ -56,6 +56,7 @@ export default {
         this.isAdmin = false;
       }
       localStorage.setItem("token", JSON.stringify(this.token));
+      localStorage.setItem("isAdmin", JSON.stringify(this.isAdmin));
     },
     isAdmin: function() {
       localStorage.setItem("isAdmin", JSON.stringify(this.isAdmin));
