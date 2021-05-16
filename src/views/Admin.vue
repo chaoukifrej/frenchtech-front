@@ -5,8 +5,8 @@
           <div class="titleContainer">
               <p>Espace admin</p>
           </div>
-          <div class="row g-10 dashboard">
-              <h2>Données métriques</h2>
+          <div class="row g-10 dashboard"> <!--METRIQUES-->
+              <h2>Données métriques</h2> 
               <div class="col-md-2">
                   //
               </div>
@@ -51,12 +51,32 @@
                  </div>
 
               <div class="row g-12">
-                <p>Demandes d'inscription en attente</p>
+                <p>Demandes d'inscription en attente</p> <!--DEMANDES INSCRIPTION-->
                      <div class="row g-12">
+                         <div class="col-md-8">
+                            //infos actor
+                        </div>
+                        <div class="col-md-4">
+                            <span><button class="btn btn-primary">Accepter</button>
+                            <button class="btn btn-danger">Refuser</button>
+                            </span>
+                        </div>
+
                      </div>
               </div>
               <div class="row g-12">
-                  <p>Demandes de modifications en attente</p>
+                  <p>Demandes de modifications en attente</p> <!--DEMANDES MODIFICATIONS-->
+                  <div class="row g-12">
+                         <div class="col-md-8">
+                            //infos actor
+                        </div>
+                        <div class="col-md-4">
+                            <span><button class="btn btn-primary">Accepter</button>
+                            <button class="btn btn-danger">Refuser</button>
+                            </span>
+                        </div>
+
+                     </div>
               </div>
         
               </div>

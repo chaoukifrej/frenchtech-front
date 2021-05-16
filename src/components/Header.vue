@@ -1,9 +1,9 @@
 <template>
   <div class="header">
-<<<<<<< HEAD
       <a href="/">
-      <img class="logo" src="../../public/img/logo-blue.png" alt="logo">
-      </a>
+      <img class="logo" src="../../public/img/logo-blue.png" alt="logo" />
+        </a>
+      <router-link v-show="isAdmin.value" to="/Admin">ADMIN</router-link>
       <div>
           <nav>
               <ul>
@@ -15,10 +15,7 @@
               </ul>
           </nav>
       </div>
-=======
-    <img class="logo" src="../../public/img/logo-blue.png" alt="logo" />
-    <router-link v-show="isAdmin.value" to="/Admin">ADMIN</router-link>
->>>>>>> 09488024c99b47b34a12586cc6b5a4656ab5643d
+
   </div>
 </template>
 
@@ -40,7 +37,6 @@ $violet: #13114e;
 $BgWhite: #f6f5f8;
 
 .header {
-<<<<<<< HEAD
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -67,14 +63,5 @@ $BgWhite: #f6f5f8;
         height: 50px;
         cursor: pointer;
     }
-=======
-  height: 80px;
-  padding: 12px 18px;
-  background-color: $BgWhite;
-  box-shadow: 0 3px 45px rgb(0 0 0 / 15%);
-  .logo {
-    height: 50px;
-  }
->>>>>>> 09488024c99b47b34a12586cc6b5a4656ab5643d
 }
 </style>

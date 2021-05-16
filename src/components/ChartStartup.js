@@ -11,19 +11,7 @@ export default {
     },
     options: {
       type: Object,
-      default: null,
-        scales: {
-            xAxes: [{
-                gridLines: {
-                    display:false,
-                }
-            }],
-            yAxes: [{
-                gridLines: {
-                    color: "rgba(0, 0, 0, 0)",
-                }   
-            }]
-        }
+      default: null
     }
   },
   mounted () {
