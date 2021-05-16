@@ -2092,7 +2092,11 @@
   "resolved" "https://registry.npm.taobao.org/binary-extensions/download/binary-extensions-2.2.0.tgz?cache=0&sync_timestamp=1610299413755&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fbinary-extensions%2Fdownload%2Fbinary-extensions-2.2.0.tgz"
   "version" "2.2.0"
 
+<<<<<<< HEAD
 "bluebird@^3.1.1", "bluebird@^3.5.1", "bluebird@^3.5.5":
+=======
+"bluebird@^3.1.1", "bluebird@^3.5.5":
+>>>>>>> testToken
   "integrity" "sha1-nyKcFb4nJFT/qXOs4NvueaGww28="
   "resolved" "https://registry.npm.taobao.org/bluebird/download/bluebird-3.7.2.tgz?cache=0&sync_timestamp=1598869137824&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fbluebird%2Fdownload%2Fbluebird-3.7.2.tgz"
   "version" "3.7.2"
@@ -4094,8 +4098,13 @@
   "resolved" "https://registry.npmjs.org/file-loader/-/file-loader-2.0.0.tgz"
   "version" "2.0.0"
   dependencies:
+<<<<<<< HEAD
     "loader-utils" "^1.0.2"
     "schema-utils" "^1.0.0"
+=======
+    "loader-utils" "^1.2.3"
+    "schema-utils" "^2.5.0"
+>>>>>>> testToken
 
 "filesize@^3.6.1":
   "integrity" "sha1-CQuz7gG2+AGoqL6Z0xcQs0Irsxc="
@@ -6017,6 +6026,18 @@
   "resolved" "https://registry.npm.taobao.org/mute-stream/download/mute-stream-0.0.8.tgz"
   "version" "0.0.8"
 
+<<<<<<< HEAD
+=======
+"mz@^2.4.0":
+  "integrity" "sha1-lQCAV6Vsr63CvGPd5/n/aVWUjjI="
+  "resolved" "https://registry.npm.taobao.org/mz/download/mz-2.7.0.tgz"
+  "version" "2.7.0"
+  dependencies:
+    "any-promise" "^1.0.0"
+    "object-assign" "^4.0.1"
+    "thenify-all" "^1.0.0"
+
+>>>>>>> testToken
 "nan@^2.13.2":
   "integrity" "sha1-9TdkAGlRaPTMaUrJOT0MlYXu6hk="
   "resolved" "https://registry.npm.taobao.org/nan/download/nan-2.14.2.tgz"

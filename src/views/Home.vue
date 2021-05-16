@@ -1,27 +1,19 @@
 <template>
   <div id="app">
     <Header />
-
-    <div class="mainContainer">
-      <!-- Carte Taille et Modif -->
-      <l-map class="map" :zoom="zoom" :center="center">
-        <!-- Rappel url openstreetmap -->
-        <l-tile-layer :url="url"></l-tile-layer>
-        <!-- Marqueur Carte-->
-        <l-marker :lat-lng="markerLatLng">
-          <l-popup :Entreprises="Entreprises"></l-popup>
-        </l-marker>
-      </l-map>
-
-      <div class="blocCards">
-        <div v-for="item in dataTab" :key="item">
-          <div v-for="index in item" :key="index.id">
-            <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
-            <CardInfo :i="index" />
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Carte Taille et Modif -->
+    <l-map style="height: 500px; width: 500px;" :zoom="zoom" :center="center">
+      <!-- Rappel url openstreetmap -->
+      <l-tile-layer :url="url"></l-tile-layer>
+      <!-- Marqueur Carte-->
+      <l-marker :lat-lng="markerLatLng">
+        <l-popup>
+          <h1>Bocal</h1>
+          <p style="text-align: center">Start-Up</p>
+        </l-popup>
+      </l-marker>
+    </l-map>
+    <Footer />
   </div>
 </template>
 
@@ -30,10 +22,9 @@
 import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
-
 // Import header et footer
 import Header from "@/components/Header.vue";
-import CardInfo from "@/components/CardInfo.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "App",
@@ -44,7 +35,7 @@ export default {
     LMarker,
     LPopup,
     Header,
-    CardInfo,
+    Footer,
   },
   data() {
     return {
