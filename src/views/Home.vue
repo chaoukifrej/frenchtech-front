@@ -32,6 +32,7 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import "leaflet-defaulticon-compatibility";
 // Import header et footer
 import Header from "@/components/Header.vue";
+import CardInfo from "@/components/CardInfo.vue";
 
 export default {
   name: "App",
@@ -42,6 +43,7 @@ export default {
     LMarker,
     LPopup,
     Header,
+    CardInfo,
   },
   data() {
     return {
