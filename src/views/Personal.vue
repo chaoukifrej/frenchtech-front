@@ -4,6 +4,11 @@
     <h1>BIENVENUE SUR VOTRE PAGE PERSONNELLE</h1>
     <div id="personal">
       <h4>Presentation de votre entreprise</h4>
+
+      <div v-for="(elem, name) in actualActor" :key="elem.id">
+        {{ name }} : {{ elem }}
+      </div>
+
       <div class="row g-3">
         <div class="col-md-12">
           <label class="form-label">Logo</label>
@@ -53,7 +58,7 @@
             v-model="streetNumber"
             type="text"
             class="form-control"
-            id="inputPhone"
+            id="inputPhone2"
           />
         </div>
 
@@ -249,7 +254,7 @@
         </div>
 
         <div class="col-12" id="buttonSubmit">
-          <button type="submit" @click="register" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary">
             Modifier
           </button>
         </div>
@@ -267,14 +272,15 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
-  name: "Login",
-  inject: ["baseUrl"],
+  name: "Personal",
+  inject: ["baseUrl", "token"],
 
   components: {
     Header,
     Footer,
   },
   data: () => ({
+    actualActor: "",
     logo: "",
     name: "",
     email: "",
@@ -317,11 +323,19 @@ export default {
     },
   },
 
-  Mounted() {
+  beforeMount() {
     this.axios
-      .get(this.baseUrl + "api/GET/actor/" + this.id)
-
-      .then((response) => console.log(response));
+      .get(this.baseUrl + "api/GET/actor", {
+        headers: {
+          Authorization: "Bearer " + this.token.value,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response.status);
+        this.actualActor = response.data.body.actor;
+      })
+      .catch((error) => console.log(error));
   },
 
   methods: {

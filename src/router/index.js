@@ -33,6 +33,13 @@ const routes = [
     path: "/Admin",
     name: "Admin",
     component: Admin,
+    beforeRouteUpdate: function(to, from, next) {
+      if (this.isAdmin === true) {
+        next();
+      } else {
+        next(false);
+      }
+    },
   },
 
   {
