@@ -14,7 +14,7 @@
       </l-map>
 
       <div class="blocCards">
-        <div v-for="item in dataTab" :key="item">
+        <div class="displayCards" v-for="item in dataTab" :key="item">
           <div v-for="index in item" :key="index.id">
             <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
             <CardInfo :i="index" />
@@ -87,21 +87,35 @@ $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
 
-.mainContainer {
-  display: flex;
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 
-  .map {
-    height: 700px;
-    width: 60%;
-    margin-left: 5px;
-  }
+  .mainContainer {
+    display: flex;
+    height: 100%;
+    margin: 0;
 
-  .blocCards {
-    height: 700px;
-    width: 40%;
-    background-color: $BgWhite;
-    overflow: scroll;
-    overflow-x: hidden;
+    .map {
+      height: calc(100vh - 80px);
+      width: 70%;
+    }
+
+    .blocCards {
+      height: calc(100vh - 80px);
+      width: 30%;
+      background-color: $BgWhite;
+      overflow-y: auto;
+      overflow-x: hidden;
+      margin: 0;
+
+      .displayCards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
   }
 }
 </style>

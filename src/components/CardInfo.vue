@@ -1,23 +1,15 @@
 <template>
   <div class="app">
-    <div class="card" style="width: 25rem;">
+    <div class="card" style="width: 11rem;">
       <div class="card-body">
         <h3 class="card-title">{{ i.name }}</h3>
 
         <h5>{{ i.associations }}</h5>
         <a href="">{{ i.website }}</a>
-        <p class="card-text">
-          {{ i.description }}
-        </p>
-        <div class="button">
-          <button type="button" class="btn btn-outline-info btn-sm">
-            Plus d'info
-          </button>
-        </div>
+        <div class="button"></div>
       </div>
-
       <div class="logo">
-        <img src="../../public/img/logo-blue.png" alt="logo" />
+        <img :src="i.logo" />
       </div>
     </div>
   </div>
@@ -52,8 +44,10 @@ $BgWhite: #f6f5f8;
 .card {
   display: flex;
   flex-direction: row;
-  margin: 50px;
-  border-radius: 10px;
+  border-radius: 3px;
+  height: 150px;
+
+  margin: 0px 2px 2px 2px;
 
   h3 {
     font-size: 18px;
@@ -72,6 +66,16 @@ $BgWhite: #f6f5f8;
   a,
   p {
     font-size: 12px;
+  }
+
+  .logo {
+    margin: 0;
+    float: right;
+    display: block;
+    img {
+      margin: 0;
+      width: 40px;
+    }
   }
 
   .button {

@@ -2,6 +2,8 @@
   <div id="app">
     <Header />
 
+    <div class="mainContainer"><ModalInfo /></div>
+
     <Footer />
   </div>
 </template>
@@ -11,14 +13,15 @@
 
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-
+import ModalInfo from "@/components/ModalInfo.vue";
 export default {
-  name: "Login",
+  name: "Test",
   inject: ["baseUrl"],
 
   components: {
     Header,
     Footer,
+    ModalInfo,
   },
   data: () => ({
     dataTab: [],
@@ -26,7 +29,7 @@ export default {
   mounted() {
     this.axios
 
-      .get(this.baseUrl + ":8888/api/GET/actors")
+      .get(this.baseUrl + "/api/GET/actors")
 
       .then(
         (response) => (
