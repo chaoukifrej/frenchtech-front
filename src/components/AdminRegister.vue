@@ -1,10 +1,34 @@
 <template>
   <div class="mainComponent">
     <div class="blocCards">
-        <div class="displayAdminRegisters" v-for="item in dataTab" :key="item">
+        <div class="displayAdminRegisters" v-for="item in registerBuffer" :key="item">
           <div v-for="index in item" :key="index.id">
             <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
-            <CardInfo :i="index" />
+              <div class="row">
+                <div class="col-md-10">
+                    <p>{{index.name}}</p>
+                    <p>{{index.email}}</p>
+                    <p>{{index.phone}}</p>
+                    <p>{{index.streetNumber}}</p>
+                    <p>{{index.streetName}}</p>
+                    <p>{{index.adress}}</p>
+                    <p>{{index.city}}</p>
+                    <p>{{index.postal_code}}</p>
+                    <p>{{index.website}}</p>
+                    <p>{{index.facebook}}</p>
+                    <p>{{index.twitter}}</p>
+                    <p>{{index.linkedin}}</p>
+                    <p>{{index.category}}</p>
+                    <p>{{index.associations}}</p>
+                    <p>{{index.activity_area}}</p>
+                    <p>{{index.description}}</p>
+                  </div>
+                    <div class="col-md-2">
+                          <span><button class="btn btn-primary">Accepter</button>
+                          <button class="btn btn-danger">Refuser</button>
+                          </span>
+                    </div>
+              </div>
           </div>
         </div>
       </div>
@@ -13,15 +37,14 @@
 
 <script>
 export default {
-  name: "Register",
+  name: "AdminRegister",
   inject: ["baseUrl"],
+
   data: () => ({
    registerBuffer: [],
   }),
 
-  methods: {
-
-    registerBuffer() {
+  mounted() {
       this.axios
         .get(this.baseUrl + "/api/GET/buffers")
 
@@ -31,8 +54,9 @@ export default {
           console.log(this.registerBuffer)
         )
       );
-    },
-},
+  },
+
+  methods: {}
 }
 
 /* body de la requete */
@@ -77,12 +101,19 @@ export default {
     width: 100%;
     text-align: left;
   }
-  #buttonSubmit {
+
+
+    #buttonSubmit {
     display: flex;
     justify-content: center;
     width: 100%;
     margin-bottom: 20px;
   }
+  
+  .cardNotif {
+    border: solid 2px black;
+  }
+  
 }
 </style>
 

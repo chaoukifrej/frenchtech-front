@@ -53,24 +53,16 @@
               <div class="row g-12">
                 <p>Demandes d'inscription en attente</p> <!--DEMANDES INSCRIPTION-->
                      <div class="row g-12">
-                         <div class="col-md-8">
-                            //infos actor
-                        </div>
-                        <div class="col-md-4">
-                            <span><button class="btn btn-primary">Accepter</button>
-                            <button class="btn btn-danger">Refuser</button>
-                            </span>
-                        </div>
-
+                            <AdminRegister/>
                      </div>
               </div>
               <div class="row g-12">
                   <p>Demandes de modifications en attente</p> <!--DEMANDES MODIFICATIONS-->
                   <div class="row g-12">
-                         <div class="col-md-8">
+                         <div class="col-md-10">
                             //infos actor
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <span><button class="btn btn-primary">Accepter</button>
                             <button class="btn btn-danger">Refuser</button>
                             </span>
@@ -93,9 +85,10 @@ import ChartStartup from '@/components/ChartStartup.js';
 import ChartFunds from '@/components/ChartFunds.js';
 import ChartHire from '@/components/ChartHire.js';
 import ChartWomen from '@/components/ChartWomen.js';
-import ChartCA from '@/components/ChartCA.js'
+import ChartCA from '@/components/ChartCA.js';
+import AdminRegister from '@/components/AdminRegister.vue'
 export default {
-    components :{Header, Footer, ChartStartup, ChartFunds, ChartHire, ChartWomen,ChartCA},
+    components :{Header, Footer, ChartStartup, ChartFunds, ChartHire, ChartWomen,ChartCA, AdminRegister},
     name: "Admin",
     
 
@@ -218,6 +211,7 @@ $BgWhite: #f6f5f8;
         font-size: 18px;
         letter-spacing: 1px;
     }
+
 }
 
 </style>
