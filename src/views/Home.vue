@@ -1,19 +1,27 @@
 <template>
   <div id="app">
     <Header />
-    <!-- Carte Taille et Modif -->
-    <l-map style="height: 500px; width: 500px;" :zoom="zoom" :center="center">
-      <!-- Rappel url openstreetmap -->
-      <l-tile-layer :url="url"></l-tile-layer>
-      <!-- Marqueur Carte-->
-      <l-marker :lat-lng="markerLatLng">
-        <l-popup>
-          <h1>Bocal</h1>
-          <p style="text-align: center">Start-Up</p>
-        </l-popup>
-      </l-marker>
-    </l-map>
-    <Footer />
+
+    <div class="mainContainer">
+      <!-- Carte Taille et Modif -->
+      <l-map class="map" :zoom="zoom" :center="center">
+        <!-- Rappel url openstreetmap -->
+        <l-tile-layer :url="url"></l-tile-layer>
+        <!-- Marqueur Carte-->
+        <l-marker :lat-lng="markerLatLng">
+          <l-popup :Entreprises="Entreprises"></l-popup>
+        </l-marker>
+      </l-map>
+
+      <div class="blocCards">
+        <div class="displayCards" v-for="item in dataTab" :key="item">
+          <div v-for="index in item" :key="index.id">
+            <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
+            <CardInfo :i="index" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -78,21 +86,35 @@ $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
 
-.mainContainer {
-  display: flex;
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 
-  .map {
-    height: 700px;
-    width: 60%;
-    margin-left: 5px;
-  }
+  .mainContainer {
+    display: flex;
+    height: 100%;
+    margin: 0;
 
-  .blocCards {
-    height: 700px;
-    width: 40%;
-    background-color: $BgWhite;
-    overflow: scroll;
-    overflow-x: hidden;
+    .map {
+      height: calc(100vh - 80px);
+      width: 70%;
+    }
+
+    .blocCards {
+      height: calc(100vh - 80px);
+      width: 30%;
+      background-color: $BgWhite;
+      overflow-y: auto;
+      overflow-x: hidden;
+      margin: 0;
+
+      .displayCards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
   }
 }
 </style>
