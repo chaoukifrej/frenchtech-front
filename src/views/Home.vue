@@ -30,10 +30,9 @@
 import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
-
 // Import header et footer
 import Header from "@/components/Header.vue";
-import CardInfo from "@/components/CardInfo.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "App",
@@ -44,7 +43,7 @@ export default {
     LMarker,
     LPopup,
     Header,
-    CardInfo,
+    Footer,
   },
   data() {
     return {

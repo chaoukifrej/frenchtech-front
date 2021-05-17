@@ -319,31 +319,7 @@ export default {
 
   Mounted() {
     this.axios
-      .get(this.baseUrl + "api/GET/actor/" + this.id, {
-        /* body de la requete */
-
-        name: this.name,
-        email: this.email,
-        logo: this.logo,
-        adress: this.adress,
-        postal_code: this.postal_code,
-        city: this.city,
-        longitude: this.longitude,
-        latitude: this.latitude,
-        phone: this.phone,
-        category: this.category,
-        associations: this.associations,
-        description: this.description,
-        facebook: this.facebook,
-        twitter: this.twitter,
-        linkedin: this.linkedin,
-        activity_area: this.activity_area,
-        funds: this.funds,
-        employees_number: this.employees_number,
-        jobs_available_number: this.employees_number,
-        women_number: this.women_number,
-        revenues: this.revenues,
-      })
+      .get(this.baseUrl + "api/GET/actor/" + this.id)
 
       .then((response) => console.log(response));
   },
