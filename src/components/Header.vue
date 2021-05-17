@@ -8,9 +8,7 @@
 <script>
 export default {
   inject: ["isAdmin"],
-
   name: "Header",
-
   props: {},
   methods: {},
 };
