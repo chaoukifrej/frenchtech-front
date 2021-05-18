@@ -6,7 +6,7 @@
 
         <h5>{{ i.associations }}</h5>
         <a href=""></a>
-        <SideBar />
+        <SideBar :i="i" />
       </div>
       <div class="logo">
         <img :src="i.logo" />
