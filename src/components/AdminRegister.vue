@@ -1,52 +1,53 @@
 <template>
   <div class="mainComponent">
     <div class="blocCards">
-        <div class="displayAdminRegisters" v-for="item in registerBuffer" :key="item.index">
-          <div v-for="index in item" :key="index.id">
-            <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
-              <div class="row">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Entreprise</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">Téléphone</th>
-                        <th scope="col">Adresse</th>
-                        <th scope="col">Adresse</th>
-                        <th scope="col">Adresse</th>
-                        <th scope="col">Ville</th>
-                        <th scope="col">Code Postal</th>
-                        <th scope="col">Site web</th>
-                        <th scope="col">Catégory</th>
-                        <th scope="col">Association</th>
-                        <th scope="col">Secteur d'activité</th>
-                        <th scope="col">Description</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>{{index.name}}</td>
-                        <td>{{index.email}}</td>
-                        <td>{{index.phone}}</td>
-                        <td>{{index.website}}</td>
-                        <td>{{index.category}}</td>
-                        <td>{{index.associations}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                    <div class="col-md-2">
-                          <span>
-                            <button class="btn btn-primary">Accepter</button>
-                            <button type="button" class="btn btn-warning">Modifier</button>
-                            <button @click="deleteUser(index.id)" class="btn btn-danger">Refuser</button>
-                          </span>
-                    </div>
-              </div>
+      <div v-for="index in registerBuffer" :key="index.id">
+        <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
+        <div class="row">
+          <table class="table">
+            <thead>
+              <tr>
+                <p style="color:green">{{ index.id }}</p>
+                <th scope="col">#</th>
+                <th scope="col">Entreprise</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Téléphone</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Ville</th>
+                <th scope="col">Code Postal</th>
+                <th scope="col">Site web</th>
+                <th scope="col">Catégory</th>
+                <th scope="col">Association</th>
+                <th scope="col">Secteur d'activité</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>{{ index.name }}</td>
+                <td>{{ index.email }}</td>
+                <td>{{ index.phone }}</td>
+                <td>{{ index.website }}</td>
+                <td>{{ index.category }}</td>
+                <td>{{ index.associations }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="col-md-2">
+            <span>
+              <button class="btn btn-primary">Accepter</button>
+              <button type="button" class="btn btn-warning">Modifier</button>
+              <button @click="deleteUser(index.id)" class="btn btn-danger">
+                Refuser
+              </button>
+            </span>
           </div>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
@@ -56,45 +57,41 @@ export default {
   inject: ["baseUrl"],
 
   data: () => ({
-   registerBuffer: [],
+    registerBuffer: [],
   }),
 
-  mounted() {
-          this.getBuffer();
-        },
-
   methods: {
-
-
     getBuffer() {
-          this.axios
-            .get(this.baseUrl + "/api/GET/buffers")
+      this.axios
+        .get(this.baseUrl + "/api/GET/buffers")
 
-            .then(
-            (response) => (
-              this.registerBuffer.push(response.data.body.buffers),
-              console.log(this.registerBuffer)
-            )
-          );
-      },
+        .then((response) => {
+          for (const elem of response.data.body.buffers) {
+            this.registerBuffer.push(elem);
+          }
+          console.log(this.registerBuffer);
+        });
+    },
 
     deleteUser(id) {
       this.axios
-      .delete(this.baseUrl + "/api/admin/DELETE/buffer/"+id)
-      .then(
-        (response) => (
-          this.getBuffer(response),
-          console.log("ça marche")
-        )
-      )
+        .delete(this.baseUrl + "/api/admin/DELETE/buffer/" + id)
+        .then((response) => {
+          this.registerBuffer = [];
+          for (const elem of response.data.body.Buffers) {
+            this.registerBuffer.push(elem);
+          }
+          console.log("ok");
+        });
     },
-
   },
-}
-       
+  mounted() {
+    this.getBuffer();
+  },
+};
 
 /* body de la requete */
-            /*if (type_of_demand = ) {
+/*if (type_of_demand = ) {
               name: this.name,
                     email: this.email,
                     logo: this.logo,
@@ -136,19 +133,15 @@ export default {
     text-align: left;
   }
 
-
-    #buttonSubmit {
+  #buttonSubmit {
     display: flex;
     justify-content: center;
     width: 100%;
     margin-bottom: 20px;
   }
-  
+
   .cardNotif {
     border: solid 2px black;
   }
-  
 }
 </style>
-
-
