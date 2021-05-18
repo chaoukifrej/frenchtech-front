@@ -18,8 +18,6 @@
         <router-link v-show="isConnected.value == false && $route.name == 'Login'" to="/Register"
           >S'enregistrer</router-link
         >
-
-        
           <b-button v-show="isConnected.value && isAdmin.value == false" @click="disconnectConfirm">Déconnexion</b-button>
           <b-button v-show="isAdmin.value" @click="disconnectConfirmAdmin">Déconnexion</b-button>
       </nav>
