@@ -5,10 +5,19 @@
     </a>
     <div>
       <nav>
-        <router-link v-show="isConnected.value == false" to="/Login">Login</router-link>
+        <router-link v-show="isConnected.value == false" to="/Login"
+          >Login</router-link
+        >
         <router-link v-show="isAdmin.value" to="/Admin">Admin</router-link>
-        <router-link to="/Personal">Personal</router-link>
-        <router-link v-show="isConnected.value == false" to="/Register">Register</router-link>
+        <router-link v-show="isAdmin.value == false" to="/Personal"
+          >Personal</router-link
+        >
+        <router-link v-show="isConnected.value == false" to="/Register"
+          >Register</router-link
+        >
+        <a v-show="isAdmin.value" @click="disconnectAdmin">Déconnexion</a>
+        <a v-show="isConnected.value && isAdmin.value == false" @click="disconnect">Déconnexion</a>
+
         <router-link to="/testInfo">testInfo</router-link>
       </nav>
     </div>
@@ -17,7 +26,7 @@
 
 <script>
 export default {
-  inject: ["isAdmin", "isConnected"],
+  inject: ["isAdmin", "isConnected", "token", "baseUrl", "disconnectAdmin","disconnect"],
   name: "Header",
   props: {},
   methods: {},
