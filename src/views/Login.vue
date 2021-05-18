@@ -16,8 +16,10 @@
             v-model="email"
           />
         </div>
-
-        <button @click="login" type="submit" class="btn btn-primary">
+        <div class="message" :style="styleObject">
+          {{ responseToShow }}
+        </div>
+        <button @click="login" class="btn btn-primary">
           Connexion
         </button>
       </div>
@@ -50,6 +52,10 @@ export default {
   },
   data: () => ({
     email: "",
+    responseToShow: "",
+    styleObject: {
+      color: "",
+    },
   }),
 
   methods: {
@@ -61,8 +67,18 @@ export default {
           /* body de la requete */
           email: this.email,
         })
-
-        .then((response) => console.log(response));
+        .then((response) => {
+          console.log(response.status);
+          if (response.status == 200) {
+            this.responseToShow = "Vérifier votre boite mail";
+            this.styleObject.color = "green";
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.responseToShow = "Une erreur est survenu";
+          this.styleObject.color = "red";
+        });
     },
   },
 };

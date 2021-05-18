@@ -3,7 +3,7 @@
     <Header />
     <div id="register">
       <div class="row g-3">
-        <h4>Information concernant votre entreprise</h4>
+        <h4>Information publique concernant votre entreprise</h4>
         <div class="col-md-12">
           <label class="form-label">Logo</label>
           <input

@@ -30,9 +30,20 @@ const routes = [
     component: Inscription,
   },
   {
-    path: "/Admin",
+    path: "/Admin", //passage en props :isAdmin
     name: "Admin",
     component: Admin,
+    beforeEnter(to, from, next) {
+      let isAdmin = "";
+      localStorage.getItem("isAdmin") //Local Storage isAdmin
+      ? (isAdmin = JSON.parse(localStorage.getItem("isAdmin")))
+      : (isAdmin = false);
+      if (isAdmin == true) {
+        next()
+      }else {
+      next('/')
+      }
+    },
   },
 
   {
