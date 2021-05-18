@@ -1,13 +1,12 @@
 <template>
   <div class="mainComponent">
     <div class="blocCards">
-      <div v-for="index in registerBuffer" :key="index.id">
+      <div v-for="index in registerBuffer" :id="index.id" :key="index.id">
         <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
         <div class="row">
           <table class="table">
             <thead>
               <tr>
-                <p style="color:green">{{ index.id }}</p>
                 <th scope="col">#</th>
                 <th scope="col">Entreprise</th>
                 <th scope="col">E-mail</th>
@@ -77,11 +76,9 @@ export default {
       this.axios
         .delete(this.baseUrl + "/api/admin/DELETE/buffer/" + id)
         .then((response) => {
-          this.registerBuffer = [];
-          for (const elem of response.data.body.Buffers) {
-            this.registerBuffer.push(elem);
-          }
-          console.log("ok");
+          let div = document.getElementById(id);
+          div.style.display = "none";
+          console.log(response.status);
         });
     },
   },
