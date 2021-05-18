@@ -8,6 +8,7 @@ import Personelle from "../views/Personal.vue";
 import Test from "../views/testInfo.vue";
 import Token from "../token/Token.vue";
 import TokenAdmin from "../token/TokenAdmin.vue";
+import Canvas from "../views/testCanvas.vue";
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,12 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+
+  {
+    path: "/testcanvas",
+    name: "Canvas",
+    component: Canvas,
   },
 
   {
