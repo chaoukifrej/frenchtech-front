@@ -1,31 +1,46 @@
 <template>
   <div class="mainComponent">
     <div class="blocCards">
-        <div class="displayAdminRegisters" v-for="item in registerBuffer" :key="item">
+        <div class="displayAdminRegisters" v-for="item in registerBuffer" :key="item.index">
           <div v-for="index in item" :key="index.id">
             <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
               <div class="row">
-                <div class="col-md-10">
-                    <p>{{index.name}}</p>
-                    <p>{{index.email}}</p>
-                    <p>{{index.phone}}</p>
-                    <p>{{index.streetNumber}}</p>
-                    <p>{{index.streetName}}</p>
-                    <p>{{index.adress}}</p>
-                    <p>{{index.city}}</p>
-                    <p>{{index.postal_code}}</p>
-                    <p>{{index.website}}</p>
-                    <p>{{index.facebook}}</p>
-                    <p>{{index.twitter}}</p>
-                    <p>{{index.linkedin}}</p>
-                    <p>{{index.category}}</p>
-                    <p>{{index.associations}}</p>
-                    <p>{{index.activity_area}}</p>
-                    <p>{{index.description}}</p>
-                  </div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Entreprise</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Téléphone</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col">Ville</th>
+                        <th scope="col">Code Postal</th>
+                        <th scope="col">Site web</th>
+                        <th scope="col">Catégory</th>
+                        <th scope="col">Association</th>
+                        <th scope="col">Secteur d'activité</th>
+                        <th scope="col">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>{{index.name}}</td>
+                        <td>{{index.email}}</td>
+                        <td>{{index.phone}}</td>
+                        <td>{{index.website}}</td>
+                        <td>{{index.category}}</td>
+                        <td>{{index.associations}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                     <div class="col-md-2">
-                          <span><button class="btn btn-primary">Accepter</button>
-                          <button class="btn btn-danger">Refuser</button>
+                          <span>
+                            <button class="btn btn-primary">Accepter</button>
+                            <button type="button" class="btn btn-warning">Modifier</button>
+                            <button @click="deleteUser(index.id)" class="btn btn-danger">Refuser</button>
                           </span>
                     </div>
               </div>
@@ -45,19 +60,38 @@ export default {
   }),
 
   mounted() {
+          this.getBuffer();
+        },
+
+  methods: {
+
+
+    getBuffer() {
+          this.axios
+            .get(this.baseUrl + "/api/GET/buffers")
+
+            .then(
+            (response) => (
+              this.registerBuffer.push(response.data.body.buffers),
+              console.log(this.registerBuffer)
+            )
+          );
+      },
+
+    deleteUser(id) {
       this.axios
-        .get(this.baseUrl + "/api/GET/buffers")
-
-        .then(
+      .delete(this.baseUrl + "/api/admin/DELETE/buffer/"+id)
+      .then(
         (response) => (
-          this.registerBuffer.push(response.data.body.buffers),
-          console.log(this.registerBuffer)
+          this.getBuffer(response),
+          console.log("ça marche")
         )
-      );
-  },
+      )
+    },
 
-  methods: {}
+  },
 }
+       
 
 /* body de la requete */
             /*if (type_of_demand = ) {
