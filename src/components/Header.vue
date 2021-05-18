@@ -5,20 +5,21 @@
     </a>
     <div>
       <nav>
-        <router-link v-show="isConnected.value == false" to="/Login"
-          >Login</router-link
+      <router-link v-show="$route.name != 'Home'" to="/"
+          >Accueil</router-link
         >
-        <router-link v-show="isAdmin.value" to="/Admin">Admin</router-link>
-        <router-link v-show="isAdmin.value == false" to="/Personal"
-          >Personal</router-link
+        <router-link v-show="isConnected.value == false && $route.name != 'Login'" to="/Login"
+          >Se connecter</router-link
         >
-        <router-link v-show="isConnected.value == false" to="/Register"
-          >Register</router-link
+        <router-link v-show="isAdmin.value && $route.name != 'Admin'" to="/Admin">Admin</router-link>
+        <router-link v-show="isAdmin.value == false && isConnected.value" to="/Personal"
+          >Mon profil</router-link
         >
-        <a v-show="isAdmin.value" @click="disconnectAdmin">Déconnexion</a>
-        <a v-show="isConnected.value && isAdmin.value == false" @click="disconnect">Déconnexion</a>
-
-        <router-link to="/testInfo">testInfo</router-link>
+        <router-link v-show="isConnected.value == false && $route.name == 'Login'" to="/Register"
+          >S'enregistrer</router-link
+        >
+          <b-button v-show="isConnected.value && isAdmin.value == false" @click="disconnectConfirm">Déconnexion</b-button>
+          <b-button v-show="isAdmin.value" @click="disconnectConfirmAdmin">Déconnexion</b-button>
       </nav>
     </div>
   </div>
@@ -29,7 +30,42 @@ export default {
   inject: ["isAdmin", "isConnected", "token", "baseUrl", "disconnectAdmin","disconnect"],
   name: "Header",
   props: {},
-  methods: {},
+  methods: {
+    disconnectConfirm() {
+        this.$bvModal.msgBoxConfirm('Êtes vous sûr de vouloir vous déconnectez ?',{
+          okVariant: 'danger',
+          okTitle: 'Confirmer',
+          cancelTitle: 'Annuler',
+          footerClass: 'p-2',
+          hideHeaderClose: false,
+        })
+          .then(value => {
+            if (value) {
+            this.disconnect()
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      },
+          disconnectConfirmAdmin() {
+        this.$bvModal.msgBoxConfirm('Êtes vous sûr de vouloir vous déconnectez ?',{
+          okVariant: 'danger',
+          okTitle: 'Confirmer',
+          cancelTitle: 'Annuler',
+          footerClass: 'p-2',
+          hideHeaderClose: false,
+        })
+          .then(value => {
+            if (value) {
+            this.disconnectAdmin()
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      },
+      },
 };
 </script>
 
