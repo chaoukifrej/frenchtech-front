@@ -11,10 +11,10 @@
         <l-marker
           v-for="marker in markers"
           :key="marker.id"
-          :lat-lng="marker.coords"
+          :lat-lng="[marker.latitude, marker.longitude]"
         >
           <l-popup>
-            <h4>{marker.name}</h4>
+            <h4>{{ dataTab.body }}</h4>
           </l-popup>
         </l-marker>
       </l-map>
@@ -54,7 +54,7 @@ export default {
   data() {
     return {
       /* url Carte */
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
 
       center: [43.70496267989356, 7.271699366104521],
       /* Zoom de la carte*/
@@ -63,13 +63,14 @@ export default {
       markers: [
         {
           id: 1,
-          coords: [43.697019736267464, 7.264447863354882],
+          latitude: 43.697019736267464,
+          longitude: 7.264447863354882,
           name: "Name 1",
           description: "Description 1",
         },
         {
           id: 2,
-          coords: [43.69937769585799, 7.264833645481825],
+          test: [43.69937769585799, 7.264833645481825],
           name: "Name 2",
           description: "Description 2",
         },
