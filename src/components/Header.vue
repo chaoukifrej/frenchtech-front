@@ -5,11 +5,10 @@
     </a>
     <div>
       <nav>
-        <router-link to="/Login">Login</router-link>
-        <router-link to="/Admin">Admin</router-link>
-        <!-- v-show="isAdmin.value" pour caché si non admin -->
+        <router-link v-show="isConnected.value == false" to="/Login">Login</router-link>
+        <router-link v-show="isAdmin.value" to="/Admin">Admin</router-link>
         <router-link to="/Personal">Personal</router-link>
-        <router-link to="/Register">Register</router-link>
+        <router-link v-show="isConnected.value == false" to="/Register">Register</router-link>
         <router-link to="/testInfo">testInfo</router-link>
       </nav>
     </div>
@@ -18,7 +17,7 @@
 
 <script>
 export default {
-  inject: ["isAdmin"],
+  inject: ["isAdmin", "isConnected"],
   name: "Header",
   props: {},
   methods: {},
