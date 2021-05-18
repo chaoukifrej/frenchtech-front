@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <Header />
-
-    <div class="mainContainer"><ModalInfo /></div>
-
+    <div>
+      <SideBar />
+    </div>
     <Footer />
   </div>
 </template>
@@ -13,7 +13,8 @@
 
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import ModalInfo from "@/components/ModalInfo.vue";
+import SideBar from "@/components/SideBar.vue";
+
 export default {
   name: "Test",
   inject: ["baseUrl"],
@@ -21,7 +22,8 @@ export default {
   components: {
     Header,
     Footer,
-    ModalInfo,
+    SideBar,
+    SideBar,
   },
   data: () => ({
     dataTab: [],

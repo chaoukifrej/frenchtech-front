@@ -13,16 +13,16 @@
           :key="elem.id"
           :lat-lng="[elem.longitude, elem.latitude]"
         >
-          <l-tooltip>{{elem.name}}</l-tooltip>
+          <l-tooltip>{{ elem.name }}</l-tooltip>
           <l-icon>
-          <img class="markerPin" src="img/pin-point.png" />
+            <img class="markerPin" src="img/pin-point.png" />
           </l-icon>
         </l-marker>
       </l-map>
 
       <div class="blocCards">
         <div class="displayCards" v-for="item in actors" :key="item.id">
-            <CardInfo :i="item" />
+          <CardInfo :i="item" />
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
 import { LMap, LTileLayer, LMarker, LTooltip, LIcon } from "vue2-leaflet";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
-// Import header et footer
+// Import header et CardInfo
 import Header from "@/components/Header.vue";
 import CardInfo from "@/components/CardInfo.vue";
 
@@ -59,7 +59,7 @@ export default {
       center: [43.70496267989356, 7.271699366104521],
       /* Zoom de la carte*/
       zoom: 11,
-    
+
       /* Centrage Coordonnées*/
       actors: [],
     };
@@ -71,14 +71,12 @@ export default {
 
       .get(this.baseUrl + "api/GET/actors")
 
-      .then(
-        (response) => {
-          for (const elem of response.data.body.actors) {
-            this.actors.push(elem);            
-          }
-          console.log(this.actors)
+      .then((response) => {
+        for (const elem of response.data.body.actors) {
+          this.actors.push(elem);
         }
-      );
+        console.log(this.actors);
+      });
   },
 
   methods: {},
@@ -104,9 +102,9 @@ body {
     .map {
       height: calc(100vh - 80px);
       width: 70%;
-      .markerPin{
-        height:22px;
-        width:22px;
+      .markerPin {
+        height: 22px;
+        width: 22px;
       }
     }
 
