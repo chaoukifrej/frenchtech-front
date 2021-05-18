@@ -14,7 +14,7 @@
       </l-map>
 
       <div class="blocCards">
-        <div class="displayCards" v-for="item in dataTab" :key="item">
+        <div class="displayCards" v-for="item in dataTab" :key="item.index">
           <div v-for="index in item" :key="index.id">
             <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
             <CardInfo :i="index" />
@@ -30,7 +30,7 @@
 import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
-// Import header et footer
+// Import header et CardInfo
 import Header from "@/components/Header.vue";
 import CardInfo from "@/components/CardInfo.vue";
 
