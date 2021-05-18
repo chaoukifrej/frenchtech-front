@@ -2,8 +2,14 @@
   <div id="app">
     <Header />
     <div>
-      <b-button v-b-toggle.sidebar-right>plus d'info</b-button>
-      <b-sidebar width="500px" id="sidebar-right" title="Sidebar" right shadow>
+      <b-button v-b-toggle="'sideBar' + i.id">plus d'info</b-button>
+      <b-sidebar
+        width="500px"
+        :id="'sideBar' + i.id"
+        title="Sidebar"
+        right
+        shadow
+      >
         <div class="px-3 py-2">
           <h1>name</h1>
           <span>logo</span>
@@ -14,7 +20,6 @@
           <h6>Association :</h6>
           <h6>Categorie :</h6>
           <h6>Secteurs d'activité :</h6>
-
           <h6>Facebook :</h6>
           <h6>description</h6>
         </div>
@@ -28,6 +33,7 @@
 export default {
   name: "SideBar",
   inject: ["baseUrl"],
+  props: ["i"],
 
   data: () => ({
     dataTab: [],
