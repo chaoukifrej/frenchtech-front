@@ -30,7 +30,7 @@ const routes = [
     component: Inscription,
   },
   {
-    path: "/Admin",
+    path: "/Admin", //passage en props :isAdmin
     name: "Admin",
     component: Admin,
     beforeRouteUpdate: function(to, from, next) {

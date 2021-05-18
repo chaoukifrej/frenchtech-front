@@ -7,24 +7,23 @@
       <l-map class="map" :zoom="zoom" :center="center">
         <!-- Rappel url openstreetmap -->
         <l-tile-layer :url="url"></l-tile-layer>
+
         <!-- Marqueur Carte-->
         <l-marker
-          v-for="marker in markers"
-          :key="marker.id"
-          :lat-lng="[marker.latitude, marker.longitude]"
+          v-for="elem in actors"
+          :key="elem.id"
+          :lat-lng="[elem.longitude, elem.latitude]"
         >
-          <l-popup>
-            <h4>{{ dataTab.body }}</h4>
-          </l-popup>
+          <l-tooltip>{{ elem.name }}</l-tooltip>
+          <l-icon>
+            <img class="markerPin" src="img/pin-point.png" />
+          </l-icon>
         </l-marker>
       </l-map>
 
       <div class="blocCards">
-        <div class="displayCards" v-for="item in dataTab" :key="item">
-          <div v-for="index in item" :key="index.id">
-            <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
-            <CardInfo :i="index" />
-          </div>
+        <div class="displayCards" v-for="item in actors" :key="item.id">
+          <CardInfo :i="item" />
         </div>
       </div>
     </div>
@@ -33,10 +32,10 @@
 
 <script>
 /* Importation components */
-import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LTooltip, LIcon } from "vue2-leaflet";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
-// Import header et footer
+// Import header et CardInfo
 import Header from "@/components/Header.vue";
 import CardInfo from "@/components/CardInfo.vue";
 
@@ -47,36 +46,23 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    LPopup,
+    LTooltip,
+    LIcon,
     Header,
     CardInfo,
   },
   data() {
     return {
       /* url Carte */
-      url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+      url:
+        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
 
       center: [43.70496267989356, 7.271699366104521],
       /* Zoom de la carte*/
-      zoom: 10,
-      /* Centrage Coordonnées*/
-      markers: [
-        {
-          id: 1,
-          latitude: 43.697019736267464,
-          longitude: 7.264447863354882,
-          name: "Name 1",
-          description: "Description 1",
-        },
-        {
-          id: 2,
-          test: [43.69937769585799, 7.264833645481825],
-          name: "Name 2",
-          description: "Description 2",
-        },
-      ],
+      zoom: 11,
 
-      dataTab: [],
+      /* Centrage Coordonnées*/
+      actors: [],
     };
   },
 
@@ -86,12 +72,12 @@ export default {
 
       .get(this.baseUrl + "api/GET/actors")
 
-      .then(
-        (response) => (
-          this.dataTab.push(response.data.body.actors),
-          console.log(this.dataTab)
-        )
-      );
+      .then((response) => {
+        for (const elem of response.data.body.actors) {
+          this.actors.push(elem);
+        }
+        console.log(this.actors);
+      });
   },
 
   methods: {},
@@ -117,6 +103,10 @@ body {
     .map {
       height: calc(100vh - 80px);
       width: 70%;
+      .markerPin {
+        height: 22px;
+        width: 22px;
+      }
     }
 
     .blocCards {

@@ -5,8 +5,8 @@
         <h3 class="card-title">{{ i.name }}</h3>
 
         <h5>{{ i.associations }}</h5>
-        <a href="">{{ i.website }}</a>
-        <div class="button"></div>
+        <a href=""></a>
+        <SideBar />
       </div>
       <div class="logo">
         <img :src="i.logo" />
@@ -16,18 +16,16 @@
 </template>
 
 <script>
+import SideBar from "@/components/SideBar.vue";
 export default {
   name: "CardInfo",
   inject: ["baseUrl"],
 
+  components: { SideBar },
+
   props: ["i"],
 
   data: () => ({
-    name: "",
-    associations: "",
-    description: "",
-    website: "",
-    adress: "",
     dataTab: [],
   }),
 
