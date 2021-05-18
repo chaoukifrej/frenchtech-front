@@ -97,6 +97,9 @@ export default {
             datastartup: null,
             loaded: false,
             datawomen: null,
+            datahire: null,
+            dataca: null,
+            datafunds: null,
         }
     },
     mounted(){
