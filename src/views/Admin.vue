@@ -9,40 +9,43 @@
       <div class="row g-10 dashboard">
         <!--METRIQUES-->
         <h2>Données métriques</h2>
-        <div class="col-md-2">
-          //
-        </div>
 
-        <div class="col-md-2">
-          <p>Nombre de statup</p>
-          <!--Rappel des component chart + les data-->
-          <ChartStartup :chart-data="datastartup"></ChartStartup>
-        </div>
+        <div id="chart">
+          <div class="col-md-2">
+            <p>Nombre de statup</p>
+            <!--Rappel des component chart + les data-->
+            <ChartStartup :chart-data="datastartup"></ChartStartup>
+          </div>
 
-        <div class="col-md-2">
-          <p>Levée de Fonds</p>
-          <!--Rappel des component chart + les data-->
-          <ChartFunds :chartData="datafunds"> </ChartFunds>
-        </div>
+          <div class="col-md-2">
+            <p>Levée de Fonds</p>
+            <!--Rappel des component chart + les data-->
+            <ChartFunds :chartData="datafunds"> </ChartFunds>
+          </div>
 
-        <div class="col-md-2">
-          <p>Recrutement</p>
-          <ChartHire :chartData="datahire"> </ChartHire>
-        </div>
+          <div class="col-md-2">
+            <p>Recrutement</p>
+            <ChartHire :chartData="datahire"> </ChartHire>
+          </div>
 
-        <div class="col-md-2">
-          <p>Nombre de femmes</p>
-          <!--Rappel des component chart + les data-->
-          <ChartWomen :chart-data="datawomen"> </ChartWomen>
+          <div class="col-md-2">
+            <p>Nombre de femmes</p>
+            <!--Rappel des component chart + les data-->
+            <ChartWomen :chart-data="datawomen"> </ChartWomen>
+          </div>
+          <div class="col-md-2">
+            <p>Chiffre d'affaires</p>
+            <!--Rappel des component chart + les data-->
+            <ChartCA :chartData="dataca"> </ChartCA>
+          </div>
         </div>
-        <div class="col-md-2">
-          <p>Chiffre d'affaires</p>
-          <!--Rappel des component chart + les data-->
-          <ChartCA :chartData="dataca"> </ChartCA>
-        </div>
-
         <div>
-          <p></p>
+          <p>Nombre de statup : {{ totalActorsMetric }}</p>
+          <p>Levée de Fonds : {{ totalFundsMetric }}</p>
+          <p>Nombre de poste : {{ totalJobsMetric }}</p>
+          <p>Nombres d'employés : {{ totalEmployeesMetric }}</p>
+          <p>Nombre de femmes : {{ totalWomenMetric }}</p>
+          <p>Nombre d'hommes : {{ totalMenMetric }}</p>
         </div>
       </div>
 
@@ -128,8 +131,14 @@ export default {
       date: [],
 
       // Metric
-      arrayActor: [],
-      totalFundsActor: [],
+      metrics: [],
+
+      totalFundsMetric: 0,
+      totalActorsMetric: 0,
+      totalJobsMetric: 0,
+      totalEmployeesMetric: 0,
+      totalWomenMetric: 0,
+      totalMenMetric: 0,
     };
   },
   mounted() {
@@ -168,7 +177,16 @@ export default {
     });
 
     this.axios.get(this.baseUrl + "api/GET/metric").then((response) => {
-      this.arrayActor.push(response.data.body);
+      console.log(response.data.body);
+      this.metrics.push(response.data.body);
+      this.totalFundsMetric = response.data.body.funds_total;
+      this.totalActorsMetric = response.data.body.start_up_total;
+      this.totalJobsMetric = response.data.body.jobs_number_total;
+      this.totalEmployeesMetric = response.data.body.employees_number_total;
+      this.totalWomenMetric = response.data.body.women_number_total;
+      this.totalMenMetric =
+        response.data.body.employees_number_total -
+        response.data.body.women_number_total;
     });
   },
 
@@ -285,6 +303,11 @@ $BgWhite: #f6f5f8;
     margin: 20px 0;
     font-size: 18px;
     letter-spacing: 1px;
+  }
+
+  #chart {
+    display: flex;
+    justify-content: space-evenly;
   }
 }
 </style>
