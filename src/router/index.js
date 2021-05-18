@@ -33,11 +33,15 @@ const routes = [
     path: "/Admin", //passage en props :isAdmin
     name: "Admin",
     component: Admin,
-    beforeRouteUpdate: function(to, from, next) {
-      if (this.isAdmin === true) {
-        next();
-      } else {
-        next(false);
+    beforeEnter(to, from, next) {
+      let isAdmin = "";
+      localStorage.getItem("isAdmin") //Local Storage isAdmin
+      ? (isAdmin = JSON.parse(localStorage.getItem("isAdmin")))
+      : (isAdmin = false);
+      if (isAdmin == true) {
+        next()
+      }else {
+      next('/')
       }
     },
   },

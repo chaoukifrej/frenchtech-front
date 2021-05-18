@@ -54,7 +54,7 @@ export default {
     return {
       /* url Carte */
       url:
-        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
+        "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png",
 
       center: [43.70496267989356, 7.271699366104521],
       /* Zoom de la carte*/
