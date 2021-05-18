@@ -42,36 +42,11 @@
           
         </div>
       </div>
-
-      <div class="notifContainer">
-        <div class="row g-12 titleSections">
-          <h2>Demandes en attente</h2>
-          <div class="row g-12"></div>
-
-          <div class="row g-12">
-            <p>Demandes d'inscription en attente</p>
-            <!--DEMANDES INSCRIPTION-->
-            <div class="row g-12">
+      
+  <div class="mt-5">
               <AdminRegister />
-            </div>
-          </div>
-          <div class="row g-12">
-            <p>Demandes de modifications en attente</p>
-            <!--DEMANDES MODIFICATIONS-->
-            <div class="row g-12">
-              <div class="col-md-10">
-                //infos actor
-              </div>
-              <div class="col-md-2">
-                <span
-                  ><button class="btn btn-primary">Accepter</button>
-                  <button class="btn btn-danger">Refuser</button>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  </div>
+      
     </div>
     <Footer />
   </div>
