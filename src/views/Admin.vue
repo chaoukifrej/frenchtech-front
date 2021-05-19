@@ -48,73 +48,77 @@
           <p>Nombre d'hommes : {{ totalMenMetric }}</p>
         </div>
       </div>
-
-      <div class="notifContainer">
-        <div class="row g-12 titleSections">
-          <h2>Demandes en attente</h2>
-          <div class="row g-12"></div>
-
-          <div class="row g-12">
-            <p>Demandes d'inscription en attente</p>
-            <!--DEMANDES INSCRIPTION-->
-            <div class="row g-12">
-              <div class="col-md-8">
-                //infos actor
-              </div>
-              <div class="col-md-4">
-                <span
-                  ><button class="btn btn-primary">Accepter</button>
-                  <button class="btn btn-danger">Refuser</button>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="row g-12">
-            <p>Demandes de modifications en attente</p>
-            <!--DEMANDES MODIFICATIONS-->
-            <div class="row g-12">
-              <div class="col-md-8">
-                //infos actor
-              </div>
-            </div>
-
-            <div class="notifContainer">
-              <div class="row g-12 titleSections">
-                <h2>Demandes en attente</h2>
-                <div class="row g-12"></div>
-
-                <div class="row g-12">
-                  <p>Demandes d'inscription en attente</p>
-                  <!--DEMANDES INSCRIPTION-->
-                  <div class="row g-12">
-                    <AdminRegister />
-                  </div>
-                </div>
-                <div class="row g-12">
-                  <p>Demandes de modifications en attente</p>
-                  <!--DEMANDES MODIFICATIONS-->
-                  <div class="row g-12">
-                    <div class="col-md-10">
-                      //infos actor
-                    </div>
-                    <div class="col-md-2">
-                      <span
-                        ><button class="btn btn-primary">Accepter</button>
-                        <button class="btn btn-danger">Refuser</button>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <span
-                    ><button class="btn btn-primary">Accepter</button>
-                    <button class="btn btn-danger">Refuser</button>
-                  </span>
+      <div class="mt-5">
+        <b-tabs content-class="mt-3">
+          <b-tab title="Gestion entreprise" active
+            ><div class="blocCards">
+              <div
+                v-for="index in registerBuffer"
+                :id="index.id"
+                :key="index.id"
+              >
+                <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
+                <div class="row">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Entreprise</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Téléphone</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col">Ville</th>
+                        <th scope="col">Code Postal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>{{ index.name }}</td>
+                        <td>{{ index.email }}</td>
+                        <td>{{ index.phone }}</td>
+                        <td>{{ index.adress }}</td>
+                        <td>{{ index.city }}</td>
+                        <td>{{ index.postal_code }}</td>
+                        <td>
+                          <button type="button" class="btn btn-warning">
+                            Modifier
+                          </button>
+                        </td>
+                        <td>
+                          <div class="col-md-2">
+                            <button
+                              @click="deleteUser(index.id)"
+                              class="btn btn-danger"
+                            >
+                              Refuser
+                            </button>
+                          </div>
+                        </td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </b-tab>
+          <b-tab title="Demande d'inscription"> </b-tab>
+          <b-tab title="Demande de modification"> </b-tab>
+          <b-tab title="Demande de supression">
+            <b-table striped hover :items="deleteBuffer" :fields="deleteFields">
+              <template #cell(actions)>
+                <b-button pill variant="primary" size="sm">
+                  Valider
+                </b-button>
+                <b-button pill variant="secondary" size="sm" class="m-2">
+                  Refuser
+                </b-button>
+              </template></b-table
+            >
+          </b-tab>
+          <b-tab title="Imports et Exports"> </b-tab>
+        </b-tabs>
       </div>
       <Footer />
     </div>
@@ -129,7 +133,6 @@ import ChartFunds from "@/components/ChartFunds.js";
 import ChartHire from "@/components/ChartHire.js";
 import ChartWomen from "@/components/ChartWomen.js";
 import ChartCA from "@/components/ChartCA.js";
-import AdminRegister from "@/components/AdminRegister.vue";
 export default {
   components: {
     Header,
@@ -139,7 +142,6 @@ export default {
     ChartHire,
     ChartWomen,
     ChartCA,
-    AdminRegister,
   },
   name: "Admin",
   inject: ["baseUrl"],
@@ -171,9 +173,24 @@ export default {
       totalEmployeesMetric: 0,
       totalWomenMetric: 0,
       totalMenMetric: 0,
+
+      registerBuffer: [],
+
+      deleteFields: [
+        { 0: "ID" },
+        { 1: "Nom entreprise" },
+        { 2: "Email" },
+        { 3: "Téléphone" },
+        { 4: "Categorie" },
+        { 5: "Association" },
+        { key: "Actions", label: "Actions" },
+      ],
+      deleteBuffer: [],
     };
   },
   mounted() {
+    this.getBuffer();
+
     this.fillData();
 
     this.axios.get(this.baseUrl + "api/admin/GET/historic").then((response) => {
@@ -224,6 +241,40 @@ export default {
   },
 
   methods: {
+    getBuffer() {
+      this.axios
+        .get(this.baseUrl + "/api/GET/buffers")
+
+        .then((response) => {
+          for (const elem of response.data.body.buffers) {
+            this.registerBuffer.push(elem);
+          }
+          //console.log(this.registerBuffer);
+
+          response.data.body.buffers.forEach((elem) => {
+            let e = [];
+            e.push(elem.actor_id);
+            e.push(elem.name);
+            e.push(elem.email);
+            e.push(elem.phone);
+            e.push(elem.category);
+            e.push(elem.associations);
+            this.deleteBuffer.push(e);
+          });
+
+          console.log(this.deleteBuffer);
+        });
+    },
+
+    deleteUser(id) {
+      this.axios
+        .delete(this.baseUrl + "/api/admin/DELETE/buffer/" + id)
+        .then((response) => {
+          let div = document.getElementById(id);
+          div.style.display = "none";
+          console.log(response.status);
+        });
+    },
     fillData() {
       /*Data de chaque chart*/
       this.datastartup = {
@@ -356,6 +407,33 @@ $BgWhite: #f6f5f8;
   #chart {
     display: flex;
     justify-content: space-evenly;
+  }
+}
+
+#register {
+  width: 80%;
+  margin: auto;
+
+  h4 {
+    text-align: center;
+    margin: 20px;
+    margin-top: 30px;
+  }
+
+  label {
+    width: 100%;
+    text-align: left;
+  }
+
+  #buttonSubmit {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .cardNotif {
+    border: solid 2px black;
   }
 }
 </style>
