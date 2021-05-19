@@ -75,45 +75,49 @@
             <div class="row g-12">
               <div class="col-md-8">
                 //infos actor
-          
-          <div class="notifContainer">
-            <div class="row g-12 titleSections">
-              <h2>Demandes en attente</h2>
-                 <div class="row g-12">
-                 </div>
-
-              <div class="row g-12">
-                <p>Demandes d'inscription en attente</p> <!--DEMANDES INSCRIPTION-->
-                     <div class="row g-12">
-                            <AdminRegister/>
-                     </div>
               </div>
-              <div class="row g-12">
-                  <p>Demandes de modifications en attente</p> <!--DEMANDES MODIFICATIONS-->
+            </div>
+
+            <div class="notifContainer">
+              <div class="row g-12 titleSections">
+                <h2>Demandes en attente</h2>
+                <div class="row g-12"></div>
+
+                <div class="row g-12">
+                  <p>Demandes d'inscription en attente</p>
+                  <!--DEMANDES INSCRIPTION-->
                   <div class="row g-12">
-                         <div class="col-md-10">
-                            //infos actor
-                        </div>
-                        <div class="col-md-2">
-                            <span><button class="btn btn-primary">Accepter</button>
-                            <button class="btn btn-danger">Refuser</button>
-                            </span>
-                        </div>
-
-                     </div>
-              </div>
-              <div class="col-md-4">
-                <span
-                  ><button class="btn btn-primary">Accepter</button>
-                  <button class="btn btn-danger">Refuser</button>
-                </span>
+                    <AdminRegister />
+                  </div>
+                </div>
+                <div class="row g-12">
+                  <p>Demandes de modifications en attente</p>
+                  <!--DEMANDES MODIFICATIONS-->
+                  <div class="row g-12">
+                    <div class="col-md-10">
+                      //infos actor
+                    </div>
+                    <div class="col-md-2">
+                      <span
+                        ><button class="btn btn-primary">Accepter</button>
+                        <button class="btn btn-danger">Refuser</button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <span
+                    ><button class="btn btn-primary">Accepter</button>
+                    <button class="btn btn-danger">Refuser</button>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
-    <Footer />
   </div>
 </template>
 
@@ -125,7 +129,7 @@ import ChartFunds from "@/components/ChartFunds.js";
 import ChartHire from "@/components/ChartHire.js";
 import ChartWomen from "@/components/ChartWomen.js";
 import ChartCA from "@/components/ChartCA.js";
-import AdminRegister from '@/components/AdminRegister.vue'
+import AdminRegister from "@/components/AdminRegister.vue";
 export default {
   components: {
     Header,
@@ -135,6 +139,7 @@ export default {
     ChartHire,
     ChartWomen,
     ChartCA,
+    AdminRegister,
   },
   name: "Admin",
   inject: ["baseUrl"],
@@ -174,6 +179,7 @@ export default {
     this.axios.get(this.baseUrl + "api/admin/GET/historic").then((response) => {
       for (const i of response.data.body.historic) {
         this.arrayHistoric.push(response.data.body.historic);
+        console.log(response.data.body.historic);
         var monthNames = [
           "Janvier",
           "Février",
@@ -314,26 +320,23 @@ $violet: #13114e;
 $BgWhite: #f6f5f8;
 
 .mainContainer {
-    padding: 20px;
-    flex-direction:column;
+  padding: 20px;
+  flex-direction: column;
 
+  .titleContainer {
+    height: 30px;
+    text-align: center;
+    color: $primary;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
 
-    .titleContainer {
-        height: 30px;
-        text-align: center;
-        color: $primary;
-        font-size: 18px;
-        font-weight: 500;
-        letter-spacing: 1px;
-    }
-
-    h2 {
-        margin: 20px 0;
-        font-size: 18px;
-        letter-spacing: 1px;
-    }
-
-
+  h2 {
+    margin: 20px 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
 
   .titleContainer {
     height: 30px;
