@@ -133,7 +133,6 @@ import ChartFunds from "@/components/charts/ChartFunds.js";
 import ChartHire from "@/components/charts/ChartHire.js";
 import ChartWomen from "@/components/charts/ChartWomen.js";
 import ChartCA from "@/components/charts/ChartCA.js";
-import AdminRegister from "@/components/AdminRegister.vue";
 export default {
   components: {
     Header,
@@ -189,44 +188,45 @@ export default {
       deleteBuffer: [],
     };
   },
-  mounted() {
+
+  async created() {
     this.getBuffer();
 
-    this.fillData();
-    console.log("test");
-
-    this.axios.get(this.baseUrl + "api/admin/GET/historic").then((response) => {
-      for (const i of response.data.body.historic) {
-        this.arrayHistoric.push(response.data.body.historic);
-        console.log(response.data.body.historic);
-        var monthNames = [
-          "Janvier",
-          "Février",
-          "Mars",
-          "Avril",
-          "Mai",
-          "Juin",
-          "Juillet",
-          "Août",
-          "Septembre",
-          "Octobre",
-          "Novembre",
-          "Décembre",
-        ];
-        var newDate = new Date(Date.parse(i.created_at));
-        var formattedDate = monthNames[newDate.getMonth()];
-        this.date.push(formattedDate);
-        this.totalFundsHistoric.push(i.total_funds);
-        this.totalJobsHistoric.push(i.total_jobs_available);
-        this.totalRevenuesHistoric.push(i.total_revenues);
-        this.totalActorsHistoric.push(i.total_actors);
-        this.totalWomenHistoric.push(i.total_women_number);
-        this.totalEmployeesHistoric.push(i.total_employees_number);
-        this.totalMenHistoric.push(
-          i.total_employees_number - i.total_women_number
-        );
-      }
-    });
+    await this.axios
+      .get(this.baseUrl + "api/admin/GET/historic")
+      .then((response) => {
+        for (const i of response.data.body.historic) {
+          this.arrayHistoric.push(response.data.body.historic);
+          console.log(response.data.body.historic);
+          var monthNames = [
+            "Janvier",
+            "Février",
+            "Mars",
+            "Avril",
+            "Mai",
+            "Juin",
+            "Juillet",
+            "Août",
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Décembre",
+          ];
+          var newDate = new Date(Date.parse(i.created_at));
+          var formattedDate = monthNames[newDate.getMonth()];
+          this.date.push(formattedDate);
+          this.totalFundsHistoric.push(i.total_funds);
+          this.totalJobsHistoric.push(i.total_jobs_available);
+          this.totalRevenuesHistoric.push(i.total_revenues);
+          this.totalActorsHistoric.push(i.total_actors);
+          this.totalWomenHistoric.push(i.total_women_number);
+          this.totalEmployeesHistoric.push(i.total_employees_number);
+          this.totalMenHistoric.push(
+            i.total_employees_number - i.total_women_number
+          );
+        }
+        this.fillData();
+      });
 
     this.axios.get(this.baseUrl + "api/GET/metric").then((response) => {
       console.log(response.data.body);
@@ -288,7 +288,7 @@ export default {
             borderColor: "#e52345", //la ligne
             borderWidth: 2, //épaisseur de la ligne
             pointBorderColor: "#e52345", //points sur la ligne
-            tension: 0.1, //courbure de la ligne
+            tension: 0.6, //courbure de la ligne
             data: this.totalActorsHistoric, //les data
           },
         ],
@@ -347,7 +347,7 @@ export default {
             pointsBackgroundColor: "white",
             borderWidth: 2,
             pointBorderColor: "#e52345",
-            tension: 0.1,
+            tension: 0.6,
             data: this.totalRevenuesHistoric,
           },
         ],
