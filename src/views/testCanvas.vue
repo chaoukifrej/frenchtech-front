@@ -13,8 +13,8 @@
             </b-navbar-nav>
             </b-collapse>
 
-             <b-navbar-brand v-if="expanded" href="#">Masquer les métriques</b-navbar-brand>
-             <b-navbar-brand v-else >Afficher les métriques</b-navbar-brand>
+             <b-navbar-brand #default="{ expanded }" v-if="expanded" href="#">Afficher les métriques</b-navbar-brand>
+             <b-navbar-brand v-else >Masquer les métriques</b-navbar-brand>
 
             <b-navbar-toggle target="navbar-toggle-collapse">
             <template #default="{ expanded }">
@@ -63,9 +63,4 @@ export default {
     margin: 20px;
 }
 
-.b-navbar-brand {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
 </style>
