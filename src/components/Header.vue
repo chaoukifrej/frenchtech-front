@@ -98,7 +98,7 @@ $BgWhite: #f6f5f8;
   height: 80px;
   padding: 12px 18px;
   background-color: $BgWhite;
-  box-shadow: 0 3px 45px rgb(0 0 0 / 15%);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
   .logo {
     height: 50px;
     cursor: pointer;
