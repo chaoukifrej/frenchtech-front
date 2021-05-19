@@ -1,7 +1,7 @@
 <template>
   <div class="blocCards">
+    <!-- i correspond a la props / index correspond a l'iteration du 2 Tab
     <div v-for="index in registerBuffer" :id="index.id" :key="index.id">
-      <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
       <div class="row">
         <table class="table">
           <thead>
@@ -41,7 +41,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
