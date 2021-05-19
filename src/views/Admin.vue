@@ -128,11 +128,12 @@
 <script>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import ChartStartup from "@/components/ChartStartup.js";
-import ChartFunds from "@/components/ChartFunds.js";
-import ChartHire from "@/components/ChartHire.js";
-import ChartWomen from "@/components/ChartWomen.js";
-import ChartCA from "@/components/ChartCA.js";
+import ChartStartup from "@/components/charts/ChartStartup.js";
+import ChartFunds from "@/components/charts/ChartFunds.js";
+import ChartHire from "@/components/charts/ChartHire.js";
+import ChartWomen from "@/components/charts/ChartWomen.js";
+import ChartCA from "@/components/charts/ChartCA.js";
+import AdminRegister from "@/components/AdminRegister.vue";
 export default {
   components: {
     Header,
@@ -192,6 +193,7 @@ export default {
     this.getBuffer();
 
     this.fillData();
+    console.log("test");
 
     this.axios.get(this.baseUrl + "api/admin/GET/historic").then((response) => {
       for (const i of response.data.body.historic) {
