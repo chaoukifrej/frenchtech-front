@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      baseUrl: "http://frenchtech.localhost/8888/",
+      baseUrl: process.env.VUE_APP_BASE_URL,
       token: "",
       isConnected: false,
       isAdmin: false,
