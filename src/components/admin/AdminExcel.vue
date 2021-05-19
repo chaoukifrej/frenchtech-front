@@ -4,7 +4,10 @@
       <h4 class="mt-5 mb-5">Export d'excel</h4>
       <div class="firstRowCol">
         <h5>Acteurs</h5>
-        <b-button class="m-2" variant="dark"
+        <b-button
+          class="m-2"
+          variant="dark"
+          :href="this.baseUrl + 'api/excel/actors/export'"
           >Liste complète ( Tout les détails )</b-button
         ><b-button class="m-2" variant="dark"
           >Liste détails (détails publics)</b-button
@@ -14,8 +17,8 @@
       </div>
       <div class="firstRowCol">
         <h5>Demandes à valider</h5>
-        <b-button class="m-2">Liste complète ( Tout les détails )</b-button
-        ><b-button class="m-2">Demande d'inscription</b-button
+        <b-button class="m-2">Liste complète ( Tout les détails )</b-button>
+        <b-button class="m-2">Demande d'inscription</b-button
         ><b-button class="m-2">Demande de modification</b-button
         ><b-button class="m-2">Demande de suppression</b-button>
       </div>
@@ -31,7 +34,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "AdminExcel",
+  inject: ["baseUrl"],
+
+  methods: {},
+};
 </script>
 
 <style lang="scss">
