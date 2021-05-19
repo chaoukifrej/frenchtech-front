@@ -13,10 +13,11 @@
         ></b-col
       >
       <b-col
-        ><h5>Demandes</h5>
+        ><h5>Demandes à valider</h5>
         <b-button class="m-2">Liste complète ( Tout les détails )</b-button
-        ><b-button class="m-2">Liste détails (détails publics)</b-button
-        ><b-button class="m-2">Liste métriques (détails privés)</b-button>
+        ><b-button class="m-2">Demande d'inscription</b-button
+        ><b-button class="m-2">Demande de modification</b-button
+        ><b-button class="m-2">Demande de suppression</b-button>
       </b-col>
     </b-row>
     <b-row>

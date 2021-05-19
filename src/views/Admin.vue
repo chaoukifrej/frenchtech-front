@@ -63,7 +63,7 @@
           <b-tab title="Demande de modification">
             <AdminUpdate />
           </b-tab>
-          <b-tab title="Demande de supression">
+          <b-tab title="Demande de suppression">
             <AdminDelete :deleteBuffer="deleteBuffer" />
           </b-tab>
           <b-tab title="Imports et Exports" active> <AdminExcel /> </b-tab>
