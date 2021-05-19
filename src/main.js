@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
-import { LMap, LTileLayer, LMarker, LTooltip, LIcon} from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LTooltip, LIcon } from "vue2-leaflet";
 /* Importation carte icone marqueur et css*/
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
@@ -14,12 +14,26 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 
 import VueRouter from "vue-router";
 import router from "./router";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+library.add(faUserSecret);
+library.add(faGlobe);
+library.add(faPhone);
+library.add(faEnvelope);
+library.add(faMapMarkerAlt);
 
 Vue.component("l-map", LMap);
 Vue.component("l-tile-layer", LTileLayer);
 Vue.component("l-marker", LMarker);
 Vue.component("l-tooltip", LTooltip);
 Vue.component("l-icon", LIcon);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.use(InstantSearch);
 Vue.use(IconsPlugin);

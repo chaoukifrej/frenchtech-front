@@ -1,29 +1,43 @@
 <template>
   <div id="app">
     <Header />
-    <div id="sideBar">
+
+    <div class="mainContainer">
       <b-button v-b-toggle="'sideBar' + i.id">plus d'info</b-button>
       <b-sidebar width="390px" :id="'sideBar' + i.id" right shadow>
-        <div class="logoName">
-          <img :src="i.logo" />
-
-          <h1>{{ i.name }}</h1>
+        <div class="header">
+          <h4>{{ i.name }}</h4>
+          <h6>{{ i.category }}/</h6>
+          <h6>/{{ i.associations }}</h6>
         </div>
-
-        <div class="container">
-          <h4>Contact</h4>
-          <p class="title">Adresse</p>
-          <p>{{ i.adress }}</p>
-          <p>telephone {{ i.phone }}</p>
-          <p>E-Mail {{ i.email }}</p>
-          <p>Site web {{ i.website }}</p>
-          <p>facebook {{ i.facebook }}</p>
-          <h4>Informations</h4>
-          <p>Association {{ i.associations }}</p>
-          <p>Categorie {{ i.category }}</p>
-          <p>Activité {{ i.activity_area }}</p>
-          <div class="description">
-            <p>{{ i.description }}</p>
+        <div class="img">
+          <img :src="i.logo" />
+        </div>
+        <p>{{ i.description }}</p>
+        <div class="info">
+          <div class="design-info">
+            <font-awesome-icon icon="globe" />
+            <div>
+              <p>{{ i.website }}</p>
+            </div>
+          </div>
+          <div class="design-info">
+            <font-awesome-icon icon="phone" />
+            <div>
+              <p>{{ i.phone }}</p>
+            </div>
+          </div>
+          <div class="design-info">
+            <font-awesome-icon icon="envelope" />
+            <div>
+              <p>{{ i.email }}</p>
+            </div>
+          </div>
+          <div>
+            <font-awesome-icon icon="map-marker-alt" />
+          </div>
+          <div>
+            <p>{{ i.adress }}</p>
           </div>
         </div>
       </b-sidebar>
@@ -52,33 +66,49 @@ $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
 
-#sideBar {
-  padding: 0;
-  width: fit-content;
+.mainContainer {
+  display: flex;
   background-color: $BgWhite;
-  .logoName {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
 
-    margin-bottom: 10px;
-    img {
-      width: 90px;
-      height: 80px;
-    }
-  }
-  .container {
-    width: fit-content;
-    text-align: left;
+  .header {
+    padding: 0;
+    justify-content: center;
 
     h4 {
-      text-align: center;
-      font-size: 20px;
+      margin-right: 20px;
     }
+    h6 {
+      color: $secondary;
+    }
+  }
 
-    .description {
-      text-align: justify;
-      font-size: 14px;
+  .img {
+    width: 200px;
+    width: 100%;
+    text-align: center;
+    background-color: $BgWhite;
+
+    img {
+      margin: 0;
+      width: 200px;
+    }
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+
+    .design-info {
+      display: flex;
+
+      div {
+        padding-left: 10px;
+        align-items: center;
+
+        p {
+          margin: 0;
+        }
+      }
     }
   }
 }
