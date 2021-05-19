@@ -1,27 +1,30 @@
 <template>
   <div id="app">
     <Header />
-    <div>
+    <div id="sideBar">
       <b-button v-b-toggle="'sideBar' + i.id">plus d'info</b-button>
-      <b-sidebar
-        width="500px"
-        :id="'sideBar' + i.id"
-        title="Sidebar"
-        right
-        shadow
-      >
-        <div class="px-3 py-2">
-          <h1>name</h1>
-          <span>logo</span>
-          <h6>Adresse :</h6>
-          <h6>Telephone :</h6>
-          <h6>E-mail :</h6>
-          <h6>Site internet :</h6>
-          <h6>Association :</h6>
-          <h6>Categorie :</h6>
-          <h6>Secteurs d'activité :</h6>
-          <h6>Facebook :</h6>
-          <h6>description</h6>
+      <b-sidebar width="390px" :id="'sideBar' + i.id" right shadow>
+        <div class="logoName">
+          <img :src="i.logo" />
+
+          <h1>{{ i.name }}</h1>
+        </div>
+
+        <div class="container">
+          <h4>Contact</h4>
+          <p class="title">Adresse</p>
+          <p>{{ i.adress }}</p>
+          <p>telephone {{ i.phone }}</p>
+          <p>E-Mail {{ i.email }}</p>
+          <p>Site web {{ i.website }}</p>
+          <p>facebook {{ i.facebook }}</p>
+          <h4>Informations</h4>
+          <p>Association {{ i.associations }}</p>
+          <p>Categorie {{ i.category }}</p>
+          <p>Activité {{ i.activity_area }}</p>
+          <div class="description">
+            <p>{{ i.description }}</p>
+          </div>
         </div>
       </b-sidebar>
     </div>
@@ -48,4 +51,35 @@ $primary: #0f0041;
 $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
+
+#sideBar {
+  padding: 0;
+  width: fit-content;
+  background-color: $BgWhite;
+  .logoName {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-bottom: 10px;
+    img {
+      width: 90px;
+      height: 80px;
+    }
+  }
+  .container {
+    width: fit-content;
+    text-align: left;
+
+    h4 {
+      text-align: center;
+      font-size: 20px;
+    }
+
+    .description {
+      text-align: justify;
+      font-size: 14px;
+    }
+  }
+}
 </style>

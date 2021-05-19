@@ -3,7 +3,7 @@
     <Header />
     <h1>BIENVENUE SUR VOTRE PAGE PERSONNELLE</h1>
     <div id="personal">
-      <h4>Presentation de votre entreprise</h4>
+      <h4>Informations concernant mon entreprise</h4>
 
       <div v-for="(elem, name) in actualActor" :key="elem.id">
         {{ name }} : {{ elem }}

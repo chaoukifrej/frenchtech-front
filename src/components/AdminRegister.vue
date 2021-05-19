@@ -1,6 +1,8 @@
 <template>
   <div class="mainComponent">
     <div>
+    </div>
+    <div>
       <b-tabs content-class="mt-3">
         <b-tab title="Gestion entreprise" active
           ><div class="blocCards">
@@ -28,7 +30,6 @@
                       <td>{{ index.adress }}</td>
                       <td>{{ index.city }}</td>
                       <td>{{ index.postal_code }}</td>
-
                       <td>
                         <button type="button" class="btn btn-warning">
                           Modifier
@@ -49,11 +50,26 @@
                   </tbody>
                 </table>
               </div>
-            </div></div
-        ></b-tab>
-        <b-tab title="Demande d'inscription"></b-tab>
-        <b-tab title="Demande de modification"></b-tab>
-        <b-tab title="Demande de supression"></b-tab>
+            </div>
+          </div>
+        </b-tab>
+        <b-tab title="Demande d'inscription">
+        </b-tab>
+        <b-tab title="Demande de modification">
+        </b-tab>
+        <b-tab title="Demande de supression">
+        <b-table striped hover :items="deleteBuffer" :fields="deleteFields">
+        <template #cell(actions)>
+        <b-button pill variant="primary" size="sm" >
+          Valider
+        </b-button>
+        <b-button pill variant="secondary" size="sm" class="m-2">
+          Refuser
+        </b-button>
+      </template></b-table>
+        </b-tab>
+                <b-tab title="Imports et Exports">
+        </b-tab>
       </b-tabs>
     </div>
   </div>
@@ -66,6 +82,9 @@ export default {
 
   data: () => ({
     registerBuffer: [],
+
+    deleteFields: [{0:"ID"},{1:"Nom entreprise"},{2:"Email"},{3:"Téléphone"},{4:"Categorie"},{5:"Association"},{ key: 'Actions', label: 'Actions' }],
+    deleteBuffer:[],
   }),
 
   methods: {
@@ -77,7 +96,21 @@ export default {
           for (const elem of response.data.body.buffers) {
             this.registerBuffer.push(elem);
           }
-          console.log(this.registerBuffer);
+          //console.log(this.registerBuffer);
+
+          
+          response.data.body.buffers.forEach(elem => {
+            let e = []
+          e.push(elem.actor_id)
+          e.push(elem.name)
+          e.push(elem.email)
+          e.push(elem.phone)
+          e.push(elem.category)
+          e.push(elem.associations)
+          this.deleteBuffer.push(e)
+          });
+          
+          console.log(this.deleteBuffer);
         });
     },
 
