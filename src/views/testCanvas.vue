@@ -81,9 +81,9 @@ export default {
       totalWomenMetric: 0,
       totalMenMetric: 0,
 
-      someNumber: 100,
+      someNumber: 0,
       intervalSpeed: 2000,
-      interval: null,
+      interval: 10,
 
      }),
 
@@ -101,25 +101,16 @@ export default {
             response.data.body.employees_number_total -
             response.data.body.women_number_total;
         });
+
+        this.someNumber = 5000;
         },
 
-         created() {
-            this.startInterval();
-        },
 
 
-  methods: {
-      startInterval() {
-      this.interval = setInterval(() => this.number++, this.intervalSpeed);
-    },
-    clearInterval() {
-      clearInterval(this.interval);
-    },
-    like() {
-      this.likes += 1;
-    }
-     
-  },
+
+    methods: {
+
+        }
 }
 
 </script>
