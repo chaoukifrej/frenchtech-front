@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      baseUrl: "http://frenchtech.localhost/",
+      baseUrl: "http://frenchtech.localhost/8888/",
       token: "",
       isConnected: false,
       isAdmin: false,

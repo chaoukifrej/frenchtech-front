@@ -63,4 +63,13 @@ export default {
     margin: 20px;
 }
 
+.navbar-brand {
+    font-size: 14px;
+    margin-left: 40%;
+}
+
+.bi-chevron--bar-down-, .b-icon-bi, .b{
+    height: 10px;
+}
+
 </style>
