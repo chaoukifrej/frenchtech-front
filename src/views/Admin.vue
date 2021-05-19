@@ -80,6 +80,7 @@ import ChartFunds from "@/components/charts/ChartFunds.js";
 import ChartHire from "@/components/charts/ChartHire.js";
 import ChartWomen from "@/components/charts/ChartWomen.js";
 import ChartCA from "@/components/charts/ChartCA.js";
+
 import AdminActorsManage from "@/components/admin/AdminActorsManage.vue";
 import AdminDelete from "@/components/admin/AdminDelete.vue";
 import AdminRegister from "@/components/admin/AdminBuffersRegister.vue";

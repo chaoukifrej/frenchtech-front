@@ -34,6 +34,7 @@
                      <div class="bloc-v">
                          <div>
                          <p class="numberMetric">50 000</p>
+                         <v-number v-model="someNumber"></v-number>
                          </div>
                          <p class="textMetric">CHIFFRE D'AFFAIRE</p>
                      </div>
@@ -61,6 +62,7 @@
 // Import header et footer
 
 import Header from "@/components/Header.vue";
+import {VNumber} from "@maxflex/v-number";
 
 export default {
   name: "Canvas",
@@ -68,6 +70,7 @@ export default {
 
   components: {
     Header,
+    VNumber
   },
   data: () => ({
       metrics: [],
@@ -77,7 +80,12 @@ export default {
       totalEmployeesMetric: 0,
       totalWomenMetric: 0,
       totalMenMetric: 0,
-          }),
+
+      someNumber: 0,
+      intervalSpeed: 2000,
+      interval: 10,
+
+     }),
 
         mounted(){
 
@@ -93,13 +101,16 @@ export default {
             response.data.body.employees_number_total -
             response.data.body.women_number_total;
         });
+
+        this.someNumber = 5000;
         },
-    
 
 
-  methods: {
-      
-  },
+
+
+    methods: {
+
+        }
 }
 
 </script>
@@ -149,6 +160,9 @@ $BgWhite: #f6f5f8;
         height: 200px;
     img {
         height: 90%;
+    }
+    p{
+        margin: 0;
     }
     .numberMetric {
         color: white;
