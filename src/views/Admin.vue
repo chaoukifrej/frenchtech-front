@@ -51,20 +51,22 @@
 
       <div class="AdminTabContainer mt-5">
         <b-tabs content-class="mt-3">
-          <b-tab title="Gestion entreprise">
+          <b-tab title="Gestion entreprise" active>
             <AdminActorsManage />
           </b-tab>
-          <b-tab title="Demande d'inscription" active>
+          <b-tab title="Demande d'inscription">
             <AdminRegister
               :buffers="buffers"
               :registerBuffer="registerBuffer"
             />
           </b-tab>
-          <b-tab title="Demande de modification"> </b-tab>
+          <b-tab title="Demande de modification">
+            <AdminUpdate />
+          </b-tab>
           <b-tab title="Demande de supression">
             <AdminDelete :deleteBuffer="deleteBuffer" />
           </b-tab>
-          <b-tab title="Imports et Exports"> </b-tab>
+          <b-tab title="Imports et Exports"> <AdminExcel /> </b-tab>
         </b-tabs>
       </div>
     </div>
@@ -82,8 +84,10 @@ import ChartWomen from "@/components/charts/ChartWomen.js";
 import ChartCA from "@/components/charts/ChartCA.js";
 
 import AdminActorsManage from "@/components/admin/AdminActorsManage.vue";
-import AdminDelete from "@/components/admin/AdminDelete.vue";
 import AdminRegister from "@/components/admin/AdminBuffersRegister.vue";
+import AdminUpdate from "@/components/admin/AdminUpdate.vue";
+import AdminDelete from "@/components/admin/AdminDelete.vue";
+import AdminExcel from "@/components/admin/AdminExcel.vue";
 export default {
   components: {
     Header,
@@ -94,8 +98,10 @@ export default {
     ChartWomen,
     ChartCA,
     AdminActorsManage,
-    AdminDelete,
     AdminRegister,
+    AdminUpdate,
+    AdminDelete,
+    AdminExcel,
   },
   name: "Admin",
   inject: ["baseUrl"],
