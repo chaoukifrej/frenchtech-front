@@ -51,19 +51,27 @@
 
       <div class="AdminTabContainer mt-5">
         <b-tabs content-class="mt-3">
-          <b-tab title="Gestion entreprise" active>
+          <b-tab title="Gestion entreprise">
             <AdminActorsManage />
           </b-tab>
-          <b-tab title="Demande d'inscription"> </b-tab>
-          <b-tab title="Demande de modification"> </b-tab>
-          <b-tab title="Demande de supression">
-            <AdminDelete :buffers="buffers" :deleteBuffer="deleteBuffer" />
+          <b-tab title="Demande d'inscription">
+            <AdminRegister
+              :buffers="buffers"
+              :registerBuffer="registerBuffer"
+            />
           </b-tab>
-          <b-tab title="Imports et Exports"> </b-tab>
+          <b-tab title="Demande de modification">
+            <AdminUpdate />
+          </b-tab>
+          <b-tab title="Demande de suppression">
+            <AdminDelete :deleteBuffer="deleteBuffer" />
+          </b-tab>
+          <b-tab title="Imports et Exports" active> <AdminExcel /> </b-tab>
+          <b-tab title="Gestion des administrateurs"> </b-tab>
         </b-tabs>
       </div>
-      <Footer />
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -77,8 +85,14 @@ import ChartWomen from "@/components/charts/ChartWomen.js";
 import ChartCA from "@/components/charts/ChartCA.js";
 
 import AdminActorsManage from "@/components/admin/AdminActorsManage.vue";
+import AdminRegister from "@/components/admin/AdminBuffersRegister.vue";
+import AdminUpdate from "@/components/admin/AdminUpdate.vue";
 import AdminDelete from "@/components/admin/AdminDelete.vue";
+<<<<<<< HEAD
 
+=======
+import AdminExcel from "@/components/admin/AdminExcel.vue";
+>>>>>>> 755df61422062216f10b96cd632154937834a62f
 export default {
   components: {
     Header,
@@ -89,7 +103,10 @@ export default {
     ChartWomen,
     ChartCA,
     AdminActorsManage,
+    AdminRegister,
+    AdminUpdate,
     AdminDelete,
+    AdminExcel,
   },
   name: "Admin",
   inject: ["baseUrl"],
@@ -124,6 +141,7 @@ export default {
       //!TABLE BUFFERS
       buffers: [],
       deleteBuffer: [],
+      registerBuffer: [],
     };
   },
 
@@ -169,7 +187,7 @@ export default {
     this.axios.get(this.baseUrl + "api/admin/GET/historic").then((response) => {
       for (const i of response.data.body.historic) {
         this.arrayHistoric.push(response.data.body.historic);
-        console.log(response.data.body.historic);
+        //console.log(response.data.body.historic);
         var monthNames = [
           "Janvier",
           "Février",
@@ -201,7 +219,7 @@ export default {
     });
 
     this.axios.get(this.baseUrl + "api/GET/metric").then((response) => {
-      console.log(response.data.body);
+      //console.log(response.data.body);
       this.metrics.push(response.data.body);
       this.totalFundsMetric = response.data.body.funds_total;
       this.totalActorsMetric = response.data.body.start_up_total;
@@ -234,6 +252,16 @@ export default {
               e.category = el.category;
               e.associations = el.associations;
               this.deleteBuffer.push(e);
+            }
+            if (el.type_of_demand == "register") {
+              let e = {};
+              e.id = el.id;
+              e.name = el.name;
+              e.email = el.email;
+              e.phone = el.phone;
+              e.category = el.category;
+              e.associations = el.associations;
+              this.registerBuffer.push(e);
             }
           });
         });

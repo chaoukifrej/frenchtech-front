@@ -31,7 +31,7 @@
 <script>
 export default {
   name: "AdminDelete",
-  props: ["buffers", "deleteBuffer"],
+  props: ["deleteBuffer"],
   inject: ["baseUrl"],
 
   data() {
@@ -114,4 +114,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="sass"></style>
