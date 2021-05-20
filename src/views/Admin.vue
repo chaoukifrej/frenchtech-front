@@ -88,11 +88,7 @@ import AdminActorsManage from "@/components/admin/AdminActorsManage.vue";
 import AdminRegister from "@/components/admin/AdminBuffersRegister.vue";
 import AdminUpdate from "@/components/admin/AdminUpdate.vue";
 import AdminDelete from "@/components/admin/AdminDelete.vue";
-<<<<<<< HEAD
-
-=======
 import AdminExcel from "@/components/admin/AdminExcel.vue";
->>>>>>> 755df61422062216f10b96cd632154937834a62f
 export default {
   components: {
     Header,
