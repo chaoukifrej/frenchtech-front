@@ -2,6 +2,7 @@
   <div id="app">
     <Header />
 
+<<<<<<< HEAD
     <div class="mainContainer">
       <b-button class="stretched-link" v-b-toggle="'sideBar' + i.id">plus d'info</b-button>
       <b-sidebar class="sideBar" width="35%" :id="'sideBar' + i.id" right shadow>
@@ -13,35 +14,38 @@
         <div class="img">
           <img :src="i.logo" />
         </div>
+=======
+    <b-button v-b-toggle="'sideBar' + i.id">plus d'info</b-button>
+    <b-sidebar width="400px" :id="'sideBar' + i.id" right shadow>
+      <div class="header">
+        <h4>{{ i.name }}</h4>
+        <h6>{{ i.category }}/</h6>
+        <h6>/{{ i.associations }}</h6>
+      </div>
+      <div class="img">
+        <img :src="i.logo" />
+      </div>
+      <div class="description">
+>>>>>>> a0e3ff92c89d8a6db9bade1e8e2d378ad68df538
         <p>{{ i.description }}</p>
-        <div class="info">
-          <div class="design-info">
-            <font-awesome-icon icon="globe" />
-            <div>
-              <p>{{ i.website }}</p>
-            </div>
-          </div>
-          <div class="design-info">
-            <font-awesome-icon icon="phone" />
-            <div>
-              <p>{{ i.phone }}</p>
-            </div>
-          </div>
-          <div class="design-info">
-            <font-awesome-icon icon="envelope" />
-            <div>
-              <p>{{ i.email }}</p>
-            </div>
-          </div>
-          <div>
-            <font-awesome-icon icon="map-marker-alt" />
-          </div>
-          <div>
-            <p>{{ i.adress }}</p>
-          </div>
-        </div>
-      </b-sidebar>
-    </div>
+      </div>
+
+      <div class="container">
+        <font-awesome-icon class="fontIcon" icon="globe" />{{ i.website }}
+        <font-awesome-icon class="fontIcon" icon="phone" />{{ i.phone }}
+        <font-awesome-icon class="fontIcon" icon="envelope" />{{ i.email }}
+        <font-awesome-icon class="fontIcon" icon="map-marker-alt" />{{
+          i.adress
+        }}
+      </div>
+
+      <div class="link">
+        <font-awesome-icon class="fontLink" :icon="['fab', 'twitter']" />
+        <font-awesome-icon class="fontLink" :icon="['fab', 'facebook-f']" />
+        <font-awesome-icon class="fontLink" :icon="['fab', 'linkedin-in']" />
+      </div>
+    </b-sidebar>
+
     <Footer />
   </div>
 </template>
@@ -65,6 +69,7 @@ $primary: #0f0041;
 $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
+<<<<<<< HEAD
 
 .mainContainer {
   display: flex;
@@ -126,4 +131,6 @@ $BgWhite: #f6f5f8;
     }
   }
 }
+=======
+>>>>>>> a0e3ff92c89d8a6db9bade1e8e2d378ad68df538
 </style>
