@@ -9,39 +9,75 @@
       <div class="metrics-admin">
         <div class="bloc-metric-admin">
           <div>
-            <p class="numberMetricAdmin">{{ totalStartupMetric }}</p>
+            <p class="numberMetricAdmin">
+              <animated-number
+                :value="totalStartupMetric"
+                round="1"
+                :duration="1200"
+              />
+            </p>
           </div>
           <p class="textMetric">STARTUP</p>
         </div>
         <div class="bloc-metric-admin">
           <div>
-            <p class="numberMetricAdmin">{{ totalFundsMetric }}</p>
+            <p class="numberMetricAdmin">
+              <animated-number
+                :value="totalFundsMetric"
+                round="1"
+                :duration="1200"
+              />
+            </p>
           </div>
           <p class="textMetric">LEVEE DE FOND</p>
         </div>
         <div class="bloc-metric-admin">
           <div>
-            <p class="numberMetricAdmin">{{ totalEmployeesMetric }}</p>
+            <p class="numberMetricAdmin">
+              <animated-number
+                :value="totalEmployeesMetric"
+                round="1"
+                :duration="1200"
+              />
+            </p>
           </div>
           <p class="textMetric">EMPLOYÉS</p>
         </div>
         <div class="bloc-metric-admin">
           <div>
-            <p class="numberMetricAdmin">{{ totalJobsMetric }}</p>
+            <p class="numberMetricAdmin">
+              <animated-number
+                :value="totalJobsMetric"
+                round="1"
+                :duration="1200"
+              />
+            </p>
           </div>
           <p class="textMetric">POSTES</p>
         </div>
 
         <div class="bloc-metric-admin">
           <div>
-            <p class="numberMetricAdmin">{{ totalWomenMetric }}</p>
+            <p class="numberMetricAdmin">
+              <animated-number
+                :value="totalWomenMetric"
+                round="1"
+                :duration="1200"
+              />
+            </p>
           </div>
           <p class="textMetric">FEMMES</p>
         </div>
 
         <div class="bloc-metric-admin">
           <div>
-            <p class="numberMetricAdmin">{{ totalRevenuesMetric }}</p>
+            <p class="numberMetricAdmin">
+              <animated-number
+                :value="totalRevenuesMetric"
+                round="1"
+                :duration="1200"
+              />
+            </p>
           </div>
           <p class="textMetric">CHIFFRE D'AFFAIRE</p>
         </div>
@@ -80,6 +116,7 @@
             <ChartCA :chartData="dataca"> </ChartCA>
           </div>
         </div>
+        <div></div>
       </div>
 
       <div class="AdminTabContainer mt-5">
@@ -116,6 +153,7 @@ import ChartFunds from "@/components/charts/ChartFunds.js";
 import ChartHire from "@/components/charts/ChartHire.js";
 import ChartWomen from "@/components/charts/ChartWomen.js";
 import ChartCA from "@/components/charts/ChartCA.js";
+import AnimatedNumber from "animated-number-vue";
 
 import AdminActorsManage from "@/components/admin/AdminActorsManage.vue";
 import AdminRegister from "@/components/admin/AdminBuffersRegister.vue";
@@ -137,6 +175,7 @@ export default {
     AdminUpdate,
     AdminDelete,
     AdminExcel,
+    AnimatedNumber,
   },
   name: "Admin",
   inject: ["baseUrl"],

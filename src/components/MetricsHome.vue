@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <Header />
     <b-navbar toggleable>
-      <b-collapse id="navbar-toggle-collapse" is-nav>
+      <b-collapse visible id="navbar-toggle-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <div class="metrics">
             <div class="bloc-p">
@@ -54,15 +53,10 @@
 <script>
 // Import header et footer
 
-import Header from "@/components/Header.vue";
-
 export default {
-  name: "Canvas",
+  name: "MetricsHome",
   inject: ["baseUrl"],
 
-  components: {
-    Header,
-  },
   data: () => ({
     metrics: [],
     totalFundsMetric: 0,
