@@ -133,7 +133,7 @@ import ChartFunds from "@/components/charts/ChartFunds.js";
 import ChartHire from "@/components/charts/ChartHire.js";
 import ChartWomen from "@/components/charts/ChartWomen.js";
 import ChartCA from "@/components/charts/ChartCA.js";
-import AdminRegister from "@/components/AdminRegister.vue";
+
 export default {
   components: {
     Header,
