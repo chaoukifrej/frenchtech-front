@@ -140,8 +140,45 @@ export default {
       registerBuffer: [],
     };
   },
-  mounted() {
+
+  async created() {
     this.getBuffer();
+
+    await this.axios
+      .get(this.baseUrl + "api/admin/GET/historic")
+      .then((response) => {
+        for (const i of response.data.body.historic) {
+          this.arrayHistoric.push(response.data.body.historic);
+          console.log(response.data.body.historic);
+          var monthNames = [
+            "Janvier",
+            "Février",
+            "Mars",
+            "Avril",
+            "Mai",
+            "Juin",
+            "Juillet",
+            "Août",
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Décembre",
+          ];
+          var newDate = new Date(Date.parse(i.created_at));
+          var formattedDate = monthNames[newDate.getMonth()];
+          this.date.push(formattedDate);
+          this.totalFundsHistoric.push(i.total_funds);
+          this.totalJobsHistoric.push(i.total_jobs_available);
+          this.totalRevenuesHistoric.push(i.total_revenues);
+          this.totalActorsHistoric.push(i.total_actors);
+          this.totalWomenHistoric.push(i.total_women_number);
+          this.totalEmployeesHistoric.push(i.total_employees_number);
+          this.totalMenHistoric.push(
+            i.total_employees_number - i.total_women_number
+          );
+        }
+        this.fillData();
+      });
 
     this.axios.get(this.baseUrl + "api/admin/GET/historic").then((response) => {
       for (const i of response.data.body.historic) {
@@ -237,7 +274,7 @@ export default {
             borderColor: "#e52345", //la ligne
             borderWidth: 2, //épaisseur de la ligne
             pointBorderColor: "#e52345", //points sur la ligne
-            tension: 0.1, //courbure de la ligne
+            tension: 0.6, //courbure de la ligne
             data: this.totalActorsHistoric, //les data
           },
         ],
@@ -296,7 +333,7 @@ export default {
             pointsBackgroundColor: "white",
             borderWidth: 2,
             pointBorderColor: "#e52345",
-            tension: 0.1,
+            tension: 0.6,
             data: this.totalRevenuesHistoric,
           },
         ],
