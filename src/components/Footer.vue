@@ -1,37 +1,31 @@
 <template>
   <div class="footer">
- <img class="logo-full-white" src="../../public/img/logo-full-white.png" alt="">
+    <img
+      class="logo-full-white"
+      src="../../public/img/logo-full-white.png"
+      alt=""
+    />
   </div>
 </template>
 
-
-
 <script>
-
 export default {
-    
-    name: "Footer",
+  name: "Footer",
 
-    
-   props: {
+  props: {},
 
-   },
-    
-    methods: {
-
-    }
-}
+  methods: {},
+};
 </script>
 
-
 <style lang="scss">
-
 .footer {
-    height: 200px;
-    padding: 20px 20px;
-    background-color: #0f0041;
+  height: 200px;
+  padding: 20px 20px;
+  background-color: #0f0041;
 }
-    .logo-full-white {
-        height: 80px;
-    }
+.logo-full-white {
+  height: 100%;
+  width: auto;
+}
 </style>

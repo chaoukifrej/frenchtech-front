@@ -17,23 +17,12 @@
       </div>
 
       <div class="container">
-        <div class="icon">
-          <div>
-            <font-awesome-icon class="fontIcon" icon="globe" />{{ i.website }}
-          </div>
-
-          <div>
-            <font-awesome-icon class="fontIcon" icon="phone" />{{ i.phone }}
-          </div>
-          <div>
-            <font-awesome-icon class="fontIcon" icon="envelope" />{{ i.email }}
-          </div>
-          <div>
-            <font-awesome-icon class="fontIcon" icon="map-marker-alt" />{{
-              i.adress
-            }}
-          </div>
-        </div>
+        <font-awesome-icon class="fontIcon" icon="globe" />{{ i.website }}
+        <font-awesome-icon class="fontIcon" icon="phone" />{{ i.phone }}
+        <font-awesome-icon class="fontIcon" icon="envelope" />{{ i.email }}
+        <font-awesome-icon class="fontIcon" icon="map-marker-alt" />{{
+          i.adress
+        }}
       </div>
 
       <div class="link">
@@ -66,13 +55,4 @@ $primary: #0f0041;
 $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
-
-.container {
-  display: flex;
-
-  .icon {
-    div {
-    }
-  }
-}
 </style>

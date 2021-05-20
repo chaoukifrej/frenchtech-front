@@ -14,7 +14,7 @@
         <router-link
           v-show="isAdmin.value && $route.name != 'Admin'"
           to="/Admin"
-          >Admin</router-link
+          >Administration</router-link
         >
         <router-link
           v-show="isAdmin.value == false && isConnected.value"

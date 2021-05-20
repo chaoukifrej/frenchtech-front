@@ -48,80 +48,30 @@
           <p>Nombre d'hommes : {{ totalMenMetric }}</p>
         </div>
       </div>
-      <div class="mt-5">
+
+      <div class="AdminTabContainer mt-5">
         <b-tabs content-class="mt-3">
-          <b-tab title="Gestion entreprise" active
-            ><div class="blocCards">
-              <div
-                v-for="index in registerBuffer"
-                :id="index.id"
-                :key="index.id"
-              >
-                <!-- i correspond a la props / index correspond a l'iteration du 2 Tab -->
-                <div class="row">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Entreprise</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">Téléphone</th>
-                        <th scope="col">Adresse</th>
-                        <th scope="col">Ville</th>
-                        <th scope="col">Code Postal</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>{{ index.name }}</td>
-                        <td>{{ index.email }}</td>
-                        <td>{{ index.phone }}</td>
-                        <td>{{ index.adress }}</td>
-                        <td>{{ index.city }}</td>
-                        <td>{{ index.postal_code }}</td>
-                        <td>
-                          <button type="button" class="btn btn-warning">
-                            Modifier
-                          </button>
-                        </td>
-                        <td>
-                          <div class="col-md-2">
-                            <button
-                              @click="deleteUser(index.id)"
-                              class="btn btn-danger"
-                            >
-                              Refuser
-                            </button>
-                          </div>
-                        </td>
-                        <td></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+          <b-tab title="Gestion entreprise">
+            <AdminActorsManage />
           </b-tab>
-          <b-tab title="Demande d'inscription"> </b-tab>
-          <b-tab title="Demande de modification"> </b-tab>
-          <b-tab title="Demande de supression">
-            <b-table striped hover :items="deleteBuffer" :fields="deleteFields">
-              <template #cell(actions)>
-                <b-button pill variant="primary" size="sm">
-                  Valider
-                </b-button>
-                <b-button pill variant="secondary" size="sm" class="m-2">
-                  Refuser
-                </b-button>
-              </template></b-table
-            >
+          <b-tab title="Demande d'inscription">
+            <AdminRegister
+              :buffers="buffers"
+              :registerBuffer="registerBuffer"
+            />
           </b-tab>
-          <b-tab title="Imports et Exports"> </b-tab>
+          <b-tab title="Demande de modification">
+            <AdminUpdate />
+          </b-tab>
+          <b-tab title="Demande de suppression">
+            <AdminDelete :deleteBuffer="deleteBuffer" />
+          </b-tab>
+          <b-tab title="Imports et Exports" active> <AdminExcel /> </b-tab>
+          <b-tab title="Gestion des administrateurs"> </b-tab>
         </b-tabs>
       </div>
-      <Footer />
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -134,6 +84,11 @@ import ChartHire from "@/components/charts/ChartHire.js";
 import ChartWomen from "@/components/charts/ChartWomen.js";
 import ChartCA from "@/components/charts/ChartCA.js";
 
+import AdminActorsManage from "@/components/admin/AdminActorsManage.vue";
+import AdminRegister from "@/components/admin/AdminBuffersRegister.vue";
+import AdminUpdate from "@/components/admin/AdminUpdate.vue";
+import AdminDelete from "@/components/admin/AdminDelete.vue";
+import AdminExcel from "@/components/admin/AdminExcel.vue";
 export default {
   components: {
     Header,
@@ -143,12 +98,18 @@ export default {
     ChartHire,
     ChartWomen,
     ChartCA,
+    AdminActorsManage,
+    AdminRegister,
+    AdminUpdate,
+    AdminDelete,
+    AdminExcel,
   },
   name: "Admin",
   inject: ["baseUrl"],
 
   data() {
     return {
+      //!CHARTS
       datastartup: null,
       loaded: false,
       datawomen: null,
@@ -164,10 +125,8 @@ export default {
       totalRevenuesHistoric: [],
       totalActorsHistoric: [],
       date: [],
-
-      // Metric
+      // Metrics
       metrics: [],
-
       totalFundsMetric: 0,
       totalActorsMetric: 0,
       totalJobsMetric: 0,
@@ -175,30 +134,19 @@ export default {
       totalWomenMetric: 0,
       totalMenMetric: 0,
 
-      registerBuffer: [],
-
-      deleteFields: [
-        { 0: "ID" },
-        { 1: "Nom entreprise" },
-        { 2: "Email" },
-        { 3: "Téléphone" },
-        { 4: "Categorie" },
-        { 5: "Association" },
-        { key: "Actions", label: "Actions" },
-      ],
+      //!TABLE BUFFERS
+      buffers: [],
       deleteBuffer: [],
+      registerBuffer: [],
     };
   },
   mounted() {
     this.getBuffer();
 
-    this.fillData();
-    console.log("test");
-
     this.axios.get(this.baseUrl + "api/admin/GET/historic").then((response) => {
       for (const i of response.data.body.historic) {
         this.arrayHistoric.push(response.data.body.historic);
-        console.log(response.data.body.historic);
+        //console.log(response.data.body.historic);
         var monthNames = [
           "Janvier",
           "Février",
@@ -226,10 +174,11 @@ export default {
           i.total_employees_number - i.total_women_number
         );
       }
+      this.fillData();
     });
 
     this.axios.get(this.baseUrl + "api/GET/metric").then((response) => {
-      console.log(response.data.body);
+      //console.log(response.data.body);
       this.metrics.push(response.data.body);
       this.totalFundsMetric = response.data.body.funds_total;
       this.totalActorsMetric = response.data.body.start_up_total;
@@ -249,34 +198,34 @@ export default {
 
         .then((response) => {
           for (const elem of response.data.body.buffers) {
-            this.registerBuffer.push(elem);
+            this.buffers.push(elem);
           }
-          //console.log(this.registerBuffer);
-
-          response.data.body.buffers.forEach((elem) => {
-            let e = [];
-            e.push(elem.actor_id);
-            e.push(elem.name);
-            e.push(elem.email);
-            e.push(elem.phone);
-            e.push(elem.category);
-            e.push(elem.associations);
-            this.deleteBuffer.push(e);
+          this.buffers.forEach((el) => {
+            if (el.type_of_demand == "delete") {
+              let e = {};
+              e.id = el.id;
+              e.actor_id = el.actor_id;
+              e.name = el.name;
+              e.email = el.email;
+              e.phone = el.phone;
+              e.category = el.category;
+              e.associations = el.associations;
+              this.deleteBuffer.push(e);
+            }
+            if (el.type_of_demand == "register") {
+              let e = {};
+              e.id = el.id;
+              e.name = el.name;
+              e.email = el.email;
+              e.phone = el.phone;
+              e.category = el.category;
+              e.associations = el.associations;
+              this.registerBuffer.push(e);
+            }
           });
-
-          console.log(this.deleteBuffer);
         });
     },
 
-    deleteUser(id) {
-      this.axios
-        .delete(this.baseUrl + "/api/admin/DELETE/buffer/" + id)
-        .then((response) => {
-          let div = document.getElementById(id);
-          div.style.display = "none";
-          console.log(response.status);
-        });
-    },
     fillData() {
       /*Data de chaque chart*/
       this.datastartup = {
