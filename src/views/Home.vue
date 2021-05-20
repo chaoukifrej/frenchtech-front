@@ -34,6 +34,7 @@
 import { LMap, LTileLayer, LMarker, LTooltip, LIcon } from "vue2-leaflet";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
+
 // Import header et CardInfo
 import Header from "@/components/Header.vue";
 import CardInfo from "@/components/CardInfo.vue";
