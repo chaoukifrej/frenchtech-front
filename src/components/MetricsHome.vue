@@ -1,76 +1,80 @@
 <template>
-  <div id="app">
-    <b-navbar toggleable>
-      <b-collapse visible id="navbar-toggle-collapse" is-nav>
-        <b-navbar-nav class="ml-auto">
-          <div class="metrics">
-            <div class="bloc-p">
-              <img src="../../public/img/header1.png" alt="" />
-            </div>
-            <div class="bloc-v">
-              <img src="../../public/img/header2.png" alt="" />
-            </div>
-            <div class="bloc-p">
-              <div>
-                <p class="numberMetric">
-                  <animated-number
-                    :value="totalFundsMetric"
-                    round="1"
-                    :duration="1200"
-                  />
-                </p>
-              </div>
-              <p class="textMetric">LEVEE DE FOND</p>
-            </div>
-            <div class="bloc-v">
-              <div>
-                <p class="numberMetric">
-                  <animated-number
-                    :value="totalWomenMetric"
-                    round="1"
-                    :duration="1200"
-                  />
-                </p>
-              </div>
-              <p class="textMetric">FEMMES</p>
-            </div>
-            <div class="bloc-p">
-              <div>
-                <p class="numberMetric">
-                  <animated-number
-                    :value="totalActorsMetric"
-                    round="1"
-                    :duration="1200"
-                  />
-                </p>
-              </div>
-              <p class="textMetric">STARTUP</p>
-            </div>
-            <div class="bloc-v">
-              <div>
-                <p class="numberMetric">
-                  <animated-number
-                    :value="totalRevenues"
-                    round="1"
-                    :duration="1200"
-                  />
-                </p>
-              </div>
-              <p class="textMetric">CHIFFRE D'AFFAIRE</p>
-            </div>
+  <div id="appMetric">
+    <b-collapse appear visible id="navbar-toggle-collapse" is-nav>
+      <b-navbar-nav class="ml-auto">
+        <div class="metrics">
+          <div class="bloc-p">
+            <img src="../../public/img/header1.png" alt="" />
           </div>
-        </b-navbar-nav>
-      </b-collapse>
+          <div class="bloc-v">
+            <img src="../../public/img/header2.png" alt="" />
+          </div>
+          <div class="bloc-p">
+            <div>
+              <p class="numberMetric">
+                <animated-number
+                  :value="totalFundsMetric"
+                  round="1"
+                  :duration="1200"
+                />
+              </p>
+            </div>
+            <p class="textMetric">LEVEE DE FOND</p>
+          </div>
+          <div class="bloc-v">
+            <div>
+              <p class="numberMetric">
+                <animated-number
+                  :value="totalWomenMetric"
+                  round="1"
+                  :duration="1200"
+                />
+              </p>
+            </div>
+            <p class="textMetric">FEMMES</p>
+          </div>
+          <div class="bloc-p">
+            <div>
+              <p class="numberMetric">
+                <animated-number
+                  :value="totalActorsMetric"
+                  round="1"
+                  :duration="1200"
+                />
+              </p>
+            </div>
+            <p class="textMetric">STARTUP</p>
+          </div>
+          <div class="bloc-v">
+            <div>
+              <p class="numberMetric">
+                <animated-number
+                  :value="totalRevenues"
+                  round="1"
+                  :duration="1200"
+                />
+              </p>
+            </div>
+            <p class="textMetric">CHIFFRE D'AFFAIRE</p>
+          </div>
+        </div>
+      </b-navbar-nav>
+    </b-collapse>
 
-      <b-navbar-brand>Masquer les métriques</b-navbar-brand>
-
-      <b-navbar-toggle target="navbar-toggle-collapse">
-        <template #default="{ expanded }">
-          <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
-          <b-icon v-else icon="chevron-bar-down"></b-icon>
-        </template>
-      </b-navbar-toggle>
-    </b-navbar>
+    <b-navbar-toggle
+      variant="outline-light"
+      class="m-1 w-100"
+      target="navbar-toggle-collapse"
+    >
+      <template #default="{ expanded }">
+        <b-icon
+          v-if="expanded"
+          icon="chevron-up"
+          animation="cylon-vertical"
+        ></b-icon>
+        <b-icon v-else icon="chevron-down"></b-icon>
+      </template>
+    </b-navbar-toggle>
   </div>
 </template>
 
@@ -119,7 +123,7 @@ export default {
   },*/
   mounted() {
     this.axios.get(this.baseUrl + "api/GET/metric").then((response) => {
-      console.log(response.data.body);
+      //console.log(response.data.body);
       this.metrics.push(response.data.body);
       this.totalFundsMetric = response.data.body.funds_total;
       this.totalActorsMetric = response.data.body.start_up_total;
