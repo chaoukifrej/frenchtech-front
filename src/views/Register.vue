@@ -19,7 +19,7 @@
         <div class="col-md-6">
           <label class="form-label">Nom de l'entreprise</label>
           <input
-            v-model="name"
+            v-model="RegistreMe.name"
             type="text"
             class="form-control"
             id="inputName"
@@ -29,7 +29,7 @@
         <div class="col-md-3">
           <label for="inputEmail" class="form-label">Email</label>
           <input
-            v-model="email"
+            v-model="RegistreMe.email"
             type="email"
             class="form-control"
             id="inputEmail"
@@ -39,7 +39,7 @@
         <div class="col-3">
           <label for="inputphone" class="form-label">Telephone</label>
           <input
-            v-model="phone"
+            v-model="RegistreMe.phone"
             type="text"
             class="form-control"
             id="inputPhone"
@@ -49,7 +49,7 @@
         <div class="col-2">
           <label for="inputNumberStreet" class="form-label">Numéro</label>
           <input
-            v-model="streetNumber"
+            v-model="RegistreMe.streetNumber"
             type="text"
             class="form-control"
             id="inputPhone"
@@ -61,7 +61,7 @@
             >Nom de rue/avenue/boulevard</label
           >
           <input
-            v-model="streetName"
+            v-model="RegistreMe.streetName"
             type="text"
             class="form-control"
             id="inputAdresse"
@@ -73,7 +73,7 @@
         <div class="col-3">
           <label for="inputCity" class="form-label">Ville</label>
           <input
-            v-model="city"
+            v-model="RegistreMe.city"
             type="text"
             class="form-control"
             id="inputCity"
@@ -83,7 +83,7 @@
         <div class="col-2">
           <label for="inputZip" class="form-label">Code Postale</label>
           <input
-            v-model="postal_code"
+            v-model="RegistreMe.postal_code"
             type="text"
             class="form-control"
             id="inputZip"
@@ -95,7 +95,7 @@
             >Indiquez votre site web</label
           >
           <input
-            v-model="website"
+            v-model="RegistreMe.website"
             type="text"
             class="form-control"
             id="inputWebSite"
@@ -105,7 +105,7 @@
         <div class="col-md-3">
           <label for="inputFacebook" class="form-label">Facebook</label>
           <input
-            v-model="facebook"
+            v-model="RegistreMe.facebook"
             type="text"
             class="form-control"
             id="inputFacebook"
@@ -115,7 +115,7 @@
         <div class="col-md-3">
           <label for="inputTwitter" class="form-label">Twitter</label>
           <input
-            v-model="twitter"
+            v-model="RegistreMe.twitter"
             type="text"
             class="form-control"
             id="inputInstagram"
@@ -125,7 +125,7 @@
         <div class="col-md-3">
           <label for="inputLinkedin" class="form-label">Linkedin</label>
           <input
-            v-model="linkedin"
+            v-model="RegistreMe.linkedin"
             type="text"
             class="form-control"
             id="inputLinkedin"
@@ -134,7 +134,11 @@
 
         <div class="col-md-4">
           <label for="inputCategory" class="form-label">Categories</label>
-          <select v-model="category" id="inputCategory" class="form-select">
+          <select
+            v-model="RegistreMe.category"
+            id="inputCategory"
+            class="form-select"
+          >
             <option selected>Choississez...</option>
             <option value="startUp">Start-up</option>
             <option value="association">Association</option>
@@ -150,7 +154,7 @@
         <div class="col-md-4">
           <label for="inputAssociation" class="form-label">Associations</label>
           <select
-            v-model="associations"
+            v-model="RegistreMe.associations"
             id="inputAssociation"
             class="form-select"
           >
@@ -168,7 +172,11 @@
           <label for="inputSecteur" class="form-label"
             >Secteurs d'activité</label
           >
-          <select v-model="activity_area" id="inputSecteur" class="form-select">
+          <select
+            v-model="RegistreMe.activity_area"
+            id="inputSecteur"
+            class="form-select"
+          >
             <option selected>Choississez...</option>
             <option value="formation">Formation</option>
             <option value="energie">Energie</option>
@@ -197,7 +205,7 @@
             >Description breve de votre entreprise</label
           >
           <textarea
-            v-model="description"
+            v-model="RegistreMe.description"
             type="text"
             class="form-control"
             id="inputLinkedin"
@@ -209,7 +217,7 @@
         <div class="col-md-4">
           <label for="inputFond" class="form-label">Levé de fond (€)</label>
           <input
-            v-model="funds"
+            v-model="RegistreMe.funds"
             type="number"
             class="form-control"
             id="inputFond"
@@ -219,7 +227,7 @@
         <div class="col-md-4">
           <label for="inputSalarie" class="form-label">Nombre de salarié</label>
           <input
-            v-model="employees_number"
+            v-model="RegistreMe.employees_number"
             type="number"
             class="form-control"
             id="inputSalarie"
@@ -231,7 +239,7 @@
             >Nombre de post à pourvoir</label
           >
           <input
-            v-model="jobs_available_number"
+            v-model="RegistreMe.jobs_available_number"
             type="number"
             class="form-control"
             id="inputPost"
@@ -253,7 +261,7 @@
             >Chiffre d'affaire annuel total
           </label>
           <input
-            v-model="revenues"
+            v-model="RegistreMe.revenues"
             type="number"
             class="form-control"
             id="inputCa"
