@@ -101,7 +101,7 @@ body {
 
     .map {
       height: calc(100vh - 80px);
-      width: 70%;
+      width: 65%;
       .markerPin {
         height: 22px;
         width: 22px;
@@ -109,8 +109,11 @@ body {
     }
 
     .blocCards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       height: calc(100vh - 80px);
-      width: 30%;
+      width: 35%;
       background-color: $BgWhite;
       overflow-y: auto;
       overflow-x: hidden;
@@ -118,6 +121,7 @@ body {
 
       .displayCards {
         display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
         justify-content: center;
       }
