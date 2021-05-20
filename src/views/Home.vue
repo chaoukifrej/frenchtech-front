@@ -54,8 +54,7 @@ export default {
   data() {
     return {
       /* url Carte */
-      url:
-        "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png",
+      url: "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png",
 
       center: [43.70496267989356, 7.271699366104521],
       /* Zoom de la carte*/

@@ -15,6 +15,7 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 import VueRouter from "vue-router";
 import router from "./router";
 import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
@@ -22,6 +23,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
+library.add(fas);
 library.add(faUserSecret);
 library.add(faGlobe);
 library.add(faPhone);
@@ -33,7 +35,7 @@ Vue.component("l-tile-layer", LTileLayer);
 Vue.component("l-marker", LMarker);
 Vue.component("l-tooltip", LTooltip);
 Vue.component("l-icon", LIcon);
-Vue.component("font-awesome-icon", FontAwesomeIcon);
+Vue.component("fa", FontAwesomeIcon);
 
 Vue.use(InstantSearch);
 Vue.use(IconsPlugin);
