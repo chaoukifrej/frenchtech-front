@@ -409,8 +409,27 @@ export default {
         },
       })
       .then((response) => {
-        console.log(response.status);
+        console.log(response.data.body.actor);
         this.actualActor = response.data.body.actor;
+        this.name = response.data.body.actor.name;
+        this.email = response.data.body.actor.email;
+        this.phone = response.data.body.actor.phone;
+        this.postal_code = response.data.body.actor.postal_code;
+        this.city = response.data.body.actor.city;
+        this.adress = response.data.body.actor.adress;
+        this.facebook = response.data.body.actor.facebook;
+        this.linkedin = response.data.body.actor.linkedin;
+        this.twitter = response.data.body.actor.twitter;
+        this.category = response.data.body.actor.category;
+        this.associations = response.data.body.actor.associations;
+        this.activity_area = response.data.body.actor.activity_area;
+        this.description = response.data.body.actor.description;
+        this.funds = response.data.body.actor.funds;
+        this.employees_number = response.data.body.actor.employees_number;
+        this.jobs_available_number =
+          response.data.body.actor.jobs_available_number;
+        this.women_number = response.data.body.actor.women_number;
+        this.revenues = response.data.body.actor.revenues;
       })
       .catch((error) => console.log(error));
   },
