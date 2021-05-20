@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="home">
     <Header />
     <MetricsHome />
     <div class="mainContainer">
@@ -96,38 +96,43 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+}
+#home {
+  max-height: 100vh;
+  overflow: hidden;
+}
 
-  .mainContainer {
-    display: flex;
-    height: 100%;
-    margin: 0;
+.mainContainer {
+  display: flex;
+  height: 100%;
+  margin: 0;
 
-    .map {
-      height: calc(100vh - 80px);
-      width: 65%;
-      .markerPin {
-        height: 22px;
-        width: 22px;
-      }
+  .map {
+    height: auto;
+    width: 65%;
+    .markerPin {
+      height: 22px;
+      width: 22px;
     }
+  }
 
-    .blocCards {
+  .blocCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: calc(100vh - 120px);
+    width: 35%;
+    background-color: $BgWhite;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 100px 0 0;
+
+    .displayCards {
       display: flex;
+      flex-direction: column;
       flex-wrap: wrap;
       justify-content: center;
-      height: calc(100vh - 80px);
-      width: 35%;
-      background-color: $BgWhite;
-      overflow-y: auto;
-      overflow-x: hidden;
-      margin: 0;
-
-      .displayCards {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
     }
   }
 }
