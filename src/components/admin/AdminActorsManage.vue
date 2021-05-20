@@ -7,9 +7,15 @@
     :fields="actorsFields"
   >
     <template #cell(actions)="data">
-      <b-button pill variant="primary" size="sm">
+      <b-button
+        pill
+        variant="primary"
+        size="sm"
+        v-b-toggle="'collapse-1' + data.item.id"
+      >
         Voir Plus
       </b-button>
+
       <b-button pill variant="secondary" size="sm" class="m-2">
         Modifier
       </b-button>
@@ -21,6 +27,30 @@
       >
         Supprimer
       </b-button>
+      <b-collapse :id="'collapse-1' + data.item.id" class="mt-2">
+        <b-table-simple responsive striped>
+          <b-thead>
+            <tr>
+              <th scope="col">Adresse</th>
+              <th scope="col">Ville</th>
+              <th scope="col">Secteur</th>
+              <th scope="col">Facebook</th>
+              <th scope="col">Twitter</th>
+              <th scope="col">Linkedin</th>
+              <th scope="col">Description</th>
+            </tr>
+            <tr>
+              <td>{{ data.item.adress }}</td>
+              <td>data.item.city</td>
+              <td>{{ data.item.activity_area }}</td>
+              <td>{{ data.item.facebook }}</td>
+              <td>{{ data.item.twitter }}</td>
+              <td>{{ data.item.linkedin }}</td>
+              <td>{{ data.item.description }}</td>
+            </tr>
+          </b-thead>
+        </b-table-simple>
+      </b-collapse>
     </template>
   </b-table>
 </template>
@@ -28,7 +58,8 @@
 <script>
 export default {
   name: "AdminActorsManage",
-  inject: ["baseUrl"],
+  inject: ["baseUrl", "token"],
+
   data() {
     return {
       actors: [],
@@ -45,12 +76,19 @@ export default {
   },
 
   beforeMount() {
-    this.axios.get(this.baseUrl + "api/GET/actors").then((response) => {
-      for (const elem of response.data.body.actors) {
-        this.actors.push(elem);
-      }
-      //console.log(this.actors);
-    });
+    this.axios
+      .get(this.baseUrl + "api/admin/GET/actors", {
+        headers: {
+          Authorization: "Bearer " + this.token.value,
+          Accept: "application/json",
+        },
+      })
+      .then((response) => {
+        for (const elem of response.data.body.actors) {
+          this.actors.push(elem);
+        }
+        //console.log(this.actors);
+      });
   },
 
   methods: {

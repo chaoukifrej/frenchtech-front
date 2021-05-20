@@ -13,7 +13,7 @@
             </div>
             <div class="bloc-p">
               <div>
-                <p class="numberMetric">{{ totalFundsMetric }}</p>
+                <p class="numberMetric">{{ totalFundsMetricComputed }}</p>
               </div>
               <p class="textMetric">LEVEE DE FOND</p>
             </div>
@@ -81,11 +81,32 @@ export default {
     interval: 10,
   }),
 
+  computed: {
+    totalFundsMetricComputed: {
+      get: function() {
+        return this.totalFundsMetric;
+      },
+      set: function(newV) {
+        console.log(this.totalFundsMetric);
+        if (this.totalFundsMetric == 0) {
+          const interval = setInterval(() => {
+            if (this.totalFundsMetric < newV) {
+              this.totalFundsMetric += 1;
+            } else {
+              clearInterval(interval);
+            }
+          }, 0.5);
+        } else {
+          this.totalFundsMetric = newV;
+        }
+      },
+    },
+  },
   mounted() {
     this.axios.get(this.baseUrl + "api/GET/metric").then((response) => {
       console.log(response.data.body);
       this.metrics.push(response.data.body);
-      this.totalFundsMetric = response.data.body.funds_total;
+      this.totalFundsMetricComputed = response.data.body.funds_total;
       this.totalActorsMetric = response.data.body.start_up_total;
       this.totalJobsMetric = response.data.body.jobs_number_total;
       this.totalEmployeesMetric = response.data.body.employees_number_total;

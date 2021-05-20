@@ -3,8 +3,16 @@
     <Header />
 
     <div class="mainContainer">
-      <b-button v-b-toggle="'sideBar' + i.id">plus d'info</b-button>
-      <b-sidebar width="390px" :id="'sideBar' + i.id" right shadow>
+      <b-button class="stretched-link" v-b-toggle="'sideBar' + i.id"
+        >plus d'info</b-button
+      >
+      <b-sidebar
+        class="sideBar"
+        width="35%"
+        :id="'sideBar' + i.id"
+        right
+        shadow
+      >
         <div class="header">
           <h4>{{ i.name }}</h4>
           <h6>{{ i.category }}/</h6>
@@ -68,45 +76,56 @@ $BgWhite: #f6f5f8;
 
 .mainContainer {
   display: flex;
-  background-color: $BgWhite;
 
-  .header {
+  button.btn.btn-secondary {
+    height: 0;
+    width: 0;
     padding: 0;
-    justify-content: center;
-
-    h4 {
-      margin-right: 20px;
-    }
-    h6 {
-      color: $secondary;
+    border: none;
+    color: transparent;
+    :focus {
+      box-shadow: transparent;
     }
   }
 
-  .img {
-    width: 200px;
-    width: 100%;
-    text-align: center;
-    background-color: $BgWhite;
+  b-sidebar {
+    .header {
+      padding: 0;
+      justify-content: center;
 
-    img {
-      margin: 0;
+      h4 {
+        margin-right: 20px;
+      }
+      h6 {
+        color: $secondary;
+      }
+    }
+
+    .img {
       width: 200px;
+      width: 100%;
+      text-align: center;
+
+      img {
+        margin: 0;
+        width: 200px;
+      }
     }
-  }
 
-  .info {
-    display: flex;
-    flex-direction: column;
-
-    .design-info {
+    .info {
       display: flex;
+      flex-direction: column;
 
-      div {
-        padding-left: 10px;
-        align-items: center;
+      .design-info {
+        display: flex;
 
-        p {
-          margin: 0;
+        div {
+          padding-left: 10px;
+          align-items: center;
+
+          p {
+            margin: 0;
+          }
         }
       }
     }
