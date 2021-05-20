@@ -83,15 +83,12 @@ import ChartFunds from "@/components/charts/ChartFunds.js";
 import ChartHire from "@/components/charts/ChartHire.js";
 import ChartWomen from "@/components/charts/ChartWomen.js";
 import ChartCA from "@/components/charts/ChartCA.js";
-<<<<<<< HEAD
-=======
 
 import AdminActorsManage from "@/components/admin/AdminActorsManage.vue";
 import AdminRegister from "@/components/admin/AdminBuffersRegister.vue";
 import AdminUpdate from "@/components/admin/AdminUpdate.vue";
 import AdminDelete from "@/components/admin/AdminDelete.vue";
 import AdminExcel from "@/components/admin/AdminExcel.vue";
->>>>>>> a6c32863936ad0db14c752a56dd001ec8ecd49be
 export default {
   components: {
     Header,
