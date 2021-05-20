@@ -16,12 +16,15 @@ import VueRouter from "vue-router";
 import router from "./router";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 
 library.add(fas);
 library.add(faUserSecret);
@@ -29,6 +32,9 @@ library.add(faGlobe);
 library.add(faPhone);
 library.add(faEnvelope);
 library.add(faMapMarkerAlt);
+library.add(faTwitter);
+library.add(faFacebookF);
+library.add(faLinkedinIn);
 
 Vue.component("l-map", LMap);
 Vue.component("l-tile-layer", LTileLayer);

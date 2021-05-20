@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-
+    <MetricsHome />
     <div class="mainContainer">
       <!-- Carte Taille et Modif -->
       <l-map class="map" :zoom="zoom" :center="center">
@@ -38,6 +38,8 @@ import "leaflet-defaulticon-compatibility";
 // Import header et CardInfo
 import Header from "@/components/Header.vue";
 import CardInfo from "@/components/CardInfo.vue";
+//Metriques
+import MetricsHome from "@/components/MetricsHome.vue";
 
 export default {
   name: "App",
@@ -50,6 +52,7 @@ export default {
     LIcon,
     Header,
     CardInfo,
+    MetricsHome,
   },
   data() {
     return {
@@ -101,7 +104,7 @@ body {
 
     .map {
       height: calc(100vh - 80px);
-      width: 70%;
+      width: 65%;
       .markerPin {
         height: 22px;
         width: 22px;
@@ -109,8 +112,11 @@ body {
     }
 
     .blocCards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       height: calc(100vh - 80px);
-      width: 30%;
+      width: 35%;
       background-color: $BgWhite;
       overflow-y: auto;
       overflow-x: hidden;
@@ -118,6 +124,7 @@ body {
 
       .displayCards {
         display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
         justify-content: center;
       }

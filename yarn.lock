@@ -914,6 +914,20 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.35"
 
+"@fortawesome/free-brands-svg-icons@^5.15.3":
+  "integrity" "sha512-1hirPcbjj72ZJtFvdnXGPbAbpn3Ox6mH3g5STbANFp3vGSiE5u5ingAKV06mK6ZVqNYxUPlh4DlTnaIvLtF2kw=="
+  "resolved" "https://registry.npmjs.org/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.15.3.tgz"
+  "version" "5.15.3"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.35"
+
+"@fortawesome/free-regular-svg-icons@^5.15.3":
+  "integrity" "sha512-q4/p8Xehy9qiVTdDWHL4Z+o5PCLRChePGZRTXkl+/Z7erDVL8VcZUuqzJjs6gUz6czss4VIPBRdCz6wP37/zMQ=="
+  "resolved" "https://registry.npmjs.org/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-5.15.3.tgz"
+  "version" "5.15.3"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.35"
+
 "@fortawesome/free-solid-svg-icons@^5.15.3":
   "integrity" "sha512-XPeeu1IlGYqz4VWGRAT5ukNMd4VHUEEJ7ysZ7pSSgaEtNvSo+FLurybGJVmiqkQdK50OkSja2bfZXOeyMGRD8Q=="
   "resolved" "https://registry.npmjs.org/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.15.3.tgz"
@@ -1746,6 +1760,19 @@
   "integrity" "sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU="
   "resolved" "https://registry.npmjs.org/amdefine/-/amdefine-1.0.1.tgz"
   "version" "1.0.1"
+
+"animated-number-vue@^1.0.0":
+  "integrity" "sha512-dlwtF3g9bls5IGH+2Xxtey+kZLQZcLKu/lBp3FZVrnq0FRoIGNGs1AcFegBgLuW6aEdLx8PxaHB++hxuEfT+Tg=="
+  "resolved" "https://registry.npmjs.org/animated-number-vue/-/animated-number-vue-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "animejs" "^2.2.0"
+    "vue" "^2.5.13"
+
+"animejs@^2.2.0":
+  "integrity" "sha1-Ne79/FNbgZScnLBvCz5gwC5v3IA="
+  "resolved" "https://registry.npmjs.org/animejs/-/animejs-2.2.0.tgz"
+  "version" "2.2.0"
 
 "ansi-colors@^3.0.0":
   "integrity" "sha1-46PaS/uubIapwoViXeEkojQCb78="
@@ -2993,16 +3020,12 @@
     "browserslist" "^4.16.6"
     "semver" "7.0.0"
 
-<<<<<<< HEAD
-"core-js@^3.6.5":
-=======
 "core-js@^2.6.5":
   "integrity" "sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ=="
   "resolved" "https://registry.npmjs.org/core-js/-/core-js-2.6.12.tgz"
   "version" "2.6.12"
 
-"core-js@^3", "core-js@^3.6.5":
->>>>>>> a6c32863936ad0db14c752a56dd001ec8ecd49be
+"core-js@^3.6.5":
   "integrity" "sha1-a1r0/1VhbAikTThvH1EJF/8gQRI="
   "resolved" "https://registry.nlark.com/core-js/download/core-js-3.12.1.tgz?cache=0&sync_timestamp=1620507965854&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcore-js%2Fdownload%2Fcore-js-3.12.1.tgz"
   "version" "3.12.1"
@@ -6381,6 +6404,11 @@
   "resolved" "https://registry.npm.taobao.org/obuf/download/obuf-1.1.2.tgz"
   "version" "1.1.2"
 
+"odometer@^0.4.8":
+  "integrity" "sha1-L2cDv0xrOEwngjbQTUvIFxq+Q3Q="
+  "resolved" "https://registry.npmjs.org/odometer/-/odometer-0.4.8.tgz"
+  "version" "0.4.8"
+
 "on-finished@~2.3.0":
   "integrity" "sha1-IPEzZIGwg811M3mSoWlxqi2QaUc="
   "resolved" "https://registry.npm.taobao.org/on-finished/download/on-finished-2.3.0.tgz"
@@ -8985,6 +9013,13 @@
   "resolved" "https://registry.npm.taobao.org/uuid/download/uuid-3.4.0.tgz?cache=0&sync_timestamp=1607460081656&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fuuid%2Fdownload%2Fuuid-3.4.0.tgz"
   "version" "3.4.0"
 
+"v-odometer@^2.0.1":
+  "integrity" "sha512-9OCdWYPtZY4F+zIRP96IEhBdV5ipkDAj3IOgbG8AmYqblnkm8EhPEV9gs56PSWwZTPKU0wBqWfTruWnGT/g2iA=="
+  "resolved" "https://registry.npmjs.org/v-odometer/-/v-odometer-2.0.1.tgz"
+  "version" "2.0.1"
+  dependencies:
+    "odometer" "^0.4.8"
+
 "v8-compile-cache@^2.0.3":
   "integrity" "sha1-LeGWGMZtwkfc+2+ZM4A12CRaLO4="
   "resolved" "https://registry.npm.taobao.org/v8-compile-cache/download/v8-compile-cache-2.3.0.tgz?cache=0&sync_timestamp=1614993892777&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fv8-compile-cache%2Fdownload%2Fv8-compile-cache-2.3.0.tgz"
@@ -9102,7 +9137,7 @@
   "resolved" "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@^ 3.0.0 || ^ 2.0.0", "vue@^2 || ^3.0.0-0", "vue@^2.2.2", "vue@^2.5.17", "vue@^2.5.18", "vue@^2.6.10", "vue@^2.6.12", "vue@~2":
+"vue@^ 3.0.0 || ^ 2.0.0", "vue@^2 || ^3.0.0-0", "vue@^2.2.2", "vue@^2.5.13", "vue@^2.5.17", "vue@^2.5.18", "vue@^2.6.10", "vue@^2.6.12", "vue@~2":
   "integrity" "sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.12.tgz"
   "version" "2.6.12"
