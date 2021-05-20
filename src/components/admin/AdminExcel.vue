@@ -58,7 +58,8 @@ export default {
     justify-content: center;
     align-items: center;
     width: 50%;
-    button {
+    button,
+    a {
       width: 300px;
     }
   }
