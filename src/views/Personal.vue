@@ -5,8 +5,61 @@
     <div id="personal">
       <h4>Informations concernant mon entreprise</h4>
 
-      <div v-for="(elem, name) in actualActor" :key="elem.id">
-        {{ name }} : {{ elem }}
+      <div>
+        <div>
+          <p>nom : {{ actualActor.name }}</p>
+        </div>
+        <div>
+          <p>email : {{ actualActor.email }}</p>
+        </div>
+        <div>
+          <p>telephone : {{ actualActor.phone }}</p>
+        </div>
+        <div>
+          <p>
+            adresse : {{ actualActor.adress }}, {{ actualActor.postal_code }}
+            {{ actualActor.city }}
+          </p>
+        </div>
+        <div>
+          <p>categorie : {{ actualActor.category }}</p>
+        </div>
+        <div>
+          <p>Association : {{ actualActor.associations }}</p>
+        </div>
+        <div>
+          <p>Description : {{ actualActor.description }}</p>
+        </div>
+        <div>
+          <p>Facebook : {{ actualActor.facebook }}</p>
+        </div>
+        <div>
+          <p>Linkedin : {{ actualActor.linkedin }}</p>
+        </div>
+        <div>
+          <p>Twitter : {{ actualActor.twitter }}</p>
+        </div>
+        <div>
+          <p>Site : {{ actualActor.website }}</p>
+        </div>
+        <div>
+          <p>Sécteur d'activité : {{ actualActor.activity_area }}</p>
+        </div>
+        <div>
+          <p>Fond : {{ actualActor.funds }}</p>
+        </div>
+        <div>
+          <p>Nombres d'employés : {{ actualActor.employees_number }}</p>
+        </div>
+        <div>
+          <p>Nombres de postes : {{ actualActor.jobs_available_number }}</p>
+        </div>
+        <div>
+          <p>Nombre de Femmes : {{ actualActor.women_number }}</p>
+        </div>
+        <div>
+          <p>Revenues : {{ actualActor.revenues }}</p>
+        </div>
       </div>
 
       <div class="row g-3">
