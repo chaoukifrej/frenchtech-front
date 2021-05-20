@@ -5,36 +5,45 @@
     </a>
     <div>
       <nav>
-        <router-link v-show="$route.name != 'Home'" to="/">Accueil</router-link>
+        <router-link v-show="$route.name != 'Home'" to="/"
+          ><b-icon class="mx-1" icon="house-door-fill"></b-icon
+          >Accueil</router-link
+        >
         <router-link
           v-show="isConnected.value == false && $route.name != 'Login'"
           to="/Login"
-          >Se connecter</router-link
+          ><b-icon class="mx-1" icon="person-circle"></b-icon>Se
+          connecter</router-link
         >
         <router-link
           v-show="isAdmin.value && $route.name != 'Admin'"
           to="/Admin"
-          ><b-icon icon="tools"></b-icon> Administration</router-link
+          ><b-icon class="mx-1" icon="gear-fill"></b-icon>
+          Administration</router-link
         >
         <router-link
           v-show="isAdmin.value == false && isConnected.value"
           to="/Personal"
         >
-          <b-icon icon="person-fill"></b-icon>Mon profil</router-link
+          <b-icon class="mx-1" icon="person-circle"></b-icon>Mon
+          profil</router-link
         >
         <router-link
           v-show="isConnected.value == false && $route.name == 'Login'"
           to="/Register"
-          >S'enregistrer</router-link
+          ><b-icon class="mx-1" icon="person-circle"></b-icon>
+          S'enregistrer</router-link
         >
         <b-button
           v-show="isConnected.value && isAdmin.value == false"
           @click="disconnectConfirm"
         >
-          <b-icon icon="power" aria-hidden="true"></b-icon>Déconnexion</b-button
+          <b-icon class="mx-1" icon="power" aria-hidden="true"></b-icon
+          >Déconnexion</b-button
         >
         <b-button v-show="isAdmin.value" @click="disconnectConfirmAdmin">
-          <b-icon icon="power" aria-hidden="true"></b-icon>Déconnexion</b-button
+          <b-icon class="mx-1" icon="power" aria-hidden="true"></b-icon
+          >Déconnexion</b-button
         >
       </nav>
     </div>
@@ -107,7 +116,7 @@ $BgWhite: #f6f5f8;
   height: 80px;
   padding: 12px 18px;
   background-color: $BgWhite;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
+  //box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
   nav {
     li,
     a {
@@ -118,9 +127,9 @@ $BgWhite: #f6f5f8;
       list-style: none;
       cursor: pointer;
       transition: all 0.3s ease 0s;
-      :hover {
+      /*       :hover {
         color: #e52345;
-      }
+      } */
     }
   }
   .logo {
