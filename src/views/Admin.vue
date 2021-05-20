@@ -6,6 +6,47 @@
         <p>Espace admin</p>
       </div>
 
+      <div class="metrics-admin">
+        <div class="bloc-metric-admin">
+          <div>
+            <p class="numberMetricAdmin">{{ totalStartupMetric }}</p>
+          </div>
+          <p class="textMetric">STARTUP</p>
+        </div>
+        <div class="bloc-metric-admin">
+          <div>
+            <p class="numberMetricAdmin">{{ totalFundsMetric }}</p>
+          </div>
+          <p class="textMetric">LEVEE DE FOND</p>
+        </div>
+        <div class="bloc-metric-admin">
+          <div>
+            <p class="numberMetricAdmin">{{ totalEmployeesMetric }}</p>
+          </div>
+          <p class="textMetric">EMPLOYÉS</p>
+        </div>
+        <div class="bloc-metric-admin">
+          <div>
+            <p class="numberMetricAdmin">{{ totalJobsMetric }}</p>
+          </div>
+          <p class="textMetric">POSTES</p>
+        </div>
+
+        <div class="bloc-metric-admin">
+          <div>
+            <p class="numberMetricAdmin">{{ totalWomenMetric }}</p>
+          </div>
+          <p class="textMetric">FEMMES</p>
+        </div>
+
+        <div class="bloc-metric-admin">
+          <div>
+            <p class="numberMetricAdmin">{{ totalRevenuesMetric }}</p>
+          </div>
+          <p class="textMetric">CHIFFRE D'AFFAIRE</p>
+        </div>
+      </div>
+
       <div class="row g-10 dashboard">
         <!--METRIQUES-->
         <h2>Données métriques</h2>
@@ -95,6 +136,7 @@ import AdminRegister from "@/components/admin/AdminBuffersRegister.vue";
 import AdminUpdate from "@/components/admin/AdminUpdate.vue";
 import AdminDelete from "@/components/admin/AdminDelete.vue";
 import AdminExcel from "@/components/admin/AdminExcel.vue";
+
 export default {
   components: {
     Header,
@@ -132,19 +174,23 @@ export default {
       totalRevenuesHistoric: [],
       totalActorsHistoric: [],
       date: [],
+
       // Metrics
       metrics: [],
       totalFundsMetric: 0,
-      totalActorsMetric: 0,
+      totalStartupMetric: 0,
       totalJobsMetric: 0,
       totalEmployeesMetric: 0,
       totalWomenMetric: 0,
       totalMenMetric: 0,
+      totalRevenuesMetric: 0,
 
       //!TABLE BUFFERS
       buffers: [],
       deleteBuffer: [],
       registerBuffer: [],
+
+      mynumber: "",
     };
   },
 
@@ -156,7 +202,6 @@ export default {
       .then((response) => {
         for (const i of response.data.body.historic) {
           this.arrayHistoric.push(response.data.body.historic);
-          console.log(response.data.body.historic);
           var monthNames = [
             "Janvier",
             "Février",
@@ -187,45 +232,12 @@ export default {
         this.fillData();
       });
 
-    this.axios.get(this.baseUrl + "api/admin/GET/historic").then((response) => {
-      for (const i of response.data.body.historic) {
-        this.arrayHistoric.push(response.data.body.historic);
-        //console.log(response.data.body.historic);
-        var monthNames = [
-          "Janvier",
-          "Février",
-          "Mars",
-          "Avril",
-          "Mai",
-          "Juin",
-          "Juillet",
-          "Août",
-          "Septembre",
-          "Octobre",
-          "Novembre",
-          "Décembre",
-        ];
-        var newDate = new Date(Date.parse(i.created_at));
-        var formattedDate = monthNames[newDate.getMonth()];
-        this.date.push(formattedDate);
-        this.totalFundsHistoric.push(i.total_funds);
-        this.totalJobsHistoric.push(i.total_jobs_available);
-        this.totalRevenuesHistoric.push(i.total_revenues);
-        this.totalActorsHistoric.push(i.total_actors);
-        this.totalWomenHistoric.push(i.total_women_number);
-        this.totalEmployeesHistoric.push(i.total_employees_number);
-        this.totalMenHistoric.push(
-          i.total_employees_number - i.total_women_number
-        );
-      }
-      this.fillData();
-    });
-
     this.axios.get(this.baseUrl + "api/GET/metric").then((response) => {
-      //console.log(response.data.body);
+      console.log(response.data.body);
       this.metrics.push(response.data.body);
       this.totalFundsMetric = response.data.body.funds_total;
-      this.totalActorsMetric = response.data.body.start_up_total;
+      this.totalRevenuesMetric = response.data.body.revenues_total;
+      this.totalStartupMetric = response.data.body.start_up_total;
       this.totalJobsMetric = response.data.body.jobs_number_total;
       this.totalEmployeesMetric = response.data.body.employees_number_total;
       this.totalWomenMetric = response.data.body.women_number_total;
@@ -402,6 +414,35 @@ $BgWhite: #f6f5f8;
   #chart {
     display: flex;
     justify-content: space-evenly;
+  }
+  .metrics-admin {
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(226, 226, 226);
+    .bloc-metric-admin {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 17%;
+      height: 200px;
+
+      p {
+        margin: 0;
+        font-size: 25px;
+      }
+      .numberMetric {
+        font-size: 40px;
+        font-weight: 700px;
+      }
+      .textMetric {
+        color: $secondary;
+        font-size: 20px;
+        font-weight: 700px;
+        letter-spacing: 1px;
+      }
+    }
   }
 }
 
