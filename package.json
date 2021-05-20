@@ -22,6 +22,7 @@
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "node-sass": "^6.0.0",
     "sass-loader": "10.1.1",
+    "v-odometer": "^2.0.1",
     "vue": "^2.6.12",
     "vue-axios": "^3.2.4",
     "vue-chartjs": "^3.5.1",
