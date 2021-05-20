@@ -9,9 +9,15 @@
           variant="dark"
           :href="this.baseUrl + 'api/excel/actors/export'"
           >Liste complète ( Tout les détails )</b-button
-        ><b-button class="m-2" variant="dark"
+        ><b-button
+          class="m-2"
+          variant="dark"
+          :href="this.baseUrl + 'api/excel/actors/exportPublic'"
           >Liste détails (détails publics)</b-button
-        ><b-button class="m-2" variant="dark"
+        ><b-button
+          class="m-2"
+          variant="dark"
+          :href="this.baseUrl + 'api/excel/actors/exportPrivate'"
           >Liste métriques (détails privés)</b-button
         >
       </div>
