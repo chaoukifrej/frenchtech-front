@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-
+    <MetricsHome />
     <div class="mainContainer">
       <!-- Carte Taille et Modif -->
       <l-map class="map" :zoom="zoom" :center="center">
@@ -37,6 +37,8 @@ import "leaflet-defaulticon-compatibility";
 // Import header et CardInfo
 import Header from "@/components/Header.vue";
 import CardInfo from "@/components/CardInfo.vue";
+//Metriques
+import MetricsHome from "@/components/MetricsHome.vue";
 
 export default {
   name: "App",
@@ -49,12 +51,12 @@ export default {
     LIcon,
     Header,
     CardInfo,
+    MetricsHome,
   },
   data() {
     return {
       /* url Carte */
-      url:
-        "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png",
+      url: "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png",
 
       center: [43.70496267989356, 7.271699366104521],
       /* Zoom de la carte*/
