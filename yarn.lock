@@ -981,14 +981,6 @@
     "cssnano-preset-default" "^4.0.0"
     "postcss" "^7.0.0"
 
-"@maxflex/v-number@^1.0.9":
-  "integrity" "sha512-F6e0r8UbQFVF7t3RTqocKwyVyziEaQ44ghMKwe2XGwKQJ2PSbVUYr7/uIUq4vWAiXjf9h/+IhZrc7JjvvLaimA=="
-  "resolved" "https://registry.npmjs.org/@maxflex/v-number/-/v-number-1.0.9.tgz"
-  "version" "1.0.9"
-  dependencies:
-    "core-js" "^2.6.5"
-    "vue" "^2.6.10"
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   "integrity" "sha1-UkryQNGjYFJ7cwR17PoTRKpUDd4="
   "resolved" "https://registry.npm.taobao.org/@mrmlnc/readdir-enhanced/download/@mrmlnc/readdir-enhanced-2.2.1.tgz"
@@ -3019,11 +3011,6 @@
   dependencies:
     "browserslist" "^4.16.6"
     "semver" "7.0.0"
-
-"core-js@^2.6.5":
-  "integrity" "sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ=="
-  "resolved" "https://registry.npmjs.org/core-js/-/core-js-2.6.12.tgz"
-  "version" "2.6.12"
 
 "core-js@^3", "core-js@^3.6.5":
   "integrity" "sha1-a1r0/1VhbAikTThvH1EJF/8gQRI="
@@ -9137,7 +9124,11 @@
   "resolved" "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
+<<<<<<< HEAD
+"vue@^ 3.0.0 || ^ 2.0.0", "vue@^2 || ^3.0.0-0", "vue@^2.2.2", "vue@^2.5.17", "vue@^2.5.18", "vue@^2.6.12", "vue@~2":
+=======
 "vue@^ 3.0.0 || ^ 2.0.0", "vue@^2 || ^3.0.0-0", "vue@^2.2.2", "vue@^2.5.13", "vue@^2.5.17", "vue@^2.5.18", "vue@^2.6.10", "vue@^2.6.12", "vue@~2":
+>>>>>>> e41143e224489127e156e81754d4b78bc74dec9d
   "integrity" "sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.12.tgz"
   "version" "2.6.12"
