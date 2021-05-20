@@ -241,7 +241,7 @@
         <div class="col-md-4">
           <label for="inputFemme" class="form-label">Nombre de femmes</label>
           <input
-            v-model="women_number"
+            v-model="RegistreMe.women_number"
             type="number"
             class="form-control"
             id="inputFemme"
@@ -285,34 +285,36 @@ export default {
   name: "Register",
   inject: ["baseUrl"],
   data: () => ({
-    logo: "",
-    name: "",
-    email: "",
-    phone: "",
-    streetNumber: "",
-    streetName: "",
-    adress: "",
-    city: "",
-    postal_code: "",
-    website: "",
-    facebook: "",
-    twitter: "",
-    linkedin: "",
-    category: "",
-    associations: "",
-    activity_area: "",
-    description: "",
+    RegistreMe: {
+      logo: "",
+      name: "",
+      email: "",
+      phone: "",
+      streetNumber: "",
+      streetName: "",
+      adress: "",
+      city: "",
+      postal_code: "",
+      website: "",
+      facebook: "",
+      twitter: "",
+      linkedin: "",
+      category: "",
+      associations: "",
+      activity_area: "",
+      description: "",
 
-    /* information visible uniquement par l'admin */
+      /* information visible uniquement par l'admin */
 
-    funds: "",
-    employees_number: "",
-    jobs_available_number: "",
-    women_number: "",
-    revenues: "",
-    position: "",
-    latitude: "",
-    longitude: "",
+      funds: "",
+      employees_number: "",
+      jobs_available_number: "",
+      women_number: "",
+      revenues: "",
+      position: "",
+      latitude: "",
+      longitude: "",
+    },
   }),
 
   /* Permet de regrouper les differents element lié a la position dans la variable adress */
