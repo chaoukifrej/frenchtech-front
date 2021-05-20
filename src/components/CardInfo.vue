@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <div class="card" style="width: 11rem;">
+    <div class="cards" style="width: 11rem;">
       <div class="card-body">
         <h3 class="card-title">{{ i.name }}</h3>
 
@@ -39,10 +39,10 @@ $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
 
-.card {
+.cards {
   display: flex;
   flex-direction: row;
-  border-radius: 3px;
+  border-radius: 5px;
   height: 150px;
 
   margin: 0px 2px 2px 2px;
@@ -59,6 +59,7 @@ $BgWhite: #f6f5f8;
 
   img {
     width: 100px;
+    padding: 5px 5px 0 0;
   }
 
   a,
@@ -76,13 +77,15 @@ $BgWhite: #f6f5f8;
     }
   }
 
-  .button {
+  button.btn.btn-secondary.collapsed {
     text-align: center;
-    outline: #52bbae;
-    color: #52bbae;
+    outline: #52bbae !important;
+    color: #52bbae !important;
+    background-color: #52bbae !important;
     font-size: 3px;
   }
-  .button :active {
+
+  button :active {
     color: #52bbae;
   }
 }
