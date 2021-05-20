@@ -80,19 +80,7 @@
             <ChartCA :chartData="dataca"> </ChartCA>
           </div>
         </div>
-        <div>
-          <p>Nombre de statup : {{ totalActorsMetric }}</p>
-          <p>Levée de Fonds : {{ totalFundsMetric }}</p>
-          <p>Nombre de poste : {{ totalJobsMetric }}</p>
-          <p>Nombres d'employés : {{ totalEmployeesMetric }}</p>
-          <p>Nombre de femmes : {{ totalWomenMetric }}</p>
-          <p>Nombre d'hommes : {{ totalMenMetric }}</p>
-          <animated-number
-            :value="totalFundsMetric"
-            round="1"
-            :duration="1000"
-          />
-        </div>
+        <div></div>
       </div>
 
       <div class="AdminTabContainer mt-5">
