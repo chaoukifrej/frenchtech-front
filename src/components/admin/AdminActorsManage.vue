@@ -42,14 +42,13 @@
                 id="inputLogo"
                 accept="image/png, image/jpeg"
                 ref="img"
-                @change="addLogo"
               />
             </div>
 
             <div class="col-md-6">
               <label class="form-label">Nom de l'entreprise</label>
               <input
-                v-model="modifActors.name"
+                v-model="ModifActors.name"
                 type="text"
                 class="form-control"
                 id="inputName"
@@ -59,7 +58,7 @@
             <div class="col-md-3">
               <label for="inputEmail" class="form-label">Email</label>
               <input
-                v-model="modifActors.email"
+                v-model="ModifActors.email"
                 type="email"
                 class="form-control"
                 id="inputEmail"
@@ -69,7 +68,7 @@
             <div class="col-3">
               <label for="inputphone" class="form-label">Telephone</label>
               <input
-                v-model="modifActors.phone"
+                v-model="ModifActors.phone"
                 type="text"
                 class="form-control"
                 id="inputPhone"
@@ -79,7 +78,7 @@
             <div class="col-2">
               <label for="inputNumberStreet" class="form-label">Numéro</label>
               <input
-                v-model="modifActors.streetNumber"
+                v-model="ModifActors.streetNumber"
                 type="text"
                 class="form-control"
                 id="inputPhone2"
@@ -91,7 +90,7 @@
                 >Nom de rue/avenue/boulevard</label
               >
               <input
-                v-model="modifActors.streetName"
+                v-model="ModifActors.streetName"
                 type="text"
                 class="form-control"
                 id="inputAdresse"
@@ -102,7 +101,7 @@
             <div class="col-3">
               <label for="inputCity" class="form-label">Ville</label>
               <input
-                v-model="modifActors.city"
+                v-model="ModifActors.city"
                 type="text"
                 class="form-control"
                 id="inputCity"
@@ -112,7 +111,7 @@
             <div class="col-2">
               <label for="inputZip" class="form-label">Code Postale</label>
               <input
-                v-model="modifActors.postal_code"
+                v-model="ModifActors.postal_code"
                 type="text"
                 class="form-control"
                 id="inputZip"
@@ -122,7 +121,7 @@
             <div class="col-md-4">
               <label for="inputFacebook" class="form-label">Facebook</label>
               <input
-                v-model="modifActors.facebook"
+                v-model="ModifActors.facebook"
                 type="text"
                 class="form-control"
                 id="inputFacebook"
@@ -132,7 +131,7 @@
             <div class="col-md-4">
               <label for="inputTwitter" class="form-label">Twitter</label>
               <input
-                v-model="modifActors.twitter"
+                v-model="ModifActors.twitter"
                 type="text"
                 class="form-control"
                 id="inputInstagram"
@@ -142,7 +141,7 @@
             <div class="col-md-4">
               <label for="inputLinkedin" class="form-label">Linkedin</label>
               <input
-                v-model="modifActors.linkedin"
+                v-model="ModifActors.linkedin"
                 type="text"
                 class="form-control"
                 id="inputLinkedin"
@@ -152,7 +151,7 @@
             <div class="col-md-4">
               <label for="inputCategory" class="form-label">Categories</label>
               <select
-                v-model="modifActors.category"
+                v-model="ModifActors.category"
                 id="inputCategory"
                 class="form-select"
               >
@@ -177,7 +176,7 @@
                 >Associations</label
               >
               <select
-                v-model="modifActors.associations"
+                v-model="ModifActors.associations"
                 id="inputAssociation"
                 class="form-select"
               >
@@ -196,7 +195,7 @@
                 >Secteurs d'activité</label
               >
               <select
-                v-model="modifActors.activity_area"
+                v-model="ModifActors.activity_area"
                 id="inputSecteur"
                 class="form-select"
               >
@@ -230,7 +229,7 @@
                 >Description breve de votre entreprise</label
               >
               <textarea
-                v-model="modifActors.description"
+                v-model="ModifActors.description"
                 type="text"
                 class="form-control"
                 id="inputLinkedin"
@@ -242,7 +241,7 @@
             <div class="col-md-4">
               <label for="inputFond" class="form-label">Levé de fond (€)</label>
               <input
-                v-model="modifActors.funds"
+                v-model="ModifActors.funds"
                 type="number"
                 class="form-control"
                 id="inputFond"
@@ -254,7 +253,7 @@
                 >Nombre de salarié</label
               >
               <input
-                v-model="modifActors.employees_number"
+                v-model="ModifActors.employees_number"
                 type="number"
                 class="form-control"
                 id="inputSalarie"
@@ -266,7 +265,7 @@
                 >Nombre de post à pourvoir</label
               >
               <input
-                v-model="modifActors.jobs_available_number"
+                v-model="ModifActors.jobs_available_number"
                 type="number"
                 class="form-control"
                 id="inputPost"
@@ -278,7 +277,7 @@
                 >Nombre de femmes</label
               >
               <input
-                v-model="modifActors.women_number"
+                v-model="ModifActors.women_number"
                 type="number"
                 class="form-control"
                 id="inputFemme"
@@ -290,7 +289,7 @@
                 >Chiffre d'affaire annuel total
               </label>
               <input
-                v-model="modifActors.revenues"
+                v-model="ModifActors.revenues"
                 type="number"
                 class="form-control"
                 id="inputCa"
