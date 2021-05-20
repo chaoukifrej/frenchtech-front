@@ -1,11 +1,10 @@
 <template>
   <div class="app">
-    <div class="cards" style="width: 11rem;">
+    <div class="card" style="width: 15rem;">
       <div class="card-body">
         <h3 class="card-title">{{ i.name }}</h3>
-
         <h5>{{ i.associations }}</h5>
-        <a href=""></a>
+        <h6>{{i.website}}</h6>
         <SideBar :i="i" />
       </div>
       <div class="logo">
@@ -39,27 +38,37 @@ $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
 
-.cards {
+.card {
   display: flex;
   flex-direction: row;
-  border-radius: 5px;
+  border-radius: 4px;
   height: 150px;
-
-  margin: 0px 2px 2px 2px;
+  padding: 10px;
+  margin: 0px 5px 5px 5px;
+  border: none;
 
   h3 {
-    font-size: 18px;
+    font-size: 16px;
+    margin-top: 10px;
     font-weight: 700;
+    color: $primary;
   }
 
   h5 {
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 300;
     color: $secondary;
+    margin-bottom: 10px;
+  }
+
+  h6 {
+    font-size: 14px;
+    color: $primary;
   }
 
   img {
-    width: 100px;
-    padding: 5px 5px 0 0;
+    width: 150px;
+    padding: 20px 10px 0 0;
   }
 
   a,
@@ -73,16 +82,8 @@ $BgWhite: #f6f5f8;
     display: block;
     img {
       margin: 0;
-      width: 40px;
+      width: 50px;
     }
-  }
-
-  button.btn.btn-secondary.collapsed {
-    text-align: center;
-    outline: #52bbae !important;
-    color: #52bbae !important;
-    background-color: #52bbae !important;
-    font-size: 3px;
   }
 
   button :active {
