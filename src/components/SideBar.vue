@@ -69,6 +69,21 @@ $BgWhite: #f6f5f8;
 .mainContainer {
   display: flex;
 
+  button.btn.btn-secondary {
+    height: 0;
+    width: 0;
+    padding: 0;
+    border: none;
+    color: transparent;
+    :focus {
+      box-shadow: transparent;
+    }
+  }
+
+  b-sidebar{
+
+    margin: 30px;
+
   .header {
     padding: 0;
     justify-content: center;
@@ -92,33 +107,20 @@ $BgWhite: #f6f5f8;
     }
   }
 
-    button.btn.btn-secondary {
-    height: 0;
-    width: 0;
-    padding: 0;
-    border: none;
-    color: transparent;
-    :focus {
-      box-shadow: transparent;
-    }
-    :hover {
-
-    }
-  }
-
-  .info {
-    display: flex;
-    flex-direction: column;
-
-    .design-info {
+    .info {
       display: flex;
+      flex-direction: column;
 
-      div {
-        padding-left: 10px;
-        align-items: center;
+      .design-info {
+        display: flex;
 
-        p {
-          margin: 0;
+        div {
+          padding-left: 10px;
+          align-items: center;
+
+          p {
+            margin: 0;
+          }
         }
       }
     }
