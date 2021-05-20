@@ -14,12 +14,13 @@
         <router-link
           v-show="isAdmin.value && $route.name != 'Admin'"
           to="/Admin"
-          >Administration</router-link
+          ><b-icon icon="tools"></b-icon> Administration</router-link
         >
         <router-link
           v-show="isAdmin.value == false && isConnected.value"
           to="/Personal"
-          >Mon profil</router-link
+        >
+          <b-icon icon="person-fill"></b-icon>Mon profil</router-link
         >
         <router-link
           v-show="isConnected.value == false && $route.name == 'Login'"
@@ -29,10 +30,11 @@
         <b-button
           v-show="isConnected.value && isAdmin.value == false"
           @click="disconnectConfirm"
-          >Déconnexion</b-button
         >
-        <b-button v-show="isAdmin.value" @click="disconnectConfirmAdmin"
-          >Déconnexion</b-button
+          <b-icon icon="power" aria-hidden="true"></b-icon>Déconnexion</b-button
+        >
+        <b-button v-show="isAdmin.value" @click="disconnectConfirmAdmin">
+          <b-icon icon="power" aria-hidden="true"></b-icon>Déconnexion</b-button
         >
       </nav>
     </div>

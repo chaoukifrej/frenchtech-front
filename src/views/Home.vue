@@ -78,7 +78,7 @@ export default {
         for (const elem of response.data.body.actors) {
           this.actors.push(elem);
         }
-        console.log(this.actors);
+        //console.log(this.actors);
       });
   },
 
