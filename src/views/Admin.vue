@@ -138,7 +138,7 @@
           </b-tab>
           <b-tab title="Imports et Exports" active> <AdminExcel /> </b-tab>
           <b-tab title="Gestion des administrateurs">
-            <p>Pas touche ! Je s'occupe de toute, tu s'occupes de rien</p>
+            <AdminGestion />
           </b-tab>
         </b-tabs>
       </div>
@@ -161,6 +161,7 @@ import AdminActorsManage from "@/components/admin/AdminActorsManage.vue";
 import AdminRegister from "@/components/admin/AdminBuffersRegister.vue";
 import AdminUpdate from "@/components/admin/AdminUpdate.vue";
 import AdminDelete from "@/components/admin/AdminDelete.vue";
+import AdminGestion from "@/components/admin/AdminGestion.vue";
 import AdminExcel from "@/components/admin/AdminExcel.vue";
 
 export default {
@@ -178,6 +179,7 @@ export default {
     AdminDelete,
     AdminExcel,
     AnimatedNumber,
+    AdminGestion,
   },
   name: "Admin",
   inject: ["baseUrl"],
