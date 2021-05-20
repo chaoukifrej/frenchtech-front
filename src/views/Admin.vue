@@ -46,6 +46,11 @@
           <p>Nombres d'employés : {{ totalEmployeesMetric }}</p>
           <p>Nombre de femmes : {{ totalWomenMetric }}</p>
           <p>Nombre d'hommes : {{ totalMenMetric }}</p>
+          <animated-number
+            :value="totalFundsMetric"
+            round="1"
+            :duration="1000"
+          />
         </div>
       </div>
 
@@ -83,6 +88,7 @@ import ChartFunds from "@/components/charts/ChartFunds.js";
 import ChartHire from "@/components/charts/ChartHire.js";
 import ChartWomen from "@/components/charts/ChartWomen.js";
 import ChartCA from "@/components/charts/ChartCA.js";
+import AnimatedNumber from "animated-number-vue";
 
 import AdminActorsManage from "@/components/admin/AdminActorsManage.vue";
 import AdminRegister from "@/components/admin/AdminBuffersRegister.vue";
@@ -103,6 +109,7 @@ export default {
     AdminUpdate,
     AdminDelete,
     AdminExcel,
+    AnimatedNumber,
   },
   name: "Admin",
   inject: ["baseUrl"],
