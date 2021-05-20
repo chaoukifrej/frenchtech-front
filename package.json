@@ -13,11 +13,8 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/vue-fontawesome": "^2.0.2",
-<<<<<<< HEAD
-=======
     "@maxflex/v-number": "^1.0.9",
     "animated-number-vue": "^1.0.0",
->>>>>>> e41143e224489127e156e81754d4b78bc74dec9d
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0",
     "bootstrap-icons": "^1.5.0",
