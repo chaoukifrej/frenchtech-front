@@ -106,6 +106,7 @@ export default {
     );
     this.geojson = await response.json();
   },
+
   mounted() {
     /* mounted pour recuperer les infos des Actors depuis la BDD */
     this.axios.get(this.baseUrl + "api/GET/actors").then((response) => {
