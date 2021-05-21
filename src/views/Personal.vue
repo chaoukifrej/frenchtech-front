@@ -68,7 +68,7 @@
         >
 
         <b-modal id="modal-lg" size="lg" title="Modification du profil"
-          ><div class="row g-3">
+          ><div id="modal-personal" class="row g-3">
             <div class="col-md-12">
               <label class="form-label">Logo</label>
               <input
@@ -409,14 +409,13 @@ export default {
         },
       })
       .then((response) => {
-        console.log(response.data.body.actor);
         this.actualActor = response.data.body.actor;
         this.name = response.data.body.actor.name;
         this.email = response.data.body.actor.email;
         this.phone = response.data.body.actor.phone;
         this.postal_code = response.data.body.actor.postal_code;
         this.city = response.data.body.actor.city;
-        this.adress = response.data.body.actor.adress;
+        this.streetName = response.data.body.actor.adress;
         this.facebook = response.data.body.actor.facebook;
         this.linkedin = response.data.body.actor.linkedin;
         this.twitter = response.data.body.actor.twitter;
@@ -430,6 +429,10 @@ export default {
           response.data.body.actor.jobs_available_number;
         this.women_number = response.data.body.actor.women_number;
         this.revenues = response.data.body.actor.revenues;
+        let adressStr = response.data.body.actor.adress;
+        let numberstr = adressStr.split(" ");
+
+        this.streetNumber = numberstr[0];
       })
       .catch((error) => console.log(error));
   },
@@ -487,7 +490,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 h1 {
   margin-top: 10px;
   text-align: center;
@@ -513,7 +516,7 @@ h1 {
     margin-bottom: 20px;
   }
 }
-.modal-content {
+#modal-personal {
   height: 90vh;
   overflow: scroll;
 }
