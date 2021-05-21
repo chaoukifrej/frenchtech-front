@@ -28,6 +28,35 @@
           Button / Input Création admin 
           (A mettre dans un modal)
         -------------------------------- -->
+    <div>
+      <b-button ok:@click="" v-b-modal.modal-1>Ajouter</b-button>
+
+      <b-modal id="modal-1" title="BootstrapVue">
+        <p>Création d'un Administrateur</p>
+        <label for="firstname"></label>
+        <input
+          v-model="newAdmin.firstname"
+          id="firstname"
+          placeholder="Prénom"
+          type="text"
+        />
+        <label for="lastname"></label>
+        <input
+          v-model="newAdmin.lastname"
+          id="lastname"
+          placeholder="Nom"
+          type="text"
+        />
+        <label for="email"></label>
+        <input
+          v-model="newAdmin.email"
+          id="email"
+          placeholder="E-mail"
+          type="email"
+        />
+      </b-modal>
+    </div>
+
     <b-button
       pill
       variant="outline-success"
@@ -37,27 +66,6 @@
     >
       Créer un nouvel administrateur
     </b-button>
-    <label for="firstname"></label>
-    <input
-      v-model="newAdmin.firstname"
-      id="firstname"
-      placeholder="Prénom"
-      type="text"
-    />
-    <label for="lastname"></label>
-    <input
-      v-model="newAdmin.lastname"
-      id="lastname"
-      placeholder="Nom"
-      type="text"
-    />
-    <label for="email"></label>
-    <input
-      v-model="newAdmin.email"
-      id="email"
-      placeholder="E-mail"
-      type="email"
-    />
   </div>
 </template>
 
