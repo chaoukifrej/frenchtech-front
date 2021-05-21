@@ -45,9 +45,9 @@ $BgWhite: #f6f5f8;
   height: 12rem;
   border-radius: 4px;
   padding: 10px;
-  margin: 0px 5px 5px 5px;
+  margin: 8px;
   border: none;
-
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   .card-body {
     h3 {
       font-size: 17px;
@@ -86,5 +86,9 @@ $BgWhite: #f6f5f8;
   button :active {
     color: #52bbae;
   }
+  /*   &:hover {
+    transform: scale(0.98);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  } */
 }
 </style>

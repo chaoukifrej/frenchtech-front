@@ -22,6 +22,7 @@
           v-for="elem in actors"
           :key="elem.id"
           :lat-lng="[elem.longitude, elem.latitude]"
+          @click="sayHello(elem.id)"
         >
           <l-tooltip>{{ elem.name }}</l-tooltip>
           <l-icon>
@@ -37,8 +38,13 @@
       </l-map>
 
       <div class="blocCards">
-        <div class="displayCards" v-for="item in actors" :key="item.id">
-          <CardInfo :i="item" />
+        <div class="displaySearch">
+          la fonction de recherche est ici
+        </div>
+        <div class="cardContainer">
+          <div class="displayCards" v-for="item in actors" :key="item.id">
+            <CardInfo :i="item" />
+          </div>
         </div>
       </div>
     </div>
@@ -154,7 +160,12 @@ export default {
     }
   },
 
-  methods: {},
+  methods: {
+    sayHello: function(id) {
+      this.$root.$emit("bv::toggle::collapse", "sideBar" + id);
+      console.log("ok");
+    },
+  },
 };
 </script>
 
@@ -186,7 +197,7 @@ body {
 
   .map {
     height: 100%;
-    width: 65%;
+    width: 100%;
     border-radius: 0 5px 0 0;
     .markerPin {
       height: 22px;
@@ -199,17 +210,24 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     height: 100%;
-    width: 35%;
+    width: 50rem;
     background-color: $BgWhite;
     overflow-y: auto;
     overflow-x: hidden;
     margin: 0;
-    padding: 100px 0 0;
-    .displayCards {
+    .displaySearch {
+      height: 150px;
+      width: 100%;
+      background-color: white;
+      padding: 35px 15px;
+    }
+    .cardContainer {
+      width: 100%;
       display: flex;
-      flex-direction: column;
       flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
+      padding: 25px 0;
     }
   }
 }

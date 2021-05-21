@@ -17,6 +17,7 @@
                   round="1"
                   :duration="1200"
                 />
+                <span class="euroSign">€</span>
               </p>
             </div>
             <p class="textMetric">LEVEE DE FOND</p>
@@ -53,6 +54,7 @@
                   round="1"
                   :duration="1200"
                 />
+                <span class="euroSign">€</span>
               </p>
             </div>
             <p class="textMetric">CHIFFRE D'AFFAIRE</p>
@@ -208,6 +210,12 @@ $BgWhite: #f6f5f8;
     font-weight: 700px;
     letter-spacing: 1px;
   }
+}
+
+.euroSign {
+  font-size: 1.5rem;
+  margin-left: 5px;
+  vertical-align: text-top;
 }
 
 #toggleBar {

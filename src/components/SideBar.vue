@@ -1,21 +1,19 @@
 <template>
   <div id="app">
-    <Header />
-
     <div class="mainContainer">
-      <b-button class="stretched-link" v-b-toggle="'sideBar' + i.id"
-        >plus d'info</b-button
-      >
-      <b-sidebar
-        backdrop="true"
-        width="35%"
-        :id="'sideBar' + i.id"
-        right
-        shadow
-      >
+      <b-button
+        variant="outline-*"
+        id="buttonToHide"
+        class="stretched-link shadow-none"
+        v-b-toggle="'sideBar' + i.id"
+      ></b-button>
+      <b-sidebar backdrop width="35%" :id="'sideBar' + i.id" right shadow>
         <template #header="{ hide }">
           <div>
-            <b-button variant="primary" block @click="hide">Close</b-button>
+            <b-button variant="outline-*" block @click="hide">
+              <b-icon-arrow-left class="mx-1"></b-icon-arrow-left
+              >Retour</b-button
+            >
           </div>
         </template>
         <div class="sideBar">
@@ -87,7 +85,6 @@
         </div>
       </b-sidebar>
     </div>
-    <Footer />
   </div>
 </template>
 
@@ -122,20 +119,20 @@ $BgWhite: #f6f5f8;
 
 .mainContainer {
   display: flex;
-
-  button.btn.btn-secondary {
+  #buttonToHide {
     height: 0;
     width: 0;
     padding: 0;
     border: none;
-    color: transparent;
-    :focus {
-      box-shadow: transparent;
-    }
   }
-
   .sideBar {
     .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      padding: 12px 18px;
+      background-color: $BgWhite;
       margin: 20px 10px 20px 10px;
       color: $primary;
       background-color: white;
