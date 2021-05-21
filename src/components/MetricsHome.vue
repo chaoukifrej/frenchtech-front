@@ -1,6 +1,6 @@
 <template>
   <div id="appMetric">
-    <b-collapse appear visible id="navbar-toggle-collapse" is-nav>
+    <b-collapse appear visible id="navbar-toggle-collapse">
       <b-navbar-nav class="ml-auto">
         <div class="metrics">
           <div class="bloc-p">
@@ -62,12 +62,14 @@
     </b-collapse>
 
     <b-navbar-toggle
-      variant="outline-light"
-      class="m-1 w-100"
+      id="toggleBar"
+      variant="outline-*"
+      class="w-100 shadow-none"
       target="navbar-toggle-collapse"
     >
       <template #default="{ expanded }">
         <b-icon
+          variant="outline-*"
           v-if="expanded"
           icon="chevron-up"
           animation="cylon-vertical"
@@ -147,6 +149,14 @@ $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
 
+#appMetric {
+  box-sizing: content-box;
+  position: absolute;
+  top: 80px;
+  width: 100vw;
+  z-index: 1000;
+  overflow: hidden;
+}
 .metrics {
   height: 200px;
   color: white;
@@ -157,11 +167,6 @@ $BgWhite: #f6f5f8;
 .logo {
   height: 150px;
   margin: 20px;
-}
-
-.navbar-brand {
-  font-size: 14px;
-  margin-left: 40%;
 }
 
 .bi-chevron--bar-down-,
@@ -202,5 +207,11 @@ $BgWhite: #f6f5f8;
     font-weight: 700px;
     letter-spacing: 1px;
   }
+}
+
+#toggleBar {
+  background-color: #f6f5f833;
+  backdrop-filter: blur(3px);
+  width: 90%;
 }
 </style>

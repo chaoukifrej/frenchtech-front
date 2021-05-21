@@ -2,7 +2,14 @@ import Vue from "vue";
 import App from "./App.vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
-import { LMap, LTileLayer, LMarker, LTooltip, LIcon } from "vue2-leaflet";
+import {
+  LMap,
+  LTileLayer,
+  LMarker,
+  LTooltip,
+  LIcon,
+  LGeoJson,
+} from "vue2-leaflet";
 /* Importation carte icone marqueur et css*/
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
@@ -39,6 +46,7 @@ library.add(faLinkedinIn);
 Vue.component("l-map", LMap);
 Vue.component("l-tile-layer", LTileLayer);
 Vue.component("l-marker", LMarker);
+Vue.component("l-geo-json", LGeoJson);
 Vue.component("l-tooltip", LTooltip);
 Vue.component("l-icon", LIcon);
 Vue.component("fa", FontAwesomeIcon);

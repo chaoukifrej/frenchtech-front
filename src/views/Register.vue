@@ -201,14 +201,14 @@
         </div>
 
         <div class="col-md-12">
-          <label for="inputLinkedin" class="form-label"
+          <label for="inputDescription" class="form-label"
             >Description breve de votre entreprise</label
           >
           <textarea
             v-model="RegistreMe.description"
             type="text"
             class="form-control"
-            id="inputLinkedin"
+            id="inputDescription"
           />
         </div>
 

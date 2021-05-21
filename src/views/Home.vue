@@ -4,10 +4,19 @@
     <MetricsHome />
     <div class="mainContainer">
       <!-- Carte Taille et Modif -->
-      <l-map class="map" :zoom="zoom" :center="center">
+      <l-map
+        class="map"
+        :zoom="zoom"
+        :center="center"
+        :options="{ zoomControl: false }"
+      >
         <!-- Rappel url openstreetmap -->
         <l-tile-layer :url="url"></l-tile-layer>
-
+        <l-control-zoom position="bottomright"></l-control-zoom>
+        <l-geo-json
+          :optionsStyle="geoJsonStyle"
+          :geojson="geojson"
+        ></l-geo-json>
         <!-- Marqueur Carte-->
         <l-marker
           v-for="elem in actors"
@@ -16,7 +25,13 @@
         >
           <l-tooltip>{{ elem.name }}</l-tooltip>
           <l-icon>
-            <img class="markerPin" src="img/pin-point.png" />
+            <!-- <img class="markerPin" src="img/pin-point.png" /> -->
+            <b-icon
+              class="rounded-circle bg-danger p-1"
+              icon="circle-fill"
+              variant="light"
+              animation="throb"
+            ></b-icon>
           </l-icon>
         </l-marker>
       </l-map>
@@ -32,7 +47,15 @@
 
 <script>
 /* Importation components */
-import { LMap, LTileLayer, LMarker, LTooltip, LIcon } from "vue2-leaflet";
+import {
+  LMap,
+  LTileLayer,
+  LMarker,
+  LTooltip,
+  LIcon,
+  LGeoJson,
+  LControlZoom,
+} from "vue2-leaflet";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
 
@@ -51,6 +74,8 @@ export default {
     LMarker,
     LTooltip,
     LIcon,
+    LGeoJson,
+    LControlZoom,
     Header,
     CardInfo,
     MetricsHome,
@@ -64,11 +89,23 @@ export default {
       /* Zoom de la carte*/
       zoom: 11,
 
+      //GeoZone
+      geojson: null,
+      geoJsonStyle: {
+        color: "rgba(0, 0, 0, 0.3)",
+        weight: 1,
+      },
       /* Centrage Coordonnées*/
       actors: [],
     };
   },
 
+  async created() {
+    const response = await fetch(
+      "https://rawgit.com/gregoiredavid/france-geojson/master/departements/06-alpes-maritimes/departement-06-alpes-maritimes.geojson"
+    );
+    this.geojson = await response.json();
+  },
   mounted() {
     /* mounted pour recuperer les infos des Actors depuis la BDD */
     this.axios
@@ -97,20 +134,26 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 #home {
-  max-height: 100vh;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
 .mainContainer {
   display: flex;
-  height: 100%;
+  height: calc(100vh - 80px);
   margin: 0;
 
   .map {
-    height: auto;
+    height: 100%;
     width: 65%;
+    border-radius: 0 5px 0 0;
     .markerPin {
       height: 22px;
       width: 22px;
@@ -121,14 +164,13 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: calc(100vh - 120px);
+    height: 100%;
     width: 35%;
     background-color: $BgWhite;
     overflow-y: auto;
     overflow-x: hidden;
     margin: 0;
     padding: 100px 0 0;
-
     .displayCards {
       display: flex;
       flex-direction: column;
