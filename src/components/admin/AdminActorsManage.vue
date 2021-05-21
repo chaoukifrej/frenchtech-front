@@ -308,7 +308,6 @@ export default {
 
   data() {
     return {
-      actors: [],
       actorsFields: [
         { key: "id", label: "ID" },
         { key: "name", label: "Nom entreprise" },
@@ -359,12 +358,7 @@ export default {
           Accept: "application/json",
         },
       })
-      .then((response) => {
-        for (const elem of response.data.body.actors) {
-          this.actors.push(elem);
-        }
-        //console.log(this.actors);
-      });
+      .then((response) => {});
   },
 
   methods: {
