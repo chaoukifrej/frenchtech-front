@@ -28,6 +28,7 @@
         :id="'modal-xl' + data.item.id"
         size="xl"
         title="Extra Large Modal"
+        hide-footer
       >
         <h1>Modifications</h1>
         <div id="personal">
@@ -78,7 +79,7 @@
             <div class="col-2">
               <label for="inputNumberStreet" class="form-label">Numéro</label>
               <input
-                v-model="data.item.streetNumber"
+                v-model="streetNumber"
                 type="text"
                 class="form-control"
                 id="inputPhone2"
@@ -166,7 +167,7 @@
                 <option value="tpePme">TPE/PME</option>
                 <option value="eti">Grande entreprises/Grand groupe/ETI</option>
                 <option value="poleDeCompetitivite"
-                  >Pole de compétitivité</option
+                  >Pôle de compétitivité</option
                 >
               </select>
             </div>
@@ -295,8 +296,12 @@
                 id="inputCa"
               />
             </div>
-          </div></div
-      ></b-modal>
+            <b-button @click="Update(data.item.id)" variant="success"
+              >Modication</b-button
+            >
+          </div>
+        </div>
+      </b-modal>
     </template>
   </b-table>
 </template>
@@ -309,6 +314,8 @@ export default {
   data() {
     return {
       actors: [],
+      streetNumber: [],
+      adressStr: [],
       actorsFields: [
         { key: "id", label: "ID" },
         { key: "name", label: "Nom entreprise" },
@@ -318,36 +325,6 @@ export default {
         { key: "associations", label: "Association" },
         { key: "actions", label: "Actions" },
       ],
-      ModifActors: {
-        logo: "",
-        name: "",
-        email: "",
-        phone: "",
-        streetNumber: "",
-        streetName: "",
-        adress: "",
-        city: "",
-        postal_code: "",
-        website: "",
-        facebook: "",
-        twitter: "",
-        linkedin: "",
-        category: "",
-        associations: "",
-        activity_area: "",
-        description: "",
-
-        /* information visible uniquement par l'admin */
-
-        funds: "",
-        employees_number: "",
-        jobs_available_number: "",
-        women_number: "",
-        revenues: "",
-        position: "",
-        latitude: "",
-        longitude: "",
-      },
     };
   },
 
@@ -362,13 +339,50 @@ export default {
       .then((response) => {
         for (const elem of response.data.body.actors) {
           this.actors.push(elem);
-          console.log(this.actors);
+
+          this.actors.forEach((element) => {
+            let adressStr = element.adress;
+            let numberStr = adressStr.split(" ");
+
+            this.streetNumber = numberStr[0];
+          });
         }
-        //console.log(this.actors);
       });
   },
 
   methods: {
+    Update(id) {
+      this.axios
+
+        .put(this.baseUrl + "api/admin/PUT/actor/" + id, {
+          /* body de la requete */
+
+          name: this.actors.name,
+          email: this.actors.email,
+          logo: this.actors.logo,
+          adress: this.actors.adress,
+          postal_code: this.actors.postal_code,
+          city: this.actors.city,
+          longitude: this.actors.longitude,
+          latitude: this.actors.latitude,
+          phone: this.actors.phone,
+          category: this.actors.category,
+          associations: this.actors.associations,
+          description: this.actors.description,
+          facebook: this.actors.facebook,
+          twitter: this.actors.twitter,
+          linkedin: this.actors.linkedin,
+          website: this.actors.website,
+          activity_area: this.actors.activity_area,
+          funds: this.actors.funds,
+          employees_number: this.actors.employees_number,
+          jobs_available_number: this.actors.employees_number,
+          women_number: this.actors.women_number,
+          revenues: this.actors.revenues,
+        })
+
+        .then((response) => console.log(response));
+    },
     deleteActor(id) {
       this.$bvModal
         .msgBoxConfirm("Êtes vous sûr?", {
