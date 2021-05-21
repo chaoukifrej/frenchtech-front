@@ -5,9 +5,12 @@
         <!-- ------------------------------
           Update admin (Non opérationnel) 
         -------------------------------- -->
-        <b-button pill variant="warning" size="sm">
-          Modifier
-        </b-button>
+        <!-- ----------------->
+        <div>
+          <input v-model="admins.firstname" type="text" />
+          <button @click="manageAdmin(data.item.id)">test</button>
+        </div>
+        <!-- ---------------------->
 
         <!-- ------------------------------
           Button Delete admin 
@@ -29,7 +32,7 @@
           (A mettre dans un modal)
         -------------------------------- -->
     <div>
-      <b-button ok:@click="" v-b-modal.modal-1>Ajouter</b-button>
+      <b-button hide-footer v-b-modal.modal-1>Ajouter</b-button>
 
       <b-modal id="modal-1" title="BootstrapVue">
         <p>Création d'un Administrateur</p>
@@ -71,7 +74,7 @@
 
 <script>
 export default {
-  name: "AdminDelete",
+  name: "AdminGestion",
   inject: ["baseUrl"],
 
   data() {
@@ -132,20 +135,17 @@ export default {
         })
         .then((response) => console.log(response));
     },
+    // .Modification d'un Administrateur
+    manageAdmin(id) {
+      this.axios
+        .put(this.baseUrl + "api/admin/PUT/admin/" + id, {
+          firstname: this.admins.firstname,
+        })
+        .then((response) => {
+          console.log(response.status);
+        });
+    },
   },
-
-  // // .Modification d'un Administrateur
-  // manageAdmin(id) {
-  //   this.axios
-  //     .put(this.baseUrl + "api/admin/PUT/update/actor/" + id, {
-  //       firstname: this.newAdmin.firstname,
-  //       lastname: this.newAdmin.lastname,
-  //       email: this.newAdmin.email,
-  //     })
-  //     .then((response) => {
-  //       console.log(response.status);
-  //     });
-  // },
 };
 </script>
 
