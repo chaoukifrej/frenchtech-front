@@ -6,76 +6,72 @@
       <b-button class="stretched-link" v-b-toggle="'sideBar' + i.id"
         >plus d'info</b-button
       >
-      <b-sidebar
-        class="sideBar"
-        width="35%"
-        :id="'sideBar' + i.id"
-        right
-        shadow
-      >
-        <div class="header">
-          <h4>{{ i.name }}</h4>
-          <div>
-            <p class="cat">{{ i.category }}</p>
-            <p class="asso">// {{ i.associations }}</p>
-          </div>
-        </div>
-        <div class="img">
-          <img :src="i.logo" />
-        </div>
-        <div class="infos">
-          <!--INFOS-->
-          <p>{{ i.description }}</p>
-          <!-- // -->
-          <div class="infos2">
-            <div class="line-info">
-              <b-icon
-                class="info-icon m-1 mx-3"
-                icon="globe"
-                scale="1"
-              ></b-icon>
-              <div class="info-text">
-                <p>{{ i.website }}</p>
-              </div>
-            </div>
-            <div class="line-info">
-              <b-icon
-                class="info-icon m-1 mx-3"
-                icon="telephone"
-                scale="1"
-              ></b-icon>
-              <div class="info-text">
-                <p>{{ i.phone }}</p>
-              </div>
-            </div>
-            <div class="line-info">
-              <b-icon
-                class="info-icon m-1 mx-3"
-                icon="envelope"
-                scale="1"
-              ></b-icon>
-              <div class="info-text">
-                <p>{{ i.email }}</p>
-              </div>
-            </div>
-            <div class="line-info">
-              <b-icon
-                class="info-icon m-1 mx-3"
-                icon="geo-alt"
-                scale="1"
-              ></b-icon>
-              <div class="info-text">
-                <p>{{ i.adress }}</p>
-                <p>{{ i.postal_code }} {{ i.city }}</p>
-              </div>
+      <b-sidebar width="35%" :id="'sideBar' + i.id" right shadow>
+        <div class="sideBar">
+          <div class="header">
+            <h4>{{ i.name }}</h4>
+            <div>
+              <p class="cat">{{ i.category }}</p>
+              <p class="asso">// {{ i.associations }}</p>
             </div>
           </div>
+          <div class="img">
+            <img :src="i.logo" />
+          </div>
+          <div class="infos">
+            <!--INFOS-->
+            <p>{{ i.description }}</p>
+            <!-- // -->
+            <div class="infos2">
+              <div class="line-info">
+                <b-icon
+                  class="info-icon m-1 mx-3"
+                  icon="globe"
+                  scale="1"
+                ></b-icon>
+                <div class="info-text">
+                  <p>{{ i.website }}</p>
+                </div>
+              </div>
+              <div class="line-info">
+                <b-icon
+                  class="info-icon m-1 mx-3"
+                  icon="telephone"
+                  scale="1"
+                ></b-icon>
+                <div class="info-text">
+                  <p>{{ i.phone }}</p>
+                </div>
+              </div>
+              <div class="line-info">
+                <b-icon
+                  class="info-icon m-1 mx-3"
+                  icon="envelope"
+                  scale="1"
+                ></b-icon>
+                <div class="info-text">
+                  <p>{{ i.email }}</p>
+                </div>
+              </div>
+              <div class="line-info">
+                <b-icon
+                  class="info-icon m-1 mx-3"
+                  icon="geo-alt"
+                  scale="1"
+                ></b-icon>
+                <div class="info-text">
+                  <p>{{ i.adress }}</p>
+                  <p>{{ i.postal_code }} {{ i.city }}</p>
+                </div>
+              </div>
+            </div>
 
-          <div class="socials">
-            <b-icon icon="linkedin" scale="1"></b-icon>
-            <b-icon icon="facebook" scale="1"></b-icon>
-            <b-icon icon="twitter" scale="1"></b-icon>
-            <b-icon icon="instagram" scale="1"></b-icon>
+            <div class="socials">
+              <b-icon icon="linkedin" scale="1"></b-icon>
+              <b-icon icon="facebook" scale="1"></b-icon>
+              <b-icon icon="twitter" scale="1"></b-icon>
+              <b-icon icon="instagram" scale="1"></b-icon>
+            </div>
           </div>
         </div>
       </b-sidebar>
@@ -109,6 +105,10 @@ $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
 
+.sideBar {
+  background-color: white;
+}
+
 .mainContainer {
   display: flex;
 
@@ -127,7 +127,7 @@ $BgWhite: #f6f5f8;
     .header {
       margin: 20px 10px 20px 10px;
       color: $primary;
-      background-color: none;
+      background-color: white;
       .cat {
         padding: 0;
         margin: 0;
@@ -165,7 +165,8 @@ $BgWhite: #f6f5f8;
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
-      margin: 2rem 15%;
+      padding-bottom: 20px;
+      margin: 2rem 15% 0 15%;
     }
   }
 }
