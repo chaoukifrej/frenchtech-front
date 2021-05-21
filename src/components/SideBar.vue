@@ -107,9 +107,14 @@ $BgWhite: #f6f5f8;
       }
     }
 
+    .b-sidebar-body {
+      padding: 20px;
+    }
+
     .info {
       display: flex;
       flex-direction: column;
+      padding: 20px;
 
       .design-info {
         display: flex;
