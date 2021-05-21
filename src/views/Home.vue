@@ -4,9 +4,15 @@
     <MetricsHome />
     <div class="mainContainer">
       <!-- Carte Taille et Modif -->
-      <l-map class="map" :zoom="zoom" :center="center">
+      <l-map
+        class="map"
+        :zoom="zoom"
+        :center="center"
+        :options="{ zoomControl: false }"
+      >
         <!-- Rappel url openstreetmap -->
         <l-tile-layer :url="url"></l-tile-layer>
+        <l-control-zoom position="bottomright"></l-control-zoom>
         <l-geo-json
           :optionsStyle="geoJsonStyle"
           :geojson="geojson"
@@ -48,6 +54,7 @@ import {
   LTooltip,
   LIcon,
   LGeoJson,
+  LControlZoom,
 } from "vue2-leaflet";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
@@ -68,6 +75,7 @@ export default {
     LTooltip,
     LIcon,
     LGeoJson,
+    LControlZoom,
     Header,
     CardInfo,
     MetricsHome,

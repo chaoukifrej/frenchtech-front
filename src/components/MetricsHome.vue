@@ -62,8 +62,9 @@
     </b-collapse>
 
     <b-navbar-toggle
+      id="toggleBar"
       variant="outline-*"
-      class="m-1 w-100 shadow-none"
+      class="w-100 shadow-none"
       target="navbar-toggle-collapse"
     >
       <template #default="{ expanded }">
@@ -149,11 +150,12 @@ $violet: #13114e;
 $BgWhite: #f6f5f8;
 
 #appMetric {
+  box-sizing: content-box;
   position: absolute;
   top: 80px;
-  left: 0;
-  right: 0;
+  width: 100vw;
   z-index: 1000;
+  overflow: hidden;
 }
 .metrics {
   height: 200px;
@@ -205,5 +207,11 @@ $BgWhite: #f6f5f8;
     font-weight: 700px;
     letter-spacing: 1px;
   }
+}
+
+#toggleBar {
+  background-color: #f6f5f833;
+  backdrop-filter: blur(3px);
+  width: 90%;
 }
 </style>
