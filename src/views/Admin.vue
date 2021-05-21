@@ -2,10 +2,6 @@
   <div>
     <Header />
     <div class="mainContainer">
-      <div class="titleContainer">
-        <p>Espace admin</p>
-      </div>
-
       <div class="metrics-admin">
         <div class="bloc-metric-admin">
           <div>
@@ -408,15 +404,6 @@ $BgWhite: #f6f5f8;
 .mainContainer {
   padding: 20px;
   flex-direction: column;
-
-  .titleContainer {
-    height: 30px;
-    text-align: center;
-    color: $primary;
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 1px;
-  }
 
   h2 {
     margin: 20px 0;
