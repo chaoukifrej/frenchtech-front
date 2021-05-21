@@ -592,11 +592,12 @@ h1 {
     width: 80%;
     margin: auto;
   }
+
   #secondaryInformations,
   #privateInformations {
     display: flex;
     .subtitle {
-      width: 45vh;
+      width: 300px;
     }
     .container {
       display: flex;
