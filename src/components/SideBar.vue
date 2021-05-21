@@ -16,8 +16,8 @@
         <div class="header">
           <h4>{{ i.name }}</h4>
           <div>
-            <p>{{ i.category }}</p>
-            <p>{{ i.associations }}</p>
+            <p class="cat">{{ i.category }}</p>
+            <p class="asso">// {{ i.associations }}</p>
           </div>
         </div>
         <div class="img">
@@ -29,27 +29,44 @@
           <!-- // -->
           <div class="infos2">
             <div class="line-info">
-              <b-icon class="info-icon m-1 " icon="globe" scale="1"></b-icon>
+              <b-icon
+                class="info-icon m-1 mx-3"
+                icon="globe"
+                scale="1"
+              ></b-icon>
               <div class="info-text">
                 <p>{{ i.website }}</p>
               </div>
             </div>
             <div class="line-info">
-              <b-icon class="info-icon m-1" icon="telephone" scale="1"></b-icon>
+              <b-icon
+                class="info-icon m-1 mx-3"
+                icon="telephone"
+                scale="1"
+              ></b-icon>
               <div class="info-text">
                 <p>{{ i.phone }}</p>
               </div>
             </div>
             <div class="line-info">
-              <b-icon class="info-icon m-1" icon="envelope" scale="1"></b-icon>
+              <b-icon
+                class="info-icon m-1 mx-3"
+                icon="envelope"
+                scale="1"
+              ></b-icon>
               <div class="info-text">
                 <p>{{ i.email }}</p>
               </div>
             </div>
             <div class="line-info">
-              <b-icon class="info-icon m-1" icon="geo-alt" scale="1"></b-icon>
+              <b-icon
+                class="info-icon m-1 mx-3"
+                icon="geo-alt"
+                scale="1"
+              ></b-icon>
               <div class="info-text">
                 <p>{{ i.adress }}</p>
+                <p>{{ i.postal_code }} {{ i.city }}</p>
               </div>
             </div>
           </div>
@@ -108,24 +125,34 @@ $BgWhite: #f6f5f8;
 
   .sideBar {
     .header {
-      margin-left: 20px;
+      margin: 20px 10px 20px 10px;
       color: $primary;
       background-color: none;
-      p {
+      .cat {
         padding: 0;
         margin: 0;
+        color: $secondary;
+        font-weight: 300;
+      }
+      .asso {
+        padding: 0;
+        margin: 0;
+        color: $secondary;
+        font-weight: 500;
       }
     }
     .img {
+      padding-top: 10px;
       text-align: center;
       img {
-        width: 20rem;
+        width: 18rem;
       }
     }
     .infos {
+      color: $primary;
       margin: 50px 40px;
       .infos2 {
-        margin: 50px 0 0 30px;
+        margin: 50px 0 0 15%;
       }
       .line-info {
         display: flex;
@@ -137,7 +164,7 @@ $BgWhite: #f6f5f8;
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
-      margin: 2rem 4rem;
+      margin: 2rem 15%;
     }
   }
 }
