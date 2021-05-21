@@ -64,63 +64,15 @@ export default {
   },
 
   //action avant création de l'app
-  beforeMount() {
+  created() {
     localStorage.getItem("token") //Local Storage TOKEN
       ? (this.token = JSON.parse(localStorage.getItem("token")))
       : (this.token = "");
     localStorage.getItem("isAdmin") //Local Storage isAdmin
       ? (this.isAdmin = JSON.parse(localStorage.getItem("isAdmin")))
       : (this.isAdmin = false);
-    if (this.isAdmin) {
-      let url = `${this.baseUrl}api/checkAdmin`;
-      this.axios
-        .get(url, {
-          headers: {
-            Authorization: "Bearer " + this.token,
-            Accept: "application/json",
-          },
-        })
-        .then((response) => {
-          console.log(response.status);
-          if (response.status != 200) {
-            this.token == "";
-            this.isAdmin = false;
-            this.isConnected = false;
-          }
-        })
-        .catch((error) => {
-          if (error) {
-            this.token == "";
-            this.isAdmin = false;
-            this.isConnected = false;
-          }
-        });
-    } else {
-      let url = `${this.baseUrl}api/checkActor`;
-      this.axios
-        .get(url, {
-          headers: {
-            Authorization: "Bearer " + this.token,
-            Accept: "application/json",
-          },
-        })
-        .then((response) => {
-          console.log(response.status);
-          if (response.status != 200) {
-            this.token == "";
-            this.isAdmin = false;
-            this.isConnected = false;
-          }
-        })
-        .catch((error) => {
-          if (error) {
-            this.token == "";
-            this.isAdmin = false;
-            this.isConnected = false;
-          }
-        });
-    }
   },
+
   methods: {
     disconnect: function() {
       let url = `${this.baseUrl}api/GET/logout`;

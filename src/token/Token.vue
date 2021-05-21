@@ -15,10 +15,11 @@ export default {
         console.log(response.data.message);
         this.token.value = response.data.token;
         this.isAdmin = false;
-        this.$router.push("/");
       })
       .catch(function(error) {
         console.log(error);
+      })
+      .then(() => {
         this.$router.push("/");
       });
   },
