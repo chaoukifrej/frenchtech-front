@@ -67,7 +67,7 @@ import MetricsHome from "@/components/MetricsHome.vue";
 
 export default {
   name: "App",
-  inject: ["baseUrl"],
+  inject: ["baseUrl", "token", "isAdmin", "isConnected"],
   components: {
     LMap,
     LTileLayer,
@@ -108,16 +108,49 @@ export default {
   },
   mounted() {
     /* mounted pour recuperer les infos des Actors depuis la BDD */
-    this.axios
-
-      .get(this.baseUrl + "api/GET/actors")
-
-      .then((response) => {
-        for (const elem of response.data.body.actors) {
-          this.actors.push(elem);
-        }
-        //console.log(this.actors);
-      });
+    this.axios.get(this.baseUrl + "api/GET/actors").then((response) => {
+      for (const elem of response.data.body.actors) {
+        this.actors.push(elem);
+      }
+      //console.log(this.actors);
+    });
+  },
+  created() {
+    if (this.isAdmin.value) {
+      let url = `${this.baseUrl}api/checkAdmin`;
+      this.axios
+        .get(url, {
+          headers: {
+            Authorization: "Bearer " + this.token.value,
+            Accept: "application/json",
+          },
+        })
+        .then((response) => {
+          console.log(response.status);
+        })
+        .catch(() => {
+          this.token.value == "";
+          this.isAdmin.value = false;
+          this.isConnected.value = false;
+        });
+    } else {
+      let url = `${this.baseUrl}api/checkActor`;
+      this.axios
+        .get(url, {
+          headers: {
+            Authorization: "Bearer " + this.token.value,
+            Accept: "application/json",
+          },
+        })
+        .then((response) => {
+          console.log(response.status);
+        })
+        .catch(() => {
+          this.token.value == "";
+          this.isAdmin.value = false;
+          this.isConnected.value = false;
+        });
+    }
   },
 
   methods: {},
