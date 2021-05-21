@@ -19,7 +19,7 @@
         <div class="col-md-6">
           <label class="form-label">Nom de l'entreprise</label>
           <input
-            v-model="name"
+            v-model="RegistreMe.name"
             type="text"
             class="form-control"
             id="inputName"
@@ -29,7 +29,7 @@
         <div class="col-md-3">
           <label for="inputEmail" class="form-label">Email</label>
           <input
-            v-model="email"
+            v-model="RegistreMe.email"
             type="email"
             class="form-control"
             id="inputEmail"
@@ -39,7 +39,7 @@
         <div class="col-3">
           <label for="inputphone" class="form-label">Telephone</label>
           <input
-            v-model="phone"
+            v-model="RegistreMe.phone"
             type="text"
             class="form-control"
             id="inputPhone"
@@ -49,7 +49,7 @@
         <div class="col-2">
           <label for="inputNumberStreet" class="form-label">Numéro</label>
           <input
-            v-model="streetNumber"
+            v-model="RegistreMe.streetNumber"
             type="text"
             class="form-control"
             id="inputPhone"
@@ -61,7 +61,7 @@
             >Nom de rue/avenue/boulevard</label
           >
           <input
-            v-model="streetName"
+            v-model="RegistreMe.streetName"
             type="text"
             class="form-control"
             id="inputAdresse"
@@ -73,7 +73,7 @@
         <div class="col-3">
           <label for="inputCity" class="form-label">Ville</label>
           <input
-            v-model="city"
+            v-model="RegistreMe.city"
             type="text"
             class="form-control"
             id="inputCity"
@@ -83,7 +83,7 @@
         <div class="col-2">
           <label for="inputZip" class="form-label">Code Postale</label>
           <input
-            v-model="postal_code"
+            v-model="RegistreMe.postal_code"
             type="text"
             class="form-control"
             id="inputZip"
@@ -95,7 +95,7 @@
             >Indiquez votre site web</label
           >
           <input
-            v-model="website"
+            v-model="RegistreMe.website"
             type="text"
             class="form-control"
             id="inputWebSite"
@@ -105,7 +105,7 @@
         <div class="col-md-3">
           <label for="inputFacebook" class="form-label">Facebook</label>
           <input
-            v-model="facebook"
+            v-model="RegistreMe.facebook"
             type="text"
             class="form-control"
             id="inputFacebook"
@@ -115,7 +115,7 @@
         <div class="col-md-3">
           <label for="inputTwitter" class="form-label">Twitter</label>
           <input
-            v-model="twitter"
+            v-model="RegistreMe.twitter"
             type="text"
             class="form-control"
             id="inputInstagram"
@@ -125,7 +125,7 @@
         <div class="col-md-3">
           <label for="inputLinkedin" class="form-label">Linkedin</label>
           <input
-            v-model="linkedin"
+            v-model="RegistreMe.linkedin"
             type="text"
             class="form-control"
             id="inputLinkedin"
@@ -134,7 +134,11 @@
 
         <div class="col-md-4">
           <label for="inputCategory" class="form-label">Categories</label>
-          <select v-model="category" id="inputCategory" class="form-select">
+          <select
+            v-model="RegistreMe.category"
+            id="inputCategory"
+            class="form-select"
+          >
             <option selected>Choississez...</option>
             <option value="startUp">Start-up</option>
             <option value="association">Association</option>
@@ -150,7 +154,7 @@
         <div class="col-md-4">
           <label for="inputAssociation" class="form-label">Associations</label>
           <select
-            v-model="associations"
+            v-model="RegistreMe.associations"
             id="inputAssociation"
             class="form-select"
           >
@@ -168,7 +172,11 @@
           <label for="inputSecteur" class="form-label"
             >Secteurs d'activité</label
           >
-          <select v-model="activity_area" id="inputSecteur" class="form-select">
+          <select
+            v-model="RegistreMe.activity_area"
+            id="inputSecteur"
+            class="form-select"
+          >
             <option selected>Choississez...</option>
             <option value="formation">Formation</option>
             <option value="energie">Energie</option>
@@ -193,14 +201,14 @@
         </div>
 
         <div class="col-md-12">
-          <label for="inputLinkedin" class="form-label"
+          <label for="inputDescription" class="form-label"
             >Description breve de votre entreprise</label
           >
           <textarea
-            v-model="description"
+            v-model="RegistreMe.description"
             type="text"
             class="form-control"
-            id="inputLinkedin"
+            id="inputDescription"
           />
         </div>
 
@@ -209,7 +217,7 @@
         <div class="col-md-4">
           <label for="inputFond" class="form-label">Levé de fond (€)</label>
           <input
-            v-model="funds"
+            v-model="RegistreMe.funds"
             type="number"
             class="form-control"
             id="inputFond"
@@ -219,7 +227,7 @@
         <div class="col-md-4">
           <label for="inputSalarie" class="form-label">Nombre de salarié</label>
           <input
-            v-model="employees_number"
+            v-model="RegistreMe.employees_number"
             type="number"
             class="form-control"
             id="inputSalarie"
@@ -231,7 +239,7 @@
             >Nombre de post à pourvoir</label
           >
           <input
-            v-model="jobs_available_number"
+            v-model="RegistreMe.jobs_available_number"
             type="number"
             class="form-control"
             id="inputPost"
@@ -241,7 +249,7 @@
         <div class="col-md-4">
           <label for="inputFemme" class="form-label">Nombre de femmes</label>
           <input
-            v-model="women_number"
+            v-model="RegistreMe.women_number"
             type="number"
             class="form-control"
             id="inputFemme"
@@ -253,7 +261,7 @@
             >Chiffre d'affaire annuel total
           </label>
           <input
-            v-model="revenues"
+            v-model="RegistreMe.revenues"
             type="number"
             class="form-control"
             id="inputCa"
@@ -285,44 +293,50 @@ export default {
   name: "Register",
   inject: ["baseUrl"],
   data: () => ({
-    logo: "",
-    name: "",
-    email: "",
-    phone: "",
-    streetNumber: "",
-    streetName: "",
-    adress: "",
-    city: "",
-    postal_code: "",
-    website: "",
-    facebook: "",
-    twitter: "",
-    linkedin: "",
-    category: "",
-    associations: "",
-    activity_area: "",
-    description: "",
+    RegistreMe: {
+      logo: "",
+      name: "",
+      email: "",
+      phone: "",
+      streetNumber: "",
+      streetName: "",
+      adress: "",
+      city: "",
+      postal_code: "",
+      website: "",
+      facebook: "",
+      twitter: "",
+      linkedin: "",
+      category: "",
+      associations: "",
+      activity_area: "",
+      description: "",
 
-    /* information visible uniquement par l'admin */
+      /* information visible uniquement par l'admin */
 
-    funds: "",
-    employees_number: "",
-    jobs_available_number: "",
-    women_number: "",
-    revenues: "",
-    position: "",
-    latitude: "",
-    longitude: "",
+      funds: "",
+      employees_number: "",
+      jobs_available_number: "",
+      women_number: "",
+      revenues: "",
+      position: "",
+      latitude: "",
+      longitude: "",
+    },
   }),
 
   /* Permet de regrouper les differents element lié a la position dans la variable adress */
   watch: {
     streetName: function() {
-      this.adress = this.streetNumber + " " + this.streetName;
+      this.RegistreMe.adress =
+        this.RegistreMe.streetNumber + " " + this.RegistreMe.streetName;
+      console.log(this.RegistreMe.adress);
     },
 
     streetNumber: function() {
-      this.adress = this.streetNumber + " " + this.streetName;
+      this.RegistreMe.adress =
+        this.RegistreMe.streetNumber + " " + this.RegistreMe.streetName;
+      console.log(this.RegistreMe.adress);
     },
   },
 
@@ -332,15 +346,15 @@ export default {
 
       this.axios
         .get(
-          `https://api-adresse.data.gouv.fr/search/?q=${this.streetNumber}+${this.streetName}+${this.city}+${this.postal_code}%22`
+          `https://api-adresse.data.gouv.fr/search/?q=${this.RegistreMe.streetNumber}+${this.RegistreMe.streetName}+${this.RegistreMe.city}+${this.RegistreMe.postal_code}%22`
         )
 
         .then((response) => {
-          this.longitude = response.data.features[0].properties.x;
-          this.latitude = response.data.features[0].properties.y;
+          this.RegistreMe.longitude = response.data.features[0].properties.x;
+          this.RegistreMe.latitude = response.data.features[0].properties.y;
         });
 
-      console.log(this.longitude);
+      console.log(this.RegistreMe.longitude);
     },
 
     register() {
@@ -348,28 +362,28 @@ export default {
         .post(this.baseUrl + "api/POST/register", {
           /* body de la requete */
 
-          name: this.name,
-          email: this.email,
-          logo: this.logo,
-          adress: this.adress,
-          postal_code: this.postal_code,
-          city: this.city,
-          longitude: this.longitude,
-          latitude: this.latitude,
-          phone: this.phone,
-          category: this.category,
-          associations: this.associations,
-          description: this.description,
-          facebook: this.facebook,
-          twitter: this.twitter,
-          linkedin: this.linkedin,
-          website: this.website,
-          activity_area: this.activity_area,
-          funds: this.funds,
-          employees_number: this.employees_number,
-          jobs_available_number: this.employees_number,
-          women_number: this.women_number,
-          revenues: this.revenues,
+          name: this.RegistreMe.name,
+          email: this.RegistreMe.email,
+          logo: this.RegistreMe.logo,
+          adress: this.RegistreMe.adress,
+          postal_code: this.RegistreMe.postal_code,
+          city: this.RegistreMe.city,
+          longitude: this.RegistreMe.longitude,
+          latitude: this.RegistreMe.latitude,
+          phone: this.RegistreMe.phone,
+          category: this.RegistreMe.category,
+          associations: this.RegistreMe.associations,
+          description: this.RegistreMe.description,
+          facebook: this.RegistreMe.facebook,
+          twitter: this.RegistreMe.twitter,
+          linkedin: this.RegistreMe.linkedin,
+          website: this.RegistreMe.website,
+          activity_area: this.RegistreMe.activity_area,
+          funds: this.RegistreMe.funds,
+          employees_number: this.RegistreMe.employees_number,
+          jobs_available_number: this.RegistreMe.employees_number,
+          women_number: this.RegistreMe.women_number,
+          revenues: this.RegistreMe.revenues,
         })
 
         .then((response) => console.log(response));
@@ -380,7 +394,7 @@ export default {
     addLogo(e) {
       const reader = new FileReader();
       reader.onload = (readerEvent) => {
-        this.logo = readerEvent.target.result;
+        this.RegistreMe.logo = readerEvent.target.result;
       };
       if (e.target.files[0].size / 1024 / 1024 > 3) {
         console.log("image trop grande");

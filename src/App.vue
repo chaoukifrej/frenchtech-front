@@ -84,12 +84,12 @@ export default {
         })
         .then((response) => {
           console.log(response);
-          this.isConnected = false;
-          this.token = "";
         })
         .catch(function(error) {
           console.log(error);
         });
+      this.isConnected = false;
+      this.token = "";
       this.$router.push("/");
     },
     disconnectAdmin: function() {
@@ -103,13 +103,13 @@ export default {
         })
         .then((response) => {
           console.log(response);
-          this.isConnected = false;
-          this.isAdmin = false;
-          this.token = "";
         })
         .catch(function(error) {
           console.log(error);
         });
+      this.isConnected = false;
+      this.isAdmin = false;
+      this.token = "";
       this.$router.push("/");
     },
   },

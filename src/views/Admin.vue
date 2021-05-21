@@ -6,6 +6,83 @@
         <p>Espace admin</p>
       </div>
 
+      <div class="metrics-admin">
+        <div class="bloc-metric-admin">
+          <div>
+            <p class="numberMetricAdmin">
+              <animated-number
+                :value="totalStartupMetric"
+                round="1"
+                :duration="1200"
+              />
+            </p>
+          </div>
+          <p class="textMetric">STARTUP</p>
+        </div>
+        <div class="bloc-metric-admin">
+          <div>
+            <p class="numberMetricAdmin">
+              <animated-number
+                :value="totalFundsMetric"
+                round="1"
+                :duration="1200"
+              />
+            </p>
+          </div>
+          <p class="textMetric">LEVEE DE FOND</p>
+        </div>
+        <div class="bloc-metric-admin">
+          <div>
+            <p class="numberMetricAdmin">
+              <animated-number
+                :value="totalEmployeesMetric"
+                round="1"
+                :duration="1200"
+              />
+            </p>
+          </div>
+          <p class="textMetric">EMPLOYÉS</p>
+        </div>
+        <div class="bloc-metric-admin">
+          <div>
+            <p class="numberMetricAdmin">
+              <animated-number
+                :value="totalJobsMetric"
+                round="1"
+                :duration="1200"
+              />
+            </p>
+          </div>
+          <p class="textMetric">POSTES</p>
+        </div>
+
+        <div class="bloc-metric-admin">
+          <div>
+            <p class="numberMetricAdmin">
+              <animated-number
+                :value="totalWomenMetric"
+                round="1"
+                :duration="1200"
+              />
+            </p>
+          </div>
+          <p class="textMetric">FEMMES</p>
+        </div>
+
+        <div class="bloc-metric-admin">
+          <div>
+            <p class="numberMetricAdmin">
+              <animated-number
+                :value="totalRevenuesMetric"
+                round="1"
+                :duration="1200"
+              />
+            </p>
+          </div>
+          <p class="textMetric">CHIFFRE D'AFFAIRE</p>
+        </div>
+      </div>
+
       <div class="row g-10 dashboard">
         <!--METRIQUES-->
         <h2>Données métriques</h2>
@@ -39,19 +116,12 @@
             <ChartCA :chartData="dataca"> </ChartCA>
           </div>
         </div>
-        <div>
-          <p>Nombre de statup : {{ totalActorsMetric }}</p>
-          <p>Levée de Fonds : {{ totalFundsMetric }}</p>
-          <p>Nombre de poste : {{ totalJobsMetric }}</p>
-          <p>Nombres d'employés : {{ totalEmployeesMetric }}</p>
-          <p>Nombre de femmes : {{ totalWomenMetric }}</p>
-          <p>Nombre d'hommes : {{ totalMenMetric }}</p>
-        </div>
+        <div></div>
       </div>
 
       <div class="AdminTabContainer mt-5">
         <b-tabs content-class="mt-3">
-          <b-tab title="Gestion entreprise" active>
+          <b-tab title="Gestion entreprise">
             <AdminActorsManage />
           </b-tab>
           <b-tab title="Demande d'inscription">
@@ -63,10 +133,13 @@
           <b-tab title="Demande de modification">
             <AdminUpdate />
           </b-tab>
-          <b-tab title="Demande de supression">
+          <b-tab title="Demande de suppression">
             <AdminDelete :deleteBuffer="deleteBuffer" />
           </b-tab>
-          <b-tab title="Imports et Exports"> <AdminExcel /> </b-tab>
+          <b-tab title="Imports et Exports" active> <AdminExcel /> </b-tab>
+          <b-tab title="Gestion des administrateurs">
+            <AdminGestion />
+          </b-tab>
         </b-tabs>
       </div>
     </div>
@@ -82,12 +155,15 @@ import ChartFunds from "@/components/charts/ChartFunds.js";
 import ChartHire from "@/components/charts/ChartHire.js";
 import ChartWomen from "@/components/charts/ChartWomen.js";
 import ChartCA from "@/components/charts/ChartCA.js";
+import AnimatedNumber from "animated-number-vue";
 
 import AdminActorsManage from "@/components/admin/AdminActorsManage.vue";
 import AdminRegister from "@/components/admin/AdminBuffersRegister.vue";
 import AdminUpdate from "@/components/admin/AdminUpdate.vue";
 import AdminDelete from "@/components/admin/AdminDelete.vue";
+import AdminGestion from "@/components/admin/AdminGestion.vue";
 import AdminExcel from "@/components/admin/AdminExcel.vue";
+
 export default {
   components: {
     Header,
@@ -102,6 +178,8 @@ export default {
     AdminUpdate,
     AdminDelete,
     AdminExcel,
+    AnimatedNumber,
+    AdminGestion,
   },
   name: "Admin",
   inject: ["baseUrl"],
@@ -124,63 +202,70 @@ export default {
       totalRevenuesHistoric: [],
       totalActorsHistoric: [],
       date: [],
+
       // Metrics
       metrics: [],
       totalFundsMetric: 0,
-      totalActorsMetric: 0,
+      totalStartupMetric: 0,
       totalJobsMetric: 0,
       totalEmployeesMetric: 0,
       totalWomenMetric: 0,
       totalMenMetric: 0,
+      totalRevenuesMetric: 0,
 
       //!TABLE BUFFERS
       buffers: [],
       deleteBuffer: [],
       registerBuffer: [],
+
+      mynumber: "",
     };
   },
-  mounted() {
+
+  async created() {
     this.getBuffer();
 
-    this.axios.get(this.baseUrl + "api/admin/GET/historic").then((response) => {
-      for (const i of response.data.body.historic) {
-        this.arrayHistoric.push(response.data.body.historic);
-        //console.log(response.data.body.historic);
-        var monthNames = [
-          "Janvier",
-          "Février",
-          "Mars",
-          "Avril",
-          "Mai",
-          "Juin",
-          "Juillet",
-          "Août",
-          "Septembre",
-          "Octobre",
-          "Novembre",
-          "Décembre",
-        ];
-        var newDate = new Date(Date.parse(i.created_at));
-        var formattedDate = monthNames[newDate.getMonth()];
-        this.date.push(formattedDate);
-        this.totalFundsHistoric.push(i.total_funds);
-        this.totalJobsHistoric.push(i.total_jobs_available);
-        this.totalRevenuesHistoric.push(i.total_revenues);
-        this.totalActorsHistoric.push(i.total_actors);
-        this.totalWomenHistoric.push(i.total_women_number);
-        this.totalEmployeesHistoric.push(i.total_employees_number);
-        this.totalMenHistoric.push(
-          i.total_employees_number - i.total_women_number
-        );
-      }
-      this.fillData();
-    });
+    await this.axios
+      .get(this.baseUrl + "api/admin/GET/historic")
+      .then((response) => {
+        for (const i of response.data.body.historic) {
+          this.arrayHistoric.push(response.data.body.historic);
+          var monthNames = [
+            "Janvier",
+            "Février",
+            "Mars",
+            "Avril",
+            "Mai",
+            "Juin",
+            "Juillet",
+            "Août",
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Décembre",
+          ];
+          var newDate = new Date(Date.parse(i.created_at));
+          var formattedDate = monthNames[newDate.getMonth()];
+          this.date.push(formattedDate);
+          this.totalFundsHistoric.push(i.total_funds);
+          this.totalJobsHistoric.push(i.total_jobs_available);
+          this.totalRevenuesHistoric.push(i.total_revenues);
+          this.totalActorsHistoric.push(i.total_actors);
+          this.totalWomenHistoric.push(i.total_women_number);
+          this.totalEmployeesHistoric.push(i.total_employees_number);
+          this.totalMenHistoric.push(
+            i.total_employees_number - i.total_women_number
+          );
+        }
+        this.fillData();
+      });
 
     this.axios.get(this.baseUrl + "api/GET/metric").then((response) => {
-      //console.log(response.data.body);
+      console.log(response.data.body);
       this.metrics.push(response.data.body);
       this.totalFundsMetric = response.data.body.funds_total;
-      this.totalActorsMetric = response.data.body.start_up_total;
+      this.totalRevenuesMetric = response.data.body.revenues_total;
+      this.totalStartupMetric = response.data.body.start_up_total;
       this.totalJobsMetric = response.data.body.jobs_number_total;
       this.totalEmployeesMetric = response.data.body.employees_number_total;
       this.totalWomenMetric = response.data.body.women_number_total;
@@ -236,7 +321,7 @@ export default {
             borderColor: "#e52345", //la ligne
             borderWidth: 2, //épaisseur de la ligne
             pointBorderColor: "#e52345", //points sur la ligne
-            tension: 0.1, //courbure de la ligne
+            tension: 0.6, //courbure de la ligne
             data: this.totalActorsHistoric, //les data
           },
         ],
@@ -295,7 +380,7 @@ export default {
             pointsBackgroundColor: "white",
             borderWidth: 2,
             pointBorderColor: "#e52345",
-            tension: 0.1,
+            tension: 0.6,
             data: this.totalRevenuesHistoric,
           },
         ],
@@ -357,6 +442,35 @@ $BgWhite: #f6f5f8;
   #chart {
     display: flex;
     justify-content: space-evenly;
+  }
+  .metrics-admin {
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(226, 226, 226);
+    .bloc-metric-admin {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 17%;
+      height: 200px;
+
+      p {
+        margin: 0;
+        font-size: 25px;
+      }
+      .numberMetric {
+        font-size: 40px;
+        font-weight: 700px;
+      }
+      .textMetric {
+        color: $secondary;
+        font-size: 20px;
+        font-weight: 700px;
+        letter-spacing: 1px;
+      }
+    }
   }
 }
 

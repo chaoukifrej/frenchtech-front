@@ -1,12 +1,22 @@
 <template>
-  <div id="app">
+  <div id="home">
     <Header />
-
+    <MetricsHome />
     <div class="mainContainer">
       <!-- Carte Taille et Modif -->
-      <l-map class="map" :zoom="zoom" :center="center">
+      <l-map
+        class="map"
+        :zoom="zoom"
+        :center="center"
+        :options="{ zoomControl: false }"
+      >
         <!-- Rappel url openstreetmap -->
         <l-tile-layer :url="url"></l-tile-layer>
+        <l-control-zoom position="bottomright"></l-control-zoom>
+        <l-geo-json
+          :optionsStyle="geoJsonStyle"
+          :geojson="geojson"
+        ></l-geo-json>
         <!-- Marqueur Carte-->
         <l-marker
           v-for="elem in actors"
@@ -15,7 +25,13 @@
         >
           <l-tooltip>{{ elem.name }}</l-tooltip>
           <l-icon>
-            <img class="markerPin" src="img/pin-point.png" />
+            <!-- <img class="markerPin" src="img/pin-point.png" /> -->
+            <b-icon
+              class="rounded-circle bg-danger p-1"
+              icon="circle-fill"
+              variant="light"
+              animation="throb"
+            ></b-icon>
           </l-icon>
         </l-marker>
       </l-map>
@@ -31,12 +47,23 @@
 
 <script>
 /* Importation components */
-import { LMap, LTileLayer, LMarker, LTooltip, LIcon } from "vue2-leaflet";
+import {
+  LMap,
+  LTileLayer,
+  LMarker,
+  LTooltip,
+  LIcon,
+  LGeoJson,
+  LControlZoom,
+} from "vue2-leaflet";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
+
 // Import header et CardInfo
 import Header from "@/components/Header.vue";
 import CardInfo from "@/components/CardInfo.vue";
+//Metriques
+import MetricsHome from "@/components/MetricsHome.vue";
 
 export default {
   name: "App",
@@ -47,24 +74,38 @@ export default {
     LMarker,
     LTooltip,
     LIcon,
+    LGeoJson,
+    LControlZoom,
     Header,
     CardInfo,
+    MetricsHome,
   },
   data() {
     return {
       /* url Carte */
-      url:
-        "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png",
+      url: "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png",
 
       center: [43.70496267989356, 7.271699366104521],
       /* Zoom de la carte*/
       zoom: 11,
 
+      //GeoZone
+      geojson: null,
+      geoJsonStyle: {
+        color: "rgba(0, 0, 0, 0.3)",
+        weight: 1,
+      },
       /* Centrage Coordonnées*/
       actors: [],
     };
   },
 
+  async created() {
+    const response = await fetch(
+      "https://rawgit.com/gregoiredavid/france-geojson/master/departements/06-alpes-maritimes/departement-06-alpes-maritimes.geojson"
+    );
+    this.geojson = await response.json();
+  },
   mounted() {
     /* mounted pour recuperer les infos des Actors depuis la BDD */
     this.axios
@@ -75,7 +116,7 @@ export default {
         for (const elem of response.data.body.actors) {
           this.actors.push(elem);
         }
-        console.log(this.actors);
+        //console.log(this.actors);
       });
   },
 
@@ -93,34 +134,48 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+#home {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
 
-  .mainContainer {
-    display: flex;
+.mainContainer {
+  display: flex;
+  height: calc(100vh - 80px);
+  margin: 0;
+
+  .map {
     height: 100%;
-    margin: 0;
-
-    .map {
-      height: calc(100vh - 80px);
-      width: 70%;
-      .markerPin {
-        height: 22px;
-        width: 22px;
-      }
+    width: 65%;
+    border-radius: 0 5px 0 0;
+    .markerPin {
+      height: 22px;
+      width: 22px;
     }
+  }
 
-    .blocCards {
-      height: calc(100vh - 80px);
-      width: 30%;
-      background-color: $BgWhite;
-      overflow-y: auto;
-      overflow-x: hidden;
-      margin: 0;
-
-      .displayCards {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+  .blocCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
+    width: 35%;
+    background-color: $BgWhite;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 100px 0 0;
+    .displayCards {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
     }
   }
 }
