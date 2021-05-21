@@ -126,19 +126,24 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 #home {
-  max-height: 100vh;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
 .mainContainer {
   display: flex;
-  height: 100%;
+  height: calc(100vh - 80px);
   margin: 0;
 
   .map {
-    height: calc(100vh - 120px);
+    height: 100%;
     width: 65%;
     border-radius: 0 5px 0 0;
     .markerPin {
@@ -151,7 +156,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: calc(100vh - 120px);
+    height: 100%;
     width: 35%;
     background-color: $BgWhite;
     overflow-y: auto;

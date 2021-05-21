@@ -148,6 +148,13 @@ $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
 
+#appMetric {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
 .metrics {
   height: 200px;
   color: white;
