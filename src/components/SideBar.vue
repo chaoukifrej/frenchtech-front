@@ -15,32 +15,50 @@
       >
         <div class="header">
           <h4>{{ i.name }}</h4>
-          <h6>{{ i.category }}/</h6>
-          <h6>/{{ i.associations }}</h6>
+          <div>
+            <p>{{ i.category }}</p>
+            <p>{{ i.associations }}</p>
+          </div>
         </div>
         <div class="img">
           <img :src="i.logo" />
         </div>
-        <p>{{ i.description }}</p>
-        <div class="info">
-          <div class="design-info">
-            <div>
-              <p>{{ i.website }}</p>
+        <div class="infos">
+          <!--INFOS-->
+          <p>{{ i.description }}</p>
+          <!-- // -->
+          <div class="infos2">
+            <div class="line-info">
+              <b-icon class="info-icon m-1 " icon="globe" scale="1"></b-icon>
+              <div class="info-text">
+                <p>{{ i.website }}</p>
+              </div>
+            </div>
+            <div class="line-info">
+              <b-icon class="info-icon m-1" icon="telephone" scale="1"></b-icon>
+              <div class="info-text">
+                <p>{{ i.phone }}</p>
+              </div>
+            </div>
+            <div class="line-info">
+              <b-icon class="info-icon m-1" icon="envelope" scale="1"></b-icon>
+              <div class="info-text">
+                <p>{{ i.email }}</p>
+              </div>
+            </div>
+            <div class="line-info">
+              <b-icon class="info-icon m-1" icon="geo-alt" scale="1"></b-icon>
+              <div class="info-text">
+                <p>{{ i.adress }}</p>
+              </div>
             </div>
           </div>
-          <div class="design-info">
-            <div>
-              <p>{{ i.phone }}</p>
-            </div>
-          </div>
-          <div class="design-info">
-            <div>
-              <p>{{ i.email }}</p>
-            </div>
-          </div>
-          <div></div>
-          <div>
-            <p>{{ i.adress }}</p>
+
+          <div class="socials">
+            <b-icon icon="linkedin" scale="1"></b-icon>
+            <b-icon icon="facebook" scale="1"></b-icon>
+            <b-icon icon="twitter" scale="1"></b-icon>
+            <b-icon icon="instagram" scale="1"></b-icon>
           </div>
         </div>
       </b-sidebar>
@@ -50,10 +68,15 @@
 </template>
 
 <script>
+import { BIcon } from "bootstrap-vue";
+
 export default {
   name: "SideBar",
   inject: ["baseUrl"],
   props: ["i"],
+  components: {
+    BIcon,
+  },
 
   data: () => ({
     dataTab: [],
@@ -83,51 +106,38 @@ $BgWhite: #f6f5f8;
     }
   }
 
-  b-sidebar {
+  .sideBar {
     .header {
-      padding: 0;
-      justify-content: center;
-
-      h4 {
-        margin-right: 20px;
-      }
-      h6 {
-        color: $secondary;
-      }
-    }
-
-    .img {
-      width: 200px;
-      width: 100%;
-      text-align: center;
-
-      img {
+      margin-left: 20px;
+      color: $primary;
+      background-color: none;
+      p {
+        padding: 0;
         margin: 0;
-        width: 200px;
       }
     }
-
-    .b-sidebar-body {
-      padding: 20px;
+    .img {
+      text-align: center;
+      img {
+        width: 20rem;
+      }
     }
-
-    .info {
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-
-      .design-info {
+    .infos {
+      margin: 50px 40px;
+      .infos2 {
+        margin: 50px 0 0 30px;
+      }
+      .line-info {
         display: flex;
-
-        div {
-          padding-left: 10px;
-          align-items: center;
-
-          p {
-            margin: 0;
-          }
-        }
+        flex-direction: row;
       }
+    }
+
+    .socials {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      margin: 2rem 4rem;
     }
   }
 }
