@@ -43,11 +43,16 @@ $BgWhite: #f6f5f8;
   flex-direction: column;
   width: 15rem;
   height: 12rem;
-  border-radius: 4px;
+  border-radius: 3px;
   padding: 10px;
-  margin: 8px;
+  margin: 6px;
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  transition: 0.2s;
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.5);
+  }
   .card-body {
     h3 {
       font-size: 17px;

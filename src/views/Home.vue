@@ -26,12 +26,12 @@
         >
           <l-tooltip>{{ elem.name }}</l-tooltip>
           <l-icon>
-            <!-- <img class="markerPin" src="img/pin-point.png" /> -->
             <b-icon
               class="rounded-circle bg-danger p-1"
               icon="circle-fill"
               variant="light"
               animation="throb"
+              scale="1.5"
             ></b-icon>
           </l-icon>
         </l-marker>
@@ -163,7 +163,6 @@ export default {
   methods: {
     sayHello: function(id) {
       this.$root.$emit("bv::toggle::collapse", "sideBar" + id);
-      console.log("ok");
     },
   },
 };
@@ -198,11 +197,6 @@ body {
   .map {
     height: 100%;
     width: 100%;
-    border-radius: 0 5px 0 0;
-    .markerPin {
-      height: 22px;
-      width: 22px;
-    }
   }
 
   .blocCards {
