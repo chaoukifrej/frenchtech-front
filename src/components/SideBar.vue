@@ -6,59 +6,72 @@
       <b-button class="stretched-link" v-b-toggle="'sideBar' + i.id"
         >plus d'info</b-button
       >
-      <b-sidebar
-        class="sideBar"
-        width="35%"
-        :id="'sideBar' + i.id"
-        right
-        shadow
-      >
-        <div class="header">
-          <h4>{{ i.name }}</h4>
-          <div>
-            <p>{{ i.category }}</p>
-            <p>{{ i.associations }}</p>
-          </div>
-        </div>
-        <div class="img">
-          <img :src="i.logo" />
-        </div>
-        <div class="infos">
-          <!--INFOS-->
-          <p>{{ i.description }}</p>
-          <!-- // -->
-          <div class="infos2">
-            <div class="line-info">
-              <b-icon class="info-icon m-1 " icon="globe" scale="1"></b-icon>
-              <div class="info-text">
-                <p>{{ i.website }}</p>
-              </div>
-            </div>
-            <div class="line-info">
-              <b-icon class="info-icon m-1" icon="telephone" scale="1"></b-icon>
-              <div class="info-text">
-                <p>{{ i.phone }}</p>
-              </div>
-            </div>
-            <div class="line-info">
-              <b-icon class="info-icon m-1" icon="envelope" scale="1"></b-icon>
-              <div class="info-text">
-                <p>{{ i.email }}</p>
-              </div>
-            </div>
-            <div class="line-info">
-              <b-icon class="info-icon m-1" icon="geo-alt" scale="1"></b-icon>
-              <div class="info-text">
-                <p>{{ i.adress }}</p>
-              </div>
+      <b-sidebar width="35%" :id="'sideBar' + i.id" right shadow>
+        <div class="sideBar">
+          <div class="header">
+            <h4>{{ i.name }}</h4>
+            <div>
+              <p class="cat">{{ i.category }}</p>
+              <p class="asso">// {{ i.associations }}</p>
             </div>
           </div>
+          <div class="img">
+            <img :src="i.logo" />
+          </div>
+          <div class="infos">
+            <!--INFOS-->
+            <p>{{ i.description }}</p>
+            <!-- // -->
+            <div class="infos2">
+              <div class="line-info">
+                <b-icon
+                  class="info-icon m-1 mx-3"
+                  icon="globe"
+                  scale="1"
+                ></b-icon>
+                <div class="info-text">
+                  <p>{{ i.website }}</p>
+                </div>
+              </div>
+              <div class="line-info">
+                <b-icon
+                  class="info-icon m-1 mx-3"
+                  icon="telephone"
+                  scale="1"
+                ></b-icon>
+                <div class="info-text">
+                  <p>{{ i.phone }}</p>
+                </div>
+              </div>
+              <div class="line-info">
+                <b-icon
+                  class="info-icon m-1 mx-3"
+                  icon="envelope"
+                  scale="1"
+                ></b-icon>
+                <div class="info-text">
+                  <p>{{ i.email }}</p>
+                </div>
+              </div>
+              <div class="line-info">
+                <b-icon
+                  class="info-icon m-1 mx-3"
+                  icon="geo-alt"
+                  scale="1"
+                ></b-icon>
+                <div class="info-text">
+                  <p>{{ i.adress }}</p>
+                  <p>{{ i.postal_code }} {{ i.city }}</p>
+                </div>
+              </div>
+            </div>
 
-          <div class="socials">
-            <b-icon icon="linkedin" scale="1"></b-icon>
-            <b-icon icon="facebook" scale="1"></b-icon>
-            <b-icon icon="twitter" scale="1"></b-icon>
-            <b-icon icon="instagram" scale="1"></b-icon>
+            <div class="socials">
+              <b-icon icon="linkedin" scale="1"></b-icon>
+              <b-icon icon="facebook" scale="1"></b-icon>
+              <b-icon icon="twitter" scale="1"></b-icon>
+              <b-icon icon="instagram" scale="1"></b-icon>
+            </div>
           </div>
         </div>
       </b-sidebar>
@@ -92,6 +105,10 @@ $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
 
+.sideBar {
+  background-color: white;
+}
+
 .mainContainer {
   display: flex;
 
@@ -108,24 +125,35 @@ $BgWhite: #f6f5f8;
 
   .sideBar {
     .header {
-      margin-left: 20px;
+      margin: 20px 10px 20px 10px;
       color: $primary;
-      background-color: none;
-      p {
+      background-color: white;
+      .cat {
         padding: 0;
         margin: 0;
+        color: $secondary;
+        font-weight: 300;
+      }
+      .asso {
+        padding: 0;
+        margin: 0;
+        color: $secondary;
+        font-weight: 500;
       }
     }
     .img {
+      padding-top: 10px;
       text-align: center;
       img {
-        width: 20rem;
+        width: auto;
+        height: 8rem;
       }
     }
     .infos {
+      color: $primary;
       margin: 50px 40px;
       .infos2 {
-        margin: 50px 0 0 30px;
+        margin: 50px 0 0 15%;
       }
       .line-info {
         display: flex;
@@ -137,7 +165,8 @@ $BgWhite: #f6f5f8;
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
-      margin: 2rem 4rem;
+      padding-bottom: 20px;
+      margin: 2rem 15% 0 15%;
     }
   }
 }
