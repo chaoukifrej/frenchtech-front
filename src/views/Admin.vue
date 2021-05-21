@@ -183,6 +183,7 @@ export default {
   data() {
     return {
       //!CHARTS
+
       datastartup: null,
       loaded: false,
       datawomen: null,
@@ -338,6 +339,14 @@ export default {
               },
             ],
           },
+          plugins: {
+            legend: {
+              display: false,
+              labels: {
+                fontSize: 0,
+              },
+            },
+          },
         }, //ferme options
       }; // ferme le chart
       this.datafunds = {
@@ -429,6 +438,7 @@ $BgWhite: #f6f5f8;
   #chart {
     display: flex;
     justify-content: space-evenly;
+    text-align: center;
   }
   .metrics-admin {
     height: 200px;

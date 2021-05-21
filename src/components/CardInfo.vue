@@ -50,13 +50,13 @@ $BgWhite: #f6f5f8;
 
   .card-body {
     h3 {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
       color: $primary;
     }
 
     h5 {
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 300;
       color: $secondary;
       margin-bottom: 10px;
@@ -74,7 +74,7 @@ $BgWhite: #f6f5f8;
   }
 
   .logo {
-    margin: 10px;
+    margin: 14px 10px 10px 8px;
     text-align: center;
     .img-logo {
       margin: 0;
