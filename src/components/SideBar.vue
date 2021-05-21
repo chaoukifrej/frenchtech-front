@@ -24,26 +24,21 @@
         <p>{{ i.description }}</p>
         <div class="info">
           <div class="design-info">
-            <font-awesome-icon icon="globe" />
             <div>
               <p>{{ i.website }}</p>
             </div>
           </div>
           <div class="design-info">
-            <font-awesome-icon icon="phone" />
             <div>
               <p>{{ i.phone }}</p>
             </div>
           </div>
           <div class="design-info">
-            <font-awesome-icon icon="envelope" />
             <div>
               <p>{{ i.email }}</p>
             </div>
           </div>
-          <div>
-            <font-awesome-icon icon="map-marker-alt" />
-          </div>
+          <div></div>
           <div>
             <p>{{ i.adress }}</p>
           </div>

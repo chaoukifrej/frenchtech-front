@@ -328,11 +328,15 @@ export default {
   /* Permet de regrouper les differents element lié a la position dans la variable adress */
   watch: {
     streetName: function() {
-      this.adress = this.streetNumber + " " + this.streetName;
+      this.RegistreMe.adress =
+        this.RegistreMe.streetNumber + " " + this.RegistreMe.streetName;
+      console.log(this.RegistreMe.adress);
     },
 
     streetNumber: function() {
-      this.adress = this.streetNumber + " " + this.streetName;
+      this.RegistreMe.adress =
+        this.RegistreMe.streetNumber + " " + this.RegistreMe.streetName;
+      console.log(this.RegistreMe.adress);
     },
   },
 
@@ -342,15 +346,15 @@ export default {
 
       this.axios
         .get(
-          `https://api-adresse.data.gouv.fr/search/?q=${this.streetNumber}+${this.streetName}+${this.city}+${this.postal_code}%22`
+          `https://api-adresse.data.gouv.fr/search/?q=${this.RegistreMe.streetNumber}+${this.RegistreMe.streetName}+${this.RegistreMe.city}+${this.RegistreMe.postal_code}%22`
         )
 
         .then((response) => {
-          this.longitude = response.data.features[0].properties.x;
-          this.latitude = response.data.features[0].properties.y;
+          this.RegistreMe.longitude = response.data.features[0].properties.x;
+          this.RegistreMe.latitude = response.data.features[0].properties.y;
         });
 
-      console.log(this.longitude);
+      console.log(this.RegistreMe.longitude);
     },
 
     register() {
@@ -358,28 +362,28 @@ export default {
         .post(this.baseUrl + "api/POST/register", {
           /* body de la requete */
 
-          name: this.name,
-          email: this.email,
-          logo: this.logo,
-          adress: this.adress,
-          postal_code: this.postal_code,
-          city: this.city,
-          longitude: this.longitude,
-          latitude: this.latitude,
-          phone: this.phone,
-          category: this.category,
-          associations: this.associations,
-          description: this.description,
-          facebook: this.facebook,
-          twitter: this.twitter,
-          linkedin: this.linkedin,
-          website: this.website,
-          activity_area: this.activity_area,
-          funds: this.funds,
-          employees_number: this.employees_number,
-          jobs_available_number: this.employees_number,
-          women_number: this.women_number,
-          revenues: this.revenues,
+          name: this.RegistreMe.name,
+          email: this.RegistreMe.email,
+          logo: this.RegistreMe.logo,
+          adress: this.RegistreMe.adress,
+          postal_code: this.RegistreMe.postal_code,
+          city: this.RegistreMe.city,
+          longitude: this.RegistreMe.longitude,
+          latitude: this.RegistreMe.latitude,
+          phone: this.RegistreMe.phone,
+          category: this.RegistreMe.category,
+          associations: this.RegistreMe.associations,
+          description: this.RegistreMe.description,
+          facebook: this.RegistreMe.facebook,
+          twitter: this.RegistreMe.twitter,
+          linkedin: this.RegistreMe.linkedin,
+          website: this.RegistreMe.website,
+          activity_area: this.RegistreMe.activity_area,
+          funds: this.RegistreMe.funds,
+          employees_number: this.RegistreMe.employees_number,
+          jobs_available_number: this.RegistreMe.employees_number,
+          women_number: this.RegistreMe.women_number,
+          revenues: this.RegistreMe.revenues,
         })
 
         .then((response) => console.log(response));
@@ -390,7 +394,7 @@ export default {
     addLogo(e) {
       const reader = new FileReader();
       reader.onload = (readerEvent) => {
-        this.logo = readerEvent.target.result;
+        this.RegistreMe.logo = readerEvent.target.result;
       };
       if (e.target.files[0].size / 1024 / 1024 > 3) {
         console.log("image trop grande");

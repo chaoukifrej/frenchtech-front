@@ -2,7 +2,7 @@
   <div id="app">
     <Header />
     <b-navbar toggleable>
-      <b-collapse visible id="navbar-toggle-collapse" is-nav>
+      <b-collapse id="navbar-toggle-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <div class="metrics">
             <div class="bloc-p">
@@ -32,7 +32,6 @@
             <div class="bloc-v">
               <div>
                 <p class="numberMetric">50 000</p>
-                <v-number v-model="someNumber"></v-number>
               </div>
               <p class="textMetric">CHIFFRE D'AFFAIRE</p>
             </div>
@@ -40,7 +39,6 @@
         </b-navbar-nav>
       </b-collapse>
 
-      <!-- <b-navbar-brand #default="{ expanded }" v-if="expanded" href="#">Afficher les métriques</b-navbar-brand> -->
       <b-navbar-brand>Masquer les métriques</b-navbar-brand>
 
       <b-navbar-toggle target="navbar-toggle-collapse">
@@ -57,7 +55,6 @@
 // Import header et footer
 
 import Header from "@/components/Header.vue";
-import { VNumber } from "@maxflex/v-number";
 
 export default {
   name: "Canvas",
@@ -65,7 +62,6 @@ export default {
 
   components: {
     Header,
-    VNumber,
   },
   data: () => ({
     metrics: [],
@@ -75,13 +71,9 @@ export default {
     totalEmployeesMetric: 0,
     totalWomenMetric: 0,
     totalMenMetric: 0,
-
-    someNumber: 0,
-    intervalSpeed: 2000,
-    interval: 10,
   }),
 
-  computed: {
+  /* computed: {
     totalFundsMetricComputed: {
       get: function() {
         return this.totalFundsMetric;
@@ -101,7 +93,7 @@ export default {
         }
       },
     },
-  },
+  },*/
   mounted() {
     this.axios.get(this.baseUrl + "api/GET/metric").then((response) => {
       console.log(response.data.body);
@@ -115,8 +107,6 @@ export default {
         response.data.body.employees_number_total -
         response.data.body.women_number_total;
     });
-
-    this.someNumber = 5000;
   },
 
   methods: {},
