@@ -409,7 +409,6 @@ export default {
         },
       })
       .then((response) => {
-        console.log(response.data.body.actor);
         this.actualActor = response.data.body.actor;
         this.name = response.data.body.actor.name;
         this.email = response.data.body.actor.email;
