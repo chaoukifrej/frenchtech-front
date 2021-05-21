@@ -145,7 +145,8 @@ $BgWhite: #f6f5f8;
       padding-top: 10px;
       text-align: center;
       img {
-        width: 18rem;
+        width: auto;
+        height: 8rem;
       }
     }
     .infos {
