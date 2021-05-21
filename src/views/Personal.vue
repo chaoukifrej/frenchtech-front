@@ -486,7 +486,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 h1 {
   margin-top: 10px;
   text-align: center;

@@ -1,10 +1,10 @@
 <template>
-  <div class="app">
+  <div class="CardComponent">
     <div class="card" style="width: 15rem;">
       <div class="card-body">
         <h3 class="card-title">{{ i.name }}</h3>
         <h5>{{ i.associations }}</h5>
-        <h6>{{i.website}}</h6>
+        <h6>{{ i.website }}</h6>
         <SideBar :i="i" />
       </div>
       <div class="logo">
