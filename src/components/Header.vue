@@ -22,7 +22,11 @@
           Administration</router-link
         >
         <router-link
-          v-show="isAdmin.value == false && isConnected.value"
+          v-show="
+            isAdmin.value == false &&
+              isConnected.value &&
+              $route.name != 'Personal'
+          "
           to="/Personal"
         >
           <b-icon class="mx-1" icon="person-circle"></b-icon>Mon
