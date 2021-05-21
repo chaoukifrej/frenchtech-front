@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { BIcon, BIconArrowUp, BIconArrowDown } from "bootstrap-vue";
+import { BIcon } from "bootstrap-vue";
 
 export default {
   name: "SideBar",
@@ -76,8 +76,6 @@ export default {
   props: ["i"],
   components: {
     BIcon,
-    BIconArrowUp,
-    BIconArrowDown,
   },
 
   data: () => ({
@@ -125,9 +123,9 @@ $BgWhite: #f6f5f8;
       }
     }
     .infos {
-      margin: 30px 50px;
+      margin: 50px 40px;
       .infos2 {
-        margin-left: 30px;
+        margin: 50px 0 0 30px;
       }
       .line-info {
         display: flex;
@@ -139,7 +137,7 @@ $BgWhite: #f6f5f8;
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
-      margin: 4rem;
+      margin: 2rem 4rem;
     }
   }
 }

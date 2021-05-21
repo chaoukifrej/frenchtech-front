@@ -1,14 +1,14 @@
 <template>
   <div class="CardComponent">
-    <div class="card" style="width: 15rem;">
+    <div class="card">
+      <div class="logo">
+        <img class="img-logo" :src="i.logo" />
+      </div>
       <div class="card-body">
         <h3 class="card-title">{{ i.name }}</h3>
         <h5>{{ i.associations }}</h5>
         <h6>{{ i.website }}</h6>
         <SideBar :i="i" />
-      </div>
-      <div class="logo">
-        <img :src="i.logo" />
       </div>
     </div>
   </div>
@@ -40,49 +40,46 @@ $BgWhite: #f6f5f8;
 
 .card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  width: 15rem;
+  height: 12rem;
   border-radius: 4px;
-  height: 150px;
   padding: 10px;
   margin: 0px 5px 5px 5px;
   border: none;
 
-  h3 {
-    font-size: 16px;
-    margin-top: 10px;
-    font-weight: 700;
-    color: $primary;
-  }
+  .card-body {
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: $primary;
+    }
 
-  h5 {
-    font-size: 14px;
-    font-weight: 300;
-    color: $secondary;
-    margin-bottom: 10px;
-  }
+    h5 {
+      font-size: 14px;
+      font-weight: 300;
+      color: $secondary;
+      margin-bottom: 10px;
+    }
 
-  h6 {
-    font-size: 14px;
-    color: $primary;
-  }
+    h6 {
+      font-size: 14px;
+      color: $primary;
+    }
 
-  img {
-    width: 150px;
-    padding: 20px 10px 0 0;
-  }
-
-  a,
-  p {
-    font-size: 12px;
+    a,
+    p {
+      font-size: 12px;
+    }
   }
 
   .logo {
-    margin: 0;
-    float: right;
-    display: block;
-    img {
+    margin: 10px;
+    text-align: center;
+    .img-logo {
       margin: 0;
-      width: 50px;
+      width: auto;
+      height: 50px;
     }
   }
 
