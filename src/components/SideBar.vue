@@ -6,7 +6,18 @@
       <b-button class="stretched-link" v-b-toggle="'sideBar' + i.id"
         >plus d'info</b-button
       >
-      <b-sidebar width="35%" :id="'sideBar' + i.id" right shadow>
+      <b-sidebar
+        backdrop="true"
+        width="35%"
+        :id="'sideBar' + i.id"
+        right
+        shadow
+      >
+        <template #header="{ hide }">
+          <div>
+            <b-button variant="primary" block @click="hide">Close</b-button>
+          </div>
+        </template>
         <div class="sideBar">
           <div class="header">
             <h4>{{ i.name }}</h4>

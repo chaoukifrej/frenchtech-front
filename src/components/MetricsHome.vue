@@ -69,7 +69,8 @@
     >
       <template #default="{ expanded }">
         <b-icon
-          variant="outline-*"
+          scale="1.5"
+          variant="danger"
           v-if="expanded"
           icon="chevron-up"
           animation="cylon-vertical"
