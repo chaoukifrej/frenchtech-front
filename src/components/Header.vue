@@ -3,6 +3,9 @@
     <a href="/">
       <img class="logo" src="../../public/img/logo-blue.png" alt="logo" />
     </a>
+    <h5 v-show="isAdmin.value && $route.name == 'Admin'" class="HeaderTitle">
+      Espace administrateur
+    </h5>
     <div>
       <nav>
         <router-link v-show="$route.name != 'Home'" to="/"
@@ -22,7 +25,11 @@
           Administration</router-link
         >
         <router-link
-          v-show="isAdmin.value == false && isConnected.value"
+          v-show="
+            isAdmin.value == false &&
+              isConnected.value &&
+              $route.name != 'Personal'
+          "
           to="/Personal"
         >
           <b-icon class="mx-1" icon="person-circle"></b-icon>Mon
@@ -117,6 +124,11 @@ $BgWhite: #f6f5f8;
   padding: 12px 18px;
   background-color: $BgWhite;
   //box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
+  .HeaderTitle {
+    color: rgba(0, 0, 0, 0.541);
+    padding: 0;
+    margin: 0 0 0 10%;
+  }
   nav {
     li,
     a {
