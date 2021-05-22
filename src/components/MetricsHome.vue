@@ -16,6 +16,7 @@
                   :value="totalFundsMetric"
                   round="1"
                   :duration="1200"
+                  easing="easeInOutExpo"
                 />
                 <span class="euroSign">€</span>
               </p>
