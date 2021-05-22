@@ -16,7 +16,9 @@
                   :value="totalFundsMetric"
                   round="1"
                   :duration="1200"
+                  easing="easeInOutExpo"
                 />
+                <span class="euroSign">€</span>
               </p>
             </div>
             <p class="textMetric">LEVEE DE FOND</p>
@@ -53,6 +55,7 @@
                   round="1"
                   :duration="1200"
                 />
+                <span class="euroSign">€</span>
               </p>
             </div>
             <p class="textMetric">CHIFFRE D'AFFAIRE</p>
@@ -69,7 +72,8 @@
     >
       <template #default="{ expanded }">
         <b-icon
-          variant="outline-*"
+          scale="1.5"
+          variant="danger"
           v-if="expanded"
           icon="chevron-up"
           animation="cylon-vertical"
@@ -207,6 +211,12 @@ $BgWhite: #f6f5f8;
     font-weight: 700px;
     letter-spacing: 1px;
   }
+}
+
+.euroSign {
+  font-size: 1.5rem;
+  margin-left: 5px;
+  vertical-align: text-top;
 }
 
 #toggleBar {

@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="headerContainer">
     <a href="/">
       <img class="logo" src="../../public/img/logo-blue.png" alt="logo" />
     </a>
@@ -116,14 +116,15 @@ $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
 
-.header {
+.headerContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 80px;
   padding: 12px 18px;
   background-color: $BgWhite;
-  //box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
   .HeaderTitle {
     color: rgba(0, 0, 0, 0.541);
     padding: 0;
