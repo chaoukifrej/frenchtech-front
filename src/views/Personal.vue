@@ -23,7 +23,7 @@
           <div id="cLeft">
             <div class="infoContainer">
               <div class="infoName">
-                <p>Email</p>
+                <p><strong>Email</strong></p>
               </div>
               <div class="infoText">
                 <p>{{ actualActor.email }}</p>
@@ -31,7 +31,7 @@
             </div>
             <div class="infoContainer">
               <div class="infoName">
-                <p>Téléphone</p>
+                <p><strong>Téléphone </strong></p>
               </div>
               <div class="infoText">
                 <p>{{ actualActor.phone }}</p>
@@ -39,7 +39,7 @@
             </div>
             <div class="infoContainer">
               <div class="infoName">
-                <p>Adresse</p>
+                <p><strong>Adresse </strong></p>
               </div>
               <div class="infoText">
                 <p>{{ actualActor.adress }}</p>
@@ -49,7 +49,7 @@
           <div id="cRight">
             <div class="infoContainer">
               <div class="infoName">
-                <p>Catégorie</p>
+                <p><strong>Catégorie </strong></p>
               </div>
               <div class="infoText">
                 <p>{{ actualActor.category }}</p>
@@ -57,7 +57,7 @@
             </div>
             <div class="infoContainer">
               <div class="infoName">
-                <p>Site</p>
+                <p><strong>Site </strong></p>
               </div>
               <div class="infoText">
                 <p>{{ actualActor.website }}</p>
@@ -65,7 +65,7 @@
             </div>
             <div class="infoContainer">
               <div class="infoName">
-                <p>Sécteur d'activité</p>
+                <p><strong>Sécteur d'activité </strong></p>
               </div>
               <div class="infoText">
                 <p>{{ actualActor.activity_area }}</p>
@@ -75,12 +75,12 @@
         </div>
       </div>
 
-      <div id="privateInformations">
-        <div class="subtitle"></div>
-        <div class="container">
+      <div id="privateInformations" class="description">
+        <div class="subtitle"><h4></h4></div>
+        <div class="container containerDescription">
           <div class="infoContainer">
             <div class="infoName">
-              <p>Déscription</p>
+              <p><strong>Déscription </strong></p>
             </div>
             <div class="infoTextDesc">
               <p>{{ actualActor.description }}</p>
@@ -91,13 +91,13 @@
 
       <div id="privateInformations">
         <div class="subtitle">
-          <h4>INFORMATIONS PRIVÉES</h4>
+          <h4>INFORMATIONS<br />PRIVÉES</h4>
         </div>
         <div class="container">
           <div id="cLeft">
             <div class="infoContainer">
               <div class="infoName">
-                <p>Nombres d'employés</p>
+                <p><strong>Nombres d'employés </strong></p>
               </div>
               <div class="infoText">
                 <p>{{ actualActor.employees_number }}</p>
@@ -105,7 +105,7 @@
             </div>
             <div class="infoContainer">
               <div class="infoName">
-                <p>Nombres de postes</p>
+                <p><strong>Nombres de postes </strong></p>
               </div>
               <div class="infoText">
                 <p>{{ actualActor.jobs_available_number }}</p>
@@ -113,7 +113,7 @@
             </div>
             <div class="infoContainer">
               <div class="infoName">
-                <p>Revenues</p>
+                <p><strong>Revenues </strong></p>
               </div>
               <div class="infoText">
                 <p>{{ actualActor.revenues }}</p>
@@ -123,7 +123,7 @@
           <div id="cRight">
             <div class="infoContainer">
               <div class="infoName">
-                <p>Nombre de Femmes</p>
+                <p><strong>Nombre de Femmes </strong></p>
               </div>
               <div class="infoText">
                 <p>{{ actualActor.women_number }}</p>
@@ -131,7 +131,7 @@
             </div>
             <div class="infoContainer">
               <div class="infoName">
-                <p>Fond</p>
+                <p><strong>Fond</strong></p>
               </div>
               <div class="infoText">
                 <p>{{ actualActor.funds }}</p>
@@ -141,7 +141,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div id="btnModif">
       <b-button v-b-modal.modal-lg variant="primary"
         >Modifier mon profil</b-button
       >
@@ -575,16 +575,34 @@ h1 {
   text-align: center;
 }
 #personal {
-  width: 80%;
+  width: 90%;
   margin: auto;
 
   #primaryInformations {
+    margin-top: 50px;
+    margin-bottom: 50px;
     display: flex;
+    #title {
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 100px;
+    }
+
     #logo {
       width: 300px;
     }
     h4 {
       color: $secondary;
+    }
+  }
+
+  .description {
+    margin-bottom: 50px;
+    margin-top: 10px;
+    .containerDescription {
+      width: 900px;
     }
   }
 
@@ -595,16 +613,22 @@ h1 {
 
   #secondaryInformations,
   #privateInformations {
+    color: $primary;
     display: flex;
     .subtitle {
       width: 300px;
+      text-align: center;
+      h4 {
+        width: 300px;
+      }
     }
     .container {
       display: flex;
+      margin-left: 100px;
       .infoContainer {
         display: flex;
         .infoName {
-          width: 100px;
+          width: 150px;
         }
         .infoText {
           width: 300px;
@@ -634,5 +658,11 @@ h1 {
 #modal-personal {
   height: 90vh;
   overflow: scroll;
+}
+#btnModif {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 20px;
 }
 </style>
