@@ -40,7 +40,12 @@
     </b-row>
     <b-row class="secondRow">
       <h4 class="mt-5 mb-5">Import d'excel</h4>
-      <b-button block variant="info">Récuperer le template à remplir</b-button>
+      <b-button
+        block
+        variant="info"
+        :href="this.baseUrl + 'api/excel/actors/template'"
+        >Récuperer le template à remplir</b-button
+      >
       <b-button class="mt-5 mb-5" block variant="primary"
         ><input
           style="display:none"
