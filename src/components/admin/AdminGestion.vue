@@ -3,16 +3,6 @@
     <b-table primary-key="id" striped hover :items="admins" :fields="liste">
       <template #cell(actions)="data">
         <!-- ------------------------------
-          Update admin (Non opérationnel) 
-        -------------------------------- -->
-        <!-- ----------------->
-        <div>
-          <input v-model="admins.firstname" type="text" />
-          <button @click="manageAdmin(data.item.id)">test</button>
-        </div>
-        <!-- ---------------------->
-
-        <!-- ------------------------------
           Button Delete admin 
         -------------------------------- -->
         <b-button
@@ -24,6 +14,10 @@
         >
           Supprimer
         </b-button>
+        <b-form>
+          <input v-model="admins.firstname" type="text" />
+          <button></button>
+        </b-form>
       </template>
     </b-table>
 
@@ -57,18 +51,17 @@
           placeholder="E-mail"
           type="email"
         />
+        <b-button
+          pill
+          variant="outline-success"
+          size="sm"
+          class="m-2"
+          @click="createAdmin"
+        >
+          Créer un nouvel administrateur
+        </b-button>
       </b-modal>
     </div>
-
-    <b-button
-      pill
-      variant="outline-success"
-      size="sm"
-      class="m-2"
-      @click="createAdmin"
-    >
-      Créer un nouvel administrateur
-    </b-button>
   </div>
 </template>
 
@@ -79,6 +72,7 @@ export default {
 
   data() {
     return {
+      // Tableau d'affichage
       liste: [
         { key: "id", label: "id" },
         { key: "firstname", label: "Prénom" },
@@ -87,7 +81,16 @@ export default {
         { key: "actions", label: "Actions" },
       ],
 
+      // Tableau récupérations tous les admins
       admins: [],
+
+      updateAdmins: {
+        firstname: "",
+        lastname: "",
+        email: "",
+      },
+
+      // Data création nouvel admin
       newAdmin: {
         firstname: "",
         lastname: "",
@@ -139,7 +142,7 @@ export default {
     manageAdmin(id) {
       this.axios
         .put(this.baseUrl + "api/admin/PUT/admin/" + id, {
-          firstname: this.admins.firstname,
+          firstname: this.data.admins.firstname,
         })
         .then((response) => {
           console.log(response.status);
