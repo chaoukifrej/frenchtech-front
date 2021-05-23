@@ -726,8 +726,7 @@ h1 {
           width: 600px;
         }
       }
-      #cLeft {
-      }
+
       #cRight {
         margin-left: 25px;
       }
