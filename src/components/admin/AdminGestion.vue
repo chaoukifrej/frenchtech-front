@@ -7,18 +7,29 @@
         -------------------------------- -->
         <b-button
           pill
-          variant="secondary"
+          variant="danger"
           size="sm"
           class="m-2"
+          v-show="data.item.id != 1"
           @click="deleteAdmin(data.item.id)"
         >
           Supprimer
         </b-button>
 
+        <p v-show="data.item.id == 1">Non modifiable</p>
+
         <b-button
-          @click="$bvModal.show('modal-xs' + data.item.id)"
+          v-show="data.item.id != 1"
+          @click="
+            showModal(
+              data.item.id,
+              data.item.firstname,
+              data.item.lastname,
+              data.item.email
+            )
+          "
           pill
-          variant="secondary"
+          variant="warning"
           size="sm"
           class="m-2"
         >
@@ -29,7 +40,9 @@
           :id="'modal-xs' + data.item.id"
           size="xs"
           title="Extra Large Modal"
+          centered
           hide-footer
+          hide-header
         >
           <div>
             <b-form @submit="manageAdmin" v-if="show">
@@ -68,6 +81,7 @@
                 id="input-group-1"
                 label="Adresse E-mail:"
                 label-for="input-1"
+                class="mb-3"
               >
                 <b-form-input
                   id="input-1"
@@ -79,14 +93,12 @@
               </b-form-group>
 
               <span id="adminId" style="display:none">{{ data.item.id }}</span>
+              <b-button type="submit" variant="primary">Valider</b-button>
               <b-button
-                block
                 @click="$bvModal.hide('modal-xs' + data.item.id)"
-                type="submit"
-                variant="primary"
-                >Submit</b-button
+                variant="danger"
+                >Annuler</b-button
               >
-              <b-button type="reset" variant="danger">Reset</b-button>
             </b-form>
           </div>
         </b-modal>
@@ -183,6 +195,12 @@ export default {
     });
   },
   methods: {
+    showModal(id, f, l, e) {
+      this.updateAdmins.firstname = f;
+      this.updateAdmins.lastname = l;
+      this.updateAdmins.email = e;
+      this.$bvModal.show("modal-xs" + id);
+    },
     // . Suppression d'un Administrateur
     deleteAdmin(id) {
       this.axios
@@ -216,6 +234,7 @@ export default {
     manageAdmin(e) {
       e.preventDefault();
 
+      this.admins = [];
       let span = document.getElementById("adminId");
       let id = span.innerText;
 
@@ -229,7 +248,16 @@ export default {
         })
         .then((response) => {
           console.log(response.status);
-          this.$router.go();
+          this.axios
+            .get(this.baseUrl + "api/admin/GET/admins")
+            .then((response) => {
+              for (const elem of response.data.body.admins) {
+                this.admins.push(elem);
+              }
+              this.$bvModal.hide("modal-xs" + id);
+
+              // console.log(this.admins);
+            });
         });
     },
   },
