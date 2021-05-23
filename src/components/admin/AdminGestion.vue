@@ -14,10 +14,82 @@
         >
           Supprimer
         </b-button>
-        <b-form>
-          <input v-model="admins.firstname" type="text" />
-          <button></button>
-        </b-form>
+
+        <b-button
+          @click="$bvModal.show('modal-xs' + data.item.id)"
+          pill
+          variant="secondary"
+          size="sm"
+          class="m-2"
+        >
+          Modifier
+        </b-button>
+
+        <b-modal
+          :id="'modal-xs' + data.item.id"
+          size="xs"
+          title="Extra Large Modal"
+          hide-footer
+        >
+          <div>
+            <b-form @submit="manageAdmin" v-if="show">
+              <!-- Prénom -->
+              <b-form-group
+                id="input-group-1"
+                label="Votre prénom:"
+                label-for="input-1"
+              >
+                <b-form-input
+                  id="input-1"
+                  v-model="updateAdmins.firstname"
+                  type="text"
+                  placeholder="Prénom"
+                  required
+                ></b-form-input>
+              </b-form-group>
+
+              <!-- Nom -->
+              <b-form-group
+                id="input-group-1"
+                label="Votre Nom:"
+                label-for="input-1"
+              >
+                <b-form-input
+                  id="input-1"
+                  v-model="updateAdmins.lastname"
+                  type="text"
+                  placeholder="Nom"
+                  required
+                ></b-form-input>
+              </b-form-group>
+
+              <!-- Email -->
+              <b-form-group
+                id="input-group-1"
+                label="Adresse E-mail:"
+                label-for="input-1"
+              >
+                <b-form-input
+                  id="input-1"
+                  v-model="updateAdmins.email"
+                  type="email"
+                  placeholder="E-mail"
+                  required
+                ></b-form-input>
+              </b-form-group>
+
+              <span id="adminId" style="display:none">{{ data.item.id }}</span>
+              <b-button
+                block
+                @click="$bvModal.hide('modal-xs' + data.item.id)"
+                type="submit"
+                variant="primary"
+                >Submit</b-button
+              >
+              <b-button type="reset" variant="danger">Reset</b-button>
+            </b-form>
+          </div>
+        </b-modal>
       </template>
     </b-table>
 
@@ -84,12 +156,14 @@ export default {
       // Tableau récupérations tous les admins
       admins: [],
 
+      // Data Modification admin
       updateAdmins: {
         firstname: "",
         lastname: "",
         email: "",
+        id: "",
       },
-
+      show: true,
       // Data création nouvel admin
       newAdmin: {
         firstname: "",
@@ -139,13 +213,23 @@ export default {
         .then((response) => console.log(response));
     },
     // .Modification d'un Administrateur
-    manageAdmin(id) {
+    manageAdmin(e) {
+      e.preventDefault();
+
+      let span = document.getElementById("adminId");
+      let id = span.innerText;
+
+      console.log(id);
+
       this.axios
         .put(this.baseUrl + "api/admin/PUT/admin/" + id, {
-          firstname: this.data.admins.firstname,
+          firstname: this.updateAdmins.firstname,
+          lastname: this.updateAdmins.lastname,
+          email: this.updateAdmins.email,
         })
         .then((response) => {
           console.log(response.status);
+          this.$router.go();
         });
     },
   },
