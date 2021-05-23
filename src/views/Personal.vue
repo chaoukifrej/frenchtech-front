@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <img src="../../public/img/bandeau-perso.png" alt="" />
+    <img id="imgHeader" src="../../public/img/bandeau-perso.png" alt="header" />
 
     <div id="personal">
       <div id="primaryInformations">
@@ -65,7 +65,9 @@
             </div>
             <div class="infoContainer">
               <div class="infoName">
-                <p><strong>Sécteur d'activité </strong></p>
+                <p>
+                  <strong>Sécteur<br />d'activité </strong>
+                </p>
               </div>
               <div class="infoText">
                 <p>{{ actualActor.activity_area }}</p>
@@ -142,272 +144,287 @@
       </div>
     </div>
     <div id="btnModif">
-      <b-button v-b-modal.modal-lg variant="primary"
+      <b-button v-b-modal.modal-xl variant="primary"
         >Modifier mon profil</b-button
       >
 
-      <b-modal id="modal-lg" size="lg" title="Modification du profil"
+      <b-modal
+        id="modal-xl"
+        size="xl"
+        title="Modification du profil"
+        hide-footer
         ><div id="modal-personal" class="row g-3">
-          <div class="col-md-12">
-            <label class="form-label">Logo</label>
-            <input
-              type="file"
-              class="form-control"
-              id="inputLogo"
-              accept="image/png, image/jpeg"
-              ref="img"
-              @change="addLogo"
-            />
-          </div>
+          <b-form @submit="onSubmit" v-if="show">
+            <!-- LOGO -->
+            <b-form-group id="input-group-1" label="Logo" label-for="input-1">
+              <b-form-file
+                id="input-1"
+                @change="addLogo"
+                type="file"
+                accept="image/png, image/jpeg"
+                ref="img"
+                required
+              ></b-form-file>
+            </b-form-group>
 
-          <div class="col-md-6">
-            <label class="form-label">Nom de l'entreprise</label>
-            <input
-              v-model="name"
-              type="text"
-              class="form-control"
-              id="inputName"
-            />
-          </div>
-
-          <div class="col-md-3">
-            <label for="inputEmail" class="form-label">Email</label>
-            <input
-              v-model="email"
-              type="email"
-              class="form-control"
-              id="inputEmail"
-            />
-          </div>
-
-          <div class="col-3">
-            <label for="inputphone" class="form-label">Telephone</label>
-            <input
-              v-model="phone"
-              type="text"
-              class="form-control"
-              id="inputPhone"
-            />
-          </div>
-
-          <div class="col-2">
-            <label for="inputNumberStreet" class="form-label">Numéro</label>
-            <input
-              v-model="streetNumber"
-              type="text"
-              class="form-control"
-              id="inputPhone2"
-            />
-          </div>
-
-          <div class="col-5">
-            <label for="inputAdresse" class="form-label"
-              >Nom de rue/avenue/boulevard</label
+            <!-- NOM ENTREPRISE -->
+            <b-form-group
+              id="input-group-2"
+              label="Nom de l'entreprise"
+              label-for="input-2"
             >
-            <input
-              v-model="streetName"
-              type="text"
-              class="form-control"
-              id="inputAdresse"
-              placeholder="rue/avenue/boulevard..."
-            />
-          </div>
+              <b-form-input
+                id="input-2"
+                v-model="name"
+                type="text"
+                required
+              ></b-form-input>
+            </b-form-group>
 
-          <div class="col-3">
-            <label for="inputCity" class="form-label">Ville</label>
-            <input
-              v-model="city"
-              type="text"
-              class="form-control"
-              id="inputCity"
-            />
-          </div>
+            <!-- EMAIL -->
+            <b-form-group id="input-group-3" label="Email" label-for="input-3">
+              <b-form-input
+                id="input-3"
+                v-model="email"
+                type="email"
+                required
+              ></b-form-input>
+            </b-form-group>
 
-          <div class="col-2">
-            <label for="inputZip" class="form-label">Code Postale</label>
-            <input
-              v-model="postal_code"
-              type="text"
-              class="form-control"
-              id="inputZip"
-            />
-          </div>
+            <!-- PHONE -->
+            <b-form-group
+              id="input-group-4"
+              label="Telephone"
+              label-for="input-4"
+            >
+              <b-form-input
+                id="input-4"
+                v-model="phone"
+                required
+              ></b-form-input>
+            </b-form-group>
 
-          <div class="col-md-4">
-            <label for="inputFacebook" class="form-label">Facebook</label>
-            <input
-              v-model="facebook"
-              type="text"
-              class="form-control"
-              id="inputFacebook"
-            />
-          </div>
+            <!-- Number adress -->
+            <b-form-group id="input-group-5" label="Numéro" label-for="input-5">
+              <b-form-input
+                id="input-5"
+                v-model="streetNumber"
+                required
+              ></b-form-input>
+            </b-form-group>
 
-          <div class="col-md-4">
-            <label for="inputTwitter" class="form-label">Twitter</label>
-            <input
-              v-model="twitter"
-              type="text"
-              class="form-control"
-              id="inputInstagram"
-            />
-          </div>
+            <!-- ADRESS -->
+            <b-form-group
+              id="input-group-6"
+              label="Nom de rue/avenue/boulevard"
+              label-for="input-6"
+            >
+              <b-form-input
+                id="input-6"
+                v-model="streetName"
+                type="text"
+                required
+              ></b-form-input>
+            </b-form-group>
 
-          <div class="col-md-4">
-            <label for="inputLinkedin" class="form-label">Linkedin</label>
-            <input
-              v-model="linkedin"
-              type="text"
-              class="form-control"
-              id="inputLinkedin"
-            />
-          </div>
+            <!-- CITY -->
+            <b-form-group id="input-group-7" label="Ville" label-for="input-7">
+              <b-form-input
+                id="input-7"
+                v-model="city"
+                type="text"
+                required
+              ></b-form-input>
+            </b-form-group>
 
-          <div class="col-md-4">
-            <label for="inputCategory" class="form-label">Categories</label>
-            <select v-model="category" id="inputCategory" class="form-select">
-              <option selected>Choississez...</option>
-              <option value="startUp">Start-up</option>
-              <option value="association">Association</option>
-              <option value="organismeFinanceur">Organisme financeur</option>
-              <option value="organismeDeFormation"
-                >Organisme de formation</option
+            <!-- POSTAL CODE -->
+            <b-form-group
+              id="input-group-7"
+              label="Code postal"
+              label-for="input-7"
+            >
+              <b-form-input
+                id="input-7"
+                v-model="postal_code"
+                type="text"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <!-- FACEBOOK -->
+            <b-form-group
+              id="input-group-8"
+              label="Facebook"
+              label-for="input-8"
+            >
+              <b-form-input
+                id="input-8"
+                v-model="facebook"
+                type="text"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <!-- TWITTER -->
+            <b-form-group
+              id="input-group-9"
+              label="Twitter"
+              label-for="input-9"
+            >
+              <b-form-input
+                id="input-9"
+                v-model="twitter"
+                type="text"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <!-- LINKEDIN -->
+            <b-form-group
+              id="input-group-10"
+              label="Linkedin"
+              label-for="input-10"
+            >
+              <b-form-input
+                id="input-10"
+                v-model="linkedin"
+                type="text"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <!-- CATEGORY -->
+            <b-form-group
+              id="input-group-11"
+              label="Categorie"
+              label-for="input-11"
+            >
+              <b-form-select
+                id="input-11"
+                v-model="category"
+                :options="categorys"
+                required
+              ></b-form-select>
+            </b-form-group>
+
+            <!-- ASSOCIATIONS -->
+            <b-form-group
+              id="input-group-12"
+              label="Associations"
+              label-for="input-12"
+            >
+              <b-form-select
+                id="input-12"
+                v-model="associations"
+                :options="associationsL"
+                required
+              ></b-form-select>
+            </b-form-group>
+
+            <!-- ACTIVIT AREA -->
+            <b-form-group
+              id="input-group-13"
+              label="Secteurs d'activité"
+              label-for="input-13"
+            >
+              <b-form-select
+                id="input-13"
+                v-model="activity_area"
+                :options="activity_areaL"
+                required
+              ></b-form-select>
+            </b-form-group>
+
+            <!-- DESCRIPTION -->
+            <b-form-group
+              id="input-group-14"
+              label="Description breve de votre entreprise"
+              label-for="input-14"
+            >
+              <b-form-textarea
+                id="input-14"
+                v-model="description"
+                required
+              ></b-form-textarea>
+
+              <h4>Informations Relative a votre entreprise</h4>
+
+              <!-- FUNDS -->
+              <b-form-group
+                id="input-group-15"
+                label="Levé de fond (€)"
+                label-for="input-15"
               >
-              <option value="servicePublic">Service public</option>
-              <option value="tpePme">TPE/PME</option>
-              <option value="eti">Grande entreprises/Grand groupe/ETI</option>
-              <option value="poleDeCompetitivite">Pole de compétitivité</option>
-            </select>
-          </div>
+                <b-form-input
+                  id="input-15"
+                  v-model="funds"
+                  type="number"
+                  required
+                ></b-form-input>
+              </b-form-group>
+            </b-form-group>
 
-          <div class="col-md-4">
-            <label for="inputAssociation" class="form-label"
-              >Associations</label
+            <!-- SALARY NUMBER -->
+            <b-form-group
+              id="input-group-16"
+              label="Nombre de salarié"
+              label-for="input-16"
             >
-            <select
-              v-model="associations"
-              id="inputAssociation"
-              class="form-select"
+              <b-form-input
+                id="input-16"
+                v-model="employees_number"
+                type="number"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <!-- JOBS NUMBER -->
+            <b-form-group
+              id="input-group-17"
+              label="Nombre de post à pourvoir"
+              label-for="input-17"
             >
-              <option selected>Choississez...</option>
-              <option value="canneIsUp">Cannes Is Up</option>
-              <option value="clubGrasse">
-                Le club des entrepreneurs du pays de Grasse
-              </option>
-              <option value="NiceStartsUp">Nice Starts-up</option>
-              <option value="telecomValley">Telecom Valley</option>
-            </select>
-          </div>
+              <b-form-input
+                id="input-17"
+                v-model="jobs_available_number"
+                type="number"
+                required
+              ></b-form-input>
+            </b-form-group>
 
-          <div class="col-md-4">
-            <label for="inputSecteur" class="form-label"
-              >Secteurs d'activité</label
+            <!-- WOMENS NUMBER -->
+            <b-form-group
+              id="input-group-18"
+              label="Nombre de femmes"
+              label-for="input-18"
             >
-            <select
-              v-model="activity_area"
-              id="inputSecteur"
-              class="form-select"
+              <b-form-input
+                id="input-18"
+                v-model="women_number"
+                type="number"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <!--  -->
+            <b-form-group
+              id="input-group-19"
+              label="Chiffre d'affaire annuel total"
+              label-for="input-19"
             >
-              <option selected>Choississez...</option>
-              <option value="formation">Formation</option>
-              <option value="energie">Energie</option>
-              <option value="evenementiel">Evenementiel</option>
-              <option value="mode">Mode et textile</option>
-              <option value="industrie">Industrie</option>
-              <option value="recrutement">Recrutement</option>
-              <option value="Juridique">Juridique</option>
-              <option value="media">Médias</option>
-              <option value="produitsEtServicesWeb">
-                Produits et services web
-              </option>
-              <option value="energie">Développement logiciel</option>
-              <option value="sport">Sport</option>
-              <option value="telecom">Telecom</option>
-              <option value="Transports">Transports</option>
-              <option value="voyages">Voyages</option>
-              <option value="bienEtre">Bien-être</option>
-              <option value="finance">Finance</option>
-              <option value="administrationPublic"
-                >Administration Public</option
-              >
-            </select>
-          </div>
-
-          <div class="col-md-12">
-            <label for="inputLinkedin" class="form-label"
-              >Description breve de votre entreprise</label
-            >
-            <textarea
-              v-model="description"
-              type="text"
-              class="form-control"
-              id="inputLinkedin"
-            />
-          </div>
-
-          <h4>Informations Relative a votre entreprise</h4>
-
-          <div class="col-md-4">
-            <label for="inputFond" class="form-label">Levé de fond (€)</label>
-            <input
-              v-model="funds"
-              type="number"
-              class="form-control"
-              id="inputFond"
-            />
-          </div>
-
-          <div class="col-md-4">
-            <label for="inputSalarie" class="form-label"
-              >Nombre de salarié</label
-            >
-            <input
-              v-model="employees_number"
-              type="number"
-              class="form-control"
-              id="inputSalarie"
-            />
-          </div>
-
-          <div class="col-md-4">
-            <label for="inputPost" class="form-label"
-              >Nombre de post à pourvoir</label
-            >
-            <input
-              v-model="jobs_available_number"
-              type="number"
-              class="form-control"
-              id="inputPost"
-            />
-          </div>
-
-          <div class="col-md-4">
-            <label for="inputFemme" class="form-label">Nombre de femmes</label>
-            <input
-              v-model="women_number"
-              type="number"
-              class="form-control"
-              id="inputFemme"
-            />
-          </div>
-
-          <div class="col-md-4">
-            <label for="inputCa" class="form-label"
-              >Chiffre d'affaire annuel total
-            </label>
-            <input
-              v-model="revenues"
-              type="number"
-              class="form-control"
-              id="inputCa"
-            />
-          </div>
-
-          <div class="col-12" id="buttonSubmit">
-            <button type="submit" class="btn btn-primary">
-              Modifier
-            </button>
-          </div>
+              <b-form-input
+                id="input-19"
+                v-model="revenues"
+                type="number"
+                required
+              ></b-form-input>
+            </b-form-group>
+            <div class="col-12" id="buttonSubmit">
+              <button type="submit" class="btn btn-primary">
+                Modifier
+              </button>
+            </div>
+          </b-form>
         </div></b-modal
       >
     </div>
@@ -431,6 +448,45 @@ export default {
     Footer,
   },
   data: () => ({
+    show: true,
+    categorys: [
+      { text: "Choisissez une categorie", value: null },
+      "Start-up",
+      "Association",
+      "Organisme financeur",
+      "Organisme de formation",
+      "Service public",
+      "TPE/PME",
+      "Grande entreprises/Grand groupe/ETI",
+      "Pole de compétitivité",
+    ],
+    associationsL: [
+      { text: "Choisissez une associations", value: null },
+      "Cannes Is Up",
+      "Le club des entrepreneurs du pays de Grasse",
+      "Nice Starts-up",
+      "Telecom Valley",
+    ],
+    activity_areaL: [
+      { text: "Choisissez un secteur d'activité", value: null },
+      "Formation",
+      "Energie",
+      "Evenementiel",
+      "Mode et textile",
+      "Industrie",
+      "Juridique",
+      "Médias",
+      "Produits et services web",
+      "Développement logiciel",
+      "Sport",
+      "Telecom",
+      "Transports",
+      "Voyages",
+      "Bien-être",
+      "Finance",
+      "Administration Public",
+      "Evenementiel",
+    ],
     actualActor: "",
     logo: "",
     name: "",
@@ -512,39 +568,67 @@ export default {
   },
 
   methods: {
-    update() {
+    onSubmit(event) {
+      event.preventDefault();
+      // alert(JSON.stringify(this.form));
+
       /* recuperation de longitude et latitude */
       this.getPosition();
       /* requete post pour envoie de données dans la BDD */
 
       this.axios
-        .put(this.baseUrl + "api/GET/update", {
-          /* body de la requete */
+        .get(
+          this.baseUrl + "api/GET/update/demand",
+          {
+            headers: {
+              Authorization: "Bearer " + this.token.value,
+              "Content-Type": "application/json",
+            },
+          },
+          {
+            /* body de la requete */
 
-          name: this.name,
-          email: this.email,
-          logo: this.logo,
-          adress: this.adress,
-          postal_code: this.postal_code,
-          city: this.city,
-          longitude: this.longitude,
-          latitude: this.latitude,
-          phone: this.phone,
-          category: this.category,
-          associations: this.associations,
-          description: this.description,
-          facebook: this.facebook,
-          twitter: this.twitter,
-          linkedin: this.linkedin,
-          activity_area: this.activity_area,
-          funds: this.funds,
-          employees_number: this.employees_number,
-          jobs_available_number: this.employees_number,
-          women_number: this.women_number,
-          revenues: this.revenues,
-        })
+            name: this.name,
+            email: this.email,
+            logo: this.logo,
+            adress: this.adress,
+            postal_code: this.postal_code,
+            city: this.city,
+            longitude: this.longitude,
+            latitude: this.latitude,
+            phone: this.phone,
+            category: this.category,
+            associations: this.associations,
+            description: this.description,
+            facebook: this.facebook,
+            twitter: this.twitter,
+            linkedin: this.linkedin,
+            activity_area: this.activity_area,
+            funds: this.funds,
+            employees_number: this.employees_number,
+            jobs_available_number: this.employees_number,
+            women_number: this.women_number,
+            revenues: this.revenues,
+          }
+        )
 
         .then((response) => console.log(response));
+    },
+
+    getPosition() {
+      /* requete afin de recupérer les coordonnées GPS des adresses */
+
+      this.axios
+        .get(
+          `https://api-adresse.data.gouv.fr/search/?q=${this.streetNumber}+${this.streetName}+${this.city}+${this.postal_code}%22`
+        )
+
+        .then((response) => {
+          this.longitude = response.data.features[0].properties.x;
+          this.latitude = response.data.features[0].properties.y;
+        });
+
+      console.log(this.longitude);
     },
 
     /* methode transformer le logo en base 64 pour la BDD */
@@ -570,6 +654,10 @@ $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
 
+#imgHeader {
+  width: 100%;
+}
+
 h1 {
   margin-top: 10px;
   text-align: center;
@@ -588,6 +676,9 @@ h1 {
       flex-direction: column;
       justify-content: center;
       margin-left: 100px;
+      h4 {
+        font-size: 40px;
+      }
     }
 
     #logo {
@@ -640,6 +731,7 @@ h1 {
       #cLeft {
       }
       #cRight {
+        margin-left: 25px;
       }
     }
   }
@@ -655,13 +747,12 @@ h1 {
     margin-bottom: 20px;
   }
 }
-#modal-personal {
-  height: 90vh;
-  overflow: scroll;
-}
+// #modal-personal {
+//   height: 90vh;
+//   overflow: scroll;
+// }
 #btnModif {
   display: flex;
-  width: 100%;
   justify-content: center;
   margin: 20px;
 }
