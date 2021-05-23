@@ -575,42 +575,38 @@ export default {
       /* recuperation de longitude et latitude */
       this.getPosition();
       /* requete post pour envoie de données dans la BDD */
+      let test = JSON.stringify({
+        /* body de la requete */
+        name: this.name,
+        email: this.email,
+        logo: this.logo,
+        adress: this.adress,
+        postal_code: this.postal_code,
+        city: this.city,
+        longitude: this.longitude,
+        latitude: this.latitude,
+        phone: this.phone,
+        category: this.category,
+        associations: this.associations,
+        description: this.description,
+        facebook: this.facebook,
+        twitter: this.twitter,
+        linkedin: this.linkedin,
+        activity_area: this.activity_area,
+        funds: this.funds,
+        employees_number: this.employees_number,
+        jobs_available_number: this.employees_number,
+        women_number: this.women_number,
+        revenues: this.revenues,
+      });
 
       this.axios
-        .get(
-          this.baseUrl + "api/GET/update/demand",
-          {
-            headers: {
-              Authorization: "Bearer " + this.token.value,
-              "Content-Type": "application/json",
-            },
+        .post(this.baseUrl + "api/POST/update/demand", test, {
+          headers: {
+            Authorization: "Bearer " + this.token.value,
+            "Content-Type": "application/json",
           },
-          {
-            /* body de la requete */
-
-            name: this.name,
-            email: this.email,
-            logo: this.logo,
-            adress: this.adress,
-            postal_code: this.postal_code,
-            city: this.city,
-            longitude: this.longitude,
-            latitude: this.latitude,
-            phone: this.phone,
-            category: this.category,
-            associations: this.associations,
-            description: this.description,
-            facebook: this.facebook,
-            twitter: this.twitter,
-            linkedin: this.linkedin,
-            activity_area: this.activity_area,
-            funds: this.funds,
-            employees_number: this.employees_number,
-            jobs_available_number: this.employees_number,
-            women_number: this.women_number,
-            revenues: this.revenues,
-          }
-        )
+        })
 
         .then((response) => console.log(response));
     },
