@@ -348,10 +348,11 @@ export default {
         .get(
           `https://api-adresse.data.gouv.fr/search/?q=${this.RegistreMe.streetNumber}+${this.RegistreMe.streetName}+${this.RegistreMe.city}+${this.RegistreMe.postal_code}%22`
         )
-
         .then((response) => {
-          this.RegistreMe.longitude = response.data.features[0].properties.x;
-          this.RegistreMe.latitude = response.data.features[0].properties.y;
+          this.RegistreMe.longitude =
+            response.data.features[0].geometry.coordinates[1];
+          this.RegistreMe.latitude =
+            response.data.features[0].geometry.coordinates[0];
         });
 
       console.log(this.RegistreMe.longitude);
