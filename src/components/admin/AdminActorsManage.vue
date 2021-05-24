@@ -408,8 +408,7 @@ export default {
         
         }
       });
-=======
->>>>>>> 3ba0126f89079de44205912ba5451eb935d4a205
+
   },
 
   methods: {
