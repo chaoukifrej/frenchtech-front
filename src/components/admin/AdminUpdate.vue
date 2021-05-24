@@ -34,31 +34,30 @@ export default {
 
       // Tableau récupérations demande modification
       buffers: [],
-      modif: [],
     };
   },
 
   // ?Récupération
-  beforeMount() {
-    this.axios
-      .get(this.baseUrl + "api/admin/GET/update/demande")
-      .then((response) => {
-        for (const elem of response.data.body.buffers) {
-          this.buffers.push(elem);
-        }
-        // console.log(this.admins);
-      });
-  },
+  // beforeMount() {
+  //   this.axios
+  //     .get(this.baseUrl + "api/admin/GET/update/demande")
+  //     .then((response) => {
+  //       for (const elem of response.data.body.buffers) {
+  //         this.buffers.push(elem);
+  //       }
+  //       // console.log(this.admins);
+  //     });
+  // },
   methods: {
-    showModif(id, e) {
-      this.axios
-        .put(this.baseUrl + "api/adminPUT/update/actor" + id)
-        .then((response) => {
-          this.buffers.email = e;
-          this.$bvModal.show("modalUpdate" + id);
-          console.log(response);
-        });
-    },
+    // showModif(id, e) {
+    //   this.axios
+    //     .put(this.baseUrl + "api/adminPUT/update/actor" + id)
+    //     .then((response) => {
+    //       this.buffers.email = e;
+    //       this.$bvModal.show("modalUpdate" + id);
+    //       console.log(response);
+    //     });
+    // },
   },
 };
 </script>
