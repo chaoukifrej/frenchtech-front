@@ -310,10 +310,10 @@
 export default {
   name: "AdminActorsManage",
   inject: ["baseUrl", "token"],
+  props: ["actors"],
 
   data() {
     return {
-      actors: [],
       streetNumber: [],
       adressStr: [],
       actorsFields: [

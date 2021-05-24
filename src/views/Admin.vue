@@ -118,7 +118,7 @@
       <div class="AdminTabContainer mt-5">
         <b-tabs content-class="mt-3">
           <b-tab title="Gestion entreprise">
-            <AdminActorsManage />
+            <AdminActorsManage :actors="actors" />
           </b-tab>
           <b-tab title="Demande d'inscription">
             <AdminRegister
@@ -182,6 +182,8 @@ export default {
 
   data() {
     return {
+      actors: [],
+
       //!CHARTS
       datastartup: null,
       loaded: false,
