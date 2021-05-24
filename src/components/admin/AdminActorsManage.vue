@@ -1,6 +1,6 @@
 <template>
   <b-table
-    primary-key="id"
+    primary-key="actors.id"
     striped
     hover
     :items="actors"
@@ -384,7 +384,7 @@ export default {
       longitude: "",
       id: "",
     };
-<<<<<<< HEAD
+
 
   },
 
