@@ -1,5 +1,5 @@
 <template>
-  <b-table primary-key="id" striped hover :items="buffers" :fields="liste">
+  <b-table primary-key="id" striped hover :items="updateBuffer" :fields="liste">
     <template #cell(actions)="data">
       <b-button
         @click="showModif(data.item.id, data.item.email)"
@@ -18,6 +18,7 @@
 export default {
   name: "AdminUpdate",
   inject: ["baseUrl"],
+  props: ["actors", "buffers", "updateBuffer"],
 
   data() {
     return {
@@ -31,23 +32,19 @@ export default {
         { key: "associations", label: "Associations" },
         { key: "actions", label: "Actions" },
       ],
-
-      // Tableau récupérations demande modification
-      buffers: [],
-      modif: [],
     };
   },
 
   // ?Récupération
   beforeMount() {
-    this.axios
+    /* this.axios
       .get(this.baseUrl + "api/admin/GET/update/demande")
       .then((response) => {
         for (const elem of response.data.body.buffers) {
           this.buffers.push(elem);
         }
         // console.log(this.admins);
-      });
+      }); */
   },
   methods: {
     showModif(id, e) {
