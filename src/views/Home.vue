@@ -19,7 +19,7 @@
         ></l-geo-json>
         <!-- Marqueur Carte-->
         <l-marker
-          v-for="elem in actors"
+          v-for="elem in results"
           :key="elem.id"
           :lat-lng="[elem.longitude, elem.latitude]"
           @click="sayHello(elem.id)"
@@ -49,10 +49,16 @@
 
       <div class="blocCards">
         <div class="displaySearch">
+          <vue-fuse
+            :list="actors"
+            :fuseOpts="opts"
+            placeholder="Recherchez par nom, catégorie..."
+            @fuse-results="getResults"
+          />
           <Search />
         </div>
         <div class="cardContainer">
-          <div class="displayCards" v-for="item in actors" :key="item.id">
+          <div class="displayCards" v-for="item in results" :key="item.id">
             <CardInfo :i="item" />
           </div>
         </div>
@@ -82,7 +88,7 @@ import CardInfo from "@/components/CardInfo.vue";
 import MetricsHome from "@/components/MetricsHome.vue";
 //Recherche
 import Search from "@/components/Search.vue";
-
+import VueFuse from "vue-fuse";
 export default {
   name: "App",
   inject: ["baseUrl", "token", "isAdmin", "isConnected"],
@@ -98,6 +104,7 @@ export default {
     CardInfo,
     MetricsHome,
     Search,
+    VueFuse,
   },
 
   data() {
@@ -119,6 +126,19 @@ export default {
       },
       /* Centrage Coordonnées*/
       actors: [],
+
+      //Fonction de recherche
+      results: [],
+      opts: {
+        keys: [
+          "name",
+          "category",
+          "associations",
+          "activity_area",
+          "city",
+          "postal_code",
+        ],
+      },
     };
   },
 
@@ -177,6 +197,13 @@ export default {
   },
 
   methods: {
+    getResults(event) {
+      //this.results = event;
+      this.results = [];
+      for (const elem of event) {
+        this.results.push(elem.item);
+      }
+    },
     sayHello: function(id) {
       this.$root.$emit("bv::toggle::collapse", "sideBar" + id);
     },
@@ -253,7 +280,6 @@ body {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
       padding: 25px 0;
     }
   }
