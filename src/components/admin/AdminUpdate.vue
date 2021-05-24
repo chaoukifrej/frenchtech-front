@@ -1,16 +1,17 @@
 <template>
-  <div>
-    <b-table primary-key="id" striped hover :items="buffers" :fields="liste">
-      <template #cell(actions)="">
-        <b-button pill variant="warning" size="sm" class="m-2">
-          Voir modification
-        </b-button>
-        <b-button pill variant="danger" size="sm" class="m-2">
-          Rejeter
-        </b-button>
-      </template>
-    </b-table>
-  </div>
+  <b-table primary-key="id" striped hover :items="buffers" :fields="liste">
+    <template #cell(actions)="data">
+      <b-button
+        @click="showModif(data.item.id, data.item.email)"
+        variant="primary"
+        size="sm"
+        >Voir les modifications</b-button
+      >
+      <b-modal :id="'modalUpdate' + data.item.id" hide-footer hide-header>
+        <p>{{ data.item.id }}</p>
+      </b-modal>
+    </template>
+  </b-table>
 </template>
 
 <script>
@@ -33,6 +34,7 @@ export default {
 
       // Tableau récupérations demande modification
       buffers: [],
+      modif: [],
     };
   },
 
@@ -47,7 +49,17 @@ export default {
         // console.log(this.admins);
       });
   },
-  methods: {},
+  methods: {
+    showModif(id, e) {
+      this.axios
+        .put(this.baseUrl + "api/adminPUT/update/actor" + id)
+        .then((response) => {
+          this.buffers.email = e;
+          this.$bvModal.show("modalUpdate" + id);
+          console.log(response);
+        });
+    },
+  },
 };
 </script>
 

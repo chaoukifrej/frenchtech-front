@@ -60,6 +60,23 @@
           >Importer l'excel rempli</label
         >
       </b-button>
+      <div v-for="error in errors" :key="error.id">
+        <b-alert show variant="danger">
+          Ligne {{ error.row }} :
+          <div v-for="elem in error.errors" :key="elem.id">
+            {{ elem }}
+          </div></b-alert
+        >
+      </div>
+      <div v-for="error in errorsSQL" :key="error.id">
+        <b-alert show variant="danger">
+          !! Erreur : <br />
+          {{ error.errorInfo[2] }}
+        </b-alert>
+      </div>
+      <b-alert v-show="importSuccess" show variant="success"
+        >Aucune erreur, import excel réussi avec succès!</b-alert
+      >
     </b-row>
   </b-container>
 </template>
@@ -71,6 +88,9 @@ export default {
   data() {
     return {
       excelToSend: "",
+      errors: [],
+      errorsSQL: [],
+      importSuccess: false,
     };
   },
 
@@ -87,7 +107,14 @@ export default {
           },
         })
 
-        .then((response) => console.log(response));
+        .then((response) => {
+          console.log(response.status);
+          this.errors = response.data.errors;
+          this.errorsSQL = response.data.errorsSQL;
+          if (response.status == 200) {
+            this.importSuccess = true;
+          }
+        });
     },
   },
 };
