@@ -49,7 +49,7 @@
 
       <div class="blocCards">
         <div class="displaySearch">
-          la fonction de recherche est ici
+          <Search />
         </div>
         <div class="cardContainer">
           <div class="displayCards" v-for="item in actors" :key="item.id">
@@ -80,6 +80,8 @@ import Header from "@/components/Header.vue";
 import CardInfo from "@/components/CardInfo.vue";
 //Metriques
 import MetricsHome from "@/components/MetricsHome.vue";
+//Recherche
+import Search from "@/components/Search.vue";
 
 export default {
   name: "App",
@@ -95,6 +97,7 @@ export default {
     Header,
     CardInfo,
     MetricsHome,
+    Search,
   },
 
   data() {
