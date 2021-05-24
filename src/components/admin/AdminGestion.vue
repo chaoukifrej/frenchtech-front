@@ -5,18 +5,6 @@
         <!-- ------------------------------
           Button Delete admin 
         -------------------------------- -->
-        <b-button
-          pill
-          variant="danger"
-          size="sm"
-          class="m-2"
-          v-show="data.item.id != 1"
-          @click="deleteAdmin(data.item.id)"
-        >
-          Supprimer
-        </b-button>
-
-        <p v-show="data.item.id == 1">Non modifiable</p>
 
         <b-button
           v-show="data.item.id != 1"
@@ -36,6 +24,21 @@
           Modifier
         </b-button>
 
+        <b-button
+          pill
+          variant="danger"
+          size="sm"
+          class="m-2"
+          v-show="data.item.id != 1"
+          @click="deleteAdmin(data.item.id)"
+        >
+          Supprimer
+        </b-button>
+
+        <p style="color: red" v-show="data.item.id == 1">
+          Non modifiable / supprimable
+        </p>
+
         <b-modal
           :id="'modal-xs' + data.item.id"
           size="xs"
@@ -45,9 +48,13 @@
           hide-header
         >
           <div>
+            <h4 style="text-align:center;margin-top:10px;margin-bottom:15px">
+              Modifier un Administrateur.
+            </h4>
             <b-form @submit="manageAdmin" v-if="show">
               <!-- Prénom -->
               <b-form-group
+                style="margin-bottom:10px"
                 id="input-group-1"
                 label="Votre prénom:"
                 label-for="input-1"
@@ -63,6 +70,7 @@
 
               <!-- Nom -->
               <b-form-group
+                style="margin-bottom:10px"
                 id="input-group-1"
                 label="Votre Nom:"
                 label-for="input-1"
@@ -78,6 +86,7 @@
 
               <!-- Email -->
               <b-form-group
+                style="margin-bottom:10px"
                 id="input-group-1"
                 label="Adresse E-mail:"
                 label-for="input-1"
@@ -93,12 +102,20 @@
               </b-form-group>
 
               <span id="adminId" style="display:none">{{ data.item.id }}</span>
-              <b-button type="submit" variant="primary">Valider</b-button>
-              <b-button
-                @click="$bvModal.hide('modal-xs' + data.item.id)"
-                variant="danger"
-                >Annuler</b-button
-              >
+
+              <div style="float:right;margin-top:5px">
+                <b-button
+                  style="margin-right:10px"
+                  type="submit"
+                  variant="primary"
+                  >Valider</b-button
+                >
+                <b-button
+                  @click="$bvModal.hide('modal-xs' + data.item.id)"
+                  variant="danger"
+                  >Annuler</b-button
+                >
+              </div>
             </b-form>
           </div>
         </b-modal>
@@ -106,44 +123,78 @@
     </b-table>
 
     <!-- ------------------------------
-          Button / Input Création admin 
-          (A mettre dans un modal)
+          Input Création admin  
         -------------------------------- -->
     <div>
-      <b-button hide-footer v-b-modal.modal-1>Ajouter</b-button>
+      <b-button variant="primary" v-b-modal.modal-1
+        >Créer un Administrateur</b-button
+      >
 
-      <b-modal id="modal-1" title="BootstrapVue">
-        <p>Création d'un Administrateur</p>
-        <label for="firstname"></label>
-        <input
-          v-model="newAdmin.firstname"
-          id="firstname"
-          placeholder="Prénom"
-          type="text"
-        />
-        <label for="lastname"></label>
-        <input
-          v-model="newAdmin.lastname"
-          id="lastname"
-          placeholder="Nom"
-          type="text"
-        />
-        <label for="email"></label>
-        <input
-          v-model="newAdmin.email"
-          id="email"
-          placeholder="E-mail"
-          type="email"
-        />
-        <b-button
-          pill
-          variant="outline-success"
-          size="sm"
-          class="m-2"
-          @click="createAdmin"
-        >
-          Créer un nouvel administrateur
-        </b-button>
+      <b-modal hide-footer hide-header id="modal-1">
+        <div>
+          <h4 style="text-align:center;margin-top:10px;margin-bottom:15px">
+            Création d'un Administrateur.
+          </h4>
+          <b-form @submit="createAdmin" v-if="show">
+            <!-- Prénom -->
+            <b-form-group
+              style="margin-bottom:10px"
+              id="input-group-4"
+              label="Votre prénom:"
+              label-for="input-4"
+            >
+              <b-form-input
+                id="input-1"
+                v-model="newAdmin.firstname"
+                type="text"
+                placeholder="Prénom"
+                required
+              ></b-form-input>
+            </b-form-group>
+            <!-- Nom -->
+            <b-form-group
+              style="margin-bottom:10px"
+              id="input-group-5"
+              label="Votre Nom:"
+              label-for="input-5"
+            >
+              <b-form-input
+                id="input-1"
+                v-model="newAdmin.lastname"
+                type="text"
+                placeholder="Nom"
+                required
+              ></b-form-input>
+            </b-form-group>
+            <!-- email -->
+            <b-form-group
+              style="margin-bottom:10px"
+              id="input-group-6"
+              label="Votre Adresse E-mail:"
+              label-for="input-6"
+            >
+              <b-form-input
+                id="input-1"
+                v-model="newAdmin.email"
+                type="text"
+                placeholder="Adresse E-mail"
+                required
+              ></b-form-input>
+            </b-form-group>
+            <div style="float:right;margin-top:20px">
+              <b-button
+                style="margin-right:15px"
+                type="submit"
+                variant="primary"
+                >Valider</b-button
+              >
+
+              <b-button @click="$bvModal.hide('modal-1')" variant="danger"
+                >Annuler</b-button
+              >
+            </div>
+          </b-form>
+        </div>
       </b-modal>
     </div>
   </div>
@@ -221,14 +272,28 @@ export default {
     },
 
     // .Création d'un Administrateur
-    createAdmin() {
+    createAdmin(e) {
+      e.preventDefault();
+      this.admins = [];
       this.axios
         .post(this.baseUrl + "api/admin/POST/create", {
           firstname: this.newAdmin.firstname,
           lastname: this.newAdmin.lastname,
           email: this.newAdmin.email,
         })
-        .then((response) => console.log(response));
+        .then((response) => {
+          console.log(response.status);
+          this.axios
+            .get(this.baseUrl + "api/admin/GET/admins")
+            .then((response) => {
+              for (const elem of response.data.body.admins) {
+                this.admins.push(elem);
+              }
+              this.$bvModal.hide("modal-1");
+
+              // console.log(this.admins);
+            });
+        });
     },
     // .Modification d'un Administrateur
     manageAdmin(e) {

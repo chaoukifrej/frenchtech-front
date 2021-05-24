@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-table primary-key="id" striped hover :items="buffers" :fields="liste">
-      <template #cell(actions)="data">
+      <template #cell(actions)="">
         <b-button pill variant="warning" size="sm" class="m-2">
           Voir modification
         </b-button>
