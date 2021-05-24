@@ -148,6 +148,24 @@
         >Modifier mon profil</b-button
       >
 
+      <b-button v-b-modal.modal-sm variant="primary"
+        >Supprimer mon profil</b-button
+      >
+
+      <b-modal
+        id="modal-sm"
+        size="sm"
+        title="Small Modal"
+        hide-header
+        hide-footer
+      >
+        <p>êtes-vous sûr de vouloir continuer supprimer votre compte ?</p>
+        <b-button variant="danger" @click="$bvModal.hide('modal-sm')"
+          >Annuler</b-button
+        >
+        <b-button @click="onSubmitDelete" variant="success">Confirmer</b-button>
+      </b-modal>
+
       <b-modal
         id="modal-xl"
         size="xl"
@@ -568,7 +586,7 @@ export default {
     facebook: "",
     twitter: "",
     linkedin: "",
-    category: "",
+    category: "Start-up",
     associations: "",
     activity_area: "",
     description: "",
@@ -629,13 +647,25 @@ export default {
         this.revenues = response.data.body.actor.revenues;
         let adressStr = response.data.body.actor.adress;
         let numberstr = adressStr.split(" ");
-
         this.streetNumber = numberstr[0];
       })
       .catch((error) => console.log(error));
   },
 
   methods: {
+    onSubmitDelete(event) {
+      event.preventDefault();
+
+      this.axios
+        .get(this.baseUrl + "api/GET/delete/demand", {
+          headers: {
+            Authorization: "Bearer " + this.token.value,
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => console.log(response));
+    },
+
     onSubmit(event) {
       event.preventDefault();
       // alert(JSON.stringify(this.form));
@@ -643,7 +673,7 @@ export default {
       /* recuperation de longitude et latitude */
       this.getPosition();
       /* requete post pour envoie de données dans la BDD */
-      let test = JSON.stringify({
+      let body = JSON.stringify({
         /* body de la requete */
         name: this.name,
         email: this.email,
@@ -669,7 +699,7 @@ export default {
       });
 
       this.axios
-        .post(this.baseUrl + "api/POST/update/demand", test, {
+        .post(this.baseUrl + "api/POST/update/demand", body, {
           headers: {
             Authorization: "Bearer " + this.token.value,
             "Content-Type": "application/json",

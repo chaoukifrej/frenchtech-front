@@ -174,7 +174,7 @@
               <b-form-input
                 id="input-1"
                 v-model="newAdmin.email"
-                type="text"
+                type="email"
                 placeholder="Adresse E-mail"
                 required
               ></b-form-input>
