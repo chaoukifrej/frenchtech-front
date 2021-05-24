@@ -40,7 +40,7 @@ $BgWhite: #f6f5f8;
 .card {
   display: flex;
   flex-direction: column;
-  width: 13vw;
+  width: 16vw;
   height: 12rem;
   border-radius: 3px;
   padding: 10px;

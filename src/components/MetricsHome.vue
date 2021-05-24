@@ -223,6 +223,6 @@ $BgWhite: #f6f5f8;
 #toggleBar {
   background-color: #f6f5f833;
   backdrop-filter: blur(3px);
-  width: 70vw;
+  width: 65vw;
 }
 </style>
