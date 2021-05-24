@@ -50,8 +50,11 @@
       <div class="blocCards">
         <div class="displaySearch">
           <vue-fuse
+            id="fuseInput"
+            class="w-100"
             :list="actors"
             :fuseOpts="opts"
+            mapResults
             placeholder="Recherchez par nom, catégorie..."
             @fuse-results="getResults"
           />
@@ -138,6 +141,9 @@ export default {
           "city",
           "postal_code",
         ],
+        minMatchCharLength: 1,
+        shouldSort: true,
+        threshold: 0.1,
       },
     };
   },
@@ -201,7 +207,7 @@ export default {
       //this.results = event;
       this.results = [];
       for (const elem of event) {
-        this.results.push(elem.item);
+        this.results.push(elem);
       }
     },
     sayHello: function(id) {
@@ -239,7 +245,7 @@ body {
 
   .map {
     height: 100%;
-    width: 100%;
+    width: 70vw;
   }
   .leaflet-pane {
     display: flex;
@@ -264,23 +270,40 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     height: 100%;
-    width: 50rem;
+    width: 30vw;
     background-color: $BgWhite;
     overflow-y: auto;
     overflow-x: hidden;
     margin: 0;
     .displaySearch {
-      height: 150px;
+      position: sticky;
+      top: 0;
+      height: 170px;
       width: 100%;
-      background-color: white;
-      padding: 35px 15px;
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 20px 10px;
+      z-index: 100;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     }
     .cardContainer {
       width: 100%;
+      height: calc(100vh - 170px - 80px);
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 25px 0;
+      padding: 5px 0;
+    }
+  }
+
+  #fuseInput {
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.308);
+    padding: 6px;
+    &:focus {
+      box-shadow: 0 0 1px 4px rgba(91, 162, 255, 0.4);
+      border: 1px solid rgba(64, 163, 255, 0.6);
     }
   }
 }
