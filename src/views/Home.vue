@@ -24,7 +24,17 @@
           :lat-lng="[elem.longitude, elem.latitude]"
           @click="sayHello(elem.id)"
         >
-          <l-tooltip>{{ elem.name }}</l-tooltip>
+          <l-tooltip class="leaflet-pane leaflet-tooltip-pane">
+            <img
+              class="img-logo"
+              :src="elem.logo"
+              style="height: 40px;
+              width: auto;
+              margin: 2px 0 15px 0"
+            />
+            <div class="tooltip-name">{{ elem.name }}</div>
+            <div class="tooltip-website">{{ elem.website }}</div>
+          </l-tooltip>
           <l-icon>
             <b-icon
               class="rounded-circle bg-danger p-1"
@@ -39,7 +49,7 @@
 
       <div class="blocCards">
         <div class="displaySearch">
-          la fonction de recherche est ici
+          <Search />
         </div>
         <div class="cardContainer">
           <div class="displayCards" v-for="item in actors" :key="item.id">
@@ -70,6 +80,8 @@ import Header from "@/components/Header.vue";
 import CardInfo from "@/components/CardInfo.vue";
 //Metriques
 import MetricsHome from "@/components/MetricsHome.vue";
+//Recherche
+import Search from "@/components/Search.vue";
 
 export default {
   name: "App",
@@ -85,7 +97,9 @@ export default {
     Header,
     CardInfo,
     MetricsHome,
+    Search,
   },
+
   data() {
     return {
       /* url Carte */
@@ -199,6 +213,23 @@ body {
   .map {
     height: 100%;
     width: 100%;
+  }
+  .leaflet-pane {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    padding: 15px;
+    background: white;
+    .tooltip-name {
+      font-weight: 700;
+      color: $primary;
+    }
+    .tooltip-website {
+      color: $secondary;
+    }
   }
 
   .blocCards {

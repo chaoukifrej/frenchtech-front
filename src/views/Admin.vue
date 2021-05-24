@@ -117,8 +117,8 @@
 
       <div class="AdminTabContainer mt-5">
         <b-tabs content-class="mt-3">
-          <b-tab title="Gestion entreprise">
-            <AdminActorsManage />
+          <b-tab title="Gestion entreprise" active>
+            <AdminActorsManage :actors="actors" />
           </b-tab>
           <b-tab title="Demande d'inscription">
             <AdminRegister
@@ -127,12 +127,16 @@
             />
           </b-tab>
           <b-tab title="Demande de modification">
-            <AdminUpdate />
+            <AdminUpdate
+              :actors="actors"
+              :buffers="buffers"
+              :updateBuffer="updateBuffer"
+            />
           </b-tab>
           <b-tab title="Demande de suppression">
             <AdminDelete :deleteBuffer="deleteBuffer" />
           </b-tab>
-          <b-tab title="Imports et Exports" active> <AdminExcel /> </b-tab>
+          <b-tab title="Imports et Exports"> <AdminExcel /> </b-tab>
           <b-tab title="Gestion des administrateurs">
             <AdminGestion />
           </b-tab>
@@ -178,10 +182,12 @@ export default {
     AdminGestion,
   },
   name: "Admin",
-  inject: ["baseUrl"],
+  inject: ["baseUrl", "token"],
 
   data() {
     return {
+      actors: [],
+
       //!CHARTS
       datastartup: null,
       loaded: false,
@@ -213,9 +219,28 @@ export default {
       buffers: [],
       deleteBuffer: [],
       registerBuffer: [],
+      updateBuffer: [],
 
       mynumber: "",
     };
+  },
+  beforeMount() {
+    this.axios
+      .get(this.baseUrl + "api/admin/GET/actors", {
+        headers: {
+          Authorization: "Bearer " + this.token.value,
+          Accept: "application/json",
+        },
+      })
+      .then((response) => {
+        for (const elem of response.data.body.actors) {
+          this.actors.push(elem);
+          let adressStr = elem.adress;
+          let number = adressStr.split(/(\d+)/g);
+          elem.streetName = adressStr.replace(number[1], "");
+          elem.streetNumber = number[1];
+        }
+      });
   },
 
   async created() {
@@ -301,6 +326,32 @@ export default {
               e.category = el.category;
               e.associations = el.associations;
               this.registerBuffer.push(e);
+            }
+            if (el.type_of_demand == "update") {
+              let e = {};
+              e.id = el.id;
+              e.logo = el.logo;
+              e.actor_id = el.actor_id;
+              e.name = el.name;
+              e.adress = el.adress;
+              e.postal_code = el.postal_code;
+              e.city = el.city;
+              e.email = el.email;
+              e.phone = el.phone;
+              e.category = el.category;
+              e.associations = el.associations;
+              e.description = el.description;
+              e.facebook = el.facebook;
+              e.linkedin = el.linkedin;
+              e.twitter = el.twitter;
+              e.website = el.website;
+              e.activity_area = el.activity_area;
+              e.funds = el.funds;
+              e.employees_number = el.employees_number;
+              e.jobs_available_number = el.jobs_available_number;
+              e.women_number = el.women_number;
+              e.revenues = el.revenues;
+              this.updateBuffer.push(e);
             }
           });
         });
