@@ -416,8 +416,9 @@ export default {
           let number= adressStr.split(/(\d+)/g)
             elem.streetName = adressStr.replace(number[1],"");
             elem.streetNumber = number[1];
-        
 
+            console.log(elem.category);
+        
         }
       });
   },
