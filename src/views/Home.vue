@@ -24,7 +24,15 @@
           :lat-lng="[elem.longitude, elem.latitude]"
           @click="sayHello(elem.id)"
         >
-          <l-tooltip>{{ elem.name }}</l-tooltip>
+          <l-tooltip>
+            <img
+              class="img-logo"
+              :src="elem.logo"
+              style="width: 50px; margin-right:0px;"
+            />
+            {{ elem.name }}
+            {{ elem.website }}
+          </l-tooltip>
           <l-icon>
             <b-icon
               class="rounded-circle bg-danger p-1"
