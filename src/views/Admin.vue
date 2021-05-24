@@ -117,7 +117,7 @@
 
       <div class="AdminTabContainer mt-5">
         <b-tabs content-class="mt-3">
-          <b-tab title="Gestion entreprise">
+          <b-tab title="Gestion entreprise" active>
             <AdminActorsManage :actors="actors" />
           </b-tab>
           <b-tab title="Demande d'inscription">
@@ -136,7 +136,7 @@
           <b-tab title="Demande de suppression">
             <AdminDelete :deleteBuffer="deleteBuffer" />
           </b-tab>
-          <b-tab title="Imports et Exports" active> <AdminExcel /> </b-tab>
+          <b-tab title="Imports et Exports"> <AdminExcel /> </b-tab>
           <b-tab title="Gestion des administrateurs">
             <AdminGestion />
           </b-tab>
