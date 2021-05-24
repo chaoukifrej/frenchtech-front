@@ -73,7 +73,7 @@ export default {
     disconnectConfirm() {
       this.$bvModal
         .msgBoxConfirm("Êtes vous sûr de vouloir vous déconnectez ?", {
-          okVariant: "danger",
+          okVariant: "success",
           okTitle: "Confirmer",
           cancelTitle: "Annuler",
           footerClass: "p-2",
@@ -91,7 +91,7 @@ export default {
     disconnectConfirmAdmin() {
       this.$bvModal
         .msgBoxConfirm("Êtes vous sûr de vouloir vous déconnectez ?", {
-          okVariant: "danger",
+          okVariant: "success",
           okTitle: "Confirmer",
           cancelTitle: "Annuler",
           footerClass: "p-2",
