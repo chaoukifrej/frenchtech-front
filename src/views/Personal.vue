@@ -190,13 +190,17 @@
           <b-form @submit="onSubmit" v-if="show">
             <!-- LOGO -->
             <b-form-group id="input-group-1" label="Logo" label-for="input-1">
-              <b-form-file
-                id="input-1"
-                @change="addLogo"
-                type="file"
-                accept="image/png, image/jpeg"
-                ref="img"
-              ></b-form-file>
+              <div id="test">
+                <b-form-file
+                  id="input-1"
+                  @change="addLogo"
+                  type="file"
+                  accept="image/png, image/jpeg"
+                  ref="img"
+                  plain
+                ></b-form-file>
+                <b-button @click="clearFiles" class="mr-2">Annuler</b-button>
+              </div>
             </b-form-group>
 
             <b-row>
@@ -651,6 +655,10 @@ export default {
   },
 
   methods: {
+    clearFiles() {
+      this.$refs["img"].reset();
+    },
+
     onSubmitDelete(event) {
       event.preventDefault();
 
@@ -852,10 +860,36 @@ h1 {
     border-color: #ced4da;
     border-radius: 5px;
   }
+  #input-1 {
+    border: solid 1px #ced4da;
+    width: 92%;
+    border-radius: 5px 0 0 5px;
+  }
+  .btn-secondary {
+    height: 32px;
+    padding: 0;
+    width: 90px;
+    border-radius: 0 5px 5px 0;
+    background-color: #ececec;
+    color: black;
+  }
+
+  .btn-secondary:hover {
+    color: black;
+    background-color: #dfdfdf;
+  }
+
+  .btn-success {
+    width: 100%;
+    margin-top: 20px;
+  }
 }
 #btnModif {
   display: flex;
   justify-content: center;
   margin: 20px;
+}
+#test {
+  display: flex;
 }
 </style>

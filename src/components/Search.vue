@@ -1,10 +1,8 @@
 <template>
   <div class="app">
-    <input placeholder="Rechercher un acteur" type="text" />
     <div row>
       <div>
-        <label for="inputAssociation" class="form-label">Associations</label>
-        <select id="inputAssociation" class="form-select">
+        <select id="inputAssociation" class="form-select mt-2 selectSearch">
           <option selected>Filtrer par association</option>
           <option value="canneIsUp">Cannes Is Up</option>
           <option value="clubGrasse">
@@ -15,8 +13,7 @@
         </select>
       </div>
       <div>
-        <label for="inputCategory" class="form-label">Catégories</label>
-        <select id="inputCategory" class="form-select">
+        <select id="inputCategory" class="form-select mt-2 selectSearch">
           <option selected>Filtrer par catégorie</option>
           <option value="startUp">Start-up</option>
           <option value="association">Association</option>
@@ -29,8 +26,6 @@
         </select>
       </div>
     </div>
-
-    <button type="submit" class="btn btn-primary btn-sm">Rechercher</button>
   </div>
 </template>
 
@@ -44,4 +39,8 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.selectSearch {
+  cursor: pointer;
+}
+</style>

@@ -385,7 +385,6 @@ export default {
       id: "",
     };
 
-
   },
 
   beforeMount() {
@@ -400,15 +399,13 @@ export default {
         for (const elem of response.data.body.actors) {
           this.actors.push(elem);
           let adressStr = elem.adress;
-          let number= adressStr.split(/(\d+)/g)
-            elem.streetName = adressStr.replace(number[1],"");
-            elem.streetNumber = number[1];
+          let number = adressStr.split(/(\d+)/g);
+          elem.streetName = adressStr.replace(number[1], "");
+          elem.streetNumber = number[1];
 
-            console.log(elem.category);
-        
+          console.log(elem.category);
         }
       });
-
   },
 
   methods: {
