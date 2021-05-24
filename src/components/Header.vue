@@ -1,8 +1,11 @@
 <template>
-  <div class="header">
+  <div class="headerContainer">
     <a href="/">
       <img class="logo" src="../../public/img/logo-blue.png" alt="logo" />
     </a>
+    <h5 v-show="isAdmin.value && $route.name == 'Admin'" class="HeaderTitle">
+      Espace administrateur
+    </h5>
     <div>
       <nav>
         <router-link v-show="$route.name != 'Home'" to="/"
@@ -22,7 +25,11 @@
           Administration</router-link
         >
         <router-link
-          v-show="isAdmin.value == false && isConnected.value"
+          v-show="
+            isAdmin.value == false &&
+              isConnected.value &&
+              $route.name != 'Personal'
+          "
           to="/Personal"
         >
           <b-icon class="mx-1" icon="person-circle"></b-icon>Mon
@@ -66,7 +73,7 @@ export default {
     disconnectConfirm() {
       this.$bvModal
         .msgBoxConfirm("Êtes vous sûr de vouloir vous déconnectez ?", {
-          okVariant: "danger",
+          okVariant: "success",
           okTitle: "Confirmer",
           cancelTitle: "Annuler",
           footerClass: "p-2",
@@ -84,7 +91,7 @@ export default {
     disconnectConfirmAdmin() {
       this.$bvModal
         .msgBoxConfirm("Êtes vous sûr de vouloir vous déconnectez ?", {
-          okVariant: "danger",
+          okVariant: "success",
           okTitle: "Confirmer",
           cancelTitle: "Annuler",
           footerClass: "p-2",
@@ -109,14 +116,20 @@ $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
 
-.header {
+.headerContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 80px;
   padding: 12px 18px;
   background-color: $BgWhite;
-  //box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  .HeaderTitle {
+    color: rgba(0, 0, 0, 0.541);
+    padding: 0;
+    margin: 0 0 0 10%;
+  }
   nav {
     li,
     a {

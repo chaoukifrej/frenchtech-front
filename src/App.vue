@@ -64,7 +64,7 @@ export default {
   },
 
   //action avant création de l'app
-  beforeMount() {
+  created() {
     localStorage.getItem("token") //Local Storage TOKEN
       ? (this.token = JSON.parse(localStorage.getItem("token")))
       : (this.token = "");
@@ -72,6 +72,7 @@ export default {
       ? (this.isAdmin = JSON.parse(localStorage.getItem("isAdmin")))
       : (this.isAdmin = false);
   },
+
   methods: {
     disconnect: function() {
       let url = `${this.baseUrl}api/GET/logout`;

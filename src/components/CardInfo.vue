@@ -1,14 +1,14 @@
 <template>
   <div class="CardComponent">
-    <div class="card" style="width: 15rem;">
+    <div class="card">
+      <div class="logo">
+        <img class="img-logo" :src="i.logo" />
+      </div>
       <div class="card-body">
         <h3 class="card-title">{{ i.name }}</h3>
         <h5>{{ i.associations }}</h5>
         <h6>{{ i.website }}</h6>
         <SideBar :i="i" />
-      </div>
-      <div class="logo">
-        <img :src="i.logo" />
       </div>
     </div>
   </div>
@@ -40,54 +40,60 @@ $BgWhite: #f6f5f8;
 
 .card {
   display: flex;
-  flex-direction: row;
-  border-radius: 4px;
-  height: 150px;
+  flex-direction: column;
+  width: 15rem;
+  height: 12rem;
+  border-radius: 3px;
   padding: 10px;
-  margin: 0px 5px 5px 5px;
+  margin: 6px;
   border: none;
-
-  h3 {
-    font-size: 16px;
-    margin-top: 10px;
-    font-weight: 700;
-    color: $primary;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  transition: 0.2s;
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.5);
   }
+  .card-body {
+    h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: $primary;
+    }
 
-  h5 {
-    font-size: 14px;
-    font-weight: 300;
-    color: $secondary;
-    margin-bottom: 10px;
-  }
+    h5 {
+      font-size: 12px;
+      font-weight: 300;
+      color: $secondary;
+      margin-bottom: 10px;
+    }
 
-  h6 {
-    font-size: 14px;
-    color: $primary;
-  }
+    h6 {
+      font-size: 14px;
+      color: $primary;
+    }
 
-  img {
-    width: 150px;
-    padding: 20px 10px 0 0;
-  }
-
-  a,
-  p {
-    font-size: 12px;
+    a,
+    p {
+      font-size: 12px;
+    }
   }
 
   .logo {
-    margin: 0;
-    float: right;
-    display: block;
-    img {
+    margin: 14px 10px 10px 8px;
+    text-align: center;
+    .img-logo {
       margin: 0;
-      width: 50px;
+      width: auto;
+      height: 50px;
     }
   }
 
   button :active {
     color: #52bbae;
   }
+  /*   &:hover {
+    transform: scale(0.98);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  } */
 }
 </style>

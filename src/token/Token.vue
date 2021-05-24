@@ -18,8 +18,10 @@ export default {
       })
       .catch(function(error) {
         console.log(error);
+      })
+      .then(() => {
+        this.$router.push("/");
       });
-    this.$router.push("/");
   },
 };
 </script>
