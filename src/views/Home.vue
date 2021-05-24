@@ -40,7 +40,6 @@
               class="rounded-circle bg-danger p-1"
               icon="circle-fill"
               variant="light"
-              animation="throb"
               scale="1.5"
             ></b-icon>
           </l-icon>

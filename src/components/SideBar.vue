@@ -7,7 +7,7 @@
         class="stretched-link shadow-none"
         v-b-toggle="'sideBar' + i.id"
       ></b-button>
-      <b-sidebar backdrop width="550px" :id="'sideBar' + i.id" right shadow>
+      <b-sidebar backdrop width="30vw" :id="'sideBar' + i.id" right shadow>
         <template #header="{ hide }">
           <div>
             <b-button variant="outline-*" block @click="hide">
