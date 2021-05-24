@@ -42,8 +42,6 @@
         <b-modal
           :id="'modal-xs' + data.item.id"
           size="xs"
-          title="Extra Large Modal"
-          centered
           hide-footer
           hide-header
         >
@@ -176,7 +174,7 @@
               <b-form-input
                 id="input-1"
                 v-model="newAdmin.email"
-                type="text"
+                type="email"
                 placeholder="Adresse E-mail"
                 required
               ></b-form-input>
@@ -209,7 +207,7 @@ export default {
     return {
       // Tableau d'affichage
       liste: [
-        { key: "id", label: "id" },
+        { key: "id", label: "N°" },
         { key: "firstname", label: "Prénom" },
         { key: "lastname", label: "Nom" },
         { key: "email", label: "E-mail" },
@@ -226,7 +224,9 @@ export default {
         email: "",
         id: "",
       },
+
       show: true,
+
       // Data création nouvel admin
       newAdmin: {
         firstname: "",
@@ -254,20 +254,33 @@ export default {
     },
     // . Suppression d'un Administrateur
     deleteAdmin(id) {
-      this.axios
-        .delete(this.baseUrl + "/api/admin/DELETE/admin/" + id)
-        .then((response) => {
-          document.querySelectorAll("tr").forEach((e) => {
-            e.querySelectorAll("td:first-child").forEach((i) => {
-              if (i.innerText == id && id != 1) {
-                e.style.display = "none";
-              }
-              if (id == 1) {
-                console.log("Non supprimable");
-              }
-            });
-          });
-          console.log(response.status);
+      this.$bvModal
+        .msgBoxConfirm("Êtes vous sûr?", {
+          okVariant: "danger",
+          id: "test",
+          cancelTitle: "Annuler",
+          okTitle: "Confirmer",
+          footerClass: "p-2",
+          hideHeaderClose: false,
+        })
+        .then((value) => {
+          if (value) {
+            this.axios
+              .delete(this.baseUrl + "/api/admin/DELETE/admin/" + id)
+              .then((response) => {
+                document.querySelectorAll("tr").forEach((e) => {
+                  e.querySelectorAll("td:first-child").forEach((i) => {
+                    if (i.innerText == id && id != 1) {
+                      e.style.display = "none";
+                    }
+                    if (id == 1) {
+                      console.log("Non supprimable");
+                    }
+                  });
+                });
+                console.log(response.status);
+              });
+          }
         });
     },
 
@@ -329,4 +342,8 @@ export default {
 };
 </script>
 
-<style lang="sass"></style>
+<style>
+#test {
+  text-align: center;
+}
+</style>

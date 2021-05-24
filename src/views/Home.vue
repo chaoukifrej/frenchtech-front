@@ -94,6 +94,7 @@ export default {
     CardInfo,
     MetricsHome,
   },
+
   data() {
     return {
       /* url Carte */
