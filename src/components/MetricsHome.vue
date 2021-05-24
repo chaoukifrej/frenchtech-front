@@ -1,7 +1,7 @@
 <template>
   <div id="appMetric">
     <!-- appear visible a rajouter a collapse -->
-    <b-collapse id="navbar-toggle-collapse">
+    <b-collapse appear visible id="navbar-toggle-collapse">
       <b-navbar-nav class="ml-auto">
         <div class="metrics">
           <div class="bloc-p">
