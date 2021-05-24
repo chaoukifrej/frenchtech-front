@@ -1,6 +1,6 @@
 <template>
   <b-table
-    primary-key="id"
+    primary-key="buffers.id"
     striped
     hover
     :items="registerBuffer"
@@ -394,6 +394,26 @@ export default {
     };
   },
 
+  beforeMount() {
+    this.axios
+      .get(this.baseUrl + "api/GET/buffers", {
+        headers: {
+          Authorization: "Bearer " + this.token.value,
+          Accept: "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        for (const elem of response.data.body.buffers) {
+          this.registerBuffer.push(elem);
+          let adressStr = elem.adress;
+          let number = adressStr.split(/(\d+)/g);
+          elem.streetName = adressStr.replace(number[1], "");
+          elem.streetNumber = number[1];
+        }
+      });
+  },
+
   methods: {
     confirmRegister(id) {
       this.$bvModal
@@ -447,8 +467,6 @@ export default {
                 });
                 console.log(response.status);
               });
-
-            console.log(id);
           }
         })
         .catch((err) => {
