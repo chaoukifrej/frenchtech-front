@@ -624,11 +624,9 @@ export default {
         )
 
         .then((response) => {
-          this.longitude = response.data.features[0].properties.x;
-          this.latitude = response.data.features[0].properties.y;
+          this.longitude = response.data.features[0].geometry.coordinates[1];
+          this.latitude = response.data.features[0].geometry.coordinates[0];
         });
-
-      console.log(this.longitude);
     },
 
     /* methode transformer le logo en base 64 pour la BDD */
@@ -728,8 +726,7 @@ h1 {
           width: 600px;
         }
       }
-      #cLeft {
-      }
+
       #cRight {
         margin-left: 25px;
       }
