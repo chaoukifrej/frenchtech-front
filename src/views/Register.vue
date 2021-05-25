@@ -330,12 +330,10 @@ export default {
   watch: {
     streetName: function() {
       this.RegistreMe.adress = this.streetNumber + " " + this.streetName;
-      console.log(this.RegistreMe.adress);
     },
 
     streetNumber: function() {
       this.RegistreMe.adress = this.streetNumber + " " + this.streetName;
-      console.log(this.adress);
     },
   },
 
