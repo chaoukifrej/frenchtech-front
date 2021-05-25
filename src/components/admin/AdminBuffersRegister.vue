@@ -33,7 +33,7 @@
         Refuser
       </b-button>
       <b-modal
-        :id="'modal-buffer' + data.item.id"
+        :id="'modal-buffer' + data.item.name + data.item.id"
         size="xl"
         title="Modal buffer modification"
         hide-footer

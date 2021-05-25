@@ -62,9 +62,13 @@
               <select
                 id="inputAssociation"
                 class="form-select mt-2 selectSearch"
+                @click="filterByAssociation"
+                v-model="filterByAssociationSelected"
               >
-                <option selected>Filtrer par association</option>
-                <option value="canneIsUp">Cannes Is Up</option>
+                <option selected value="labelAssociation"
+                  >Filtrer par association</option
+                >
+                <option value="cannesIsUp">Cannes Is Up</option>
                 <option value="clubGrasse">
                   Le club des entrepreneurs du pays de Grasse
                 </option>
@@ -73,8 +77,15 @@
               </select>
             </div>
             <div>
-              <select id="inputCategory" class="form-select mt-2 selectSearch">
-                <option selected>Filtrer par catégorie</option>
+              <select
+                id="inputCategory"
+                class="form-select mt-2 selectSearch"
+                @click="filterByCategory"
+                v-model="filterByCategorySelected"
+              >
+                <option selected value="labelCategory"
+                  >Filtrer par catégorie</option
+                >
                 <option value="startUp">Start-up</option>
                 <option value="association">Association</option>
                 <option value="organismeFinanceur">Organisme financeur</option>
@@ -174,6 +185,9 @@ export default {
         shouldSort: true,
         threshold: 0.1,
       },
+      //Fonction de filtre sur select
+      filterByAssociationSelected: "labelAssociation",
+      filterByCategorySelected: "labelCategory",
     };
   },
 
@@ -241,6 +255,17 @@ export default {
     },
     sayHello: function(id) {
       this.$root.$emit("bv::toggle::collapse", "sideBar" + id);
+    },
+    filterByAssociation() {
+      console.log(this.filterByAssociationSelected);
+      this.actors.forEach((elem) => {
+        if (elem.association == "cannesIsUp") {
+          console.log(elem);
+        }
+      });
+    },
+    filterByCategory() {
+      console.log(this.filterByCategorySelected);
     },
   },
 };
