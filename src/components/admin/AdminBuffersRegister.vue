@@ -32,6 +32,7 @@
       >
         Refuser
       </b-button>
+      <!--MODAL-->
       <b-modal
         :id="'modal-buffer' + data.item.name + data.item.id"
         size="xl"
@@ -310,7 +311,7 @@
 export default {
   name: "AdminBuffersRegister",
   props: ["registerBuffer", "buffers"],
-  inject: ["baseUrl"],
+  inject: ["baseUrl", "token"],
 
   data() {
     return {
@@ -398,8 +399,8 @@ export default {
     this.axios
       .get(this.baseUrl + "api/GET/buffers", {
         headers: {
-          Authorization: "Bearer " + this.token.value,
-          Accept: "application/json",
+          // Authorization: "Bearer " + this.token.value,
+          // Accept: "application/json",
         },
       })
       .then((response) => {
