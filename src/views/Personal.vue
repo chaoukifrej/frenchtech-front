@@ -159,7 +159,7 @@
         hide-header
         hide-footer
       >
-        <p>êtes-vous sûr de vouloir continuer supprimer votre compte ?</p>
+        <p>êtes-vous sûr de vouloir supprimer votre compte ?</p>
         <b-button variant="danger" @click="$bvModal.hide('modal-sm')"
           >Annuler</b-button
         >
@@ -189,16 +189,18 @@
           <hr />
           <b-form @submit="onSubmit" v-if="show">
             <!-- LOGO -->
-
             <b-form-group id="input-group-1" label="Logo" label-for="input-1">
-              <b-form-file
-                id="input-1"
-                @change="addLogo"
-                type="file"
-                accept="image/png, image/jpeg"
-                ref="img"
-                required
-              ></b-form-file>
+              <div id="test">
+                <b-form-file
+                  id="input-1"
+                  @change="addLogo"
+                  type="file"
+                  accept="image/png, image/jpeg"
+                  ref="img"
+                  plain
+                ></b-form-file>
+                <b-button @click="clearFiles" class="mr-2">Annuler</b-button>
+              </div>
             </b-form-group>
 
             <b-row>
@@ -586,9 +588,9 @@ export default {
     facebook: "",
     twitter: "",
     linkedin: "",
-    category: "Start-up",
-    associations: "",
-    activity_area: "",
+    category: null,
+    associations: null,
+    activity_area: null,
     description: "",
 
     /* information visible uniquement par l'admin */
@@ -653,8 +655,14 @@ export default {
   },
 
   methods: {
+    clearFiles() {
+      this.$refs["img"].reset();
+    },
+
     onSubmitDelete(event) {
       event.preventDefault();
+
+      this.$bvModal.hide("modal-sm");
 
       this.axios
         .get(this.baseUrl + "api/GET/delete/demand", {
@@ -668,7 +676,6 @@ export default {
 
     onSubmit(event) {
       event.preventDefault();
-      // alert(JSON.stringify(this.form));
 
       /* recuperation de longitude et latitude */
       this.getPosition();
@@ -847,10 +854,42 @@ h1 {
   label {
     margin-top: 15px;
   }
+  select {
+    width: 350px;
+    height: 37px;
+    border-color: #ced4da;
+    border-radius: 5px;
+  }
+  #input-1 {
+    border: solid 1px #ced4da;
+    width: 92%;
+    border-radius: 5px 0 0 5px;
+  }
+  .btn-secondary {
+    height: 32px;
+    padding: 0;
+    width: 90px;
+    border-radius: 0 5px 5px 0;
+    background-color: #ececec;
+    color: black;
+  }
+
+  .btn-secondary:hover {
+    color: black;
+    background-color: #dfdfdf;
+  }
+
+  .btn-success {
+    width: 100%;
+    margin-top: 20px;
+  }
 }
 #btnModif {
   display: flex;
   justify-content: center;
   margin: 20px;
+}
+#test {
+  display: flex;
 }
 </style>

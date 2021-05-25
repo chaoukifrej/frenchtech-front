@@ -19,7 +19,7 @@
         ></l-geo-json>
         <!-- Marqueur Carte-->
         <l-marker
-          v-for="elem in actors"
+          v-for="elem in results"
           :key="elem.id"
           :lat-lng="[elem.longitude, elem.latitude]"
           @click="sayHello(elem.id)"
@@ -40,7 +40,6 @@
               class="rounded-circle bg-danger p-1"
               icon="circle-fill"
               variant="light"
-              animation="throb"
               scale="1.5"
             ></b-icon>
           </l-icon>
@@ -49,10 +48,19 @@
 
       <div class="blocCards">
         <div class="displaySearch">
-          la fonction de recherche est ici
+          <vue-fuse
+            id="fuseInput"
+            class="w-100"
+            :list="actors"
+            :fuseOpts="opts"
+            mapResults
+            placeholder="Recherchez par nom, catégorie..."
+            @fuse-results="getResults"
+          />
+          <Search />
         </div>
         <div class="cardContainer">
-          <div class="displayCards" v-for="item in actors" :key="item.id">
+          <div class="displayCards" v-for="item in results" :key="item.id">
             <CardInfo :i="item" />
           </div>
         </div>
@@ -80,7 +88,9 @@ import Header from "@/components/Header.vue";
 import CardInfo from "@/components/CardInfo.vue";
 //Metriques
 import MetricsHome from "@/components/MetricsHome.vue";
-
+//Recherche
+import Search from "@/components/Search.vue";
+import VueFuse from "vue-fuse";
 export default {
   name: "App",
   inject: ["baseUrl", "token", "isAdmin", "isConnected"],
@@ -95,6 +105,8 @@ export default {
     Header,
     CardInfo,
     MetricsHome,
+    Search,
+    VueFuse,
   },
 
   data() {
@@ -116,6 +128,22 @@ export default {
       },
       /* Centrage Coordonnées*/
       actors: [],
+
+      //Fonction de recherche
+      results: [],
+      opts: {
+        keys: [
+          "name",
+          "category",
+          "associations",
+          "activity_area",
+          "city",
+          "postal_code",
+        ],
+        minMatchCharLength: 1,
+        shouldSort: true,
+        threshold: 0.1,
+      },
     };
   },
 
@@ -174,6 +202,13 @@ export default {
   },
 
   methods: {
+    getResults(event) {
+      //this.results = event;
+      this.results = [];
+      for (const elem of event) {
+        this.results.push(elem);
+      }
+    },
     sayHello: function(id) {
       this.$root.$emit("bv::toggle::collapse", "sideBar" + id);
     },
@@ -209,7 +244,7 @@ body {
 
   .map {
     height: 100%;
-    width: 100%;
+    width: 65vw;
   }
   .leaflet-pane {
     display: flex;
@@ -234,24 +269,40 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     height: 100%;
-    width: 50rem;
+    width: 35vw;
     background-color: $BgWhite;
     overflow-y: auto;
     overflow-x: hidden;
     margin: 0;
     .displaySearch {
-      height: 150px;
+      position: sticky;
+      top: 0;
+      height: 170px;
       width: 100%;
-      background-color: white;
-      padding: 35px 15px;
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 20px 10px;
+      z-index: 100;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     }
     .cardContainer {
       width: 100%;
+      height: calc(100vh - 170px - 80px);
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      padding: 25px 0;
+      padding: 5px 0;
+    }
+  }
+
+  #fuseInput {
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.308);
+    padding: 6px;
+    &:focus {
+      box-shadow: 0 0 1px 4px rgba(91, 162, 255, 0.4);
+      border: 1px solid rgba(64, 163, 255, 0.6);
     }
   }
 }

@@ -37,15 +37,14 @@ $primary: #0f0041;
 $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
-
 .card {
   display: flex;
   flex-direction: column;
-  width: 15rem;
+  width: 16vw;
   height: 12rem;
   border-radius: 3px;
   padding: 10px;
-  margin: 6px;
+  margin: 0.5vw;
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   transition: 0.2s;

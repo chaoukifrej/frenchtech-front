@@ -1,6 +1,6 @@
 <template>
   <b-table
-    primary-key="id"
+    primary-key="actors.id"
     striped
     hover
     :items="actors"
@@ -384,6 +384,27 @@ export default {
       longitude: "",
       id: "",
     };
+  },
+
+  beforeMount() {
+    this.axios
+      .get(this.baseUrl + "api/admin/GET/actors", {
+        headers: {
+          Authorization: "Bearer " + this.token.value,
+          Accept: "application/json",
+        },
+      })
+      .then((response) => {
+        for (const elem of response.data.body.actors) {
+          this.actors.push(elem);
+          let adressStr = elem.adress;
+          let number = adressStr.split(/(\d+)/g);
+          elem.streetName = adressStr.replace(number[1], "");
+          elem.streetNumber = number[1];
+
+          console.log(elem.category);
+        }
+      });
   },
 
   methods: {
