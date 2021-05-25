@@ -1,14 +1,10 @@
 <template>
   <b-table primary-key="id" striped hover :items="updateBuffer" :fields="liste">
     <template #cell(actions)="data">
-      <b-button
-        @click="showModif(data.item.id, data.item.email)"
-        variant="primary"
-        size="sm"
+      <b-button @click="showModif(data.item.id)" variant="primary" size="sm"
         >Voir les modifications</b-button
       >
       <b-modal :id="'modalUpdate' + data.item.id" hide-footer hide-header>
-        <p>{{ data.item.id }}</p>
       </b-modal>
     </template>
   </b-table>
@@ -32,30 +28,25 @@ export default {
         { key: "associations", label: "Associations" },
         { key: "actions", label: "Actions" },
       ],
+
+      actors: "r",
+
+      oldUpdate: [],
+      newUpdate: [],
     };
   },
 
-  // ?Récupération
-  beforeMount() {
-    /* this.axios
-      .get(this.baseUrl + "api/admin/GET/update/demande")
-      .then((response) => {
-        for (const elem of response.data.body.buffers) {
-          this.buffers.push(elem);
-        }
-        // console.log(this.admins);
-      }); */
-  },
   methods: {
-    // showModif(id, e) {
-    //   this.axios
-    //     .put(this.baseUrl + "api/adminPUT/update/actor" + id)
-    //     .then((response) => {
-    //       this.buffers.email = e;
-    //       this.$bvModal.show("modalUpdate" + id);
-    //       console.log(response);
-    //     });
-    // },
+    showModif(id) {
+      this.$bvModal.show("modalUpdate" + id);
+
+      console.log(buffers);
+      // if (this.actors.name == this.updateBuffer.name) {
+      //   this.oldUpdate.push("test");
+      //   this.newUpdate.push("test");
+      //   console.log(this.updateBuffer);
+      // }
+    },
   },
 };
 </script>
