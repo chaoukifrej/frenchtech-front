@@ -349,12 +349,6 @@
           </div>
         </b-form>
 
-        <div v-for="elem in actors" :key="elem.id">
-          <span v-if="elem.id == data.item.actor_id">
-            {{ elem.name }} {{ data.item.name }}</span
-          >
-        </div>
-
         <span id="actorId" style="display:none">{{ data.item.id }}</span>
         <div>
           <b-button @click="acceptModification" class="btn-success"
@@ -459,10 +453,11 @@ export default {
       latitude: "",
       longitude: "",
       id: "",
+
+      //NewTabWithAllInfos
+      buffersAndActors: [],
     };
   },
-
-  mounted() {},
 
   methods: {
     clearFiles() {
