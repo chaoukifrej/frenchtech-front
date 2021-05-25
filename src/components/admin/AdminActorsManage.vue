@@ -1,6 +1,6 @@
 <template>
   <b-table
-    primary-key="actors.id"
+    primary-key="id"
     striped
     hover
     :items="actors"
