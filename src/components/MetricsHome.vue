@@ -1,7 +1,7 @@
 <template>
   <div id="appMetric">
     <!-- appear visible a rajouter a collapse -->
-    <b-collapse id="navbar-toggle-collapse">
+    <b-collapse appear visible id="navbar-toggle-collapse">
       <b-navbar-nav class="ml-auto">
         <div class="metrics">
           <div class="bloc-p">
@@ -223,6 +223,6 @@ $BgWhite: #f6f5f8;
 #toggleBar {
   background-color: #f6f5f833;
   backdrop-filter: blur(3px);
-  width: 70vw;
+  width: 65vw;
 }
 </style>

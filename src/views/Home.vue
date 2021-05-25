@@ -40,7 +40,6 @@
               class="rounded-circle bg-danger p-1"
               icon="circle-fill"
               variant="light"
-              animation="throb"
               scale="1.5"
             ></b-icon>
           </l-icon>
@@ -245,7 +244,7 @@ body {
 
   .map {
     height: 100%;
-    width: 70vw;
+    width: 65vw;
   }
   .leaflet-pane {
     display: flex;
@@ -270,7 +269,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     height: 100%;
-    width: 30vw;
+    width: 35vw;
     background-color: $BgWhite;
     overflow-y: auto;
     overflow-x: hidden;
