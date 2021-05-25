@@ -32,6 +32,7 @@
       >
         Refuser
       </b-button>
+      <!--MODAL-->
       <b-modal
         :id="'modal-buffer' + data.item.id"
         size="xl"
