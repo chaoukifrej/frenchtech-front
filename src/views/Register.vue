@@ -12,7 +12,6 @@
             id="inputLogo"
             accept="image/png, image/jpeg"
             ref="img"
-            name="img"
             @change="addLogo"
           />
         </div>
@@ -299,6 +298,7 @@ export default {
       name: "",
       email: "",
       phone: "",
+
       city: "",
       postal_code: "",
       website: "",
@@ -330,10 +330,12 @@ export default {
   watch: {
     streetName: function() {
       this.RegistreMe.adress = this.streetNumber + " " + this.streetName;
+      console.log(this.RegistreMe.adress);
     },
 
     streetNumber: function() {
       this.RegistreMe.adress = this.streetNumber + " " + this.streetName;
+      console.log(this.adress);
     },
   },
 
@@ -388,11 +390,15 @@ export default {
     /* methode transformer le logo en base 64 pour la BDD */
 
     addLogo(e) {
-      let file = e.target.files[0];
-      let formData = new FormData();
-      formData.append("img", file);
-      this.RegistreMe.logo = formData;
-      console.log(this.RegistreMe.logo);
+      const reader = new FileReader();
+      reader.onload = (readerEvent) => {
+        this.RegistreMe.logo = readerEvent.target.result;
+      };
+      if (e.target.files[0].size / 1024 / 1024 > 3) {
+        console.log("image trop grande");
+      } else {
+        reader.readAsDataURL(e.target.files[0]);
+      }
     },
   },
 };
