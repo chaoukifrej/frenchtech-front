@@ -10,7 +10,12 @@
       <b-button @click="showModif(data.item.id)" variant="primary" size="sm"
         >Voir les modifications</b-button
       >
-      <b-modal :id="'modalUpdate' + data.item.id" hide-footer hide-header>
+      <b-modal
+        size="xl"
+        :id="'modalUpdate' + data.item.id"
+        hide-footer
+        hide-header
+      >
         <h5>modification</h5>
 
         <p>avant</p>
