@@ -1,6 +1,6 @@
 <template>
   <b-table
-    primary-key="buffers.id"
+    :primary-key="id"
     striped
     hover
     :items="registerBuffer"
@@ -16,7 +16,7 @@
         Valider
       </b-button>
       <b-button
-        v-b-modal="'modal-buffer' + data.item.id"
+        v-b-modal="'modal-buffer-register' + data.item.id"
         pill
         variant="secondary"
         size="sm"
@@ -34,7 +34,7 @@
       </b-button>
       <!--MODAL-->
       <b-modal
-        :id="'modal-buffer' + data.item.id"
+        :id="'modal-buffer-register' + data.item.id"
         size="xl"
         title="Modal buffer modification"
         hide-footer
@@ -406,7 +406,7 @@ export default {
         },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         for (const elem of response.data.body.buffers) {
           this.registerBuffer.push(elem);
           let adressStr = elem.adress;
@@ -438,7 +438,6 @@ export default {
                       e.style.display = "none";
                     }
                   });
-                  console.log(response.status);
                 });
               });
           }
@@ -464,11 +463,11 @@ export default {
                 let elem = document.getElementsByTagName("tr");
                 elem.forEach((e) => {
                   if (e.id.substr(-1) == id) {
-                    console.log(e.id.substr(-1));
+                    // console.log(e.id.substr(-1));
                     e.style.display = "none";
                   }
                 });
-                console.log(response.status);
+                // console.log(response.status);
               });
           }
         })
@@ -479,7 +478,7 @@ export default {
 
     Update(e) {
       e.preventDefault();
-      let span = document.getElementById("bufferId");
+      let span = document.getElementById("bufferID");
       let id = span.innerText;
 
       this.registerBuffer.forEach((element) => {
@@ -543,7 +542,7 @@ export default {
           revenues: this.revenues,
         })
 
-        .then((response) => console.log(response));
+        .then(response);
     },
     addLogo(e) {
       const reader = new FileReader();

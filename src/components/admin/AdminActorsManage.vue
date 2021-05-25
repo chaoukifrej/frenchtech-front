@@ -1,6 +1,6 @@
 <template>
   <b-table
-    primary-key="id"
+    :primary-key="id"
     striped
     hover
     :items="actors"
@@ -402,7 +402,7 @@ export default {
           elem.streetName = adressStr.replace(number[1], "");
           elem.streetNumber = number[1];
 
-          console.log(elem.category);
+          // console.log(elem.category);
         }
       });
   },
@@ -498,14 +498,14 @@ export default {
                 let elem = document.getElementsByTagName("tr");
                 elem.forEach((e) => {
                   if (e.id.substr(-1) == id) {
-                    console.log(e.id.substr(-1));
+                    // console.log(e.id.substr(-1));
                     e.style.display = "none";
                   }
                 });
-                console.log(response.status);
+                // console.log(response.status);
               });
 
-            console.log(id);
+            // console.log(id);
           }
         })
         .catch((err) => {

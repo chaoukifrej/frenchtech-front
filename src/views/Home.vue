@@ -37,6 +37,7 @@
           </l-tooltip>
           <l-icon>
             <b-icon
+              v-if="elem.filtered"
               class="rounded-circle bg-danger p-1"
               icon="circle-fill"
               variant="light"
@@ -62,9 +63,13 @@
               <select
                 id="inputAssociation"
                 class="form-select mt-2 selectSearch"
+                @click="filterByAssociation"
+                v-model="filterByAssociationSelected"
               >
-                <option selected>Filtrer par association</option>
-                <option value="canneIsUp">Cannes Is Up</option>
+                <option selected value="labelAssociation"
+                  >Filtrer par association</option
+                >
+                <option value="cannesIsUp">Cannes Is Up</option>
                 <option value="clubGrasse">
                   Le club des entrepreneurs du pays de Grasse
                 </option>
@@ -73,8 +78,15 @@
               </select>
             </div>
             <div>
-              <select id="inputCategory" class="form-select mt-2 selectSearch">
-                <option selected>Filtrer par catégorie</option>
+              <select
+                id="inputCategory"
+                class="form-select mt-2 selectSearch"
+                @click="filterByCategory"
+                v-model="filterByCategorySelected"
+              >
+                <option selected value="labelCategory"
+                  >Filtrer par catégorie</option
+                >
                 <option value="startUp">Start-up</option>
                 <option value="association">Association</option>
                 <option value="organismeFinanceur">Organisme financeur</option>
@@ -93,7 +105,9 @@
         </div>
         <div class="cardContainer">
           <div class="displayCards" v-for="item in results" :key="item.id">
-            <CardInfo :i="item" />
+            <span v-if="item.filtered">
+              <CardInfo :i="item" />
+            </span>
           </div>
         </div>
       </div>
@@ -174,6 +188,9 @@ export default {
         shouldSort: true,
         threshold: 0.1,
       },
+      //Fonction de filtre sur select
+      filterByAssociationSelected: "labelAssociation",
+      filterByCategorySelected: "labelCategory",
     };
   },
 
@@ -188,6 +205,7 @@ export default {
     /* mounted pour recuperer les infos des Actors depuis la BDD */
     this.axios.get(this.baseUrl + "api/GET/actors").then((response) => {
       for (const elem of response.data.body.actors) {
+        elem.filtered = true;
         this.actors.push(elem);
       }
       //console.log(this.actors);
@@ -241,6 +259,30 @@ export default {
     },
     sayHello: function(id) {
       this.$root.$emit("bv::toggle::collapse", "sideBar" + id);
+    },
+    filterByAssociation() {
+      console.log(this.filterByAssociationSelected);
+      this.actors.forEach((elem) => {
+        if (this.filterByAssociationSelected == "labelAssociation") {
+          elem.filtered = true;
+        } else if (elem.associations != this.filterByAssociationSelected) {
+          elem.filtered = false;
+        } else {
+          elem.filtered = true;
+        }
+      });
+    },
+    filterByCategory() {
+      console.log(this.filterByCategorySelected);
+      this.actors.forEach((elem) => {
+        if (this.filterByCategorySelected == "labelCategory") {
+          elem.filtered = true;
+        } else if (elem.category != this.filterByCategorySelected) {
+          elem.filtered = false;
+        } else {
+          elem.filtered = true;
+        }
+      });
     },
   },
 };
