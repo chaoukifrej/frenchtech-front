@@ -30,269 +30,378 @@
         title="Extra Large Modal"
         hide-footer
       >
-        <h1>Modifications</h1>
+        <b-container>
+          <h1>Modifications</h1>
 
-        <b-form @submit="Update" v-if="show">
-          <!-- LOGO -->
-          <b-form-group id="input-group-1" label="Logo" label-for="input-1">
-            <b-form-file
-              id="input-1"
-              @change="addLogo"
-              type="file"
-              accept="image/png, image/jpeg"
-              ref="img"
-              required
-            ></b-form-file>
-          </b-form-group>
+          <b-form @submit="Update" v-if="show">
+            <!-- LOGO -->
+            <b-form-group id="input-group-1" label="Logo" label-for="input-1">
+              <b-form-file
+                id="input-1"
+                @change="addLogo"
+                type="file"
+                accept="image/png, image/jpeg"
+                ref="img"
+                placeholder=" "
+              ></b-form-file>
+            </b-form-group>
 
-          <!-- NOM ENTREPRISE -->
-          <b-form-group
-            id="input-group-2"
-            label="Nom de l'entreprise"
-            label-for="input-2"
-          >
-            <b-form-input
-              id="input-2"
-              v-model="data.item.name"
-              type="text"
-              required
-            ></b-form-input>
-          </b-form-group>
+            <!-- NOM ENTREPRISE -->
+            <b-row>
+              <div class="col-md-4">
+                <b-col>
+                  <b-form-group
+                    id="input-group-2"
+                    label="Nom de l'entreprise"
+                    label-for="input-2"
+                  >
+                    <b-form-input
+                      id="input-2"
+                      v-model="data.item.name"
+                      type="text"
+                      required
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </div>
 
-          <!-- EMAIL -->
-          <b-form-group id="input-group-3" label="Email" label-for="input-3">
-            <b-form-input
-              id="input-3"
-              v-model="data.item.email"
-              type="email"
-              required
-            ></b-form-input>
-          </b-form-group>
+              <!-- EMAIL -->
+              <div class="col-md-4">
+                <b-col>
+                  <b-form-group
+                    id="input-group-3"
+                    label="Email"
+                    label-for="input-3"
+                  >
+                    <b-form-input
+                      id="input-3"
+                      v-model="data.item.email"
+                      type="email"
+                      required
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </div>
 
-          <!-- PHONE -->
-          <b-form-group
-            id="input-group-4"
-            label="Telephone"
-            label-for="input-4"
-          >
-            <b-form-input
-              id="input-4"
-              v-model="data.item.phone"
-              required
-            ></b-form-input>
-          </b-form-group>
+              <!-- PHONE -->
+              <div class="col-md-4">
+                <b-col>
+                  <b-form-group
+                    id="input-group-4"
+                    label="Telephone"
+                    label-for="input-4"
+                  >
+                    <b-form-input
+                      id="input-4"
+                      v-model="data.item.phone"
+                      required
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </div>
+            </b-row>
 
-          <!-- Number adress -->
-          <b-form-group id="input-group-5" label="Numéro" label-for="input-5">
-            <b-form-input
-              id="input-5"
-              v-model="data.item.streetNumber"
-              required
-            ></b-form-input>
-          </b-form-group>
+            <!-- Number adress -->
 
-          <!-- ADRESS -->
-          <b-form-group
-            id="input-group-6"
-            label="Nom de rue/avenue/boulevard"
-            label-for="input-6"
-          >
-            <b-form-input
-              id="input-6"
-              v-model="data.item.streetName"
-              type="text"
-              required
-            ></b-form-input>
-          </b-form-group>
+            <b-row>
+              <div class="col-md-2">
+                <b-col>
+                  <b-form-group
+                    id="input-group-5"
+                    label="Numéro"
+                    label-for="input-5"
+                  >
+                    <b-form-input
+                      id="input-5"
+                      v-model="data.item.streetNumber"
+                      required
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </div>
+              <!-- ADRESS -->
+              <div class="col-md-4">
+                <b-col>
+                  <b-form-group
+                    id="input-group-6"
+                    label="Nom de rue/avenue/boulevard"
+                    label-for="input-6"
+                  >
+                    <b-form-input
+                      id="input-6"
+                      v-model="data.item.streetName"
+                      type="text"
+                      required
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </div>
 
-          <!-- CITY -->
-          <b-form-group id="input-group-7" label="Ville" label-for="input-7">
-            <b-form-input
-              id="input-7"
-              v-model="data.item.city"
-              type="text"
-              required
-            ></b-form-input>
-          </b-form-group>
+              <!-- CITY -->
+              <div class="col-md-4">
+                <b-col>
+                  <b-form-group
+                    id="input-group-7"
+                    label="Ville"
+                    label-for="input-7"
+                  >
+                    <b-form-input
+                      id="input-7"
+                      v-model="data.item.city"
+                      type="text"
+                      required
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </div>
 
-          <!-- POSTAL CODE -->
-          <b-form-group
-            id="input-group-7"
-            label="Code postal"
-            label-for="input-7"
-          >
-            <b-form-input
-              id="input-7"
-              v-model="data.item.postal_code"
-              type="text"
-              required
-            ></b-form-input>
-          </b-form-group>
+              <!-- POSTAL CODE -->
+              <div class="col-md-2">
+                <b-col>
+                  <b-form-group
+                    id="input-group-7"
+                    label="Code postal"
+                    label-for="input-7"
+                  >
+                    <b-form-input
+                      id="input-7"
+                      v-model="data.item.postal_code"
+                      type="text"
+                      required
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </div>
+            </b-row>
 
-          <!-- FACEBOOK -->
-          <b-form-group id="input-group-8" label="Facebook" label-for="input-8">
-            <b-form-input
-              id="input-8"
-              v-model="data.item.facebook"
-              type="text"
-            ></b-form-input>
-          </b-form-group>
+            <!-- WEBSITE -->
+            <b-row>
+              <div class="col-md-3">
+                <b-col>
+                  <b-form-group
+                    id="input-group-8"
+                    label="WebSite"
+                    label-for="input-8"
+                  >
+                    <b-form-input
+                      id="input-8"
+                      v-model="data.item.WebSite"
+                      type="text"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </div>
 
-          <!-- TWITTER -->
-          <b-form-group id="input-group-9" label="Twitter" label-for="input-9">
-            <b-form-input
-              id="input-9"
-              v-model="data.item.twitter"
-              type="text"
-            ></b-form-input>
-          </b-form-group>
+              <!-- FACEBOOK -->
+              <div class="col-md-3">
+                <b-col>
+                  <b-form-group
+                    id="input-group-8"
+                    label="Facebook"
+                    label-for="input-8"
+                  >
+                    <b-form-input
+                      id="input-8"
+                      v-model="data.item.facebook"
+                      type="text"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </div>
 
-          <!-- LINKEDIN -->
-          <b-form-group
-            id="input-group-10"
-            label="Linkedin"
-            label-for="input-10"
-          >
-            <b-form-input
-              id="input-10"
-              v-model="data.item.linkedin"
-              type="text"
-            ></b-form-input>
-          </b-form-group>
+              <!-- TWITTER -->
+              <div class="col-md-3">
+                <b-col>
+                  <b-form-group
+                    id="input-group-9"
+                    label="Twitter"
+                    label-for="input-9"
+                  >
+                    <b-form-input
+                      id="input-9"
+                      v-model="data.item.twitter"
+                      type="text"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </div>
 
-          <!-- CATEGORY -->
-          <b-form-group
-            id="input-group-11"
-            label="Categorie"
-            label-for="input-11"
-          >
-            <b-form-select
-              id="input-11"
-              v-model="data.item.category"
-              :options="categorys"
-              required
-            ></b-form-select>
-          </b-form-group>
+              <!-- LINKEDIN -->
+              <div class="col-md-3">
+                <b-col>
+                  <b-form-group
+                    id="input-group-10"
+                    label="Linkedin"
+                    label-for="input-10"
+                  >
+                    <b-form-input
+                      id="input-10"
+                      v-model="data.item.linkedin"
+                      type="text"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </div>
+            </b-row>
 
-          <!-- ASSOCIATIONS -->
-          <b-form-group
-            id="input-group-12"
-            label="Associations"
-            label-for="input-12"
-          >
-            <b-form-select
-              id="input-12"
-              v-model="data.item.associations"
-              :options="associationsL"
-              required
-            ></b-form-select>
-          </b-form-group>
+            <!-- CATEGORY -->
+            <b-row>
+              <b-col>
+                <b-form-group
+                  id="input-group-11"
+                  label="Categorie"
+                  label-for="input-11"
+                >
+                  <b-form-select
+                    id="input-11"
+                    v-model="data.item.category"
+                    :options="categorys"
+                    required
+                  ></b-form-select>
+                </b-form-group>
+              </b-col>
 
-          <!-- ACTIVIT AREA -->
-          <b-form-group
-            id="input-group-13"
-            label="Secteurs d'activité"
-            label-for="input-13"
-          >
-            <b-form-select
-              id="input-13"
-              v-model="data.item.activity_area"
-              :options="activity_areaL"
-              required
-            ></b-form-select>
-          </b-form-group>
+              <!-- ASSOCIATIONS -->
 
-          <!-- DESCRIPTION -->
-          <b-form-group
-            id="input-group-14"
-            label="Description breve de votre entreprise"
-            label-for="input-14"
-          >
-            <b-form-textarea
-              id="input-14"
-              v-model="data.item.description"
-              required
-            ></b-form-textarea>
+              <b-col>
+                <b-form-group
+                  id="input-group-12"
+                  label="Associations"
+                  label-for="input-12"
+                >
+                  <b-form-select
+                    id="input-12"
+                    v-model="data.item.associations"
+                    :options="associationsL"
+                    required
+                  ></b-form-select>
+                </b-form-group>
+              </b-col>
 
-            <h4>Informations Relative a votre entreprise</h4>
+              <!-- ACTIVIT AREA -->
+
+              <b-col>
+                <b-form-group
+                  id="input-group-13"
+                  label="Secteurs d'activité"
+                  label-for="input-13"
+                >
+                  <b-form-select
+                    id="input-13"
+                    v-model="data.item.activity_area"
+                    :options="activity_areaL"
+                    required
+                  ></b-form-select>
+                </b-form-group>
+              </b-col>
+            </b-row>
+
+            <!-- DESCRIPTION -->
+            <b-row>
+              <b-form-group
+                id="input-group-14"
+                label="Description breve de votre entreprise"
+                label-for="input-14"
+              >
+                <b-form-textarea
+                  id="input-14"
+                  v-model="data.item.description"
+                  required
+                  rows="8"
+                ></b-form-textarea></b-form-group
+            ></b-row>
+
+            <h1>Informations Relative a votre entreprise</h1>
 
             <!-- FUNDS -->
-            <b-form-group
-              id="input-group-15"
-              label="Levé de fond (€)"
-              label-for="input-15"
-            >
-              <b-form-input
-                id="input-15"
-                v-model="data.item.funds"
-                type="number"
-                required
-              ></b-form-input>
-            </b-form-group>
-          </b-form-group>
+            <b-row>
+              <b-col>
+                <b-form-group
+                  id="input-group-15"
+                  label="Levé de fond (€)"
+                  label-for="input-15"
+                >
+                  <b-form-input
+                    id="input-15"
+                    v-model="data.item.funds"
+                    type="number"
+                    required
+                  ></b-form-input>
+                </b-form-group>
+              </b-col>
 
-          <!-- SALARY NUMBER -->
-          <b-form-group
-            id="input-group-16"
-            label="Nombre de salarié"
-            label-for="input-16"
-          >
-            <b-form-input
-              id="input-16"
-              v-model="data.item.employees_number"
-              type="number"
-              required
-            ></b-form-input>
-          </b-form-group>
+              <!-- SALARY NUMBER -->
+              <b-col>
+                <b-form-group
+                  id="input-group-16"
+                  label="Nombre de salarié"
+                  label-for="input-16"
+                >
+                  <b-form-input
+                    id="input-16"
+                    v-model="data.item.employees_number"
+                    type="number"
+                    required
+                  ></b-form-input>
+                </b-form-group>
+              </b-col>
 
-          <!-- JOBS NUMBER -->
-          <b-form-group
-            id="input-group-17"
-            label="Nombre de post à pourvoir"
-            label-for="input-17"
-          >
-            <b-form-input
-              id="input-17"
-              v-model="data.item.jobs_available_number"
-              type="number"
-              required
-            ></b-form-input>
-          </b-form-group>
+              <!-- JOBS NUMBER -->
+              <b-col>
+                <b-form-group
+                  id="input-group-17"
+                  label="Nombre de post à pourvoir"
+                  label-for="input-17"
+                >
+                  <b-form-input
+                    id="input-17"
+                    v-model="data.item.jobs_available_number"
+                    type="number"
+                    required
+                  ></b-form-input> </b-form-group
+              ></b-col>
 
-          <!-- WOMENS NUMBER -->
-          <b-form-group
-            id="input-group-18"
-            label="Nombre de femmes"
-            label-for="input-18"
-          >
-            <b-form-input
-              id="input-18"
-              v-model="data.item.women_number"
-              type="number"
-              required
-            ></b-form-input>
-          </b-form-group>
+              <!-- WOMENS NUMBER -->
+              <b-col>
+                <b-form-group
+                  id="input-group-18"
+                  label="Nombre de femmes"
+                  label-for="input-18"
+                >
+                  <b-form-input
+                    id="input-18"
+                    v-model="data.item.women_number"
+                    type="number"
+                    required
+                  ></b-form-input>
+                </b-form-group>
+              </b-col>
 
-          <!--  -->
-          <b-form-group
-            id="input-group-19"
-            label="Chiffre d'affaire annuel total"
-            label-for="input-19"
-          >
-            <b-form-input
-              id="input-19"
-              v-model="data.item.revenues"
-              type="number"
-              required
-            ></b-form-input>
-          </b-form-group>
-          <span id="actorId" style="display:none">{{ data.item.id }}</span>
-          <div class="col-12" id="buttonSubmit">
-            <button type="submit" class="btn btn-primary">
-              Modifier
-            </button>
-          </div>
-        </b-form>
+              <!--REVENUES  -->
+
+              <b-col>
+                <b-form-group
+                  id="input-group-19"
+                  label="Chiffre d'affaire annuel total"
+                  label-for="input-19"
+                >
+                  <b-form-input
+                    id="input-19"
+                    v-model="data.item.revenues"
+                    type="number"
+                    required
+                  ></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <span id="actorId" style="display:none">{{ data.item.id }}</span>
+            <div class="col-12" id="buttonSubmit">
+              <button type="submit" class="btn btn-primary">
+                Modifier
+              </button>
+            </div>
+          </b-form>
+        </b-container>
       </b-modal>
     </template>
   </b-table>
@@ -364,6 +473,7 @@ export default {
       adress: "",
       city: "",
       postal_code: "",
+      webSite: "",
       facebook: "",
       twitter: "",
       linkedin: "",
@@ -424,6 +534,7 @@ export default {
           this.adress = element.adress;
           this.city = element.city;
           this.postal_code = element.postal_code;
+          this.webSite = element.webSite;
           this.facebook = element.facebook;
           this.twitter = element.twitter;
           this.linkedin = element.linkedin;
@@ -475,6 +586,7 @@ export default {
         })
 
         .then((response) => console.log(response));
+      this.$bvModal.hide("modal-xl" + id);
     },
     deleteActor(id) {
       this.$bvModal
