@@ -364,7 +364,7 @@ export default {
                   e.actorWebsite = actor.website;
                   e.actorActivity_area = actor.activity_area;
                   e.actorFunds = actor.funds;
-                  e.actorEmplohees_number = actor.employees_number;
+                  e.actorEmployees_number = actor.employees_number;
                   e.actorJobs_available_number = actor.jobs_available_number;
                   e.actorWomen_number = actor.women_number;
                   e.actorRevenues = actor.revenues;
