@@ -10,9 +10,14 @@
       <b-button @click="showModif(data.item.id)" variant="primary" size="sm"
         >Voir les modifications</b-button
       >
-      <b-modal :id="'modalUpdate' + data.item.id" hide-footer hide-header>
+      <b-modal
+        size="xl"
+        :id="'modalUpdate' + data.item.id"
+        hide-footer
+        hide-header
+      >
         <h5>modification</h5>
-
+        {{ data.item }}
         <p>avant</p>
 
         <p>apres</p>
@@ -43,11 +48,15 @@
               >
                 <b-form-input
                   id="input-2"
-                  v-model="name"
+                  v-model="data.item.name"
                   type="text"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-2" triggers="hover" placement="top">
+                {{ data.item.actorName }}
+                <b-icon-arrow-right></b-icon-arrow-right> {{ data.item.name }}
+              </b-popover>
             </div>
 
             <div class="col-md-4">
@@ -59,7 +68,7 @@
               >
                 <b-form-input
                   id="input-3"
-                  v-model="email"
+                  v-model="data.item.email"
                   type="email"
                   required
                 ></b-form-input>
@@ -344,12 +353,6 @@
           </div>
         </b-form>
 
-        <div v-for="elem in actors" :key="elem.id">
-          <span v-if="elem.id == data.item.actor_id">
-            {{ elem.name }} {{ data.item.name }}</span
-          >
-        </div>
-
         <span id="actorId" style="display:none">{{ data.item.id }}</span>
         <div>
           <b-button @click="acceptModification" class="btn-success"
@@ -382,9 +385,6 @@ export default {
         { key: "associations", label: "Associations" },
         { key: "actions", label: "Actions" },
       ],
-
-      oldUpdate: [],
-      newUpdate: [],
 
       categorys: [
         { text: "Choisissez une categorie", value: null },
@@ -454,10 +454,15 @@ export default {
       latitude: "",
       longitude: "",
       id: "",
+
+      //NewTabWithAllInfos
+      buffersAndActors: [],
     };
   },
 
-  mounted() {},
+  mounted() {
+    console.log(this.updateBuffer);
+  },
 
   methods: {
     clearFiles() {
