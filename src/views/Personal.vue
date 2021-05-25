@@ -883,11 +883,21 @@ h1 {
     width: 100%;
     margin-top: 20px;
   }
+
+  h4 {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 20px;
+  }
 }
 #btnModif {
   display: flex;
   justify-content: center;
   margin: 20px;
+  .btn-primary {
+    cursor: pointer;
+    margin: 20px;
+  }
 }
 #test {
   display: flex;
