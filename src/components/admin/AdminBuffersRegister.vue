@@ -476,7 +476,7 @@ export default {
 
     Update(e) {
       e.preventDefault();
-      let span = document.getElementById("bufferId");
+      let span = document.getElementById("bufferID");
       let id = span.innerText;
 
       this.registerBuffer.forEach((element) => {
