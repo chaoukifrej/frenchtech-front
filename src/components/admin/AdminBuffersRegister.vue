@@ -38,6 +38,8 @@
         size="xl"
         title="Modal buffer modification"
         hide-footer
+        class="modal-open"
+        data-modal-open-count="1"
       >
         <h1>Modifications inscription</h1>
 
