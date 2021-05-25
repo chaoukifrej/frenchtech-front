@@ -17,7 +17,7 @@
         hide-header
       >
         <h5>modification</h5>
-        {{ data }}
+        {{ data.item }}
         <p>avant</p>
 
         <p>apres</p>
@@ -48,11 +48,15 @@
               >
                 <b-form-input
                   id="input-2"
-                  v-model="name"
+                  v-model="data.item.name"
                   type="text"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-2" triggers="hover" placement="top">
+                {{ data.item.actorName }}
+                <b-icon-arrow-right></b-icon-arrow-right> {{ data.item.name }}
+              </b-popover>
             </div>
 
             <div class="col-md-4">
@@ -64,7 +68,7 @@
               >
                 <b-form-input
                   id="input-3"
-                  v-model="email"
+                  v-model="data.item.email"
                   type="email"
                   required
                 ></b-form-input>
