@@ -190,7 +190,7 @@
           <b-form @submit="onSubmit" v-if="show">
             <!-- LOGO -->
             <b-form-group id="input-group-1" label="Logo" label-for="input-1">
-              <div id="test">
+              <div id="dFLogo">
                 <b-form-file
                   id="input-1"
                   @change="addLogo"
@@ -270,12 +270,12 @@
               <div class="col-md-2">
                 <!-- POSTAL CODE -->
                 <b-form-group
-                  id="input-group-7"
+                  id="input-group-6"
                   label="Code postal"
-                  label-for="input-7"
+                  label-for="input-6"
                 >
                   <b-form-input
-                    id="input-7"
+                    id="input-6"
                     v-model="postal_code"
                     type="text"
                     required
@@ -285,12 +285,12 @@
               <div class="col-md-4">
                 <!-- ADRESS -->
                 <b-form-group
-                  id="input-group-6"
+                  id="input-group-7"
                   label="Nom de rue/avenue/boulevard"
-                  label-for="input-6"
+                  label-for="input-7"
                 >
                   <b-form-input
-                    id="input-6"
+                    id="input-7"
                     v-model="streetName"
                     type="text"
                     required
@@ -300,12 +300,12 @@
               <div class="col-md-4">
                 <!-- CITY -->
                 <b-form-group
-                  id="input-group-7"
+                  id="input-group-8"
                   label="Ville"
-                  label-for="input-7"
+                  label-for="input-8"
                 >
                   <b-form-input
-                    id="input-7"
+                    id="input-8"
                     v-model="city"
                     type="text"
                     required
@@ -318,12 +318,12 @@
               <div class="col-md-4">
                 <!-- FACEBOOK -->
                 <b-form-group
-                  id="input-group-8"
+                  id="input-group-9"
                   label="Facebook"
-                  label-for="input-8"
+                  label-for="input-9"
                 >
                   <b-form-input
-                    id="input-8"
+                    id="input-9"
                     v-model="facebook"
                     type="text"
                     required
@@ -333,12 +333,12 @@
               <div class="col-md-4">
                 <!-- TWITTER -->
                 <b-form-group
-                  id="input-group-9"
+                  id="input-group-10"
                   label="Twitter"
-                  label-for="input-9"
+                  label-for="input-10"
                 >
                   <b-form-input
-                    id="input-9"
+                    id="input-10"
                     v-model="twitter"
                     type="text"
                     required
@@ -349,12 +349,12 @@
               <div class="col-md-4">
                 <!-- LINKEDIN -->
                 <b-form-group
-                  id="input-group-10"
+                  id="input-group-11"
                   label="Linkedin"
-                  label-for="input-10"
+                  label-for="input-11"
                 >
                   <b-form-input
-                    id="input-10"
+                    id="input-11"
                     v-model="linkedin"
                     type="text"
                     required
@@ -367,12 +367,12 @@
               <div class="col-md-4">
                 <!-- CATEGORY -->
                 <b-form-group
-                  id="input-group-11"
+                  id="input-group-12"
                   label="Categorie"
-                  label-for="input-11"
+                  label-for="input-12"
                 >
                   <b-form-select
-                    id="input-11"
+                    id="input-12"
                     v-model="category"
                     :options="categorys"
                     required
@@ -382,12 +382,12 @@
               <div class="col-md-4">
                 <!-- ASSOCIATIONS -->
                 <b-form-group
-                  id="input-group-12"
+                  id="input-group-13"
                   label="Associations"
-                  label-for="input-12"
+                  label-for="input-13"
                 >
                   <b-form-select
-                    id="input-12"
+                    id="input-13"
                     v-model="associations"
                     :options="associationsL"
                     required
@@ -397,12 +397,12 @@
               <div class="col-md-4">
                 <!-- ACTIVIT AREA -->
                 <b-form-group
-                  id="input-group-13"
+                  id="input-group-14"
                   label="Secteurs d'activité"
-                  label-for="input-13"
+                  label-for="input-14"
                 >
                   <b-form-select
-                    id="input-13"
+                    id="input-14"
                     v-model="activity_area"
                     :options="activity_areaL"
                     required
@@ -413,12 +413,12 @@
 
             <!-- DESCRIPTION -->
             <b-form-group
-              id="input-group-14"
+              id="input-group-15"
               label="Description breve de votre entreprise"
-              label-for="input-14"
+              label-for="input-15"
             >
               <b-form-textarea
-                id="input-14"
+                id="input-15"
                 v-model="description"
                 required
               ></b-form-textarea>
@@ -445,12 +445,12 @@
               <div class="col-md-4">
                 <!-- WOMENS NUMBER -->
                 <b-form-group
-                  id="input-group-18"
+                  id="input-group-17"
                   label="Nombre de femmes"
-                  label-for="input-18"
+                  label-for="input-17"
                 >
                   <b-form-input
-                    id="input-18"
+                    id="input-17"
                     v-model="women_number"
                     type="number"
                     required
@@ -460,12 +460,12 @@
               <div class="col-md-4">
                 <!-- JOBS NUMBER -->
                 <b-form-group
-                  id="input-group-17"
+                  id="input-group-18"
                   label="Nombre de post à pourvoir"
-                  label-for="input-17"
+                  label-for="input-18"
                 >
                   <b-form-input
-                    id="input-17"
+                    id="input-18"
                     v-model="jobs_available_number"
                     type="number"
                     required
@@ -478,12 +478,12 @@
               <div class="col-md-6">
                 <!-- FUNDS -->
                 <b-form-group
-                  id="input-group-15"
+                  id="input-group-19"
                   label="Levé de fond (€)"
-                  label-for="input-15"
+                  label-for="input-19"
                 >
                   <b-form-input
-                    id="input-15"
+                    id="input-19"
                     v-model="funds"
                     type="number"
                     required
@@ -493,12 +493,12 @@
               <div class="col-md-6">
                 <!--  -->
                 <b-form-group
-                  id="input-group-19"
+                  id="input-group-20"
                   label="Chiffre d'affaire annuel total"
-                  label-for="input-19"
+                  label-for="input-20"
                 >
                   <b-form-input
-                    id="input-19"
+                    id="input-20"
                     v-model="revenues"
                     type="number"
                     required
@@ -899,7 +899,7 @@ h1 {
     margin: 20px;
   }
 }
-#test {
+#dFLogo {
   display: flex;
 }
 </style>

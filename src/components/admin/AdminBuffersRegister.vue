@@ -7,6 +7,7 @@
     :fields="registerFields"
   >
     <template #cell(actions)="data">
+      <!-- Bouton de validation -->
       <b-button
         pill
         variant="primary"
@@ -15,8 +16,17 @@
       >
         Valider
       </b-button>
+
+      <!-- Bouton de modification -->
       <b-button
-        v-b-modal="'modal-buffer-register' + data.item.id"
+        @click="
+          showModal(
+            data.item.id,
+            data.item.name,
+            data.item.email,
+            data.item.city
+          )
+        "
         pill
         variant="secondary"
         size="sm"
@@ -24,24 +34,26 @@
       >
         Modifier
       </b-button>
+
+      <!-- Bouton de refus -->
       <b-button
         pill
         variant="danger"
         size="sm"
-        @click="cancelRegister(data.item.id)"
+        @click="deleteRegister(data.item.id)"
       >
         Refuser
       </b-button>
       <!--MODAL-->
       <b-modal
-        :id="'modal-buffer-register' + data.item.id"
+        :id="'modalRegister' + data.item.id"
         size="xl"
         title="Modal buffer modification"
         hide-footer
       >
         <h1>Modifications inscription</h1>
 
-        <b-form @submit="Update" v-if="show">
+        <b-form @submit="updateRegister(e)" v-if="show">
           <!-- LOGO -->
           <b-form-group id="input-group-1" label="Logo" label-for="input-1">
             <b-form-file
@@ -95,7 +107,7 @@
           <b-form-group id="input-group-5" label="Numéro" label-for="input-5">
             <b-form-input
               id="input-5"
-              v-model="data.item.streetNumber"
+              v-model="data.item.adress"
               required
             ></b-form-input>
           </b-form-group>
@@ -295,7 +307,9 @@
               required
             ></b-form-input>
           </b-form-group>
-          <span id="bufferID" style="display:none">{{ data.item.id }}</span>
+
+          <span id="bufferId" style="display:none">{{ data.item.id }}</span>
+
           <div class="col-12" id="buttonSubmit">
             <button type="submit" class="btn btn-primary">
               Modifier
@@ -325,10 +339,9 @@ export default {
         { key: "actions", label: "Actions" },
       ],
 
-      show: true,
       categorys: [
         { text: "Choisissez une categorie", value: null },
-        "Start-up",
+        { text: "Start-up", value: "Start-up" },
         "Association",
         "Organisme financeur",
         "Organisme de formation",
@@ -364,58 +377,38 @@ export default {
         "Administration Public",
         "Evenementiel",
       ],
-      logo: "",
-      name: "",
-      email: "",
-      phone: "",
-      streetNumber: "",
-      streetName: "",
-      adress: "",
-      city: "",
-      postal_code: "",
-      facebook: "",
-      twitter: "",
-      linkedin: "",
-      category: "",
-      associations: "",
-      activity_area: "",
-      description: "",
 
-      /* information visible uniquement par l'admin */
+      show: true,
 
-      funds: "",
-      employees_number: "",
-      jobs_available_number: "",
-      women_number: "",
-      revenues: "",
-      position: "",
-      latitude: "",
-      longitude: "",
-      id: "",
+      updateData: {
+        firstname: "",
+        lastname: "",
+        email: "",
+        id: "",
+      },
     };
   },
 
   beforeMount() {
-    this.axios
-      .get(this.baseUrl + "api/GET/buffers", {
-        headers: {
-          // Authorization: "Bearer " + this.token.value,
-          // Accept: "application/json",
-        },
-      })
-      .then((response) => {
-        // console.log(response);
-        for (const elem of response.data.body.buffers) {
-          this.registerBuffer.push(elem);
-          let adressStr = elem.adress;
-          let number = adressStr.split(/(\d+)/g);
-          elem.streetName = adressStr.replace(number[1], "");
-          elem.streetNumber = number[1];
-        }
-      });
+    // console.log(response);
+    for (const elem of this.registerBuffer) {
+      this.registerBuffer.push(elem);
+      let adressStr = elem.adress;
+      let number = adressStr.split(/(\d+)/g);
+      elem.streetName = adressStr.replace(number[1], "");
+      elem.streetNumber = number[1];
+    }
   },
 
   methods: {
+    // ?Show Modal
+    showModal(id, n, e, c) {
+      this.firstname = n;
+      this.lastname = e;
+      this.email = c;
+      this.$bvModal.show("modalRegister" + id);
+    },
+    // ? Comfirmation de la demande
     confirmRegister(id) {
       this.$bvModal
         .msgBoxConfirm("Êtes vous sûr?", {
@@ -428,7 +421,7 @@ export default {
         .then((value) => {
           if (value) {
             this.axios
-              .post(this.baseUrl + "/api/admin/POST/validate/" + id)
+              .post(this.baseUrl + "api/admin/POST/validate/" + id)
               .then((response) => {
                 document.querySelectorAll("tr").forEach((e) => {
                   e.querySelectorAll("td:first-child").forEach((i) => {
@@ -437,19 +430,19 @@ export default {
                     }
                   });
                 });
+                console.log(response.status);
               });
           }
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
-    cancelRegister(id) {
+    // ! Suppression de la demande
+    deleteRegister(id) {
       this.$bvModal
         .msgBoxConfirm("Êtes vous sûr?", {
           okVariant: "danger",
-          okTitle: "Confirmer",
+          id: "test",
           cancelTitle: "Annuler",
+          okTitle: "Confirmer",
           footerClass: "p-2",
           hideHeaderClose: false,
         })
@@ -458,89 +451,58 @@ export default {
             this.axios
               .delete(this.baseUrl + "/api/admin/DELETE/buffer/" + id)
               .then((response) => {
-                let elem = document.getElementsByTagName("tr");
-                elem.forEach((e) => {
-                  if (e.id.substr(-1) == id) {
-                    // console.log(e.id.substr(-1));
-                    e.style.display = "none";
-                  }
+                document.querySelectorAll("tr").forEach((e) => {
+                  e.querySelectorAll("td:first-child").forEach((i) => {
+                    if (i.innerText == id && id != 1) {
+                      e.style.display = "none";
+                    }
+                    if (id == 1) {
+                      console.log("Non supprimable");
+                    }
+                  });
                 });
-                // console.log(response.status);
+                console.log(response.status);
               });
           }
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
 
-    Update(e) {
+    // . Update de la demande
+    updateRegister(e) {
       e.preventDefault();
-      let span = document.getElementById("bufferID");
+      let span = document.getElementById("bufferId");
       let id = span.innerText;
+      console.log(id);
+      // this.axios
 
-      this.registerBuffer.forEach((element) => {
-        if (id == element.id) {
-          this.logo = element.logo;
-          this.name = element.name;
-          this.email = element.email;
-          this.phone = element.phone;
-          this.streetNumber = element.streetNumber;
-          this.streetName = element.streetName;
-          this.adress = element.adress;
-          this.city = element.city;
-          this.postal_code = element.postal_code;
-          this.facebook = element.facebook;
-          this.twitter = element.twitter;
-          this.linkedin = element.linkedin;
-          this.category = element.category;
-          this.associations = element.associations;
-          this.activity_area = element.activity_area;
-          this.description = element.description;
+      //   .put(this.baseUrl + "api/admin/PUT/buffer/" + id, {
+      //     /* body de la requete */
 
-          /* information visible uniquement par l'admin */
+      //     name: this.name,
+      //     email: this.email,
+      //     logo: this.logo,
+      //     adress: this.adress,
+      //     postal_code: this.postal_code,
+      //     city: this.city,
+      //     longitude: this.longitude,
+      //     latitude: this.latitude,
+      //     phone: this.phone,
+      //     category: this.category,
+      //     associations: this.associations,
+      //     description: this.description,
+      //     facebook: this.facebook,
+      //     twitter: this.twitter,
+      //     linkedin: this.linkedin,
+      //     website: this.website,
+      //     activity_area: this.activity_area,
+      //     funds: this.funds,
+      //     employees_number: this.employees_number,
+      //     jobs_available_number: this.employees_number,
+      //     women_number: this.women_number,
+      //     revenues: this.revenues,
+      //   })
 
-          this.funds = element.funds;
-          this.employees_number = element.employees_number;
-          this.jobs_available_number = element.jobs_available_number;
-          this.women_number = element.women_number;
-          this.revenues = element.revenues;
-          this.position = element.position;
-          this.latitude = element.latitude;
-          this.longitude = element.longitude;
-        }
-      });
-
-      this.axios
-
-        .put(this.baseUrl + "api/admin/PUT/buffer/" + id, {
-          /* body de la requete */
-
-          name: this.name,
-          email: this.email,
-          logo: this.logo,
-          adress: this.adress,
-          postal_code: this.postal_code,
-          city: this.city,
-          longitude: this.longitude,
-          latitude: this.latitude,
-          phone: this.phone,
-          category: this.category,
-          associations: this.associations,
-          description: this.description,
-          facebook: this.facebook,
-          twitter: this.twitter,
-          linkedin: this.linkedin,
-          website: this.website,
-          activity_area: this.activity_area,
-          funds: this.funds,
-          employees_number: this.employees_number,
-          jobs_available_number: this.employees_number,
-          women_number: this.women_number,
-          revenues: this.revenues,
-        })
-
-        .then(response);
+      // .then(response);
     },
     addLogo(e) {
       const reader = new FileReader();
