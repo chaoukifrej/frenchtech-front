@@ -262,7 +262,7 @@ export default {
         .then((value) => {
           if (value) {
             this.axios
-              .delete(this.baseUrl + "api/admin/DELETE/admin" + id)
+              .delete(this.baseUrl + "api/admin/DELETE/admin/" + id)
               .then((response) => {
                 document.querySelectorAll("tr").forEach((e) => {
                   e.querySelectorAll("td:first-child").forEach((i) => {

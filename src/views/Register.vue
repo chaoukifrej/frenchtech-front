@@ -383,6 +383,7 @@ export default {
         })
 
         .then((response) => console.log(response));
+      this.$router.push("/");
     },
 
     /* methode transformer le logo en base 64 pour la BDD */
