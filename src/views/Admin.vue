@@ -116,27 +116,31 @@
       </div>
 
       <div class="AdminTabContainer mt-5">
-        <b-tabs content-class="mt-3">
+        <b-tabs
+          content-class="mt-3"
+          justified
+          active-nav-item-class="font-weight-bold text-danger"
+        >
           <b-tab title="Gestion entreprise" active>
             <AdminActorsManage :actors="actors" />
           </b-tab>
-          <b-tab title="Demande d'inscription">
+          <b-tab title="Demande d'inscription" lazy>
             <AdminRegister
               :buffers="buffers"
               :registerBuffer="registerBuffer"
             />
           </b-tab>
-          <b-tab title="Demande de modification">
+          <b-tab title="Demande de modification" lazy>
             <AdminUpdate
               :actors="actors"
               :buffers="buffers"
               :updateBuffer="updateBuffer"
             />
           </b-tab>
-          <b-tab title="Demande de suppression">
+          <b-tab title="Demande de suppression" lazy>
             <AdminDelete :deleteBuffer="deleteBuffer" />
           </b-tab>
-          <b-tab title="Imports et Exports"> <AdminExcel /> </b-tab>
+          <b-tab title="Imports et Exports" lazy> <AdminExcel /> </b-tab>
           <b-tab title="Gestion des administrateurs">
             <AdminGestion />
           </b-tab>
