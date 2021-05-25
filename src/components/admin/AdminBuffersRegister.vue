@@ -1,11 +1,5 @@
 <template>
-  <b-table
-    :primary-key="id"
-    striped
-    hover
-    :items="registerBuffer"
-    :fields="registerFields"
-  >
+  <b-table striped hover :items="registerBuffer" :fields="registerFields">
     <template #cell(actions)="data">
       <!-- Bouton de validation -->
       <b-button
