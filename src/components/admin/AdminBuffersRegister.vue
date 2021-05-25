@@ -1,6 +1,6 @@
 <template>
   <b-table
-    primary-key="buffers.id"
+    :primary-key="id"
     striped
     hover
     :items="registerBuffer"
@@ -16,7 +16,7 @@
         Valider
       </b-button>
       <b-button
-        v-b-modal="'modal-buffer' + data.item.id"
+        v-b-modal="'modal-buffer-register' + data.item.id"
         pill
         variant="secondary"
         size="sm"
@@ -34,7 +34,7 @@
       </b-button>
       <!--MODAL-->
       <b-modal
-        :id="'modal-buffer' + data.item.name + data.item.id"
+        :id="'modal-buffer-register' + data.item.id"
         size="xl"
         title="Modal buffer modification"
         hide-footer
