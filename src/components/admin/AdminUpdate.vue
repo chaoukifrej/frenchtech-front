@@ -17,7 +17,7 @@
         hide-header
       >
         <h5>modification</h5>
-        {{ data }}
+        {{ data.item }}
         <p>avant</p>
 
         <p>apres</p>
