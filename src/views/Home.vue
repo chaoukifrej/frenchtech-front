@@ -37,6 +37,7 @@
           </l-tooltip>
           <l-icon>
             <b-icon
+              v-if="elem.filtered"
               class="rounded-circle bg-danger p-1"
               icon="circle-fill"
               variant="light"
@@ -104,7 +105,9 @@
         </div>
         <div class="cardContainer">
           <div class="displayCards" v-for="item in results" :key="item.id">
-            <CardInfo :i="item" />
+            <span v-if="item.filtered">
+              <CardInfo :i="item" />
+            </span>
           </div>
         </div>
       </div>
@@ -202,6 +205,7 @@ export default {
     /* mounted pour recuperer les infos des Actors depuis la BDD */
     this.axios.get(this.baseUrl + "api/GET/actors").then((response) => {
       for (const elem of response.data.body.actors) {
+        elem.filtered = true;
         this.actors.push(elem);
       }
       //console.log(this.actors);
@@ -259,13 +263,26 @@ export default {
     filterByAssociation() {
       console.log(this.filterByAssociationSelected);
       this.actors.forEach((elem) => {
-        if (elem.association == "cannesIsUp") {
-          console.log(elem);
+        if (this.filterByAssociationSelected == "labelAssociation") {
+          elem.filtered = true;
+        } else if (elem.associations != this.filterByAssociationSelected) {
+          elem.filtered = false;
+        } else {
+          elem.filtered = true;
         }
       });
     },
     filterByCategory() {
       console.log(this.filterByCategorySelected);
+      this.actors.forEach((elem) => {
+        if (this.filterByCategorySelected == "labelCategory") {
+          elem.filtered = true;
+        } else if (elem.category != this.filterByCategorySelected) {
+          elem.filtered = false;
+        } else {
+          elem.filtered = true;
+        }
+      });
     },
   },
 };
