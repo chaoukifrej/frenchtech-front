@@ -66,7 +66,7 @@
             <div class="infoContainer">
               <div class="infoName">
                 <p>
-                  <strong>Sécteur<br />d'activité </strong>
+                  <strong>Secteur<br />d'activité </strong>
                 </p>
               </div>
               <div class="infoText">
@@ -82,7 +82,7 @@
         <div class="container containerDescription">
           <div class="infoContainer">
             <div class="infoName">
-              <p><strong>Déscription </strong></p>
+              <p><strong>Description </strong></p>
             </div>
             <div class="infoTextDesc">
               <p>{{ actualActor.description }}</p>
@@ -115,7 +115,7 @@
             </div>
             <div class="infoContainer">
               <div class="infoName">
-                <p><strong>Revenues </strong></p>
+                <p><strong>Revenus </strong></p>
               </div>
               <div class="infoText">
                 <p>{{ actualActor.revenues }}</p>
@@ -424,7 +424,7 @@
               ></b-form-textarea>
             </b-form-group>
 
-            <h4>Informations Relative a votre entreprise</h4>
+            <h4>Informations relative à votre entreprise</h4>
 
             <b-row>
               <div class="col-md-4">
