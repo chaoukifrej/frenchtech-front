@@ -404,7 +404,7 @@ export default {
         },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         for (const elem of response.data.body.buffers) {
           this.registerBuffer.push(elem);
           let adressStr = elem.adress;
@@ -436,7 +436,6 @@ export default {
                       e.style.display = "none";
                     }
                   });
-                  console.log(response.status);
                 });
               });
           }
@@ -462,11 +461,11 @@ export default {
                 let elem = document.getElementsByTagName("tr");
                 elem.forEach((e) => {
                   if (e.id.substr(-1) == id) {
-                    console.log(e.id.substr(-1));
+                    // console.log(e.id.substr(-1));
                     e.style.display = "none";
                   }
                 });
-                console.log(response.status);
+                // console.log(response.status);
               });
           }
         })
@@ -477,7 +476,7 @@ export default {
 
     Update(e) {
       e.preventDefault();
-      let span = document.getElementById("bufferId");
+      let span = document.getElementById("bufferID");
       let id = span.innerText;
 
       this.registerBuffer.forEach((element) => {
@@ -541,7 +540,7 @@ export default {
           revenues: this.revenues,
         })
 
-        .then((response) => console.log(response));
+        .then(response);
     },
     addLogo(e) {
       const reader = new FileReader();
