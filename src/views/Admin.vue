@@ -282,7 +282,7 @@ export default {
       });
 
     this.axios.get(this.baseUrl + "api/GET/metric").then((response) => {
-      console.log(response.data.body);
+      // console.log(response.data.body);
       this.metrics.push(response.data.body);
       this.totalFundsMetric = response.data.body.funds_total;
       this.totalRevenuesMetric = response.data.body.revenues_total;
