@@ -180,12 +180,12 @@
                 <b-col>
                   <b-form-group
                     id="input-group-8"
-                    label="WebSite"
+                    label="Website"
                     label-for="input-8"
                   >
                     <b-form-input
                       id="input-8"
-                      v-model="data.item.WebSite"
+                      v-model="data.item.website"
                       type="text"
                     ></b-form-input>
                   </b-form-group>
@@ -473,7 +473,7 @@ export default {
       adress: "",
       city: "",
       postal_code: "",
-      webSite: "",
+      website: "",
       facebook: "",
       twitter: "",
       linkedin: "",
@@ -534,7 +534,7 @@ export default {
           this.adress = element.adress;
           this.city = element.city;
           this.postal_code = element.postal_code;
-          this.webSite = element.webSite;
+          this.website = element.website;
           this.facebook = element.facebook;
           this.twitter = element.twitter;
           this.linkedin = element.linkedin;
