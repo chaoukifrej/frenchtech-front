@@ -1,6 +1,6 @@
 <template>
   <b-table
-    :primary-key="buffer.id"
+    :primary-key="id"
     striped
     hover
     :items="registerBuffer"
@@ -382,12 +382,12 @@ export default {
 
       show: true,
 
-      updateData: {
-        firstname: "",
-        lastname: "",
-        email: "",
-        id: "",
-      },
+      // updateData: {
+      //   firstname: "",
+      //   lastname: "",
+      //   email: "",
+      //   id: "",
+      // },
     };
   },
 
@@ -507,6 +507,7 @@ export default {
         .then(response);
       this.$bvModal.hide("modal-1");
     },
+
     addLogo(e) {
       const reader = new FileReader();
       reader.onload = (readerEvent) => {
