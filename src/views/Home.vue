@@ -24,7 +24,10 @@
           :lat-lng="[elem.longitude, elem.latitude]"
           @click="sayHello(elem.id)"
         >
-          <l-tooltip class="leaflet-pane leaflet-tooltip-pane">
+          <l-tooltip
+            class="leaflet-pane leaflet-tooltip-pane"
+            v-if="elem.filteredByCat && elem.filteredByAssoc"
+          >
             <img
               class="img-logo"
               :src="elem.logo"
@@ -37,7 +40,6 @@
           </l-tooltip>
           <l-icon>
             <b-icon
-              v-if="elem.filtered"
               class="rounded-circle bg-danger p-1"
               icon="circle-fill"
               variant="light"
@@ -105,7 +107,7 @@
         </div>
         <div class="cardContainer">
           <div class="displayCards" v-for="item in results" :key="item.id">
-            <span v-if="item.filtered">
+            <span v-if="item.filteredByCat && item.filteredByAssoc">
               <CardInfo :i="item" />
             </span>
           </div>
@@ -205,7 +207,8 @@ export default {
     /* mounted pour recuperer les infos des Actors depuis la BDD */
     this.axios.get(this.baseUrl + "api/GET/actors").then((response) => {
       for (const elem of response.data.body.actors) {
-        elem.filtered = true;
+        elem.filteredByCat = true;
+        elem.filteredByAssoc = true;
         this.actors.push(elem);
       }
       //console.log(this.actors);
@@ -264,11 +267,11 @@ export default {
       console.log(this.filterByAssociationSelected);
       this.actors.forEach((elem) => {
         if (this.filterByAssociationSelected == "labelAssociation") {
-          elem.filtered = true;
+          elem.filteredByAssoc = true;
         } else if (elem.associations != this.filterByAssociationSelected) {
-          elem.filtered = false;
+          elem.filteredByAssoc = false;
         } else {
-          elem.filtered = true;
+          elem.filteredByAssoc = true;
         }
       });
     },
@@ -276,11 +279,11 @@ export default {
       console.log(this.filterByCategorySelected);
       this.actors.forEach((elem) => {
         if (this.filterByCategorySelected == "labelCategory") {
-          elem.filtered = true;
+          elem.filteredByCat = true;
         } else if (elem.category != this.filterByCategorySelected) {
-          elem.filtered = false;
+          elem.filteredByCat = false;
         } else {
-          elem.filtered = true;
+          elem.filteredByCat = true;
         }
       });
     },
@@ -356,6 +359,9 @@ body {
       padding: 20px 10px;
       z-index: 100;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      .selectSearch {
+        cursor: pointer;
+      }
     }
     .cardContainer {
       width: 100%;
