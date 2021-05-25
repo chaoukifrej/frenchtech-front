@@ -41,6 +41,7 @@ $BgWhite: #f6f5f8;
   display: flex;
   flex-direction: column;
   width: 16vw;
+  min-width: 200px;
   height: 12rem;
   border-radius: 3px;
   padding: 10px;
@@ -49,7 +50,7 @@ $BgWhite: #f6f5f8;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   transition: 0.2s;
   &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     background-color: rgba(255, 255, 255, 0.5);
   }
   .card-body {

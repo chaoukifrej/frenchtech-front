@@ -159,7 +159,7 @@
             class="form-select"
           >
             <option selected>Choississez...</option>
-            <option value="canneIsUp">Cannes Is Up</option>
+            <option value="cannesIsUp">Cannes Is Up</option>
             <option value="clubGrasse">
               Le club des entrepreneurs du pays de Grasse
             </option>
