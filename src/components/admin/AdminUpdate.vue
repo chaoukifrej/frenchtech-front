@@ -1,5 +1,11 @@
 <template>
-  <b-table primary-key="id" striped hover :items="actors" :fields="liste">
+  <b-table
+    :primary-key="id"
+    striped
+    hover
+    :items="updateBuffer"
+    :fields="liste"
+  >
     <template #cell(actions)="data">
       <b-button @click="showModif(data.item.id)" variant="primary" size="sm"
         >Voir les modifications</b-button
@@ -522,7 +528,7 @@ export default {
       console.log(id);
 
       this.axios
-        .get(this.baseUrl + "api/GET/actorId/" + id)
+        .get(this.baseUrl + "api/GET/bufferId/" + id)
         .then((response) => {
           this.name = response.data.body.actor.name;
         });
