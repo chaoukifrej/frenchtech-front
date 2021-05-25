@@ -27,9 +27,16 @@
       <b-modal
         :id="'modal-xl' + data.item.id"
         size="xl"
-        title="Extra Large Modal"
+        title="Modifier un acteur"
         hide-footer
       >
+        <template #modal-header="{ close }">
+          <!-- Emulate built in modal header close button action -->
+          <h5>Modifier un acteur</h5>
+          <b-button size="sm" variant="outline-danger" @click="close()">
+            Fermer
+          </b-button>
+        </template>
         <b-container>
           <h1>Modifications</h1>
 
@@ -253,6 +260,7 @@
                   label-for="input-11"
                 >
                   <b-form-select
+                    class="p-2"
                     id="input-11"
                     v-model="data.item.category"
                     :options="categorys"
@@ -271,6 +279,7 @@
                 >
                   <b-form-select
                     id="input-12"
+                    class="p-2"
                     v-model="data.item.associations"
                     :options="associationsL"
                     required
@@ -288,6 +297,7 @@
                 >
                   <b-form-select
                     id="input-13"
+                    class="p-2"
                     v-model="data.item.activity_area"
                     :options="activity_areaL"
                     required
