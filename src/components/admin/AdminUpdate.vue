@@ -17,7 +17,7 @@
         hide-header
       >
         <h5>modification</h5>
-
+        {{ data }}
         <p>avant</p>
 
         <p>apres</p>
@@ -382,9 +382,6 @@ export default {
         { key: "actions", label: "Actions" },
       ],
 
-      oldUpdate: [],
-      newUpdate: [],
-
       categorys: [
         { text: "Choisissez une categorie", value: null },
         { text: "Start-up", value: "Start-up" },
@@ -457,6 +454,10 @@ export default {
       //NewTabWithAllInfos
       buffersAndActors: [],
     };
+  },
+
+  mounted() {
+    console.log(this.updateBuffer);
   },
 
   methods: {
