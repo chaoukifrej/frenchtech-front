@@ -50,6 +50,8 @@
         size="xl"
         title="Modal buffer modification"
         hide-footer
+        class="modal-open"
+        data-modal-open-count="1"
       >
         <h1>Modifications inscription</h1>
 
@@ -380,12 +382,12 @@ export default {
 
       show: true,
 
-      updateData: {
-        firstname: "",
-        lastname: "",
-        email: "",
-        id: "",
-      },
+      // updateData: {
+      //   firstname: "",
+      //   lastname: "",
+      //   email: "",
+      //   id: "",
+      // },
     };
   },
 
@@ -473,37 +475,39 @@ export default {
       let span = document.getElementById("bufferId");
       let id = span.innerText;
       console.log(id);
-      // this.axios
+      this.axios
 
-      //   .put(this.baseUrl + "api/admin/PUT/buffer/" + id, {
-      //     /* body de la requete */
+        .put(this.baseUrl + "api/admin/PUT/buffer/" + id, {
+          /* body de la requete */
 
-      //     name: this.name,
-      //     email: this.email,
-      //     logo: this.logo,
-      //     adress: this.adress,
-      //     postal_code: this.postal_code,
-      //     city: this.city,
-      //     longitude: this.longitude,
-      //     latitude: this.latitude,
-      //     phone: this.phone,
-      //     category: this.category,
-      //     associations: this.associations,
-      //     description: this.description,
-      //     facebook: this.facebook,
-      //     twitter: this.twitter,
-      //     linkedin: this.linkedin,
-      //     website: this.website,
-      //     activity_area: this.activity_area,
-      //     funds: this.funds,
-      //     employees_number: this.employees_number,
-      //     jobs_available_number: this.employees_number,
-      //     women_number: this.women_number,
-      //     revenues: this.revenues,
-      //   })
+          name: this.name,
+          email: this.email,
+          logo: this.logo,
+          adress: this.adress,
+          postal_code: this.postal_code,
+          city: this.city,
+          longitude: this.longitude,
+          latitude: this.latitude,
+          phone: this.phone,
+          category: this.category,
+          associations: this.associations,
+          description: this.description,
+          facebook: this.facebook,
+          twitter: this.twitter,
+          linkedin: this.linkedin,
+          website: this.website,
+          activity_area: this.activity_area,
+          funds: this.funds,
+          employees_number: this.employees_number,
+          jobs_available_number: this.employees_number,
+          women_number: this.women_number,
+          revenues: this.revenues,
+        })
 
-      // .then(response);
+        .then(response);
+      this.$bvModal.hide("modal-1");
     },
+
     addLogo(e) {
       const reader = new FileReader();
       reader.onload = (readerEvent) => {
