@@ -321,10 +321,10 @@ export default {
                   e.actorJobs_available_number = actor.jobs_available_number;
                   e.actorWomen_number = actor.women_number;
                   e.actorRevenues = actor.revenues;
+                  e.actorStreetNumber = actor.streetNumber;
                   break;
                 }
               }
-
               this.updateBuffer.push(e);
             }
           });

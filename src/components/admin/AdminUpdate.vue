@@ -106,13 +106,14 @@
               >
                 <b-form-input
                   id="input-5"
-                  v-model="data.item.streetNumber"
+                  v-model="data.item.bufferStreetNumber"
                   required
                 ></b-form-input>
               </b-form-group>
               <b-popover target="input-5" triggers="hover" placement="top">
-                {{ data.item.actorName }}
-                <b-icon-arrow-right></b-icon-arrow-right> {{ data.item.name }}
+                {{ data.item.actorStreetNumber }}
+                <b-icon-arrow-right></b-icon-arrow-right>
+                {{ data.item.bufferStreetNumber }}
               </b-popover>
             </div>
             <div class="col-md-2">
@@ -144,7 +145,7 @@
               >
                 <b-form-input
                   id="input-7"
-                  v-model="data.item.adress"
+                  v-model="data.item.bufferStreetName"
                   type="text"
                   required
                 ></b-form-input>
@@ -152,7 +153,7 @@
               <b-popover target="input-7" triggers="hover" placement="top">
                 {{ data.item.actorAdress }}
                 <b-icon-arrow-right></b-icon-arrow-right>
-                {{ data.item.adress }}
+                {{ data.item.bufferStreetName }}
               </b-popover>
             </div>
             <div class="col-md-4">
@@ -541,25 +542,7 @@ export default {
     };
   },
 
-  mounted() {
-    this.axios
-      .get(this.baseUrl + "api/admin/GET/actors", {
-        headers: {
-          Authorization: "Bearer " + this.token.value,
-          Accept: "application/json",
-        },
-      })
-      .then((response) => {
-        for (const elem of response.data.body.actors) {
-          this.actors.push(elem);
-          let adressStr = elem.adress;
-          console.log(adressStr);
-          let number = adressStr.split(/(\d+)/g);
-          elem.streetName = adressStr.replace(number[1], "");
-          elem.streetNumber = number[1];
-        }
-      });
-  },
+  mounted() {},
 
   methods: {
     clearFiles() {
@@ -626,12 +609,6 @@ export default {
 
     showModif(id) {
       this.$bvModal.show("modalUpdate" + id);
-
-      this.axios
-        .get(this.baseUrl + "api/GET/bufferId/" + id)
-        .then((response) => {
-          this.name = response.data.body.actor.name;
-        });
     },
   },
 };
@@ -673,6 +650,11 @@ export default {
   .btn-secondary:hover {
     color: black;
     background-color: #dfdfdf;
+  }
+
+  h4 {
+    margin-top: 15px;
+    text-align: center;
   }
 }
 .buttonAdminUpdate {
