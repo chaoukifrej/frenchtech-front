@@ -8,7 +8,7 @@
   >
     <template #cell(actions)="data">
       <b-button
-        v-b-modal="'modal-xl' + data.item.id"
+        v-b-modal="'modal-ActorsManage' + data.item.id"
         pill
         variant="secondary"
         size="sm"
@@ -25,15 +25,22 @@
         Supprimer
       </b-button>
       <b-modal
-        :id="'modal-xl' + data.item.id"
+        :id="'modal-ActorsManage' + data.item.id"
         size="xl"
-        title="Extra Large Modal"
+        title="Modifier un acteur"
         hide-footer
+        no-stacking
+        centered
       >
+        <template #modal-header="{ close }">
+          <!-- Emulate built in modal header close button action -->
+          <h5>Modifier un acteur</h5>
+          <b-button size="sm" variant="outline-danger" @click="close()">
+            Fermer
+          </b-button>
+        </template>
         <b-container>
-          <h1>Modifications</h1>
-
-          <b-form @submit="Update" v-if="show">
+          <b-form @submit="Update">
             <!-- LOGO -->
             <b-form-group id="input-group-1" label="Logo" label-for="input-1">
               <b-form-file
@@ -253,6 +260,7 @@
                   label-for="input-11"
                 >
                   <b-form-select
+                    class="p-2"
                     id="input-11"
                     v-model="data.item.category"
                     :options="categorys"
@@ -271,6 +279,7 @@
                 >
                   <b-form-select
                     id="input-12"
+                    class="p-2"
                     v-model="data.item.associations"
                     :options="associationsL"
                     required
@@ -288,6 +297,7 @@
                 >
                   <b-form-select
                     id="input-13"
+                    class="p-2"
                     v-model="data.item.activity_area"
                     :options="activity_areaL"
                     required
@@ -307,7 +317,7 @@
                   id="input-14"
                   v-model="data.item.description"
                   required
-                  rows="8"
+                  rows="3"
                 ></b-form-textarea></b-form-group
             ></b-row>
 
@@ -395,8 +405,8 @@
               </b-col>
             </b-row>
             <span id="actorId" style="display:none">{{ data.item.id }}</span>
-            <div class="col-12" id="buttonSubmit">
-              <button type="submit" class="btn btn-primary">
+            <div class="col-12 w-100" id="buttonSubmit">
+              <button type="submit" class="btn btn-primary mt-3 w-100" block>
                 Modifier
               </button>
             </div>
@@ -425,7 +435,6 @@ export default {
         { key: "actions", label: "Actions" },
       ],
 
-      show: true,
       categorys: [
         { text: "Choisissez une categorie", value: null },
         "Start-up",

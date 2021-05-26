@@ -46,8 +46,17 @@
         hide-footer
         class="modal-open"
         data-modal-open-count="1"
+        no-stacking
+        centered
+        scrollable
       >
-        <h1>Modifications inscription</h1>
+        <template #modal-header="{ close }">
+          <!-- Emulate built in modal header close button action -->
+          <h5>Demande d'inscription</h5>
+          <b-button size="sm" variant="outline-danger" @click="close()">
+            Fermer
+          </b-button>
+        </template>
 
         <b-form @submit="updateRegister(e)" v-if="show">
           <!-- LOGO -->
@@ -307,7 +316,7 @@
           <span id="bufferId" style="display:none">{{ data.item.id }}</span>
 
           <div class="col-12" id="buttonSubmit">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary mt-3 w-100">
               Modifier
             </button>
           </div>

@@ -7,15 +7,21 @@
     :fields="liste"
   >
     <template #cell(actions)="data">
-      <b-button @click="showModif(data.item.id)" variant="primary" size="sm"
+      <b-button
+        @click="showModif(data.item.id)"
+        variant="primary"
+        size="sm"
+        pill
         >Voir les modifications</b-button
       >
-      <b-modal
-        size="xl"
-        :id="'modalUpdate' + data.item.id"
-        hide-footer
-        hide-header
-      >
+      <b-modal size="xl" :id="'modalUpdate' + data.item.id" hide-footer>
+        <template #modal-header="{ close }">
+          <!-- Emulate built in modal header close button action -->
+          <h5>Demande de modification</h5>
+          <b-button size="sm" variant="outline-danger" @click="close()">
+            Fermer
+          </b-button>
+        </template>
         <h5>modification</h5>
 
         <b-form>
@@ -425,20 +431,14 @@
               </b-popover>
             </div>
           </b-row>
-
-          <div class="col-12" id="buttonSubmit">
-            <b-button variant="success" type="submit" class="btn btn-success">
-              Modifier
-            </b-button>
-          </div>
         </b-form>
 
         <span id="actorId" style="display:none">{{ data.item.id }}</span>
         <div>
-          <b-button @click="acceptModification" class="btn-success"
+          <b-button @click="acceptModification" class="btn-success mt-2 mx-1"
             >Accepter</b-button
           >
-          <b-button @click="cancelModification" class="btn-alert"
+          <b-button @click="cancelModification" class="btn-alert mt-2"
             >Refuser</b-button
           >
         </div>
