@@ -40,7 +40,29 @@
           </l-tooltip>
           <l-icon>
             <b-icon
+              v-if="elem.associations == 'NiceStartsUp'"
               class="rounded-circle bg-danger p-1"
+              icon="circle-fill"
+              variant="light"
+              scale="1.5"
+            ></b-icon>
+            <b-icon
+              v-if="elem.associations == 'cannesIsUp'"
+              class="rounded-circle bg-primary p-1"
+              icon="circle-fill"
+              variant="light"
+              scale="1.5"
+            ></b-icon>
+            <b-icon
+              v-if="elem.associations == 'clubGrasse'"
+              class="rounded-circle bg-success p-1"
+              icon="circle-fill"
+              variant="light"
+              scale="1.5"
+            ></b-icon>
+            <b-icon
+              v-if="elem.associations == 'telecomValley'"
+              class="rounded-circle bg-warning p-1"
               icon="circle-fill"
               variant="light"
               scale="1.5"
