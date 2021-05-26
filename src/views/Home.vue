@@ -356,10 +356,12 @@ body {
     background: white;
     .tooltip-name {
       font-weight: 700;
+      font-size: 1rem;
       color: $primary;
     }
     .tooltip-website {
       color: $secondary;
+      font-size: 1rem;
     }
   }
 
