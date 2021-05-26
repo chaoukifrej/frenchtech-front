@@ -265,8 +265,7 @@
                     v-model="data.item.category"
                     :options="categorys"
                     required
-                    >{{ selected }}</b-form-select
-                  >
+                  ></b-form-select>
                 </b-form-group>
               </b-col>
 
@@ -479,7 +478,7 @@ export default {
         { text: "Finance", value: "finance" },
         { text: "Administration Public", value: "administrationPublic" },
       ],
-      selected: null,
+
       logo: "",
       name: "",
       email: "",
