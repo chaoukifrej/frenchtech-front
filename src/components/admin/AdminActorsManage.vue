@@ -42,7 +42,7 @@
                 type="file"
                 accept="image/png, image/jpeg"
                 ref="img"
-                placeholder=" "
+                plain
               ></b-form-file>
             </b-form-group>
 
@@ -311,7 +311,9 @@
                 ></b-form-textarea></b-form-group
             ></b-row>
 
-            <h1>Informations Relative a votre entreprise</h1>
+            <h1>
+              Informations Relative a votre entreprise
+            </h1>
 
             <!-- FUNDS -->
             <b-row>
@@ -396,7 +398,11 @@
             </b-row>
             <span id="actorId" style="display:none">{{ data.item.id }}</span>
             <div class="col-12" id="buttonSubmit">
-              <button type="submit" class="btn btn-primary">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="width : 100%"
+              >
                 Modifier
               </button>
             </div>
@@ -640,4 +646,4 @@ export default {
 };
 </script>
 
-<style lang="sass"></style>
+<style lang="scss"></style>
