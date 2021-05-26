@@ -49,7 +49,7 @@
         <div class="col-2">
           <label for="inputNumberStreet" class="form-label">Numéro</label>
           <input
-            v-model="RegistreMe.streetNumber"
+            v-model="streetNumber"
             type="text"
             class="form-control"
             id="inputPhone"
@@ -61,7 +61,7 @@
             >Nom de rue/avenue/boulevard</label
           >
           <input
-            v-model="RegistreMe.streetName"
+            v-model="streetName"
             type="text"
             class="form-control"
             id="inputAdresse"
@@ -159,7 +159,7 @@
             class="form-select"
           >
             <option selected>Choississez...</option>
-            <option value="canneIsUp">Cannes Is Up</option>
+            <option value="cannesIsUp">Cannes Is Up</option>
             <option value="clubGrasse">
               Le club des entrepreneurs du pays de Grasse
             </option>
@@ -189,10 +189,10 @@
             <option value="produitsEtServicesWeb">
               Produits et services web
             </option>
-            <option value="energie">Développement logiciel</option>
+            <option value="logiciel">Développement logiciel</option>
             <option value="sport">Sport</option>
             <option value="telecom">Telecom</option>
-            <option value="Transports">Transports</option>
+            <option value="transports">Transports</option>
             <option value="voyages">Voyages</option>
             <option value="bienEtre">Bien-être</option>
             <option value="finance">Finance</option>
@@ -298,9 +298,7 @@ export default {
       name: "",
       email: "",
       phone: "",
-      streetNumber: "",
-      streetName: "",
-      adress: "",
+
       city: "",
       postal_code: "",
       website: "",
@@ -322,21 +320,20 @@ export default {
       position: "",
       latitude: "",
       longitude: "",
+      adress: "",
     },
+    streetNumber: "",
+    streetName: "",
   }),
 
   /* Permet de regrouper les differents element lié a la position dans la variable adress */
   watch: {
     streetName: function() {
-      this.RegistreMe.adress =
-        this.RegistreMe.streetNumber + " " + this.RegistreMe.streetName;
-      console.log(this.RegistreMe.adress);
+      this.RegistreMe.adress = this.streetNumber + " " + this.streetName;
     },
 
     streetNumber: function() {
-      this.RegistreMe.adress =
-        this.RegistreMe.streetNumber + " " + this.RegistreMe.streetName;
-      console.log(this.RegistreMe.adress);
+      this.RegistreMe.adress = this.streetNumber + " " + this.streetName;
     },
   },
 
@@ -346,7 +343,7 @@ export default {
 
       this.axios
         .get(
-          `https://api-adresse.data.gouv.fr/search/?q=${this.RegistreMe.streetNumber}+${this.RegistreMe.streetName}+${this.RegistreMe.city}+${this.RegistreMe.postal_code}%22`
+          `https://api-adresse.data.gouv.fr/search/?q=${this.streetNumber}+${this.streetName}+${this.RegistreMe.city}+${this.RegistreMe.postal_code}%22`
         )
         .then((response) => {
           this.RegistreMe.longitude =
@@ -354,8 +351,6 @@ export default {
           this.RegistreMe.latitude =
             response.data.features[0].geometry.coordinates[0];
         });
-
-      console.log(this.RegistreMe.longitude);
     },
 
     register() {
@@ -388,6 +383,7 @@ export default {
         })
 
         .then((response) => console.log(response));
+      this.$router.push("/");
     },
 
     /* methode transformer le logo en base 64 pour la BDD */

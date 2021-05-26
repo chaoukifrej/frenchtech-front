@@ -116,27 +116,31 @@
       </div>
 
       <div class="AdminTabContainer mt-5">
-        <b-tabs content-class="mt-3">
+        <b-tabs
+          content-class="mt-3"
+          justified
+          active-nav-item-class="font-weight-bold text-danger"
+        >
           <b-tab title="Gestion entreprise" active>
             <AdminActorsManage :actors="actors" />
           </b-tab>
-          <b-tab title="Demande d'inscription">
+          <b-tab title="Demande d'inscription" lazy>
             <AdminRegister
               :buffers="buffers"
               :registerBuffer="registerBuffer"
             />
           </b-tab>
-          <b-tab title="Demande de modification">
+          <b-tab title="Demande de modification" lazy>
             <AdminUpdate
               :actors="actors"
               :buffers="buffers"
               :updateBuffer="updateBuffer"
             />
           </b-tab>
-          <b-tab title="Demande de suppression">
+          <b-tab title="Demande de suppression" lazy>
             <AdminDelete :deleteBuffer="deleteBuffer" />
           </b-tab>
-          <b-tab title="Imports et Exports"> <AdminExcel /> </b-tab>
+          <b-tab title="Imports et Exports" lazy> <AdminExcel /> </b-tab>
           <b-tab title="Gestion des administrateurs">
             <AdminGestion />
           </b-tab>
@@ -224,7 +228,7 @@ export default {
       mynumber: "",
     };
   },
-  beforeMount() {
+  created() {
     this.axios
       .get(this.baseUrl + "api/admin/GET/actors", {
         headers: {
@@ -240,49 +244,129 @@ export default {
           elem.streetName = adressStr.replace(number[1], "");
           elem.streetNumber = number[1];
         }
-      });
-  },
+        this.axios
+          .get(this.baseUrl + "/api/GET/buffers")
 
-  async created() {
-    this.getBuffer();
-
-    await this.axios
-      .get(this.baseUrl + "api/admin/GET/historic")
-      .then((response) => {
-        for (const i of response.data.body.historic) {
-          this.arrayHistoric.push(response.data.body.historic);
-          var monthNames = [
-            "Janvier",
-            "Février",
-            "Mars",
-            "Avril",
-            "Mai",
-            "Juin",
-            "Juillet",
-            "Août",
-            "Septembre",
-            "Octobre",
-            "Novembre",
-            "Décembre",
-          ];
-          var newDate = new Date(Date.parse(i.created_at));
-          var formattedDate = monthNames[newDate.getMonth()];
-          this.date.push(formattedDate);
-          this.totalFundsHistoric.push(i.total_funds);
-          this.totalJobsHistoric.push(i.total_jobs_available);
-          this.totalRevenuesHistoric.push(i.total_revenues);
-          this.totalActorsHistoric.push(i.total_actors);
-          this.totalWomenHistoric.push(i.total_women_number);
-          this.totalEmployeesHistoric.push(i.total_employees_number);
-          this.totalMenHistoric.push(
-            i.total_employees_number - i.total_women_number
-          );
-        }
-        this.fillData();
+          .then((response) => {
+            for (const elem of response.data.body.buffers) {
+              this.buffers.push(elem);
+            }
+            this.buffers.forEach((el) => {
+              if (el.type_of_demand == "delete") {
+                let e = {};
+                e.id = el.id;
+                e.actor_id = el.actor_id;
+                e.name = el.name;
+                e.email = el.email;
+                e.phone = el.phone;
+                e.category = el.category;
+                e.associations = el.associations;
+                this.deleteBuffer.push(e);
+              }
+              if (el.type_of_demand == "register") {
+                let e = {};
+                e.id = el.id;
+                e.name = el.name;
+                e.email = el.email;
+                e.phone = el.phone;
+                e.category = el.category;
+                e.associations = el.associations;
+                this.registerBuffer.push(e);
+              }
+              if (el.type_of_demand == "update") {
+                let e = {};
+                e.id = el.id;
+                e.logo = el.logo;
+                e.actor_id = el.actor_id;
+                e.name = el.name;
+                e.adress = el.adress;
+                e.postal_code = el.postal_code;
+                e.city = el.city;
+                e.email = el.email;
+                e.phone = el.phone;
+                e.category = el.category;
+                e.associations = el.associations;
+                e.description = el.description;
+                e.facebook = el.facebook;
+                e.linkedin = el.linkedin;
+                e.twitter = el.twitter;
+                e.website = el.website;
+                e.activity_area = el.activity_area;
+                e.funds = el.funds;
+                e.employees_number = el.employees_number;
+                e.jobs_available_number = el.jobs_available_number;
+                e.women_number = el.women_number;
+                e.revenues = el.revenues;
+                let bufferAdressStr = el.adress;
+                let number = bufferAdressStr.split(/(\d+)/g);
+                e.bufferStreetName = bufferAdressStr.replace(number[1], "");
+                e.bufferStreetNumber = number[1];
+                for (const actor of this.actors) {
+                  if (actor.id == e.actor_id) {
+                    e.actorName = actor.name;
+                    e.actorLogo = actor.logo;
+                    e.actorAdress = actor.adress;
+                    e.actorPostal_code = actor.postal_code;
+                    e.actorCity = actor.city;
+                    e.actorEmail = actor.email;
+                    e.actorPhone = actor.phone;
+                    e.actorCategory = actor.category;
+                    e.actorAssociations = actor.associations;
+                    e.actorDescription = actor.description;
+                    e.actorFacebook = actor.facebook;
+                    e.actorTwitter = actor.twitter;
+                    e.actorLinkedin = actor.linkedin;
+                    e.actorWebsite = actor.website;
+                    e.actorActivity_area = actor.activity_area;
+                    e.actorFunds = actor.funds;
+                    e.actorEmployees_number = actor.employees_number;
+                    e.actorJobs_available_number = actor.jobs_available_number;
+                    e.actorWomen_number = actor.women_number;
+                    e.actorRevenues = actor.revenues;
+                    break;
+                  }
+                }
+                this.updateBuffer.push(e);
+              }
+            });
+          });
       });
+
+    this.axios.get(this.baseUrl + "api/admin/GET/historic").then((response) => {
+      for (const i of response.data.body.historic) {
+        this.arrayHistoric.push(response.data.body.historic);
+        var monthNames = [
+          "Janvier",
+          "Février",
+          "Mars",
+          "Avril",
+          "Mai",
+          "Juin",
+          "Juillet",
+          "Août",
+          "Septembre",
+          "Octobre",
+          "Novembre",
+          "Décembre",
+        ];
+        var newDate = new Date(Date.parse(i.created_at));
+        var formattedDate = monthNames[newDate.getMonth()];
+        this.date.push(formattedDate);
+        this.totalFundsHistoric.push(i.total_funds);
+        this.totalJobsHistoric.push(i.total_jobs_available);
+        this.totalRevenuesHistoric.push(i.total_revenues);
+        this.totalActorsHistoric.push(i.total_actors);
+        this.totalWomenHistoric.push(i.total_women_number);
+        this.totalEmployeesHistoric.push(i.total_employees_number);
+        this.totalMenHistoric.push(
+          i.total_employees_number - i.total_women_number
+        );
+      }
+      this.fillData();
+    });
 
     this.axios.get(this.baseUrl + "api/GET/metric").then((response) => {
-      console.log(response.data.body);
+      // console.log(response.data.body);
       this.metrics.push(response.data.body);
       this.totalFundsMetric = response.data.body.funds_total;
       this.totalRevenuesMetric = response.data.body.revenues_total;
@@ -297,66 +381,6 @@ export default {
   },
 
   methods: {
-    getBuffer() {
-      this.axios
-        .get(this.baseUrl + "/api/GET/buffers")
-
-        .then((response) => {
-          for (const elem of response.data.body.buffers) {
-            this.buffers.push(elem);
-          }
-          this.buffers.forEach((el) => {
-            if (el.type_of_demand == "delete") {
-              let e = {};
-              e.id = el.id;
-              e.actor_id = el.actor_id;
-              e.name = el.name;
-              e.email = el.email;
-              e.phone = el.phone;
-              e.category = el.category;
-              e.associations = el.associations;
-              this.deleteBuffer.push(e);
-            }
-            if (el.type_of_demand == "register") {
-              let e = {};
-              e.id = el.id;
-              e.name = el.name;
-              e.email = el.email;
-              e.phone = el.phone;
-              e.category = el.category;
-              e.associations = el.associations;
-              this.registerBuffer.push(e);
-            }
-            if (el.type_of_demand == "update") {
-              let e = {};
-              e.id = el.id;
-              e.logo = el.logo;
-              e.actor_id = el.actor_id;
-              e.name = el.name;
-              e.adress = el.adress;
-              e.postal_code = el.postal_code;
-              e.city = el.city;
-              e.email = el.email;
-              e.phone = el.phone;
-              e.category = el.category;
-              e.associations = el.associations;
-              e.description = el.description;
-              e.facebook = el.facebook;
-              e.linkedin = el.linkedin;
-              e.twitter = el.twitter;
-              e.website = el.website;
-              e.activity_area = el.activity_area;
-              e.funds = el.funds;
-              e.employees_number = el.employees_number;
-              e.jobs_available_number = el.jobs_available_number;
-              e.women_number = el.women_number;
-              e.revenues = el.revenues;
-              this.updateBuffer.push(e);
-            }
-          });
-        });
-    },
-
     fillData() {
       /*Data de chaque chart*/
       this.datastartup = {

@@ -6,8 +6,43 @@
       </div>
       <div class="card-body">
         <h3 class="card-title">{{ i.name }}</h3>
-        <h5>{{ i.associations }}</h5>
-        <h6>{{ i.website }}</h6>
+        <span v-if="i.associations == 'cannesIsUp'">
+          <h5>Cannes Is Up</h5>
+        </span>
+        <span v-if="i.associations == 'clubGrasse'">
+          <h5>Club des entrepreneurs du pays de Grasse</h5>
+        </span>
+        <span v-if="i.associations == 'NiceStartsUp'">
+          <h5>Nice Start(s) Up</h5>
+        </span>
+        <span v-if="i.associations == 'telecomValley'">
+          <h5>Telecom Valley</h5>
+        </span>
+
+        <span v-if="i.category == 'startUp'">
+          <h6>Start up</h6>
+        </span>
+        <span v-if="i.category == 'association'">
+          <h6>Association</h6>
+        </span>
+        <span v-if="i.category == 'organismeFinanceur'">
+          <h6>Organisme financeur</h6>
+        </span>
+        <span v-if="i.category == 'organismeDeFormation'">
+          <h6>Organisme de formation</h6>
+        </span>
+        <span v-if="i.category == 'servicePublic'">
+          <h6>Service public</h6>
+        </span>
+        <span v-if="i.category == 'tpePme'">
+          <h6>TPE / PME</h6>
+        </span>
+        <span v-if="i.category == 'eti'">
+          <h6>Grande entreprise / groupe</h6>
+        </span>
+        <span v-if="i.category == 'poleDeCompetitivite'">
+          <h6>Pole de compétitivité</h6>
+        </span>
         <SideBar :i="i" />
       </div>
     </div>
@@ -37,20 +72,20 @@ $primary: #0f0041;
 $secondary: #e52345;
 $violet: #13114e;
 $BgWhite: #f6f5f8;
-
 .card {
   display: flex;
   flex-direction: column;
-  width: 15rem;
+  width: 16vw;
+  min-width: 200px;
   height: 12rem;
   border-radius: 3px;
   padding: 10px;
-  margin: 6px;
+  margin: 0.5vw;
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   transition: 0.2s;
   &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     background-color: rgba(255, 255, 255, 0.5);
   }
   .card-body {

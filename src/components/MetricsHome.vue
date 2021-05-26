@@ -1,5 +1,6 @@
 <template>
   <div id="appMetric">
+    <!-- appear visible a rajouter a collapse -->
     <b-collapse appear visible id="navbar-toggle-collapse">
       <b-navbar-nav class="ml-auto">
         <div class="metrics">
@@ -67,13 +68,13 @@
     <b-navbar-toggle
       id="toggleBar"
       variant="outline-*"
-      class="w-100 shadow-none"
+      class="shadow-none"
       target="navbar-toggle-collapse"
     >
       <template #default="{ expanded }">
         <b-icon
           scale="1.5"
-          variant="danger"
+          variant="primary"
           v-if="expanded"
           icon="chevron-up"
           animation="cylon-vertical"
@@ -222,6 +223,6 @@ $BgWhite: #f6f5f8;
 #toggleBar {
   background-color: #f6f5f833;
   backdrop-filter: blur(3px);
-  width: 90%;
+  width: 65vw;
 }
 </style>
