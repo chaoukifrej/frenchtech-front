@@ -602,12 +602,12 @@ export default {
                 },
               })
               .then((response) => {
-                let elem = document.getElementsByTagName("tr");
-                elem.forEach((e) => {
-                  if (e.id.substr(-1) == id) {
-                    // console.log(e.id.substr(-1));
-                    e.style.display = "none";
-                  }
+                document.querySelectorAll("tr").forEach((e) => {
+                  e.querySelectorAll("td:first-child").forEach((i) => {
+                    if (i.innerText == id) {
+                      e.style.display = "none";
+                    }
+                  });
                 });
                 console.log(response.status);
               });
