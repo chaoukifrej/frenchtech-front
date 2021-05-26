@@ -20,8 +20,45 @@
           <div class="header">
             <h4>{{ i.name }}</h4>
             <div>
-              <p class="cat">{{ i.category }}</p>
-              <p class="asso">// {{ i.associations }}</p>
+              <!-- Associations -->
+              <span v-if="i.category == 'startUp'">
+                <p class="cat">Start up</p>
+              </span>
+              <span v-if="i.category == 'association'">
+                <p class="cat">Association</p>
+              </span>
+              <span v-if="i.category == 'organismeFinanceur'">
+                <p class="cat">Organisme financeur</p>
+              </span>
+              <span v-if="i.category == 'organismeDeFormation'">
+                <p class="cat">Organisme de formation</p>
+              </span>
+              <span v-if="i.category == 'servicePublic'">
+                <p class="cat">Service public</p>
+              </span>
+              <span v-if="i.category == 'tpePme'">
+                <p class="cat">TPE / PME</p>
+              </span>
+              <span v-if="i.category == 'eti'">
+                <p class="cat">Grande entreprise / groupe</p>
+              </span>
+              <span v-if="i.category == 'poleDeCompetitivite'">
+                <p class="cat">Pole de compétitivité</p>
+              </span>
+
+              <!-- Category -->
+              <span v-if="i.associations == 'cannesIsUp'">
+                <p class="asso">// Cannes Is Up</p>
+              </span>
+              <span v-if="i.associations == 'clubGrasse'">
+                <p class="asso">// Club des entrepreneurs du pays de Grasse</p>
+              </span>
+              <span v-if="i.associations == 'NiceStartsUp'">
+                <p class="asso">// Nice Start(s) Up</p>
+              </span>
+              <span v-if="i.associations == 'telecomValley'">
+                <p class="asso">// Telecom Valley</p>
+              </span>
             </div>
           </div>
           <div class="img">
