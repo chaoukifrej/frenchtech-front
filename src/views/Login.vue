@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <Footer />
+    <Footer style="position:absolute;bottom:0;width:100%" />
   </div>
 </template>
 
