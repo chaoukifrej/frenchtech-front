@@ -81,7 +81,7 @@
 
       <div class="row g-10 dashboard">
         <!--METRIQUES-->
-        <h2>Données métriques</h2>
+        <h2>Historique</h2>
 
         <div id="chart">
           <div class="col-md-2">

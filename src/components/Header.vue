@@ -15,8 +15,8 @@
         <router-link
           v-show="isConnected.value == false && $route.name != 'Login'"
           to="/Login"
-          ><b-icon class="mx-1" icon="person-circle"></b-icon>Se
-          connecter</router-link
+          ><b-icon class="mx-1" icon="person-circle"></b-icon>Connexion /
+          Enregistrements</router-link
         >
         <router-link
           v-show="isAdmin.value && $route.name != 'Admin'"

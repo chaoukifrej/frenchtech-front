@@ -580,7 +580,7 @@ export default {
         })
 
         .then((response) => console.log(response));
-      this.$bvModal.hide("modal-xl" + id);
+      this.$bvModal.hide("modal-ActorsManage" + id);
     },
     deleteActor(id) {
       this.$bvModal
