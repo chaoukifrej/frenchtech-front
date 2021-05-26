@@ -297,6 +297,10 @@ export default {
                 e.jobs_available_number = el.jobs_available_number;
                 e.women_number = el.women_number;
                 e.revenues = el.revenues;
+                let bufferAdressStr = el.adress;
+                let number = bufferAdressStr.split(/(\d+)/g);
+                e.bufferStreetName = bufferAdressStr.replace(number[1], "");
+                e.bufferStreetNumber = number[1];
                 for (const actor of this.actors) {
                   if (actor.id == e.actor_id) {
                     e.actorName = actor.name;

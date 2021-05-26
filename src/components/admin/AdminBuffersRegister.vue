@@ -394,7 +394,7 @@ export default {
     };
   },
 
-  beforeMount() {
+  /*   beforeMount() {
     // console.log(response);
     for (const elem of this.registerBuffer) {
       this.registerBuffer.push(elem);
@@ -403,7 +403,7 @@ export default {
       elem.streetName = adressStr.replace(number[1], "");
       elem.streetNumber = number[1];
     }
-  },
+  }, */
 
   methods: {
     // ?Show Modal
