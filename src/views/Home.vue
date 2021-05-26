@@ -39,31 +39,31 @@
             <l-icon>
               <b-icon
                 v-if="elem.associations == 'NiceStartsUp'"
-                class="rounded-circle bg-danger p-1"
+                class="rounded-circle bg-danger  h4"
                 icon="circle-fill"
                 variant="light"
-                scale="1.5"
+                scale="0.5"
               ></b-icon>
               <b-icon
                 v-if="elem.associations == 'cannesIsUp'"
-                class="rounded-circle bg-primary p-1"
+                class="rounded-circle bg-primary  h4"
                 icon="circle-fill"
                 variant="light"
-                scale="1.5"
+                scale="0.5"
               ></b-icon>
               <b-icon
                 v-if="elem.associations == 'clubGrasse'"
-                class="rounded-circle bg-success p-1"
+                class="rounded-circle bg-success  h4"
                 icon="circle-fill"
                 variant="light"
-                scale="1.5"
+                scale="0.5"
               ></b-icon>
               <b-icon
                 v-if="elem.associations == 'telecomValley'"
-                class="rounded-circle bg-warning p-1"
+                class="rounded-circle bg-warning  h4"
                 icon="circle-fill"
                 variant="light"
-                scale="1.5"
+                scale="0.5"
               ></b-icon>
             </l-icon>
           </span>
