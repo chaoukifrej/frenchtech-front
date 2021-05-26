@@ -8,7 +8,7 @@
   >
     <template #cell(actions)="data">
       <b-button
-        v-b-modal="'modal-xl' + data.item.id"
+        v-b-modal="'modal-ActorsManage' + data.item.id"
         pill
         variant="secondary"
         size="sm"
@@ -25,15 +25,22 @@
         Supprimer
       </b-button>
       <b-modal
-        :id="'modal-xl' + data.item.id"
+        :id="'modal-ActorsManage' + data.item.id"
         size="xl"
-        title="Extra Large Modal"
+        title="Modifier un acteur"
         hide-footer
+        no-stacking
+        centered
       >
+        <template #modal-header="{ close }">
+          <!-- Emulate built in modal header close button action -->
+          <h5>Modifier un acteur</h5>
+          <b-button size="sm" variant="outline-danger" @click="close()">
+            Fermer
+          </b-button>
+        </template>
         <b-container>
-          <h1>Modifications</h1>
-
-          <b-form @submit="Update" v-if="show">
+          <b-form @submit="Update">
             <!-- LOGO -->
             <b-form-group id="input-group-1" label="Logo" label-for="input-1">
               <b-form-file
@@ -253,11 +260,13 @@
                   label-for="input-11"
                 >
                   <b-form-select
+                    class="p-2"
                     id="input-11"
                     v-model="data.item.category"
                     :options="categorys"
                     required
-                  ></b-form-select>
+                    >{{ selected }}</b-form-select
+                  >
                 </b-form-group>
               </b-col>
 
@@ -271,6 +280,7 @@
                 >
                   <b-form-select
                     id="input-12"
+                    class="p-2"
                     v-model="data.item.associations"
                     :options="associationsL"
                     required
@@ -288,6 +298,7 @@
                 >
                   <b-form-select
                     id="input-13"
+                    class="p-2"
                     v-model="data.item.activity_area"
                     :options="activity_areaL"
                     required
@@ -307,7 +318,7 @@
                   id="input-14"
                   v-model="data.item.description"
                   required
-                  rows="8"
+                  rows="3"
                 ></b-form-textarea></b-form-group
             ></b-row>
 
@@ -397,12 +408,8 @@
               </b-col>
             </b-row>
             <span id="actorId" style="display:none">{{ data.item.id }}</span>
-            <div class="col-12" id="buttonSubmit">
-              <button
-                type="submit"
-                class="btn btn-primary"
-                style="width : 100%"
-              >
+            <div class="col-12 w-100" id="buttonSubmit">
+              <button type="submit" class="btn btn-primary mt-3 w-100" block>
                 Modifier
               </button>
             </div>
@@ -431,45 +438,48 @@ export default {
         { key: "actions", label: "Actions" },
       ],
 
-      show: true,
       categorys: [
         { text: "Choisissez une categorie", value: null },
-        "Start-up",
-        "Association",
-        "Organisme financeur",
-        "Organisme de formation",
-        "Service public",
-        "TPE/PME",
-        "Grande entreprises/Grand groupe/ETI",
-        "Pole de compétitivité",
+        { text: "Start-up", value: "startUp" },
+        { text: "Association", value: "association" },
+        { text: "Organisme financeur", value: "organismeFinanceur" },
+        { text: "Organisme de formation", value: "organismeDeFormation" },
+        { text: "Service public", value: "servicePublic" },
+        { text: "TPE/PME", value: "tpePme" },
+        { text: "Grande entreprises/Grand groupe/ETI", value: "eti" },
+        { text: "Pole de compétitivité", value: "poleDeCompetitivite" },
       ],
       associationsL: [
         { text: "Choisissez une associations", value: null },
-        "Cannes Is Up",
-        "Le club des entrepreneurs du pays de Grasse",
-        "Nice Starts-up",
-        "Telecom Valley",
+        { text: "Cannes Is Up", value: "cannesIsUp" },
+        {
+          text: "Le club des entrepreneurs du pays de Grasse",
+          value: "clubGrasse",
+        },
+        { text: "Nice Starts-up", value: "NiceStartsUp" },
+        { text: "Telecom Valley", value: "telecomValley" },
       ],
       activity_areaL: [
         { text: "Choisissez un secteur d'activité", value: null },
-        "Formation",
-        "Energie",
-        "Evenementiel",
-        "Mode et textile",
-        "Industrie",
-        "Juridique",
-        "Médias",
-        "Produits et services web",
-        "Développement logiciel",
-        "Sport",
-        "Telecom",
-        "Transports",
-        "Voyages",
-        "Bien-être",
-        "Finance",
-        "Administration Public",
-        "Evenementiel",
+        { text: "Formation", value: "formation" },
+        { text: "Energie", value: "energie" },
+        { text: "Evenementiel", value: "evenementiel" },
+        { text: "Mode et textile", value: "mode" },
+        { text: "Industrie", value: "industrie" },
+        { text: "Recrutement", value: "recrutement" },
+        { text: "Juridique", value: "Juridique" },
+        { text: "Médias", value: "media" },
+        { text: "Produits et services web", value: "produitsEtServicesWeb" },
+        { text: "Développement logiciel", value: "logiciel" },
+        { text: "Sport", value: "sport" },
+        { text: "Telecom", value: "telecom" },
+        { text: "Transports", value: "transports" },
+        { text: "Voyages", value: "voyages" },
+        { text: "Bien-être", value: "bienEtre" },
+        { text: "Finance", value: "finance" },
+        { text: "Administration Public", value: "administrationPublic" },
       ],
+      selected: null,
       logo: "",
       name: "",
       email: "",
@@ -620,7 +630,7 @@ export default {
                     e.style.display = "none";
                   }
                 });
-                // console.log(response.status);
+                console.log(response.status);
               });
 
             // console.log(id);

@@ -189,10 +189,10 @@
             <option value="produitsEtServicesWeb">
               Produits et services web
             </option>
-            <option value="energie">Développement logiciel</option>
+            <option value="logiciel">Développement logiciel</option>
             <option value="sport">Sport</option>
             <option value="telecom">Telecom</option>
-            <option value="Transports">Transports</option>
+            <option value="transports">Transports</option>
             <option value="voyages">Voyages</option>
             <option value="bienEtre">Bien-être</option>
             <option value="finance">Finance</option>
@@ -383,6 +383,7 @@ export default {
         })
 
         .then((response) => console.log(response));
+      this.$router.push("/");
     },
 
     /* methode transformer le logo en base 64 pour la BDD */

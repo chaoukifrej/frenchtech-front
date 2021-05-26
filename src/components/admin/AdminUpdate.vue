@@ -7,20 +7,22 @@
     :fields="liste"
   >
     <template #cell(actions)="data">
-      <b-button @click="showModif(data.item.id)" variant="primary" size="sm"
+      <b-button
+        @click="showModif(data.item.id)"
+        variant="primary"
+        size="sm"
+        pill
         >Voir les modifications</b-button
       >
-      <b-modal
-        size="xl"
-        :id="'modalUpdate' + data.item.id"
-        hide-footer
-        hide-header
-      >
+      <b-modal size="xl" :id="'modalUpdate' + data.item.id" hide-footer>
+        <template #modal-header="{ close }">
+          <!-- Emulate built in modal header close button action -->
+          <h5>Demande de modification</h5>
+          <b-button size="sm" variant="outline-danger" @click="close()">
+            Fermer
+          </b-button>
+        </template>
         <h5>modification</h5>
-        {{ data.item }}
-        <p>avant</p>
-
-        <p>apres</p>
 
         <b-form>
           <!-- LOGO -->
@@ -73,6 +75,10 @@
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-3" triggers="hover" placement="top">
+                {{ data.item.actorEmail }}
+                <b-icon-arrow-right></b-icon-arrow-right> {{ data.item.email }}
+              </b-popover>
             </div>
 
             <div class="col-md-4">
@@ -84,10 +90,14 @@
               >
                 <b-form-input
                   id="input-4"
-                  v-model="phone"
+                  v-model="data.item.phone"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-4" triggers="hover" placement="top">
+                {{ data.item.actorPhone }}
+                <b-icon-arrow-right></b-icon-arrow-right> {{ data.item.phone }}
+              </b-popover>
             </div>
           </b-row>
 
@@ -101,10 +111,14 @@
               >
                 <b-form-input
                   id="input-5"
-                  v-model="streetNumber"
+                  v-model="data.item.streetNumber"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-5" triggers="hover" placement="top">
+                {{ data.item.actorName }}
+                <b-icon-arrow-right></b-icon-arrow-right> {{ data.item.name }}
+              </b-popover>
             </div>
             <div class="col-md-2">
               <!-- POSTAL CODE -->
@@ -115,11 +129,16 @@
               >
                 <b-form-input
                   id="input-6"
-                  v-model="postal_code"
+                  v-model="data.item.postal_code"
                   type="text"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-6" triggers="hover" placement="top">
+                {{ data.item.actorPostal_code }}
+                <b-icon-arrow-right></b-icon-arrow-right>
+                {{ data.item.postal_code }}
+              </b-popover>
             </div>
             <div class="col-md-4">
               <!-- ADRESS -->
@@ -130,11 +149,15 @@
               >
                 <b-form-input
                   id="input-7"
-                  v-model="streetName"
+                  v-model="data.item.adress"
                   type="text"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-7" triggers="hover" placement="top">
+                {{ data.item.actorAdress }}
+                <b-icon-arrow-right></b-icon-arrow-right> {{ data.item.adress }}
+              </b-popover>
             </div>
             <div class="col-md-4">
               <!-- CITY -->
@@ -145,11 +168,15 @@
               >
                 <b-form-input
                   id="input-8"
-                  v-model="city"
+                  v-model="data.item.city"
                   type="text"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-8" triggers="hover" placement="top">
+                {{ data.item.actorCity }}
+                <b-icon-arrow-right></b-icon-arrow-right> {{ data.item.city }}
+              </b-popover>
             </div>
           </b-row>
 
@@ -163,11 +190,16 @@
               >
                 <b-form-input
                   id="input-9"
-                  v-model="facebook"
+                  v-model="data.item.facebook"
                   type="text"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-9" triggers="hover" placement="top">
+                {{ data.item.actorFacebook }}
+                <b-icon-arrow-right></b-icon-arrow-right>
+                {{ data.item.facebook }}
+              </b-popover>
             </div>
             <div class="col-md-4">
               <!-- TWITTER -->
@@ -178,11 +210,16 @@
               >
                 <b-form-input
                   id="input-10"
-                  v-model="twitter"
+                  v-model="data.item.twitter"
                   type="text"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-10" triggers="hover" placement="top">
+                {{ data.item.actorTwitter }}
+                <b-icon-arrow-right></b-icon-arrow-right>
+                {{ data.item.twitter }}
+              </b-popover>
             </div>
 
             <div class="col-md-4">
@@ -194,11 +231,16 @@
               >
                 <b-form-input
                   id="input-11"
-                  v-model="linkedin"
+                  v-model="data.item.linkedin"
                   type="text"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-11" triggers="hover" placement="top">
+                {{ data.item.actorLinkedin }}
+                <b-icon-arrow-right></b-icon-arrow-right>
+                {{ data.item.linkedin }}
+              </b-popover>
             </div>
           </b-row>
 
@@ -212,11 +254,16 @@
               >
                 <b-form-select
                   id="input-12"
-                  v-model="category"
+                  v-model="data.item.category"
                   :options="categorys"
                   required
                 ></b-form-select>
               </b-form-group>
+              <b-popover target="input-12" triggers="hover" placement="top">
+                {{ data.item.actorCategory }}
+                <b-icon-arrow-right></b-icon-arrow-right>
+                {{ data.item.category }}
+              </b-popover>
             </div>
             <div class="col-md-4">
               <!-- ASSOCIATIONS -->
@@ -227,11 +274,16 @@
               >
                 <b-form-select
                   id="input-13"
-                  v-model="associations"
+                  v-model="data.item.associations"
                   :options="associationsL"
                   required
                 ></b-form-select>
               </b-form-group>
+              <b-popover target="input-13" triggers="hover" placement="top">
+                {{ data.item.actorAssociations }}
+                <b-icon-arrow-right></b-icon-arrow-right>
+                {{ data.item.associations }}
+              </b-popover>
             </div>
             <div class="col-md-4">
               <!-- ACTIVIT AREA -->
@@ -242,11 +294,16 @@
               >
                 <b-form-select
                   id="input-14"
-                  v-model="activity_area"
+                  v-model="data.item.activity_area"
                   :options="activity_areaL"
                   required
                 ></b-form-select>
               </b-form-group>
+              <b-popover target="input-14" triggers="hover" placement="top">
+                {{ data.item.actorActivity_area }}
+                <b-icon-arrow-right></b-icon-arrow-right>
+                {{ data.item.activity_area }}
+              </b-popover>
             </div>
           </b-row>
 
@@ -258,10 +315,15 @@
           >
             <b-form-textarea
               id="input-15"
-              v-model="description"
+              v-model="data.item.description"
               required
             ></b-form-textarea>
           </b-form-group>
+          <b-popover target="input-15" triggers="hover" placement="top">
+            {{ data.item.actorDescription }}
+            <b-icon-arrow-right></b-icon-arrow-right>
+            {{ data.item.description }}
+          </b-popover>
 
           <h4>Informations relative à votre entreprise</h4>
 
@@ -275,11 +337,16 @@
               >
                 <b-form-input
                   id="input-16"
-                  v-model="employees_number"
+                  v-model="data.item.employees_number"
                   type="number"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-16" triggers="hover" placement="top">
+                {{ data.item.actorEmployees_number }}
+                <b-icon-arrow-right></b-icon-arrow-right>
+                {{ data.item.employees_number }}
+              </b-popover>
             </div>
             <div class="col-md-4">
               <!-- WOMENS NUMBER -->
@@ -290,11 +357,16 @@
               >
                 <b-form-input
                   id="input-17"
-                  v-model="women_number"
+                  v-model="data.item.women_number"
                   type="number"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-17" triggers="hover" placement="top">
+                {{ data.item.actorWomen_number }}
+                <b-icon-arrow-right></b-icon-arrow-right>
+                {{ data.item.women_number }}
+              </b-popover>
             </div>
             <div class="col-md-4">
               <!-- JOBS NUMBER -->
@@ -305,11 +377,16 @@
               >
                 <b-form-input
                   id="input-18"
-                  v-model="jobs_available_number"
+                  v-model="data.item.jobs_available_number"
                   type="number"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-18" triggers="hover" placement="top">
+                {{ data.item.actorJobs_available_number }}
+                <b-icon-arrow-right></b-icon-arrow-right>
+                {{ data.item.jobs_available_number }}
+              </b-popover>
             </div>
           </b-row>
 
@@ -323,11 +400,15 @@
               >
                 <b-form-input
                   id="input-19"
-                  v-model="funds"
+                  v-model="data.item.funds"
                   type="number"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-19" triggers="hover" placement="top">
+                {{ data.item.actorFunds }}
+                <b-icon-arrow-right></b-icon-arrow-right> {{ data.item.funds }}
+              </b-popover>
             </div>
             <div class="col-md-6">
               <!--  -->
@@ -338,27 +419,26 @@
               >
                 <b-form-input
                   id="input-20"
-                  v-model="revenues"
+                  v-model="data.item.revenues"
                   type="number"
                   required
                 ></b-form-input>
               </b-form-group>
+              <b-popover target="input-20" triggers="hover" placement="top">
+                {{ data.item.actorRevenues }}
+                <b-icon-arrow-right></b-icon-arrow-right>
+                {{ data.item.revenues }}
+              </b-popover>
             </div>
           </b-row>
-
-          <div class="col-12" id="buttonSubmit">
-            <b-button variant="success" type="submit" class="btn btn-success">
-              Modifier
-            </b-button>
-          </div>
         </b-form>
 
         <span id="actorId" style="display:none">{{ data.item.id }}</span>
         <div>
-          <b-button @click="acceptModification" class="btn-success"
+          <b-button @click="acceptModification" class="btn-success mt-2 mx-1"
             >Accepter</b-button
           >
-          <b-button @click="cancelModification" class="btn-alert"
+          <b-button @click="cancelModification" class="btn-alert mt-2"
             >Refuser</b-button
           >
         </div>
