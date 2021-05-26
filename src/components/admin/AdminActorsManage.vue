@@ -49,7 +49,7 @@
                 type="file"
                 accept="image/png, image/jpeg"
                 ref="img"
-                placeholder=" "
+                plain
               ></b-form-file>
             </b-form-group>
 
@@ -265,7 +265,8 @@
                     v-model="data.item.category"
                     :options="categorys"
                     required
-                  ></b-form-select>
+                    >{{ selected }}</b-form-select
+                  >
                 </b-form-group>
               </b-col>
 
@@ -321,7 +322,9 @@
                 ></b-form-textarea></b-form-group
             ></b-row>
 
-            <h1>Informations Relative a votre entreprise</h1>
+            <h1>
+              Informations Relative a votre entreprise
+            </h1>
 
             <!-- FUNDS -->
             <b-row>
@@ -437,42 +440,46 @@ export default {
 
       categorys: [
         { text: "Choisissez une categorie", value: null },
-        "Start-up",
-        "Association",
-        "Organisme financeur",
-        "Organisme de formation",
-        "Service public",
-        "TPE/PME",
-        "Grande entreprises/Grand groupe/ETI",
-        "Pole de compétitivité",
+        { text: "Start-up", value: "startUp" },
+        { text: "Association", value: "association" },
+        { text: "Organisme financeur", value: "organismeFinanceur" },
+        { text: "Organisme de formation", value: "organismeDeFormation" },
+        { text: "Service public", value: "servicePublic" },
+        { text: "TPE/PME", value: "tpePme" },
+        { text: "Grande entreprises/Grand groupe/ETI", value: "eti" },
+        { text: "Pole de compétitivité", value: "poleDeCompetitivite" },
       ],
       associationsL: [
         { text: "Choisissez une associations", value: null },
-        "Cannes Is Up",
-        "Le club des entrepreneurs du pays de Grasse",
-        "Nice Starts-up",
-        "Telecom Valley",
+        { text: "Cannes Is Up", value: "cannesIsUp" },
+        {
+          text: "Le club des entrepreneurs du pays de Grasse",
+          value: "clubGrasse",
+        },
+        { text: "Nice Starts-up", value: "NiceStartsUp" },
+        { text: "Telecom Valley", value: "telecomValley" },
       ],
       activity_areaL: [
         { text: "Choisissez un secteur d'activité", value: null },
-        "Formation",
-        "Energie",
-        "Evenementiel",
-        "Mode et textile",
-        "Industrie",
-        "Juridique",
-        "Médias",
-        "Produits et services web",
-        "Développement logiciel",
-        "Sport",
-        "Telecom",
-        "Transports",
-        "Voyages",
-        "Bien-être",
-        "Finance",
-        "Administration Public",
-        "Evenementiel",
+        { text: "Formation", value: "formation" },
+        { text: "Energie", value: "energie" },
+        { text: "Evenementiel", value: "evenementiel" },
+        { text: "Mode et textile", value: "mode" },
+        { text: "Industrie", value: "industrie" },
+        { text: "Recrutement", value: "recrutement" },
+        { text: "Juridique", value: "Juridique" },
+        { text: "Médias", value: "media" },
+        { text: "Produits et services web", value: "produitsEtServicesWeb" },
+        { text: "Développement logiciel", value: "logiciel" },
+        { text: "Sport", value: "sport" },
+        { text: "Telecom", value: "telecom" },
+        { text: "Transports", value: "transports" },
+        { text: "Voyages", value: "voyages" },
+        { text: "Bien-être", value: "bienEtre" },
+        { text: "Finance", value: "finance" },
+        { text: "Administration Public", value: "administrationPublic" },
       ],
+      selected: null,
       logo: "",
       name: "",
       email: "",
@@ -623,7 +630,7 @@ export default {
                     e.style.display = "none";
                   }
                 });
-                // console.log(response.status);
+                console.log(response.status);
               });
 
             // console.log(id);
@@ -649,4 +656,4 @@ export default {
 };
 </script>
 
-<style lang="sass"></style>
+<style lang="scss"></style>
