@@ -217,6 +217,9 @@ export default {
       //Fonction de filtre sur select
       filterByAssociationSelected: "labelAssociation",
       filterByCategorySelected: "labelCategory",
+
+      //acceptRGPD
+      acceptRGPD: false,
     };
   },
 
