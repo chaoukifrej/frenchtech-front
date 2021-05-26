@@ -512,27 +512,6 @@ export default {
     };
   },
 
-  beforeMount() {
-    this.axios
-      .get(this.baseUrl + "api/admin/GET/actors", {
-        headers: {
-          Authorization: "Bearer " + this.token.value,
-          Accept: "application/json",
-        },
-      })
-      .then((response) => {
-        for (const elem of response.data.body.actors) {
-          this.actors.push(elem);
-          let adressStr = elem.adress;
-          let number = adressStr.split(/(\d+)/g);
-          elem.streetName = adressStr.replace(number[1], "");
-          elem.streetNumber = number[1];
-
-          // console.log(elem.category);
-        }
-      });
-  },
-
   methods: {
     Update(e) {
       e.preventDefault();
@@ -623,12 +602,12 @@ export default {
                 },
               })
               .then((response) => {
-                let elem = document.getElementsByTagName("tr");
-                elem.forEach((e) => {
-                  if (e.id.substr(-1) == id) {
-                    // console.log(e.id.substr(-1));
-                    e.style.display = "none";
-                  }
+                document.querySelectorAll("tr").forEach((e) => {
+                  e.querySelectorAll("td:first-child").forEach((i) => {
+                    if (i.innerText == id) {
+                      e.style.display = "none";
+                    }
+                  });
                 });
                 console.log(response.status);
               });
