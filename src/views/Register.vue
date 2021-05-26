@@ -66,7 +66,6 @@
             class="form-control"
             id="inputAdresse"
             placeholder="rue/avenue/boulevard..."
-            @change="getPosition"
           />
         </div>
 
@@ -87,6 +86,7 @@
             type="text"
             class="form-control"
             id="inputZip"
+            @keyup="getPosition"
           />
         </div>
 
@@ -343,7 +343,7 @@ export default {
 
       this.axios
         .get(
-          `https://api-adresse.data.gouv.fr/search/?q=${this.streetNumber}+${this.streetName}+${this.RegistreMe.city}+${this.RegistreMe.postal_code}%22`
+          `https://api-adresse.data.gouv.fr/search/?q=${this.streetNumber}+${this.streetName}+${this.RegistreMe.city}+${this.RegistreMe.postal_code}`
         )
         .then((response) => {
           this.RegistreMe.longitude =
