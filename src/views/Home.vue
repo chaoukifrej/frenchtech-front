@@ -24,28 +24,52 @@
           :lat-lng="[elem.longitude, elem.latitude]"
           @click="sayHello(elem.id)"
         >
-          <l-tooltip
-            class="leaflet-pane leaflet-tooltip-pane"
-            v-if="elem.filteredByCat && elem.filteredByAssoc"
-          >
-            <img
-              class="img-logo"
-              :src="elem.logo"
-              style="height: 40px;
+          <span v-if="elem.filteredByCat && elem.filteredByAssoc">
+            <l-tooltip class="leaflet-pane leaflet-tooltip-pane">
+              <img
+                class="img-logo"
+                :src="elem.logo"
+                style="height: 40px;
               width: auto;
               margin: 2px 0 15px 0"
-            />
-            <div class="tooltip-name">{{ elem.name }}</div>
-            <div class="tooltip-website">{{ elem.website }}</div>
-          </l-tooltip>
-          <l-icon>
-            <b-icon
-              class="rounded-circle bg-danger p-1"
-              icon="circle-fill"
-              variant="light"
-              scale="1.5"
-            ></b-icon>
-          </l-icon>
+              />
+              <div class="tooltip-name">{{ elem.name }}</div>
+              <div class="tooltip-website">{{ elem.website }}</div>
+            </l-tooltip>
+            <l-icon>
+              <b-icon
+                v-if="elem.associations == 'NiceStartsUp'"
+                class="rounded-circle bg-danger p-1"
+                icon="circle-fill"
+                variant="light"
+                scale="1.5"
+              ></b-icon>
+              <b-icon
+                v-if="elem.associations == 'cannesIsUp'"
+                class="rounded-circle bg-primary p-1"
+                icon="circle-fill"
+                variant="light"
+                scale="1.5"
+              ></b-icon>
+              <b-icon
+                v-if="elem.associations == 'clubGrasse'"
+                class="rounded-circle bg-success p-1"
+                icon="circle-fill"
+                variant="light"
+                scale="1.5"
+              ></b-icon>
+              <b-icon
+                v-if="elem.associations == 'telecomValley'"
+                class="rounded-circle bg-warning p-1"
+                icon="circle-fill"
+                variant="light"
+                scale="1.5"
+              ></b-icon>
+            </l-icon>
+          </span>
+          <span v-else>
+            <l-icon></l-icon>
+          </span>
         </l-marker>
       </l-map>
 
